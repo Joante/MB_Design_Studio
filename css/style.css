@@ -654,9 +654,10 @@ input[type="checkbox"] {
     top: 5px;
 }
 
-.dropdown-menu.last {
+
+/*.dropdown-menu.last {
     left: -75%;
-}
+}*/
 
 .sub-menu {
     position: absolute;
@@ -2892,10 +2893,13 @@ button.mfp-arrow {
         display: none;
     }
     .dropdown:hover .dropdown-menu,
-    .dropdown:hover .mega-menu {
+    .dropdown:hover .mega-menu,
+    .dropdown:active .dropdown-menu,
+    .dropdown:active .mega-menu {
         display: block;
     }
-    .dropdown .dropdown-menu:hover .sub-menu {
+    .dropdown .dropdown-menu:hover .sub-menu,
+    .dropdown .dropdown-menu:active .sub-menu {
         display: block;
     }
     .dropdown .mega-menu {
