@@ -180,12 +180,12 @@ $(function() {
 
     // Team owlCarousel
     $('.team .owl-carousel').owlCarousel({
-        loop: true,
+        loop: false,
         margin: 30,
         dots: false,
-        mouseDrag: true,
+        mouseDrag: false,
         autoplay: false,
-        responsiveClass: true,
+        responsiveClass: false,
         responsive: {
             0: {
                 items: 1
