@@ -16,7 +16,7 @@ use App\Http\Controllers\MiscellaneousController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ChartsController;
 use App\Http\Controllers\InfoController;
-
+use App\Http\Controllers\ServicesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +32,6 @@ use App\Http\Controllers\InfoController;
 // Main Page Route
 // Route::get('/', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce')->middleware('verified');
 Route::get('/', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce');
-
-Auth::routes(['verify' => true]);
 
 /* Route Dashboards */
 Route::group(['prefix' => 'dashboard'], function () {
@@ -231,3 +229,20 @@ Route::get('/about', [InfoController::class, 'about'])->name('about');
 Route::get('/contact', [InfoController::class, 'contact'])->name('contact');
 
 Route::post('/contact', [InfoController::class, 'storeContact'])->name('contact-send');
+
+
+
+
+//Admin routes
+
+Route::get('/services/list', [ServicesController::class, 'index'])->name('services_index');
+Route::get('/services/show/{id}', [ServicesController::class, 'show'])->name('services_show');
+Route::get('/services/edit/{id}', [ServicesController::class, 'edit'])->name('services_edit');
+Route::get('/services/create', [ServicesController::class, 'create'])->name('services_create');
+Route::post('/services/store', [ServicesController::class, 'store'])->name('services_store');
+Route::post('/services/update/{id}', [ServicesController::class, 'update'])->name('services_update');
+Route::post('/services/destroy/{id}', [ServicesController::class, 'destroy'])->name('services_destroy');
+//->middleware('auth');
+
+
+require __DIR__.'/auth.php';

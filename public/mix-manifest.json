@@ -134,6 +134,7 @@
     "/js/scripts/tables/table-datatables-advanced.js": "/js/scripts/tables/table-datatables-advanced.js",
     "/js/scripts/tables/table-datatables-basic.js": "/js/scripts/tables/table-datatables-basic.js",
     "/js/scripts/ui/ui-feather.js": "/js/scripts/ui/ui-feather.js",
+    "/js/app.js": "/js/app.js",
     "/js/bootstrap.min.js": "/js/bootstrap.min.js",
     "/js/custom.js": "/js/custom.js",
     "/js/gridify-min.js": "/js/gridify-min.js",
