@@ -14,7 +14,7 @@ class Service extends Model
      */
     public function images()
     {
-        return $this->morphMany(Image::class, 'getImages');
+        return $this->morphMany(Image::class, 'model');
     }
 
     /**
@@ -33,9 +33,30 @@ class Service extends Model
     protected $fillable = [
        'title',
        'description',
+       'text',
        'icon_id'
     ];
 
+    /**
+     * Get the full decode text.
+     *
+     * @return string
+     */
+    public function getTextAttribute($value)
+    {
+        return json_decode($value);
+    }
+
+    /**
+     * Set the text to json.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setTextAttribute($value)
+    {
+        $this->attributes['text'] = json_encode($value);
+    }
 
 
 }

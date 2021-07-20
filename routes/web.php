@@ -15,6 +15,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\MiscellaneousController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ChartsController;
+use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\ServicesController;
 
@@ -235,13 +236,20 @@ Route::post('/contact', [InfoController::class, 'storeContact'])->name('contact-
 
 //Admin routes
 
-Route::get('/services/list', [ServicesController::class, 'index'])->name('services_index');
+Route::get('/services/list', [ServicesController::class, 'index_admin'])->name('services_index_admin');
 Route::get('/services/show/{id}', [ServicesController::class, 'show'])->name('services_show');
+Route::get('/services/show/{id}/admin/{message?}', [ServicesController::class, 'show_admin'])->name('services_show_admin');
 Route::get('/services/edit/{id}', [ServicesController::class, 'edit'])->name('services_edit');
 Route::get('/services/create', [ServicesController::class, 'create'])->name('services_create');
 Route::post('/services/store', [ServicesController::class, 'store'])->name('services_store');
 Route::post('/services/update/{id}', [ServicesController::class, 'update'])->name('services_update');
-Route::post('/services/destroy/{id}', [ServicesController::class, 'destroy'])->name('services_destroy');
+Route::post('/services/destroy', [ServicesController::class, 'destroy'])->name('services_destroy');
+
+Route::get('/images/upload/{modelType}/{modelId}', [ImagesController::class, 'create'])->name('images_create_model');
+Route::post('/images/store/{modelType}/{modelId}', [ImagesController::class, 'store'])->name('images_store');
+Route::get('/images/edit/{modelType}/{modelId}', [ImagesController::class, 'edit'])->name('images_edit');
+Route::post('/images/update/{modelType}/{modelId}', [ImagesController::class, 'update'])->name('images_update');
+Route::post('/images/delete/{modelType}/{modelId}', [ImagesController::class, 'delete'])->name('images_delete');
 //->middleware('auth');
 
 

@@ -18,8 +18,8 @@ class CreateImagesTable extends Migration
             $table->string('title');
             $table->string('description')->nullable();
             $table->string('location');
-            $table->unsignedBigInteger('father_id');
-            $table->string('father_type');
+            $table->unsignedBigInteger('model_id');
+            $table->string('model_type');
             $table->timestamps();
         });
     }
