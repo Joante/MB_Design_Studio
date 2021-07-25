@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Mail\AdminContact;
 use App\Mail\ContactMail;
 use App\Models\Contact;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class InfoController extends Controller
 {
     public function index() {
-        return view('Web/index');
+        $services = Service::where('principal_page', '=', true)->get();
+        return view('Web/index', ['services' => $services]);
     }
 
     public function about() {

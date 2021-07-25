@@ -19,6 +19,7 @@ class CreateServicesTable extends Migration
             $table->text('description');
             $table->json('text');
             $table->unsignedBigInteger('icon_id');
+            $table->boolean('principal_page');
             $table->timestamps();
             $table->foreign('icon_id')->references('id')->on('icons');
         });

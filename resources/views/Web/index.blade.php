@@ -147,37 +147,20 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
-                        <div class="item">
-                            <a href="interior-design.html"> <img src="img/icons/icon-2.png" alt="">
-                                <h5>Interiorismo</h5>
-                                <div class="line"></div>
-                                <p>Nuestros proyectos reflejan la identidad de cada cliente, que fusionando la estética, la funcionalidad y el arte, creamos experiencias únicas que brindan bienestar y confort.</p>
-                                <div class="numb">01</div>
-                            </a>
+                    @for ($i = 0; $i < count($services); $i++)
+                        <div class="col-md-3">
+                            <div class="item">
+                                <a href="{{ route('services_view', $services[$i]->id) }}"> <img src="{{ asset('img/icons/'.$services[$i]->icon->location) }}" alt="$services[$i]->icon->title">
+                                    <h5>{{ $services[$i]->title }}</h5>
+                                    <div class="line"></div>
+                                    <p>{{ $services[$i]->description }}</p>
+                                    <br>
+                                    <div class="numb">0{{ $i+1 }}</div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="item">
-                            <a href="landscaping.html"> <img src="img/icons/paisajismo_logo.png" alt="">
-                                <h5>Paisajismo</h5>
-                                <div class="line"></div>
-                                <p>Brindamos una solución integral a los espacios verdes con soporte técnico, conservación, tendencias y sustentabilidad.</p>
-                                <div class="numb">02</div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="item">
-                            <a href="3d-modelling.html"> <img src="img/icons/icon-6.png" alt="">
-                                <h5>Modelado</h5>
-                                <div class="line"></div>
-                                <p>Desarrollamos presentaciones bidimensionales y tridimensionales para entender en su máxima expresión el proyecto a realizar.</p>
-                                <div class="numb">03</div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
+                    @endfor
+                        <div class="col-md-3">
                         <div class="item">
                             <a href="art.html"> <img src="img/icons/arte_logo.png" style="margin-left: -10px;" alt="">
                                 <h5>Arte</h5>

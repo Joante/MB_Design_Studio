@@ -21,43 +21,27 @@
                 </div>
                 <div class="row">
                     <div class="col-md-8">
-                        <p>{{$services->description}}</p>
+                       {!! $service->text !!}
                         <div class="row mb-30">
-                            <div class="col-md-6 gallery-item">
-                                <a href="img/1100x750.jpg" title="Architecture" class="img-zoom">
-                                    <div class="gallery-box">
-                                        <div class="gallery-img"> <img src="img/1100x750.jpg" class="img-fluid mx-auto d-block" alt="work-img"> </div>
+                            @foreach ($service->images as $key => $image)
+                                @if ($key!=2)
+                                    <div class="col-md-6 gallery-item">
+                                        <a href="{{ asset($image->location) }}" title="$image->title" class="img-zoom">
+                                            <div class="gallery-box">
+                                                <div class="gallery-img"> <img src="{{ asset($image->location) }}" class="img-fluid mx-auto d-block" alt="$image->title"> </div>
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
-                            <div class="col-md-6 gallery-item">
-                                <a href="img/1100x750.jpg" title="Architecture" class="img-zoom">
-                                    <div class="gallery-box">
-                                        <div class="gallery-img"> <img src="img/1100x750.jpg" class="img-fluid mx-auto d-block" alt="work-img"> </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-12 gallery-item">
-                                <a href="img/1100x750.jpg" title="Architecture" class="img-zoom">
-                                    <div class="gallery-box">
-                                        <div class="gallery-img"> <img src="img/1100x750.jpg" class="img-fluid mx-auto d-block" alt="work-img"> </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-6 gallery-item">
-                                <a href="img/1100x750.jpg" title="Architecture" class="img-zoom">
-                                    <div class="gallery-box">
-                                        <div class="gallery-img"> <img src="img/1100x750.jpg" class="img-fluid mx-auto d-block" alt="work-img"> </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-6 gallery-item">
-                                <a href="img/1100x750.jpg" title="Architecture" class="img-zoom">
-                                    <div class="gallery-box">
-                                        <div class="gallery-img"> <img src="img/1100x750.jpg" class="img-fluid mx-auto d-block" alt="work-img"> </div>
-                                    </div>
-                                </a>
-                            </div>
+                                @else
+                                    <div class="col-md-12 gallery-item">
+                                        <a href="{{ asset($image->location) }}" title="$image->title" class="img-zoom">
+                                            <div class="gallery-box">
+                                                <div class="gallery-img"> <img src="{{ asset($image->location) }}" class="img-fluid mx-auto d-block" alt="$image->title"> </div>
+                                            </div>
+                                        </a>
+                                    </div>    
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                     <div class="col-md-4 sidebar-side">
@@ -68,12 +52,13 @@
                                         <h4>Todos los Servicios</h4>
                                     </div>
                                     <ul>
-                                        <li class="active"><a href="interior-design.html">Interiorismo</a></li>
-                                        <li><a href="landscaping.html">Paisajismo</a></li>
-                                        <li><a href="collections.html">Colecciones</a></li>
-                                        <li><a href="planning.html">Planning</a></li>
-                                        <li><a href="3d-modelling.html">Modelado 3D</a></li>
-                                        <li><a href="decor-plan.html">Decor Plan</a></li>
+                                        @foreach ($services as $list_service)
+                                            @if ($list_service->id == $service->id)
+                                                <li class="active"><a href="{{ route('services_view', $list_service->id) }}">{{ $list_service->title }}</a></li>    
+                                            @else
+                                                <li><a href="{{ route('services_view', $list_service->id) }}">{{ $list_service->title }}</a></li>
+                                            @endif
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
@@ -82,7 +67,7 @@
                             <div class="sidebar-widget services">
                                 <div class="widget-inner">
                                     <div class="sidebar-title">
-                                        <h4>Proyectos de Interiorismo</h4>
+                                        <h4>Proyectos de {{ $service->title }}</h4>
                                     </div>
                                     <ul>
                                         <li><a href="armada-center.html">Chile</a></li>

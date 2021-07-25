@@ -34,7 +34,17 @@ class Service extends Model
        'title',
        'description',
        'text',
+       'principal_page',
        'icon_id'
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'principal_page' => 'boolean',
     ];
 
     /**

@@ -8,7 +8,8 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use App\Models\Image as ModelsImage;
+use App\Rules\PrincipalPage;
+use Illuminate\Support\Facades\Validator;
 use Image;
 
 class ServicesController extends Controller
@@ -54,17 +55,25 @@ class ServicesController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:100',
             'description' => 'required|string|max:500',
             'text' => 'required',
             'icon' => 'required_unless:newIcon,on|numeric',
             'iconFile' => 'required_if:newIcon,on|image|max:2048',
+            'principal_page' => ['sometimes',new PrincipalPage('services', 3)]
         ]);
+        if ($validator->fails()) {
+            return redirect('services/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }        
+        
         $newService = [
             'title' => $request->get('title'),
             'description' => $request->get('description'),
-            'text' => json_encode($request->get('text'))
+            'text' => $request->get('text'),
+            'principal_page' => $request->get('principal_page')
         ];
         if($request->has('newIcon'))
         {
@@ -92,7 +101,11 @@ class ServicesController extends Controller
     public function show($id)
     {
         $service = Service::find($id);
-        return view('Web/Service/service_show', ['service' => $service]);
+        if(!$service){
+            abort(404);
+        }
+        $services = Service::all();
+        return view('Web/Services/services_view', ['service' => $service, 'services' => $services]);
     }
 
     /**
@@ -139,13 +152,20 @@ class ServicesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:100',
             'description' => 'required|string|max:500',
             'text' => 'required',
             'icon' => 'required_unless:newIcon,on|numeric',
             'iconFile' => 'required_if:newIcon,on|image|max:2048',
+            'principal_page' => ['sometimes',new PrincipalPage('services', 3)]
         ]);
+        if ($validator->fails()) {
+            return redirect('/services/edit/'.$id)
+                        ->withErrors($validator)
+                        ->withInput();
+        }    
+
         $service = Service::find($id);
         if(!$service){
             return view('errors/model_not_found', ['modelName' => 'servicio']);
@@ -154,7 +174,8 @@ class ServicesController extends Controller
         $service->title = $request->get('title');
         $service->description = $request->get('description');
         $service->text = $request->get('text');
-        
+        $service->principal_page = $request->get('principal_page');
+
         if($request->has('newIcon'))
         {
             $iconName = time().'.'.$request->file('iconFile')->extension();

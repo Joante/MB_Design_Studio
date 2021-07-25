@@ -22,7 +22,7 @@
               <th>Nombre</th>
               <th>Descripción</th>
               <th>Icono</th>
-              <th>Acciones</th>
+              <th style="min-width: 250px;">Acciones</th>
             </tr>
           </thead>
           <tbody>

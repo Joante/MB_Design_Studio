@@ -14,32 +14,26 @@
                 <a href="{{ route('services_edit', $service->id) }}" style="margin-left: auto;order: 2;"><button class="btn add-new btn-primary mt-50" type="button"><span>Editar Servicio</span></button></a> 
             </div>
             <div class="card-body">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-sm">
-                        <div class="row d-flex justify-content-center align-items-center">
-                            <h4>Icono:</h4>
-                            <img src="{{ asset('img/icons/'.$service->icon->location) }}" style="margin-left: 10px;width: 80px;" alt="{{ $service->icon->title }}">
-                        </div>
-                    </div>
-                    <div class="col-sm">
-                        <div class="row d-flex align-items-center" style="height: 100%;">
-                            <h4>Descripcion:</h4>
-                            <p class="card-text" style="margin-left:10px;">{{ $service->description }}</p>
-                        </div>
+                <div class="row d-flex justify-content-center" style="margin-bottom: 30px;">
+                <div class="col-md-4 d-flex justify-content-center align-items-center">
+                    <h4>Icono:</h4>
+                    <img src="{{ asset('img/icons/'.$service->icon->location) }}" style="margin-left: 10px;width: 80px;" alt="{{ $service->icon->title }}">
+                </div>
+                <div class="col-md-4 d-flex justify-content-center align-items-center">
+                    <div class="custom-control custom-switch custom-control-inline">
+                        @if ($service->principal_page == 1)
+                            <input type="checkbox" class="custom-control-input" disabled="" checked="" id="customSwitch2">
+                        @else
+                            <input type="checkbox" class="custom-control-input" disabled="" id="customSwitch2">
+                        @endif
+                        <label class="custom-control-label" for="customSwitch2">Mostrar en la pagina principal</label>
                     </div>
                 </div>
-                <div class="row" style="margin-top: 30px;">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-12 d-flex justify-content-center">    
-                                <h4>Texto:</h4>
-                            </div>
-                            <div class="col-md-12 d-flex justify-content-center">
-                                {!! $service->text !!}
-                            </div>
-                        </div>
-                    </div>
                 </div>
+                <h4>Descripcion:</h4>
+                <p class="card-text" style="margin-bottom: 30px;">{{ $service->description }}</p>
+                <h4>Texto:</h4>
+                <p class="card-text mb-2">{!! $service->text !!}</p>
             </div>
         </div>
     </div>

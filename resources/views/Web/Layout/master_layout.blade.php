@@ -26,14 +26,14 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <!-- Logo -->
-            <a class="logo" href="{{ route('home') }}"> <img src="/img/logo_white.png" style="width: 250px;"> </a>
+            <a class="logo" href="{{ route('home') }}"> <img src="{{ asset('/img/logo_white.png') }}" style="width: 250px;"> </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="icon-bar"><i class="ti-line-double"></i></span> </button>
             <!-- Navbar links -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link {{ (request()->is('/')) ? 'active' : '' }}" href="{{ route('home') }}">Home</a></li>
                     <li class="nav-item"><a class="nav-link {{ (request()->is('about')) ? 'active' : '' }}" href="{{ route('about') }}">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="services.html">Servicios </a></li>
+                    <li class="nav-item"><a class="nav-link {{ (request()->is('services')) ? 'active' : '' }}" href="{{ route('services_index') }}">Servicios</a></li>
                     <li class="nav-item"><a class="nav-link" href="art.html">Arte</a></li>
                     <li class="nav-item dropdown"><a class="nav-link" href="projects.html">Proyectos <i class="ti-angle-down"></i></a>
                         <ul class="dropdown-menu last">

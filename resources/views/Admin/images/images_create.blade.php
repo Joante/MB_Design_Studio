@@ -86,7 +86,10 @@
             });
 
             this.on('error', function(file, response) {
-                $(file.previewElement).find('.dz-error-message').text(response.errors.images[0]);
+                if(response.errores != undefined)
+                {
+                    $(file.previewElement).find('.dz-error-message').text(response.errors.images[0]);
+                }
             });
 
             this.on("complete", function (file) {
