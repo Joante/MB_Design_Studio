@@ -17,6 +17,9 @@ class CreateProjectsTable extends Migration
             $table->id();
             $table->string('title');
             $table->json('description');
+            $table->string('client')->nullable();
+            $table->string('location')->nullable();
+            $table->boolean('principal_page');
             $table->unsignedBigInteger('service_id');
             $table->timestamps();
             $table->foreign('service_id')->references('id')->on('services');

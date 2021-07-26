@@ -147,19 +147,21 @@
                     </div>
                 </div>
                 <div class="row">
-                    @for ($i = 0; $i < count($services); $i++)
-                        <div class="col-md-3">
-                            <div class="item">
-                                <a href="{{ route('services_view', $services[$i]->id) }}"> <img src="{{ asset('img/icons/'.$services[$i]->icon->location) }}" alt="$services[$i]->icon->title">
-                                    <h5>{{ $services[$i]->title }}</h5>
-                                    <div class="line"></div>
-                                    <p>{{ $services[$i]->description }}</p>
-                                    <br>
-                                    <div class="numb">0{{ $i+1 }}</div>
-                                </a>
+                    @foreach ($services as $key => $service)
+                        @if ($service->principal_page)
+                            <div class="col-md-3">
+                                <div class="item">
+                                    <a href="{{ route('services_view', $service->id) }}"> <img src="{{ asset('img/icons/'.$service->icon->location) }}" alt="$service->icon->title">
+                                        <h5>{{ $service->title }}</h5>
+                                        <div class="line"></div>
+                                        <p>{{ $service->description }}</p>
+                                        <br>
+                                        <div class="numb">0{{ $key+1 }}</div>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    @endfor
+                        @endif
+                    @endforeach
                         <div class="col-md-3">
                         <div class="item">
                             <a href="art.html"> <img src="img/icons/arte_logo.png" style="margin-left: -10px;" alt="">

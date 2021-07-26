@@ -12,32 +12,32 @@
                     "url": "services/list",
                     "name": "Listar",
                     "icon": "circle",
-                    "slug": "app-invoice-list"
+                    "slug": "services_index_admin"
                 },
                 {
                     "url": "services/create",
                     "name": "Crear",
                     "icon": "circle",
-                    "slug": "app-invoice-preview"
+                    "slug": "services_create"
                 }
             ]
         },
         {
-            "url": "app/chat",
-            "name": "Projectos",
+            "url": "projects/list",
+            "name": "Proyectos",
             "icon": "message-square",
-            "slug": "app-chat",
+            "slug": "projects",
             "submenu": [{
-                    "url": "app/invoice/list",
+                    "url": "projects/list",
                     "name": "Listar",
                     "icon": "circle",
-                    "slug": "app-invoice-list"
+                    "slug": "projects_index_admin"
                 },
                 {
-                    "url": "app/invoice/preview",
+                    "url": "projects/create",
                     "name": "Crear",
                     "icon": "circle",
-                    "slug": "app-invoice-preview"
+                    "slug": "projects_create"
                 }
             ]
         },

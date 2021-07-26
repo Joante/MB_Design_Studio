@@ -16,7 +16,16 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <p class="card-text">Maximo 5 imagenes. Maximo 5 MB por imagen.</p>
+                    @switch($modelType)
+                        @case("services")
+                            <p class="card-text">Maximo 5 imagenes. Maximo 5 MB por imagen.</p>
+                            @break
+                        @case("projects")
+                            <p class="card-text">Maximo 10 imagenes. Maximo 5 MB por imagen.</p>
+                            @break
+                        @default
+                            
+                    @endswitch
                     <form action="{{ route('images_store', [$modelType, $modelId]) }}" class="dropzone dropzone-area dz-clickable" method="POST" enctype="multipart/form-data" id="dpz-single-file">
                         @csrf
                         <div class="dz-message">Suelta los archivos aquí o haz clic para subirlos.</div>
@@ -53,6 +62,16 @@
 
     var images = @json($images);
 
+    var modelType = "{{ $modelType }}";
+    switch(modelType) {
+        case "services": 
+            maxFiles = 5;
+            break;
+        case "projects":
+            maxFiles = 10;
+            break;
+    }
+
     fileUploader.dropzone({
         paramName: 'images', // The name that will be used to transfer the file
         maxFilesize: 5, // MB
@@ -61,9 +80,9 @@
         thumbnailHeight: null,
         dictRemoveFile: 'Borrar',
         acceptedFiles: 'image/*',
-        maxFiles: 5,
+        maxFiles: maxFiles,
         autoProcessQueue: false,
-        parallelUploads: 5,
+        parallelUploads: maxFiles,
         init : function() {
 
             myDropzone = this;
@@ -72,7 +91,7 @@
             var modificadoAgregado = false;
             var btnSubmit = document.getElementById('submitForm');
             this.on("thumbnail", function(file, dataUrl) {
-                $('.dz-image').last().find('img').attr({width: '100%', height: '100%'});
+                file.previewElement.children[0].children[0].setAttribute('style', 'width:100%;height:100%;');
             }),
             this.on("addedfiles", function(file) {
                 if(images.length != myDropzone.files.length)
@@ -110,7 +129,7 @@
                                 }else {
                                     myDropzone.processQueue();
                                     if (myDropzone.getUploadingFiles().length === 0 && myDropzone.getQueuedFiles().length === 0) {
-                                        //window.location.href = "{{ route($modelType.'_show_admin', $modelId)}}";
+                                        window.location.href = "{{ route($modelType.'_show_admin', $modelId)}}";
                                     }
                                 }
                             },
@@ -118,7 +137,7 @@
                     }else if(modificadoAgregado) {
                         myDropzone.processQueue();
                         if (myDropzone.getUploadingFiles().length === 0 && myDropzone.getQueuedFiles().length === 0) {
-                            //window.location.href = "{{ route($modelType.'_show_admin', $modelId)}}";
+                            window.location.href = "{{ route($modelType.'_show_admin', $modelId)}}";
                         }
                     }
                 }

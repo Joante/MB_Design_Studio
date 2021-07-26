@@ -184,7 +184,7 @@ return [
   "Exhibiciones" => "Exhibiciones",
   "Obra" => "Obra",
   "Obras" => "Obras",
-  "Projecto" => "Projecto",
-  "Projectos" => "Projectos",
+  "Proyecto" => "Proyecto",
+  "Proyectos" => "Proyectos",
   "message" => "Cake sesame snaps cupcake gingerbread danish I love gingerbread. Apple pie pie jujubes chupa chups muffin halvah lollipop. Chocolate cake oat cake tiramisu marzipan sugar plum. Donut sweet pie oat cake dragée fruitcake cotton candy lemon drops."
 ];

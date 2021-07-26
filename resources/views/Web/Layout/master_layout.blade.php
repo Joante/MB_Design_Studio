@@ -35,14 +35,11 @@
                     <li class="nav-item"><a class="nav-link {{ (request()->is('about')) ? 'active' : '' }}" href="{{ route('about') }}">About</a></li>
                     <li class="nav-item"><a class="nav-link {{ (request()->is('services')) ? 'active' : '' }}" href="{{ route('services_index') }}">Servicios</a></li>
                     <li class="nav-item"><a class="nav-link" href="art.html">Arte</a></li>
-                    <li class="nav-item dropdown"><a class="nav-link" href="projects.html">Proyectos <i class="ti-angle-down"></i></a>
+                    <li class="nav-item dropdown"><a class="nav-link" href="{{ route('projects_index') }}">Proyectos <i class="ti-angle-down"></i></a>
                         <ul class="dropdown-menu last">
-                            <li class="dropdown-item"><a href="interior-design-projects.html">Interiorismo</a></li>
-                            <li class="dropdown-item"><a href="landscaping-projects.html">Paisajismo</a></li>
-                            <li class="dropdown-item"><a href="collections-projects.html">Colecciones</a></li>
-                            <li class="dropdown-item"><a href="planing-projects.html">Planing</a></li>
-                            <li class="dropdown-item active"><a href="3d-modelling-projects.html">Modelado 3D</a></li>
-                            <li class="dropdown-item"><a href="decor-plan-projects.html">Decor Plan</a></li>
+                            @foreach ($services as $service)
+                                <li class="dropdown-item {{ (request()->is('/projects'.'/'.$service->id)) ? 'active' : '' }}"><a href="{{ route('projects_view', $service->id) }}">{{ $service->title }}</a></li>
+                            @endforeach
                         </ul>
                     </li>
                     <li class="nav-item dropdown"><a class="nav-link" href="blog.html">Blog <i class="ti-angle-down"></i></a>

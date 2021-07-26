@@ -17,6 +17,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ChartsController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\ServicesController;
 
 /*
@@ -234,8 +235,13 @@ Route::post('/contact', [InfoController::class, 'storeContact'])->name('contact-
 
 
 
-//Admin routes
+/**
+ * 
+ * Admin Routes
+ * 
+ */
 
+//Services routes
 Route::get('/services/list', [ServicesController::class, 'index_admin'])->name('services_index_admin');
 Route::get('/services/show/{id}/admin/{message?}', [ServicesController::class, 'show_admin'])->name('services_show_admin');
 Route::get('/services/edit/{id}', [ServicesController::class, 'edit'])->name('services_edit');
@@ -246,6 +252,18 @@ Route::post('/services/destroy', [ServicesController::class, 'destroy'])->name('
 Route::get('/services', [ServicesController::class, 'index'])->name('services_index');
 Route::get('/services/{id}', [ServicesController::class, 'show'])->name('services_view');
 
+//Projects routes
+Route::get('/projects/list', [ProjectsController::class, 'index_admin'])->name('projects_index_admin');
+Route::get('/projects/show/{id}/admin/{message?}', [ProjectsController::class, 'show_admin'])->name('projects_show_admin');
+Route::get('/projects/edit/{id}', [ProjectsController::class, 'edit'])->name('projects_edit');
+Route::get('/projects/create', [ProjectsController::class, 'create'])->name('projects_create');
+Route::post('/projects/store', [ProjectsController::class, 'store'])->name('projects_store');
+Route::post('/projects/update/{id}', [ProjectsController::class, 'update'])->name('projects_update');
+Route::post('/projects/destroy', [ProjectsController::class, 'destroy'])->name('projects_destroy');
+Route::get('/projects', [ProjectsController::class, 'index'])->name('projects_index');
+Route::get('/projects/{id}', [ProjectsController::class, 'show'])->name('projects_view');
+
+//Images routes
 Route::get('/images/upload/{modelType}/{modelId}', [ImagesController::class, 'create'])->name('images_create_model');
 Route::post('/images/store/{modelType}/{modelId}', [ImagesController::class, 'store'])->name('images_store');
 Route::get('/images/edit/{modelType}/{modelId}', [ImagesController::class, 'edit'])->name('images_edit');

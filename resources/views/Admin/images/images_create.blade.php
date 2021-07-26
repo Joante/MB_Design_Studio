@@ -16,7 +16,16 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <p class="card-text">Maximo 5 imagenes. Maximo 5 MB por imagen.</p>
+                    @switch($modelType)
+                        @case("services")
+                            <p class="card-text">Maximo 5 imagenes. Maximo 5 MB por imagen.</p>
+                            @break
+                        @case("projects")
+                            <p class="card-text">Maximo 10 imagenes. Maximo 5 MB por imagen.</p>
+                            @break
+                        @default
+                            
+                    @endswitch
                     <form action="{{ route('images_store', [$modelType, $modelId]) }}" class="dropzone dropzone-area dz-clickable" method="POST" enctype="multipart/form-data" id="dpz-single-file">
                         @csrf
                         <div class="dz-message">Suelta los archivos aquí o haz clic para subirlos.</div>
@@ -42,6 +51,16 @@
 
 @section('page-script')
 <script>
+    var maxFiles;
+    var modelType = "{{ $modelType }}";
+    switch(modelType) {
+        case "services": 
+            maxFiles = 5;
+            break;
+        case "projects":
+            maxFiles = 10;
+            break;
+    }
     Dropzone.autoDiscover = false;
 
     var fileUploader = $('#dpz-single-file');
@@ -54,19 +73,19 @@
         thumbnailWidth: null,
         dictRemoveFile: 'Borrar',
         acceptedFiles: 'image/*',
-        maxFiles: 5,
+        maxFiles: maxFiles,
         autoProcessQueue: false,
-        parallelUploads: 5,
+        parallelUploads: maxFiles,
         init : function() {
 
             myDropzone = this;
 
             this.on("thumbnail", function(file, dataUrl) {
-                $('.dz-image').last().find('img').attr({width: '100%', height: '100%'});
+                file.previewElement.children[0].children[0].setAttribute('style', 'width:100%;height:100%;');
             }),
 
             this.on("addedfiles", function(file) {
-                document.getElementById('divSubmit').setAttribute('style', 'margin-top: 30px; display:flex;');            
+                document.getElementById('divSubmit').setAttribute('style', 'margin-top: 30px; display:flex;');    
             });
 
             this.on("removedfile", function(file) {

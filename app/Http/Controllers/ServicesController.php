@@ -21,8 +21,7 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        $services = Service::all();
-        return view('Web/Services/services_index', ['services' => $services]);
+        return view('Web/Services/services_index');
     }
 
     /**
@@ -32,8 +31,7 @@ class ServicesController extends Controller
      */
     public function index_admin()
     {
-        $services = Service::all();
-        return view('Admin/services/services_index_admin', ['services' => $services]);
+        return view('Admin/services/services_index_admin');
     }
 
     /**
@@ -104,8 +102,7 @@ class ServicesController extends Controller
         if(!$service){
             abort(404);
         }
-        $services = Service::all();
-        return view('Web/Services/services_view', ['service' => $service, 'services' => $services]);
+        return view('Web/Services/services_view', ['service' => $service]);
     }
 
     /**
@@ -216,14 +213,14 @@ class ServicesController extends Controller
                 }
             }
 
-            if(!Storage::delete($locations)) {
-                DB::rollBack();
-                return json_encode(['message' => 'Error al eliminar los archivos']);
-            }
-
             if(!$service->delete()){
                 DB::rollBack();
                 return json_encode(['message' => 'Error al eliminar el servicio']);
+            }
+
+            if(!Storage::delete($locations)) {
+                DB::rollBack();
+                return json_encode(['message' => 'Error al eliminar los archivos']);
             }
             DB::commit();
         } catch(Exception $e){

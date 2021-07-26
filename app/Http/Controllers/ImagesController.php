@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Image as ModelsImage;
+use App\Models\Project;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -57,8 +58,10 @@ class ImagesController extends Controller
             case "services": 
                 $model = Service::find($modelId);
                 break;
+            case "projects":
+                $model = Project::find($modelId);
+                break;
         }
-        
         $imagePath = 'img/'.$modelType.'/'.$imageName;
         $newImage = [
             'title' => $imageTitle,
@@ -76,6 +79,9 @@ class ImagesController extends Controller
             DB::commit();
         } else {
             DB::rollBack();
+            return response()->json([
+                'message' => 'Problemas al guardar la imagen'
+            ], 422);
         }
     }
 
@@ -102,6 +108,9 @@ class ImagesController extends Controller
         switch($modelType) {
             case 'services':
                 $model = Service::find($modelId);
+                break;
+            case "projects":
+                $model = Project::find($modelId);
                 break;
         }
 
@@ -145,14 +154,15 @@ class ImagesController extends Controller
             $locations[$i] = '/'.$locations[$i];
         }
         DB::beginTransaction();
+        
+        if(ModelsImage::destroy($request->get('deletedFiles')) != count($request->get('deletedFiles'))) {
+            DB::rollBack();
+            return json_encode('Error al eliminar las imagenes de la base de datos.');
+        }
+        
         if(!Storage::delete($locations)) {
             DB::rollBack();
             return json_encode('Error al eliminar las imagenes');
-        }
-        
-        if(!ModelsImage::destroy($request->get('deletedFiles')) != count($request->get('deletedFiles'))) {
-            DB::rollBack();
-            return json_encode('Error al eliminar las imagenes de la base de datos.');
         }
         DB::commit();
         return json_encode('success');

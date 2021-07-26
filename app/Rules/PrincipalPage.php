@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Models\Project;
 use App\Models\Service;
 use Illuminate\Contracts\Validation\Rule;
 
@@ -32,6 +33,9 @@ class PrincipalPage implements Rule
         switch($this->modelType) {
             case 'services':
                 $count = Service::where('principal_page', '=', true)->count();
+                break;
+            case 'projects':
+                $count = Project::where('principal_page', '=', true)->count();
                 break;
         }
         return $count < $this->max;

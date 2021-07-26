@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Service;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,17 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        /*
-        Validator::extend('principal_page', function($attribute, $value, $parameters) {
-            switch($parameters['modelType']) {
-                case 'services':
-                    $count = Service::where('page_principal', '=', true)->count();
-                    break;
-            }
-            if($count > $this->max) {
-                return false;
-            }
-            return true;
-        });*/
+        $services = Service::all();
+        View::share('services', $services);
     }
 }
