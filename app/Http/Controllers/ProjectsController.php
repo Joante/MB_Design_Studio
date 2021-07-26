@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Service;
 use App\Rules\PrincipalPage;
 use Exception;
+use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -19,9 +21,19 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
-
-        return view('Web/Projects/projects_index', ['projects' => $projects]);
+        $services_id = Service::pluck('id');
+        $categories = Project::groupBy('service_id')->pluck('service_id')->toArray();
+        $projects = [];
+        foreach($services_id as $id) {
+            $results = Project::where('service_id', '=', $id)->limit(2)->latest()->get();
+            if(!empty($results->all())) {
+                foreach ($results as $result) {
+                    $projects[] = $result;
+                }
+            }
+        }
+        
+        return view('Web/Projects/projects_index', ['projects' => $projects, 'categories' => $categories]);
     }
 
     /**
@@ -34,6 +46,23 @@ class ProjectsController extends Controller
         $projects = Project::all();
 
         return view('Admin/projects/projects_index_admin', ['projects' => $projects]);
+    }
+
+    /**
+     * Display a listing of all the entrys for the specific category
+     * 
+     * @param int $category_id
+     * @return \Illuminate\Http\Response
+     */
+    public function show_category($category_id) {
+        $projects = Project::where('service_id', '=', $category_id)->get();
+        $service = Service::find($category_id);
+        if(!$service) {
+            abort('404');
+        }
+        $service_title = $service->title;
+
+        return view('Web/Projects/projects_category', ['projects' => $projects, 'service' => $service_title]);
     }
 
     /**
@@ -83,8 +112,9 @@ class ProjectsController extends Controller
         if(!$project) {
             abort('404');
         }
-
-        return view('Web/Projects/projects_view', ['project' => $project]);
+        $next = Project::where('id', '>', $project->id)->orderBy('id')->first();
+        $previous = Project::where('id', '<', $project->id)->orderBy('id','desc')->first();
+        return view('Web/Projects/projects_view', ['project' => $project, 'next' => $next, 'previous' => $previous]);
     }
 
     /**

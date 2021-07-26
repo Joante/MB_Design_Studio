@@ -35,10 +35,10 @@
                     <li class="nav-item"><a class="nav-link {{ (request()->is('about')) ? 'active' : '' }}" href="{{ route('about') }}">About</a></li>
                     <li class="nav-item"><a class="nav-link {{ (request()->is('services')) ? 'active' : '' }}" href="{{ route('services_index') }}">Servicios</a></li>
                     <li class="nav-item"><a class="nav-link" href="art.html">Arte</a></li>
-                    <li class="nav-item dropdown"><a class="nav-link" href="{{ route('projects_index') }}">Proyectos <i class="ti-angle-down"></i></a>
+                    <li class="nav-item dropdown"><a class="nav-link {{ (request()->is('projects')) ? 'active' : '' }}" href="{{ route('projects_index') }}">Proyectos <i class="ti-angle-down"></i></a>
                         <ul class="dropdown-menu last">
                             @foreach ($services as $service)
-                                <li class="dropdown-item {{ (request()->is('/projects'.'/'.$service->id)) ? 'active' : '' }}"><a href="{{ route('projects_view', $service->id) }}">{{ $service->title }}</a></li>
+                                <li class="dropdown-item {{ (request()->is('projects/'.$service->id)) ? 'active' : '' }}"><a href="{{ route('project_view_category', $service->id) }}">{{ $service->title }}</a></li>
                             @endforeach
                         </ul>
                     </li>
@@ -70,7 +70,7 @@
 
         <!-- Footer -->
         <section class="testimonials">
-            <div class="background bg-img bg-fixed section-padding pb-0" data-background="/img/1920x1128.jpg" data-overlay-dark="3">
+            <div class="background bg-img bg-fixed section-padding pb-0" data-background="{{ asset('img/1920x1128.jpg') }}" data-overlay-dark="3">
                 <div class="container">
                     <div class="row justify-content-center">
                     </div>

@@ -3,14 +3,8 @@
 @section('content')
     <!-- Content -->
     <div class="content-wrapper">
-        <!-- Lines -->
-        <section class="content-lines-wrapper">
-            <div class="content-lines-inner">
-                <div class="content-lines"></div>
-            </div>
-        </section>
         <!-- Header Banner -->
-        <section class="banner-header banner-img valign bg-img bg-fixed" data-overlay-darkgray="5" data-background="img/1920x1128.jpg"></section>
+        <section class="banner-header banner-img valign bg-img bg-fixed" data-overlay-darkgray="5" data-background="{{ asset('img/1920x1128.jpg') }}"></section>
         <!-- Services -->
         <section class="services section-padding2">
             <div class="container">
@@ -36,4 +30,5 @@
                 </div>
             </div>
         </section>
+    </div>
 @endsection

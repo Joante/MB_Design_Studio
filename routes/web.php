@@ -262,6 +262,7 @@ Route::post('/projects/update/{id}', [ProjectsController::class, 'update'])->nam
 Route::post('/projects/destroy', [ProjectsController::class, 'destroy'])->name('projects_destroy');
 Route::get('/projects', [ProjectsController::class, 'index'])->name('projects_index');
 Route::get('/projects/{id}', [ProjectsController::class, 'show'])->name('projects_view');
+Route::get('/projects/list/{category_id}', [ProjectsController::class, 'show_category'])->name('project_view_category');
 
 //Images routes
 Route::get('/images/upload/{modelType}/{modelId}', [ImagesController::class, 'create'])->name('images_create_model');
