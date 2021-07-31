@@ -16,7 +16,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-8">
-                        <div id="editor" class="ql-editor" style="padding: 0px;">{!! $service->text !!}</div>
+                        <div id="editor" class="ql-editor" style="padding: 0px; height:auto;">{!! $service->text !!}</div>
                         <div class="row mb-30">
                             @foreach ($service->images as $key => $image)
                                 @if ($key!=2)
@@ -68,6 +68,7 @@
                                         @foreach ($projects as $project)
                                             <li><a href="{{ route('projects_view', $project->id) }}">{{ $project->title }}</a></li>    
                                         @endforeach
+                                        <li><a href="{{ route('project_view_category', $service->id) }}">Ver Todos</a></li>
                                     </ul>
                                 </div>
                             </div>

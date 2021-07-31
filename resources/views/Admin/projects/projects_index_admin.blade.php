@@ -54,6 +54,9 @@
             </tbody>
           </table>
         </div>
+        <div class="col-md-12 d-flex justify-content-center">
+          {{ $projects->links('vendor/pagination/vuexy') }}
+        </div>
       </div>
     </div>
   </div>

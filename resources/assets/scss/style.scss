@@ -2162,10 +2162,37 @@ button.mfp-arrow {
     color: #b19777;
 }
 
-.bauen-pagination-wrap li a.active {
+.bauen-pagination-wrap li span.active {
+    background: transparent;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 38px;
+    text-align: center;
+    color: #999;
+    font-weight: 300;
+    border: 1px solid #323232;
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    border-radius: 100%;
     background-color: transparent;
     border: 1px solid #b19777;
     color: #b19777;
+}
+
+.bauen-pagination-wrap li span {
+    background: transparent;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 38px;
+    text-align: center;
+    color: #999;
+    font-weight: 300;
+    border: 1px solid #323232;
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    border-radius: 100%;
 }
 
 @media screen and (max-width: 768px) {

@@ -104,7 +104,7 @@ class ServicesController extends Controller
             abort(404);
         }
 
-        $projects = Project::where('service_id', '=', $id)->get();
+        $projects = Project::where('service_id', '=', $id)->limit(5)->get();
         return view('Web/Services/services_view', ['service' => $service, 'projects' => $projects]);
     }
 

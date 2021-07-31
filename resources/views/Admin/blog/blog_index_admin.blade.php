@@ -60,13 +60,8 @@
           </table>
         </div>
         <div class="col-md-12 d-flex justify-content-center">
-        <nav>
-          <ul class="pagination mt-3">
-            {{ $posts->links() }}
-          </ul>
-        </nav>
-      
-      </div>
+          {{ $posts->links('vendor/pagination/vuexy') }}
+        </div>
     </div>
   </div>
 </section>

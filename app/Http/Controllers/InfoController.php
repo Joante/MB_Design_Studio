@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Mail\AdminContact;
 use App\Mail\ContactMail;
 use App\Models\Contact;
+use App\Models\Post;
+use App\Models\Project;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -13,7 +15,14 @@ class InfoController extends Controller
 {
     public function index() {
         $services = Service::where('principal_page', '=', true)->get();
-        return view('Web/index', ['services' => $services]);
+        $projects = Project::where('principal_page', '=', true)->limit(6)->get();
+        $posts = Post::where('principal_page', '=', true)->limit(4)->get();
+
+        foreach ($posts as $post) {
+            $post['created'] = $post['created'] = '10/02/2020';//$post->created_at->format('d/m/Y');
+        }
+
+        return view('Web/index', ['services' => $services, 'projects' => $projects, 'posts' => $posts]);
     }
 
     public function about() {

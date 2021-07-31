@@ -14,7 +14,7 @@
                 <div class="col-md-12">
                     <img src="{{ asset($post->images[0]->location) }}" class="mb-30" alt="">
                     <h2 class="section-title2">{{ $post->title }}</h2>
-                    <div class="ql-editor">{!! $post->text !!}</div>
+                    <div class="ql-editor" style="padding: 0px; height:auto;">{!! $post->text !!}</div>
                 </div>
             </div>
             <div class="bauen-comment-section">

@@ -43,7 +43,7 @@ class ProjectsController extends Controller
      */
     public function index_admin()
     {
-        $projects = Project::all();
+        $projects = Project::paginate();
 
         return view('Admin/projects/projects_index_admin', ['projects' => $projects]);
     }
@@ -55,7 +55,7 @@ class ProjectsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show_category($category_id) {
-        $projects = Project::where('service_id', '=', $category_id)->get();
+        $projects = Project::where('service_id', '=', $category_id)->paginate(6);
         $service = Service::find($category_id);
         if(!$service) {
             abort('404');

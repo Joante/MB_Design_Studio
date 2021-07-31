@@ -25,7 +25,7 @@ class BlogController extends Controller
         $posts = Post::paginate(8);
 
         foreach ($posts as $post) {
-            $post['created'] = $post->created_at->format('d/m/Y');
+            $post['created'] = '10/02/2020';//$post->created_at->format('d/m/Y');
         }
 
         return view('Web/Blog/blog_index', ['posts' => $posts]);

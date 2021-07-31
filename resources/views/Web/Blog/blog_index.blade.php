@@ -19,7 +19,7 @@
                 @foreach ($posts as $post)
                     <div class="col-md-6">
                         <div class="item">
-                            <div class="position-re o-hidden"> <img src="{{ asset($post->images[0]->location) }}" alt="$post->images[0]->title"> </div>
+                            <div class="position-re o-hidden"> <img src="{{ asset('img/1920x1128.jpg') }}" alt=""> </div>
                             <div class="con">
                                 <span class="category">
                                     <a href="{{ route('blog_view_category', $post->category->id) }}">{{ $post->category->title }}</a> - {{ $post->created }}
@@ -33,9 +33,9 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <!-- Pagination -->
-                    <ul class="bauen-pagination-wrap align-center mb-30 mt-30">
-                        {{ $posts->links()}}
-                    </ul>
+                    <div class="bauen-pagination-wrap align-center mb-30 mt-30">
+                        {{ $posts->links() }}
+                    </div>
                 </div>
             </div>
         </div>

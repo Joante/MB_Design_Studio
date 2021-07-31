@@ -18,7 +18,7 @@
             </div>
             <div class="row">
                 <div class="col-md-8">
-                    <div id="editor" class="ql-editor" style="padding: 0px;">{!! $project->description !!}</div>
+                    <div id="editor" class="ql-editor" style="padding: 0px; height:auto;">{!! $project->description !!}</div>
                 </div>
                 <div class="col-md-4">
                     <p><b>Nombre de Projecto : </b> {{ $project->title }}</p>

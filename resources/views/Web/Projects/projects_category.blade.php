@@ -15,7 +15,6 @@
             </div>
             <div class="row">
                 @foreach ($projects as $project)
-                    
                         <div class="col-md-6 animate-box" data-animate-effect="fadeInUp">
                             <div class="item">
                                 <div class="position-re o-hidden">
@@ -32,6 +31,14 @@
                             </div>
                         </div>             
                 @endforeach
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <!-- Pagination -->
+                    <div class="bauen-pagination-wrap align-center mb-30 mt-30">
+                        {{ $projects->links() }}
+                    </div>
+                </div>
             </div>  
         </div>
     </section>

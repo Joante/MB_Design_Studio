@@ -112,27 +112,15 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="owl-carousel owl-theme">
-                            <div class="item">
-                                <div class="position-re o-hidden"> <img class="projects-carousel" src="img/proyects/azucena/azucena_1.jpeg" alt=""> </div>
-                                <div class="con">
-                                    <h5><a href="cotton-house.html">Azucena</a></h5>
-                                    <div class="line"></div> <a href="cotton-house.html"><i class="ti-arrow-right"></i></a>
+                            @foreach ($projects as $project)
+                                <div class="item">
+                                    <div class="position-re o-hidden"> <img class="projects-carousel" src="{{ asset('img/proyects/azucena/azucena_1.jpeg') }}" alt=""> </div>
+                                    <div class="con">
+                                        <h5><a href="{{ route('projects_view', $project->id) }}">{{ $project->title }}</a></h5>
+                                        <div class="line"></div> <a href="{{ route('projects_view', $project->id) }}"><i class="ti-arrow-right"></i></a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="item">
-                                <div class="position-re o-hidden"> <img class="projects-carousel" src="img/proyects/devoto/devoto_1.jpeg" alt=""> </div>
-                                <div class="con">
-                                    <h5><a href="armada-center.html">Devoto</a></h5>
-                                    <div class="line"></div> <a href="armada-center.html"><i class="ti-arrow-right"></i></a>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="position-re o-hidden"> <img class="projects-carousel" src="img/proyects/fouba/fouba_2.jpeg" alt=""> </div>
-                                <div class="con">
-                                    <h5><a href="stonya-villa.html">Fouba</a></h5>
-                                    <div class="line"></div> <a href="stonya-villa.html"><i class="ti-arrow-right"></i></a>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -186,39 +174,17 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="owl-carousel owl-theme">
-                            <div class="item">
-                                <div class="position-re o-hidden"> <img src="img/1100x750.jpg" alt=""> </div>
-                                <div class="con">
-                                    <span class="category">
-                                        <a href="interior-design-blog.html">Diseño </a> -  20.12.2021
-                                    </span>
-                                    <h5><a href="post.html">Arquitectura</a></h5>
+                            @foreach ($posts as $post)    
+                                <div class="item">
+                                    <div class="position-re o-hidden"> <img src="img/1100x750.jpg" alt=""> </div>
+                                    <div class="con">
+                                        <span class="category">
+                                            <a href="{{ route('blog_view_category', $post->category->id) }}">{{ $post->category->title }} </a> -  {{ $post->created }}
+                                        </span>
+                                        <h5><a href="{{ route('blog_view', $post->id) }}">{{ $post->title }}</a></h5>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="item">
-                                <div class="position-re o-hidden"> <img src="img/1100x750.jpg" alt=""> </div>
-                                <div class="con"> <span class="category">
-                                        <a href="art-blog.html">Arte</a> - 18.12.2021
-                                    </span>
-                                    <h5><a href="post.html">La obra de arte</a></h5>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="position-re o-hidden"> <img src="img/1100x750.jpg" alt=""> </div>
-                                <div class="con"> <span class="category">
-                                        <a href="interior-design-blog.html">Diseño</a> - 16.12.2021
-                                    </span>
-                                    <h5><a href="post.html">La arquitectura como comunicación</a></h5>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="position-re o-hidden"> <img src="img/1100x750.jpg" alt=""> </div>
-                                <div class="con"> <span class="category">
-                                    <a href="interior-design-blog.html">Diseño</a> - 14.12.2021
-                                </span>
-                                    <h5><a href="post.html">Visual merchandising</a></h5>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

@@ -32,7 +32,10 @@
             </div>
             <div class="row">
                 <div class="col-md-12 text-center">
-                    {{ $posts->links()}}
+                    <!-- Pagination -->
+                    <div class="bauen-pagination-wrap align-center mb-30 mt-30">
+                        {{ $posts->links() }}
+                    </div>
                 </div>
             </div>
         </div>
