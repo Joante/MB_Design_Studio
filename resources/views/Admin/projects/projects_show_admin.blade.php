@@ -2,8 +2,12 @@
 
 @section('title', $project->title)
 
+@section('vendor-style')
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/editors/quill/quill.snow.css')) }}" /> 
+@endsection
+
 @section('page-style')
-  {{-- Page Css files --}}
+  <link href='https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Oswald:wght@200;300;400;500;600;700&display=swap' rel="stylesheet">
   <link rel="stylesheet" href="{{ asset(mix('css/base/pages/app-user.css')) }}">
 @endsection
 
@@ -65,6 +69,14 @@
                 </div>
               </div>
             </div>
+            <div class="col-md-12 d-flex justify-content-center">
+              <h4>Texto:</h4>
+            </div>
+            <div class="row d-flex justify-content-center">    
+                <div class="col-md-12 d-flex justify-content-center" style="max-width: 80%;">
+                    <div id="editor" class="ql-editor">{!! $project->description !!}</div>
+                </div>
+            </div>
           </div>
         </div>
       </div>
@@ -87,6 +99,13 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="col-md-12 d-flex justify-content-center">
+      <a href="{{ url()->previous() }}" style="margin-top: 30px;"> 
+          <button id="return" type="button" class="btn btn-primary btn-next waves-effect waves-float waves-light">
+              <span class="align-middle d-sm-inline-block d-none">Volver</span>
+          </button>
+      </a>
     </div>
 </section>
 @endsection

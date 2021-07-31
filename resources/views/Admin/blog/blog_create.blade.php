@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster') 
 
-@section('title', 'Agregar Proyecto')
+@section('title', 'Agregar Post')
 
 @section('vendor-style')
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/editors/quill/quill.snow.css')) }}" /> 
@@ -15,8 +15,15 @@
 <section>
     <div class="col-12 justify-content-center">
       <div class="card">
+        <div class="card-header d-flex justify-content-center">
+            <div class="col-md-6 d-flex justify-content-center">
+                @error('error')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
         <div class="card-body">
-            <form class="form" method="POST" action="{{ route('projects_store') }}" id="form">
+            <form class="form" method="POST" action="{{ route('blog_store') }}" id="form" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-6 col-12">
@@ -30,23 +37,19 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <div class="form-group">
-                            <label for="service">Categoria *</label>
-                            <select class="custom-select" id="service" name="service_id" required>
-                                <option {{ old('service_id') == '' ? "selected": "" }} value="">Seleccionar Categoria</option>
-                                @foreach ($services as $service)
-                                    <option {{ old('service_id') == $service->id ? "selected": "" }} value="{{ $service->id }}">{{ $service->title }}</option>
+                            <label for="category">Categoria *</label>
+                            <select class="custom-select @error('category_id') is-invalid @enderror" id="category" name="category_id" required>
+                                <option {{ old('category_id') == '' ? "selected": "" }} value="">Seleccionar Categoria</option>
+                                @foreach ($categories as $category)
+                                    <option {{ old('category_id') == $category->id ? "selected": "" }} value="{{ $category->id }}">{{ $category->title }}</option>
                                 @endforeach
                             </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="form-group">
-                            <label for="client-column">Cliente</label>
-                            <input type="text" id="client-column" class="form-control @error('client') is-invalid @enderror" name="client" placeholder="Cliente" value="{{ old('client') }}">
-                            @error('client')
+                            @error('category_id')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                    </div>
+                    <div class="col-md-6 col-12 d-flex align-items-center">
                         <div class="form-group">
                             @if (old('principal_page') == '1')
                                 <input type="checkbox" class="custom-control-input" id="principal_page" name="principal_page" checked value=1>
@@ -61,9 +64,9 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <div class="form-group">
-                            <label for="location-column">Ubicacion</label>
-                            <input type="text" id="location-column" class="form-control @error('location') is-invalid @enderror" name="location" placeholder="Ubicacion" value="{{ old('location') }}">
-                            @error('location')
+                            <label for="image-column">Imagen de Portada *</label>
+                            <input type="file" id="image-column" class="form-control @error('image') is-invalid @enderror" name="image" placeholder="Seleccionar Imagen" required>
+                            @error('image')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -71,10 +74,10 @@
                     <div class="col-md-12">
                         <div id="snow-wrapper">
                             <div id="snow-container">
-                                <label for="editor">Descripcion *</label>
-                                <div id="editor" class="editor ql-container ql-snow">{!! old('description') !!}</div>
-                                <textarea hidden id="text" name="description"></textarea>
-                                @error('description')
+                                <label for="editor">Texto *</label>
+                                <div id="editor" class="editor ql-container ql-snow">{!! old('text') !!}</div>
+                                <textarea hidden id="text" name="text"></textarea>
+                                @error('text')
                                   <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -95,10 +98,11 @@
 
 @section('vendor-script')
     <script src="{{ asset(mix('vendors/js/editors/quill/quill.min.js')) }}"></script>
+    <script src="{{ asset(mix('js/image-resize.min.js')) }}"></script>
 @endsection 
 
 @section('page-script')
-    <script src="{{ asset(mix('js/quill-mb.js')) }}"></script>
+    <script src="{{ asset(mix('js/quill-image.js')) }}"></script>
     <script>
         var form = document.getElementById('form');
         form.addEventListener('submit', function(e){

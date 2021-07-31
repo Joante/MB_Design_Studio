@@ -1,7 +1,6 @@
 @extends('Web.Layout.master_layout')
 
 @section('content')
-<div class="content-wrapper">
     <!-- Header Banner -->
     <section class="banner-header banner-img bg-img bg-fixed pb-0" data-background="{{ asset('img/1920x1128.jpg') }}" data-overlay-darkgray="5">
     </section>
@@ -36,5 +35,4 @@
             </div>  
         </div>
     </section>
-</div>
 @endsection

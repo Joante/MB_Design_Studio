@@ -917,10 +917,161 @@ hr.dotted {
 }
 
 
+/* ====== Coming Soon ======= */
+
+.comming {
+    min-height: 100vh;
+    height: auto;
+    position: relative;
+    background-blend-mode: overlay;
+    background: rgba(0, 0, 0, .6);
+    background-image: url("../../img/slider_1.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff;
+}
+
+@media (max-width: 767px) {
+    .comming {
+        min-height: 200vh;
+    }
+}
+
+.comming .item {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px 15px;
+    margin-bottom: 30px;
+}
+
+.comming h6 {
+    color: #b19777;
+    font-size: 13px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    letter-spacing: 5px;
+    line-height: 1.5em;
+}
+
+.comming h3 {
+    font-size: 48px;
+    line-height: 1.25em;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    color: #fff;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.comming h2 {
+    font-size: 48px;
+    line-height: 1.25em;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    color: #fff;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 15px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.comming p {
+    color: #fff;
+    font-size: 16px;
+}
+
+
+/* coming form */
+
+.comming form {
+    margin-top: 30px;
+    position: relative;
+}
+
+.comming form input {
+    width: 100%;
+    padding: 11px 50px 11px 11px;
+    background-color: transparent;
+    border: 1px solid #b19777;
+    border-radius: 0px;
+    color: #fff;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.comming form button {
+    background-color: #b19777;
+    padding: 8px 20px;
+    border-radius: 0px;
+    color: #fff;
+    border: 0;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 300;
+    outline: none;
+}
+
+.comming form button:hover {
+    background-color: #323232;
+    color: #fff;
+    outline: none;
+}
+
+
+/* go home */
+
+.go-back {
+    margin-top: 45px;
+}
+
+.go-back a {
+    color: #fff;
+    display: inline-block;
+    font-size: 13px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+.go-back a:hover {
+    color: #b19777;
+}
+
+.go-back a span {
+    transition: all .5s;
+}
+
+.go-back a span i {
+    color: #fff;
+    font-size: 14px;
+}
+
+.go-back a:hover span {
+    padding-right: 15px;
+}
+
+
 /* ======= Page Banner Header style ======= */
 
 .banner-header {
     height: 50vh;
+    z-index: -2;
+}
+
+.banner-header2 {
+    height: 30vh;
     z-index: -2;
 }
 

@@ -41,12 +41,16 @@ var toolbarOptions = [
     }], // dropdown with defaults from theme
     [{
         'align': []
-    }]
+    }],
+    ['link', 'image', 'video']
 ];
 var quill = new Quill('#editor', {
     modules: {
         // Equivalent to { toolbar: { container: '#toolbar' }}
-        toolbar: toolbarOptions
+        toolbar: toolbarOptions,
+        imageResize: {
+            displaySize: true
+        }
     },
     theme: 'snow'
 });

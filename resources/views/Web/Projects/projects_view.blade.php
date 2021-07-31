@@ -1,18 +1,13 @@
 @extends('Web.Layout.master_layout')
 
+@section('page-style')
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/editors/quill/quill.snow.css')) }}" />
+@endsection 
+
 @section('content')
-<div class="content-wrapper">
-    <!-- Lines -->
-    <section class="content-lines-wrapper">
-        <div class="content-lines-inner">
-            <div class="content-lines"></div>
-        </div>
-    </section>
     <!-- Header Banner -->
-    <section class="banner-header banner-img valign bg-img bg-fixed" data-overlay-darkgray="5" data-background="{{ asset('img/1920x1128.jpg') }}">
+    <section class="banner-header banner-img valign bg-img bg-fixed" data-overlay-darkgray="5" data-background="{{ asset('img/1920x1128.jpg') }}"></section>
 
-
-    </section>
     <!-- Project Page -->
     <section class="section-padding2">
         <div class="container">
@@ -23,7 +18,7 @@
             </div>
             <div class="row">
                 <div class="col-md-8">
-                    {!! $project->description !!}
+                    <div id="editor" class="ql-editor" style="padding: 0px;">{!! $project->description !!}</div>
                 </div>
                 <div class="col-md-4">
                     <p><b>Nombre de Projecto : </b> {{ $project->title }}</p>
@@ -76,5 +71,4 @@
             </div>
         </div>
     </section>
-</div>
 @endsection

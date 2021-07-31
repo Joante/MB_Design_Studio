@@ -6,18 +6,18 @@
         {
             "url": "services/list",
             "name": "Servicios",
-            "icon": "mail",
+            "icon": "tool",
             "slug": "services",
             "submenu": [{
                     "url": "services/list",
                     "name": "Listar",
-                    "icon": "circle",
+                    "icon": "list",
                     "slug": "services_index_admin"
                 },
                 {
                     "url": "services/create",
                     "name": "Crear",
-                    "icon": "circle",
+                    "icon": "plus",
                     "slug": "services_create"
                 }
             ]
@@ -25,18 +25,18 @@
         {
             "url": "projects/list",
             "name": "Proyectos",
-            "icon": "message-square",
+            "icon": "briefcase",
             "slug": "projects",
             "submenu": [{
                     "url": "projects/list",
                     "name": "Listar",
-                    "icon": "circle",
+                    "icon": "list",
                     "slug": "projects_index_admin"
                 },
                 {
                     "url": "projects/create",
                     "name": "Crear",
-                    "icon": "circle",
+                    "icon": "plus",
                     "slug": "projects_create"
                 }
             ]
@@ -79,21 +79,40 @@
             ]
         },
         {
-            "url": "app/calendar",
+            "url": "blog/list",
             "name": "Blog",
-            "icon": "calendar",
+            "icon": "book-open",
             "slug": "",
             "submenu": [{
-                    "url": "app/invoice/list",
+                    "url": "blog/list",
                     "name": "Listar",
-                    "icon": "circle",
-                    "slug": "app-invoice-list"
+                    "icon": "list",
+                    "slug": "blog_index_admin"
                 },
                 {
-                    "url": "app/invoice/preview",
+                    "url": "blog/create",
                     "name": "Crear",
+                    "icon": "plus",
+                    "slug": "blog-create"
+                },
+                {
+                    "url": "blog/category/list",
+                    "name": "Categorias",
                     "icon": "circle",
-                    "slug": "app-invoice-preview"
+                    "slug": "",
+                    "submenu": [{
+                            "url": "blog/category/list",
+                            "name": "Listar",
+                            "icon": "list",
+                            "slug": "blog_categories_index"
+                        },
+                        {
+                            "url": "blog/category/create",
+                            "name": "Crear",
+                            "icon": "plus",
+                            "slug": "blog_category_create"
+                        }
+                    ]
                 }
             ]
         }

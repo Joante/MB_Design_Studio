@@ -2,10 +2,7 @@
 
 @section('content')
     <!-- Header Banner -->
-    <section class="banner-header banner-img valign bg-img bg-fixed" data-overlay-darkgray="5" data-background="img/1920x1128.jpg">
-
-
-    </section>
+    <section class="banner-header banner-img valign bg-img bg-fixed" data-overlay-darkgray="5" data-background="{{ asset('img/1920x1128.jpg') }}"></section>
     <!-- About -->
     <section class="about section-padding2">
         <div class="container">

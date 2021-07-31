@@ -34,7 +34,7 @@
                     <li class="nav-item"><a class="nav-link {{ (request()->is('/')) ? 'active' : '' }}" href="{{ route('home') }}">Home</a></li>
                     <li class="nav-item"><a class="nav-link {{ (request()->is('about')) ? 'active' : '' }}" href="{{ route('about') }}">About</a></li>
                     <li class="nav-item"><a class="nav-link {{ (request()->is('services')) ? 'active' : '' }}" href="{{ route('services_index') }}">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="art.html">Arte</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('art_index') }}">Arte</a></li>
                     <li class="nav-item dropdown"><a class="nav-link {{ (request()->is('projects')) ? 'active' : '' }}" href="{{ route('projects_index') }}">Proyectos <i class="ti-angle-down"></i></a>
                         <ul class="dropdown-menu last">
                             @foreach ($services as $service)
@@ -42,11 +42,11 @@
                             @endforeach
                         </ul>
                     </li>
-                    <li class="nav-item dropdown"><a class="nav-link" href="blog.html">Blog <i class="ti-angle-down"></i></a>
+                    <li class="nav-item dropdown"><a class="nav-link {{ (request()->is('blog')) ? 'active' : '' }}" href="{{ route('blog_index') }}">Blog <i class="ti-angle-down"></i></a>
                         <ul class="dropdown-menu last">
-                            <li class="dropdown-item"><a href="interior-design-blog.html">Diseño</a></li>
-                            <li class="dropdown-item"><a href="art-blog.html">Arte</a></li>
-                            <li class="dropdown-item"><a href="personal-blog.html">Personal</a></li>
+                            @foreach ($blog_categories as $blog_category)
+                            <li class="dropdown-item {{ (request()->is('blog/list/'.$blog_category->id)) ? 'active' : '' }}"><a href="{{ route('blog_view_category', $blog_category->id) }}">{{ $blog_category->title }}</a></li>                                
+                            @endforeach
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link {{ (request()->is('contact')) ? 'active' : '' }}" href="{{ route('contact') }}">Contacto</a></li>

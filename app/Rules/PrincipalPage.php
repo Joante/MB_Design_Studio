@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Models\Post;
 use App\Models\Project;
 use App\Models\Service;
 use Illuminate\Contracts\Validation\Rule;
@@ -37,6 +38,8 @@ class PrincipalPage implements Rule
             case 'projects':
                 $count = Project::where('principal_page', '=', true)->count();
                 break;
+            case 'blog':
+                $count = Post::where('principal_page', '=', true)->count();
         }
         return $count < $this->max;
     }

@@ -72,6 +72,7 @@ mix.copyDirectory('resources/data', 'public/data')
 
 mix
     .js('resources/js/core/app-menu.js', 'public/js/core')
+    .js('node_modules/quill-image-resize/image-resize.min.js', 'public/js')
     .js('resources/js/core/app.js', 'public/js/core')
     .sass('resources/sass/core.scss', 'public/css', { sassOptions })
     .sass('resources/sass/overrides.scss', 'public/css', { sassOptions })

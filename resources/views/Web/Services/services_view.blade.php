@@ -1,16 +1,11 @@
 @extends('Web.Layout.master_layout')
 
+@section('page-style')
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/editors/quill/quill.snow.css')) }}" /> 
+@endsection 
+
 @section('content')
-    <!-- Content -->
-    <div class="content-wrapper">
-        <!-- Lines -->
-        <section class="content-lines-wrapper">
-            <div class="content-lines-inner">
-                <div class="content-lines"></div>
-            </div>
-        </section>
-        <!-- Header Banner -->
-        <section class="banner-header banner-img valign bg-img bg-fixed" data-overlay-darkgray="5" data-background="img/1920x1128.jpg"></section>
+        <section class="banner-header banner-img valign bg-img bg-fixed" data-overlay-darkgray="5" data-background="{{ asset('img/1920x1128.jpg') }}"></section>
         <!-- Services Page -->
         <section class="section-padding2">
             <div class="container">
@@ -21,7 +16,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-8">
-                       {!! $service->text !!}
+                        <div id="editor" class="ql-editor" style="padding: 0px;">{!! $service->text !!}</div>
                         <div class="row mb-30">
                             @foreach ($service->images as $key => $image)
                                 @if ($key!=2)
@@ -70,11 +65,9 @@
                                         <h4>Proyectos de {{ $service->title }}</h4>
                                     </div>
                                     <ul>
-                                        <li><a href="armada-center.html">Chile</a></li>
-                                        <li><a href="cotton-house.html">Devoto</a></li>
-                                        <li><a href="prime-hotel.html">Fouba</a></li>
-                                        <li><a href="stonya-villa.html">Adrogue</a></li>
-                                        <li><a href="interior-design-projects.html">Ver Todos</a></li>
+                                        @foreach ($projects as $project)
+                                            <li><a href="{{ route('projects_view', $project->id) }}">{{ $project->title }}</a></li>    
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
@@ -82,7 +75,5 @@
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
-    
+        </section>    
 @endsection

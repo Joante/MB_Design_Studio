@@ -1,5 +1,6 @@
 {
     "/js/core/app-menu.js": "/js/core/app-menu.js",
+    "/js/image-resize.min.js": "/js/image-resize.min.js",
     "/js/core/app.js": "/js/core/app.js",
     "/css/style.css": "/css/style.css",
     "/css/base/plugins/extensions/ext-component-ratings.css": "/css/base/plugins/extensions/ext-component-ratings.css",
@@ -148,6 +149,7 @@
     "/js/owl.carousel.min.js": "/js/owl.carousel.min.js",
     "/js/pace.js": "/js/pace.js",
     "/js/popper.min.js": "/js/popper.min.js",
+    "/js/quill-image.js": "/js/quill-image.js",
     "/js/quill-mb.js": "/js/quill-mb.js",
     "/js/scrollIt.min.js": "/js/scrollIt.min.js",
     "/js/sticky-kit.min.js": "/js/sticky-kit.min.js",

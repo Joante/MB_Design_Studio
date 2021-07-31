@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Icon;
+use App\Models\Project;
 use App\Models\Service;
 use Exception;
 use Illuminate\Http\Request;
@@ -102,7 +103,9 @@ class ServicesController extends Controller
         if(!$service){
             abort(404);
         }
-        return view('Web/Services/services_view', ['service' => $service]);
+
+        $projects = Project::where('service_id', '=', $id)->get();
+        return view('Web/Services/services_view', ['service' => $service, 'projects' => $projects]);
     }
 
     /**
@@ -200,6 +203,11 @@ class ServicesController extends Controller
     {
         $request->validate(['id' => 'required|numeric']);
         
+        $count = DB::table('projects')->where('service_id', '=', $request->get('id'))->count();
+        if($count > 0)
+        {
+            return json_encode(['message' => 'No se puede eliminar el servicio por que tiene proyectos asociados.']);
+        }
         try {
             DB::beginTransaction();
 

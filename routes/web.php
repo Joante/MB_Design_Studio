@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AppsController;
+use App\Http\Controllers\ArtController;
 use App\Http\Controllers\UserInterfaceController;
 use App\Http\Controllers\CardsController;
 use App\Http\Controllers\ComponentsController;
@@ -14,9 +15,14 @@ use App\Http\Controllers\TableController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\MiscellaneousController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\BlogCategoriesController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ChartsController;
+use App\Http\Controllers\ExhibitionController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\PaintCollectionController;
+use App\Http\Controllers\PaintController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\ServicesController;
 
@@ -264,11 +270,64 @@ Route::get('/projects', [ProjectsController::class, 'index'])->name('projects_in
 Route::get('/projects/{id}', [ProjectsController::class, 'show'])->name('projects_view');
 Route::get('/projects/list/{category_id}', [ProjectsController::class, 'show_category'])->name('project_view_category');
 
+//Blog routes
+Route::get('/blog/list', [BlogController::class, 'index_admin'])->name('blog_index_admin');
+Route::get('/blog/show/{id}/admin/{message?}', [BlogController::class, 'show_admin'])->name('blog_show_admin');
+Route::get('/blog/edit/{id}', [BlogController::class, 'edit'])->name('blog_edit');
+Route::get('/blog/create', [BlogController::class, 'create'])->name('blog_create');
+Route::post('/blog/store', [BlogController::class, 'store'])->name('blog_store');
+Route::post('/blog/update/{id}', [BlogController::class, 'update'])->name('blog_update');
+Route::post('/blog/destroy', [BlogController::class, 'destroy'])->name('blog_destroy');
+Route::get('/blog', [BlogController::class, 'index'])->name('blog_index');
+Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog_view');
+Route::get('/blog/list/{category_id}', [BlogController::class, 'show_category'])->name('blog_view_category');
+
+//Blog Categories routes
+Route::get('/blog/category/list', [BlogCategoriesController::class, 'index'])->name('blog_categories_index');
+Route::get('/blog/category/show/{id}/{message?}', [BlogCategoriesController::class, 'show'])->name('blog_category_show');
+Route::get('/blog/category/edit/{id}', [BlogCategoriesController::class, 'edit'])->name('blog_category_edit');
+Route::get('/blog/category/create', [BlogCategoriesController::class, 'create'])->name('blog_category_create');
+Route::post('/blog/category/store', [BlogCategoriesController::class, 'store'])->name('blog_category_store');
+Route::post('/blog/category/update/{id}', [BlogCategoriesController::class, 'update'])->name('blog_category_update');
+Route::post('/blog/category/destroy', [BlogCategoriesController::class, 'destroy'])->name('blog_category_destroy');
+
+//Art routes
+Route::get('/art', [ArtController::class, 'index'])->name('art_index');
+Route::get('/art/admin', [ArtController::class, 'index_admin'])->name('art_index_admin');
+
+//Paint routes
+Route::get('/art/paint/show/{id}/{message?}', [PaintController::class, 'show_admin'])->name('paint_show_admin');
+Route::get('/art/paint/edit/{id}', [PaintController::class, 'edit'])->name('paint_edit');
+Route::get('/art/paint/create', [PaintController::class, 'create'])->name('paint_create');
+Route::post('/art/paint/store', [PaintController::class, 'store'])->name('paint_store');
+Route::post('/art/paint/update/{id}', [PaintController::class, 'update'])->name('paint_update');
+Route::post('/art/paint/destroy', [PaintController::class, 'destroy'])->name('paint_destroy');
+Route::get('/art/paint', [PaintController::class, 'index'])->name('paint_index');
+Route::get('/art/paint/{id}', [PaintController::class, 'show'])->name('paint_show');
+
+//Paint Collection routes
+Route::get('/art/paint/{idCategory}/list', [PaintCollectionController::class, 'index'])->name('paint_collection_index');
+Route::get('/art/paint/{idCategory}/list/admin', [PaintCollectionController::class, 'index_admin'])->name('paint_collection_index_admin');
+Route::get('/art/paint/collection/create', [PaintCollectionController::class, 'create'])->name('paint_collection_create');
+Route::post('/art/paint/{idCategory}/list', [PaintCollectionController::class, 'store'])->name('paint_collection_store');
+Route::get('/art/paint/{idCategory}/list', [PaintCollectionController::class, 'edit'])->name('paint_collection_edit');
+Route::post('/art/paint/{idCategory}/list', [PaintCollectionController::class, 'update'])->name('paint_collection_update');
+Route::post('/art/paint/{idCategory}/list', [PaintCollectionController::class, 'destroy'])->name('paint_collection_destroy');
+
+//Exhibition routes
+Route::get('/art/exhibtion/show/{id}/{message?}', [ExhibitionController::class, 'show_admin'])->name('exhibition_show_admin');
+Route::get('/art/exhibtion/edit/{id}', [ExhibitionController::class, 'edit'])->name('exhibition_edit');
+Route::get('/art/exhibtion/create', [ExhibitionController::class, 'create'])->name('exhibition_create');
+Route::post('/art/exhibtion/store', [ExhibitionController::class, 'store'])->name('exhibition_store');
+Route::post('/art/exhibtion/update/{id}', [ExhibitionController::class, 'update'])->name('exhibition_update');
+Route::post('/art/exhibtion/destroy', [ExhibitionController::class, 'destroy'])->name('exhibition_destroy');
+Route::get('/art/exhibtion/', [ExhibitionController::class, 'index'])->name('exhibition_index');
+Route::get('/art/exhibtion/{id}', [ExhibitionController::class, 'show'])->name('exhibition_show');
+
 //Images routes
 Route::get('/images/upload/{modelType}/{modelId}', [ImagesController::class, 'create'])->name('images_create_model');
 Route::post('/images/store/{modelType}/{modelId}', [ImagesController::class, 'store'])->name('images_store');
 Route::get('/images/edit/{modelType}/{modelId}', [ImagesController::class, 'edit'])->name('images_edit');
-Route::post('/images/update/{modelType}/{modelId}', [ImagesController::class, 'update'])->name('images_update');
 Route::post('/images/delete/{modelType}/{modelId}', [ImagesController::class, 'delete'])->name('images_delete');
 //->middleware('auth');
 
