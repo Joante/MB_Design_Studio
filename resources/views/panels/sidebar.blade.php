@@ -5,7 +5,7 @@
   <div class="navbar-header">
     <ul class="nav navbar-nav flex-row">
       <li class="nav-item mr-auto">
-        <a class="navbar-brand" href="{{url('/')}}">
+        <a class="navbar-brand" href="{{url('/admin')}}">
           <span class="brand-logo">
             <img src="{{ asset(mix('img/logo_2.png')) }}" />
           </span>

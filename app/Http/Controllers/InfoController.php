@@ -4,29 +4,38 @@ namespace App\Http\Controllers;
 
 use App\Mail\AdminContact;
 use App\Mail\ContactMail;
+use App\Models\Acounts;
 use App\Models\Contact;
+use App\Models\Image;
 use App\Models\Post;
 use App\Models\Project;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class InfoController extends Controller
 {
     public function index() {
-        $services = Service::where('principal_page', '=', true)->get();
+        $services = Service::where('principal_page', '=', true)->limit(3)->get();
         $projects = Project::where('principal_page', '=', true)->limit(6)->get();
         $posts = Post::where('principal_page', '=', true)->limit(4)->get();
 
         foreach ($posts as $post) {
-            $post['created'] = $post['created'] = '10/02/2020';//$post->created_at->format('d/m/Y');
+            $post['created'] = $post['created'] = $post->created_at->format('d/m/Y');
         }
 
         return view('Web/index', ['services' => $services, 'projects' => $projects, 'posts' => $posts]);
     }
 
     public function about() {
-        return view('Web/Info/about');
+        $location = Image::where('model_type', '=', 'App\Models\User')->where('model_id', '=', 1)->value('location');
+        if(!$location) {
+            $location = 'img/600x600.jpg';
+        }
+        $description = User::where('id', '=', 1)->value('description');
+        $perAcounts = Acounts::where('type', '=', 'personal')->first();
+        return view('Web/Info/about', ['location' => $location, 'perAcounts' => $perAcounts, 'description' => $description]);
     }
 
     public function contact() {

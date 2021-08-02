@@ -28,7 +28,7 @@
             </g>
           </g>
         </svg></span>
-        <h2 class="brand-text mb-0">Vuexy</h2>
+        <h2 class="brand-text mb-0">MB Design Studio</h2>
         </a>
       </li>
     </ul>
@@ -46,17 +46,20 @@
           <li class="nav-item dropdown dropdown-user">
           <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="user-nav d-sm-flex d-none">
-              <span class="user-name font-weight-bolder">John Doe</span>
-              <span class="user-status">Admin</span>
+              <span class="user-name font-weight-bolder">{{ Auth::user()->name }}</span>
+              <span class="user-status">{{ Auth::user()->username }}</span>
             </div>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
-            <a class="dropdown-item" href="{{url('page/account-settings')}}">
-              <i class="mr-50" data-feather="settings"></i> Settings
+            <a class="dropdown-item" href="{{ route('admin_edit')}}">
+              <i class="mr-50" data-feather="settings"></i> Configuracion
             </a>
-            <a class="dropdown-item" href="{{url('auth/login-v2')}}">
-              <i class="mr-50" data-feather="power"></i> Logout
-            </a>
+            <form method="POST" action="{{ route('logout') }}">
+              @csrf
+              <button type="submit" class="dropdown-item">
+                <i class="mr-50" data-feather="power"></i> Salir
+              </button>
+            </form>
           </div>
         </li>
       </ul>

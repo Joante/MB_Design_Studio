@@ -117,6 +117,7 @@ return [
     'uploaded' => 'El campo :attribute fallo al ser subido.',
     'url' => 'El  formato del campo :attribute es invalido.',
     'uuid' => 'El campo :attribute debe ser un UUID valido.',
+    'current_password' => 'La contraseña actual no coincide.',
 
     /*
     |--------------------------------------------------------------------------

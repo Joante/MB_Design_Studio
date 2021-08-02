@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BlogCategory;
 use App\Models\Image as ModelsImage;
 use App\Models\Post;
+use App\Models\User;
 use App\Rules\PrincipalPage;
 use Exception;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class BlogController extends Controller
         $posts = Post::paginate(8);
 
         foreach ($posts as $post) {
-            $post['created'] = '10/02/2020';//$post->created_at->format('d/m/Y');
+            $post['created'] = $post->created_at->format('d/m/Y');
         }
 
         return view('Web/Blog/blog_index', ['posts' => $posts]);
@@ -148,7 +149,15 @@ class BlogController extends Controller
             abort('404');
         }
         $post['created'] = $post->created_at->format('d/m/Y');
-        return view('Web/Blog/blog_view', ['post' => $post]);
+
+        $location = ModelsImage::where('model_type', '=', 'App\Models\User')->where('model_id', '=', 1)->value('location');
+
+        if(!$location) {
+            $location = 'img/600x600.jpg';
+        }
+        
+        $description = User::where('id', '=', 1)->value('description');
+        return view('Web/Blog/blog_view', ['post' => $post, 'location' => $location, 'description' => $description]);
     }
 
     /**

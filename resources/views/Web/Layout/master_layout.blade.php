@@ -91,10 +91,14 @@
                                 <h4>CONTACTO</h4>
                             </div>
                             <div class="fotbody">
-                                <h6>Telefono: </h6>
-                                <p style="font-size: 14px;">+54 9 11-1234-5678</p>
-                                <h6>Email: </h6>
-                                <p style="font-size: 14px;">maxbilotti.designstudio@gmail.com</p>
+                                @if ($mbAcounts->phone_formatted != null)
+                                    <h6>Telefono: </h6>
+                                    <p style="font-size: 14px;">+54 9 {{ $mbAcounts->phone_formatted }}</p>
+                                @endif
+                                @if($mbAcounts->email != null)
+                                    <h6>Email: </h6>
+                                    <p style="font-size: 14px;">{{ $mbAcounts->email }}</p>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -103,9 +107,24 @@
                             <div class="fothead">
                                 <div class="abot">
                                     <div class="social-icon">
-                                        <a href="https://www.facebook.com/maxbilottidesignstudio" target="_blank"><i class="ti-facebook"></i></a>
-                                        <a href="https://wa.me/5491134392501?text=Hola!,%20necesitaria%20asesoramiento%20especializado." target="_blank"><i class="fa fa-whatsapp"></i></a>
-                                        <a href="https://www.instagram.com/mb.designstudio/" target="_blank"><i class="ti-instagram"></i></a>
+                                        @if($mbAcounts->facebook != null)
+                                            <a href="https://www.facebook.com/{{ $mbAcounts->facebook }}" target="_blank"><i class="ti-facebook"></i></a>
+                                        @endif
+                                        @if($mbAcounts->whats_app != null)
+                                            <a href="https://wa.me/549{{ $mbAcounts->whats_app }}?text=Hola!,%20necesitaria%20asesoramiento%20especializado." target="_blank"><i class="fa fa-whatsapp"></i></a>
+                                        @endif
+                                        @if ($mbAcounts->instagram != null)
+                                            <a href="https://www.instagram.com/{{ $mbAcounts->instagram }}" target="_blank"><i class="ti-instagram"></i></a>
+                                        @endif
+                                        @if ($mbAcounts->twitter !=null)
+                                            <a href="https://www.twitter.com/{{ $mbAcounts->twitter }}" target="_blank"><i class="ti-twitter"></i></a>
+                                        @endif
+                                        @if ($mbAcounts->linkedin !=null)
+                                            <a href="https://www.linkedin.com/{{ $mbAcounts->linkedin }}" target="_blank"><i class="ti-linkedin"></i></a>
+                                        @endif
+                                        @if ($mbAcounts->pinterest !=null)
+                                            <a href="https://www.pinterest.com/{{ $mbAcounts->pinterest }}" target="_blank"><i class="ti-pinterest"></i></a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

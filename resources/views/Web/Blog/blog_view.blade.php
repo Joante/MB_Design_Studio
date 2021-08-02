@@ -22,10 +22,10 @@
                     <!-- Comment -->
                     <div class="col-md-7">
                         <div class="bauen-post-comment-wrap">
-                            <div class="bauen-user-comment"> <img src="{{ asset('img/team/max_bilotti.jpg') }}" alt=""> </div>
+                            <div class="bauen-user-comment"> <img src="{{ asset($location) }}" alt=""> </div>
                             <div class="bauen-user-content">
                                 <h3>Maximiliano Bilotti<span> {{ $post->created }}</span></h3>
-                                <p>Photography ultricies nibh non dolor maximus sceleue inte molliser faubs neque nec tincidunte aliquam erat volutpat. Praeser tempor malade yap. </p>
+                                <p>{{ $description }} </p>
                             </div>
                         </div>
                     </div>
