@@ -7,7 +7,6 @@
 @endsection 
 
 @section('page-style')
-    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
     <link href='https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Oswald:wght@200;300;400;500;600;700&display=swap' rel="stylesheet">
 @endsection
 
@@ -118,8 +117,6 @@
     <script>
         var form = document.getElementById('form');
         form.addEventListener('submit', function(e){
-            console.log(quill.getContents());
-            e.preventDefault();
             if(quill.root.innerHTML != '<p><br></p>') {
                 document.getElementById('text').innerHTML = quill.root.innerHTML;
             }
