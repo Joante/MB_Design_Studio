@@ -36,8 +36,8 @@
                     <li class="nav-item"><a class="nav-link {{ (request()->is('services')) ? 'active' : '' }}" href="{{ route('services_index') }}">Servicios</a></li>
                     <li class="nav-item dropdown"><a class="nav-link {{ (request()->is('art')) ? 'active' : '' }}" href="{{ route('art_index') }}">Arte <i class="ti-angle-down"></i></a>
                         <ul class="dropdown-menu last">
-                            <li class="dropdown-item {{ (request()->is('art/collections')) ? 'active' : '' }}"><a href="{{ route('project_view_category', 1) }}">Colecciones</a></li>
-                            <li class="dropdown-item {{ (request()->is('art/exhibitions')) ? 'active' : '' }}"><a href="{{ route('project_view_category', 1) }}">Exhibiciones</a></li>
+                            <li class="dropdown-item {{ (request()->is('art/collections')) ? 'active' : '' }}"><a href="{{ route('paint_index') }}">Colecciones</a></li>
+                            <li class="dropdown-item {{ (request()->is('art/exhibitions')) ? 'active' : '' }}"><a href="{{ route('exhibition_index') }}">Exhibiciones</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown"><a class="nav-link {{ (request()->is('projects')) ? 'active' : '' }}" href="{{ route('projects_index') }}">Proyectos <i class="ti-angle-down"></i></a>
