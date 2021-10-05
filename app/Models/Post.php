@@ -23,7 +23,7 @@ class Post extends Model
      */
     public function images()
     {
-        return $this->morphMany(Image::class, 'model');
+        return $this->morphOne(Image::class, 'model');
     }
 
 

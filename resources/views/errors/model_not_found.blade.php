@@ -20,7 +20,7 @@ $configData = Helper::applClasses();
     <div class="w-100 text-center">
       <h2 class="mb-1">No se encontro el {{ $modelName }} solicitado 🕵🏻‍♀️</h2>
       <p class="mb-2">Perdón! 😖 Al parecer no se encontro lo que solicitabas.</p>
-      <a class="btn btn-primary mb-2 btn-sm-block" href="{{route('dashboard-ecommerce')}}">Volver al inicio</a>
+      <a class="btn btn-primary mb-2 btn-sm-block" href="{{route('admin')}}">Volver al inicio</a>
 
       @if($configData['theme'] === 'dark')
       <img class="img-fluid" src="{{asset('images/pages/error-dark.svg')}}" alt="Error page" />

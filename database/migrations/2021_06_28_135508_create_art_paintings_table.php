@@ -13,9 +13,16 @@ class CreateArtPaintingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('art_paintings', function (Blueprint $table) {
+        Schema::create('paintings', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->string('tecnique');
+            $table->unsignedFloat('width');
+            $table->unsignedFloat('height');
+            $table->unsignedBigInteger('art_colection_id');
             $table->timestamps();
+            $table->foreign('art_colection_id')->references('id')->on('art_colections');            
         });
     }
 
@@ -26,6 +33,6 @@ class CreateArtPaintingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('art_paintings');
+        Schema::dropIfExists('paintings');
     }
 }

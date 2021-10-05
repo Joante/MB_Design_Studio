@@ -34,7 +34,12 @@
                     <li class="nav-item"><a class="nav-link {{ (request()->is('/')) ? 'active' : '' }}" href="{{ route('home') }}">Home</a></li>
                     <li class="nav-item"><a class="nav-link {{ (request()->is('about')) ? 'active' : '' }}" href="{{ route('about') }}">About</a></li>
                     <li class="nav-item"><a class="nav-link {{ (request()->is('services')) ? 'active' : '' }}" href="{{ route('services_index') }}">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('art_index') }}">Arte</a></li>
+                    <li class="nav-item dropdown"><a class="nav-link {{ (request()->is('art')) ? 'active' : '' }}" href="{{ route('art_index') }}">Arte <i class="ti-angle-down"></i></a>
+                        <ul class="dropdown-menu last">
+                            <li class="dropdown-item {{ (request()->is('art/collections')) ? 'active' : '' }}"><a href="{{ route('project_view_category', 1) }}">Colecciones</a></li>
+                            <li class="dropdown-item {{ (request()->is('art/exhibitions')) ? 'active' : '' }}"><a href="{{ route('project_view_category', 1) }}">Exhibiciones</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item dropdown"><a class="nav-link {{ (request()->is('projects')) ? 'active' : '' }}" href="{{ route('projects_index') }}">Proyectos <i class="ti-angle-down"></i></a>
                         <ul class="dropdown-menu last">
                             @foreach ($services as $service)
@@ -91,13 +96,15 @@
                                 <h4>CONTACTO</h4>
                             </div>
                             <div class="fotbody">
-                                @if ($mbAcounts->phone_formatted != null)
-                                    <h6>Telefono: </h6>
-                                    <p style="font-size: 14px;">+54 9 {{ $mbAcounts->phone_formatted }}</p>
-                                @endif
-                                @if($mbAcounts->email != null)
-                                    <h6>Email: </h6>
-                                    <p style="font-size: 14px;">{{ $mbAcounts->email }}</p>
+                                @if ($mbAcounts != null)
+                                    @if ($mbAcounts->phone_formatted != null)
+                                        <h6>Telefono: </h6>
+                                        <p style="font-size: 14px;">+54 9 {{ $mbAcounts->phone_formatted }}</p>
+                                    @endif
+                                    @if($mbAcounts->email != null)
+                                        <h6>Email: </h6>
+                                        <p style="font-size: 14px;">{{ $mbAcounts->email }}</p>
+                                    @endif
                                 @endif
                             </div>
                         </div>
@@ -107,23 +114,25 @@
                             <div class="fothead">
                                 <div class="abot">
                                     <div class="social-icon">
-                                        @if($mbAcounts->facebook != null)
-                                            <a href="https://www.facebook.com/{{ $mbAcounts->facebook }}" target="_blank"><i class="ti-facebook"></i></a>
-                                        @endif
-                                        @if($mbAcounts->whats_app != null)
-                                            <a href="https://wa.me/549{{ $mbAcounts->whats_app }}?text=Hola!,%20necesitaria%20asesoramiento%20especializado." target="_blank"><i class="fa fa-whatsapp"></i></a>
-                                        @endif
-                                        @if ($mbAcounts->instagram != null)
-                                            <a href="https://www.instagram.com/{{ $mbAcounts->instagram }}" target="_blank"><i class="ti-instagram"></i></a>
-                                        @endif
-                                        @if ($mbAcounts->twitter !=null)
-                                            <a href="https://www.twitter.com/{{ $mbAcounts->twitter }}" target="_blank"><i class="ti-twitter"></i></a>
-                                        @endif
-                                        @if ($mbAcounts->linkedin !=null)
-                                            <a href="https://www.linkedin.com/{{ $mbAcounts->linkedin }}" target="_blank"><i class="ti-linkedin"></i></a>
-                                        @endif
-                                        @if ($mbAcounts->pinterest !=null)
-                                            <a href="https://www.pinterest.com/{{ $mbAcounts->pinterest }}" target="_blank"><i class="ti-pinterest"></i></a>
+                                        @if ($mbAcounts != null)
+                                            @if($mbAcounts->facebook != null)
+                                                <a href="https://www.facebook.com/{{ $mbAcounts->facebook }}" target="_blank"><i class="ti-facebook"></i></a>
+                                            @endif
+                                            @if($mbAcounts->whats_app != null)
+                                                <a href="https://wa.me/549{{ $mbAcounts->whats_app }}?text=Hola!,%20necesitaria%20asesoramiento%20especializado." target="_blank"><i class="fa fa-whatsapp"></i></a>
+                                            @endif
+                                            @if ($mbAcounts->instagram != null)
+                                                <a href="https://www.instagram.com/{{ $mbAcounts->instagram }}" target="_blank"><i class="ti-instagram"></i></a>
+                                            @endif
+                                            @if ($mbAcounts->twitter !=null)
+                                                <a href="https://www.twitter.com/{{ $mbAcounts->twitter }}" target="_blank"><i class="ti-twitter"></i></a>
+                                            @endif
+                                            @if ($mbAcounts->linkedin !=null)
+                                                <a href="https://www.linkedin.com/{{ $mbAcounts->linkedin }}" target="_blank"><i class="ti-linkedin"></i></a>
+                                            @endif
+                                            @if ($mbAcounts->pinterest !=null)
+                                                <a href="https://www.pinterest.com/{{ $mbAcounts->pinterest }}" target="_blank"><i class="ti-pinterest"></i></a>
+                                            @endif
                                         @endif
                                     </div>
                                 </div>

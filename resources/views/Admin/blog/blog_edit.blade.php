@@ -12,6 +12,7 @@
 
 @section('content')
 <section>
+    {{ $errors }}
     <div class="col-12 justify-content-center">
       <div class="card">
         <div class="card-header d-flex justify-content-center">

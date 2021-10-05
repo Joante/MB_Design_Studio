@@ -18,13 +18,14 @@
                 <div class="card-body">
                     @switch($modelType)
                         @case("services")
+                        @case("paint")
                             <p class="card-text">Maximo 5 imagenes. Maximo 5 MB por imagen.</p>
                             @break
                         @case("projects")
+                        @case("exhibitions")
                             <p class="card-text">Maximo 10 imagenes. Maximo 5 MB por imagen.</p>
                             @break
-                        @default
-                            
+                        @default                            
                     @endswitch
                     <form action="{{ route('images_store', [$modelType, $modelId]) }}" class="dropzone dropzone-area dz-clickable" method="POST" enctype="multipart/form-data" id="dpz-single-file">
                         @csrf
@@ -54,10 +55,12 @@
     var maxFiles;
     var modelType = "{{ $modelType }}";
     switch(modelType) {
-        case "services": 
+        case "services":
+        case "paint": 
             maxFiles = 5;
             break;
         case "projects":
+        case "exhibitions":
             maxFiles = 10;
             break;
     }

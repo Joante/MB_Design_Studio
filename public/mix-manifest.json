@@ -139,6 +139,7 @@
     "/js/bootstrap.min.js": "/js/bootstrap.min.js",
     "/js/custom.js": "/js/custom.js",
     "/js/gridify-min.js": "/js/gridify-min.js",
+    "/js/images-gallery.js": "/js/images-gallery.js",
     "/js/jquery-3.5.1.min.js": "/js/jquery-3.5.1.min.js",
     "/js/jquery-migrate-3.0.0.min.js": "/js/jquery-migrate-3.0.0.min.js",
     "/js/jquery.magnific-popup.js": "/js/jquery.magnific-popup.js",

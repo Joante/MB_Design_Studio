@@ -42,44 +42,90 @@
             ]
         },
         {
-            "url": "app/todo",
+            "url": "",
             "name": "Arte",
-            "icon": "check-square",
+            "icon": "image",
             "slug": "",
             "submenu": [{
-                    "url": "app/invoice/list",
+                    "url": "art/exhibition/list/admin",
                     "name": "Exhibiciones",
-                    "icon": "circle",
+                    "icon": "calendar",
                     "slug": "",
                     "submenu": [{
+                            "url": "art/exhibition/list/admin",
+                            "icon": "list",
                             "name": "Listar",
-                            "slug": "art-exhibition-list"
+                            "slug": "exhibitions_index_admin"
                         },
                         {
+                            "url": "art/exhibition/create/new",
+                            "icon": "plus",
                             "name": "Crear",
-                            "slug": "art-exhibiton-new"
+                            "slug": "exhibition_create"
+                        },
+                        {
+                            "url": "art/exhibition/locations/list",
+                            "name": "Ubicaciones",
+                            "icon": "map-pin",
+                            "slug": "",
+                            "submenu": [{
+                                    "url": "art/exhibition/locations/list",
+                                    "icon": "list",
+                                    "name": "Listar",
+                                    "slug": "location_index"
+                                },
+                                {
+                                    "url": "art/exhibition/locations/create",
+                                    "icon": "plus",
+                                    "name": "Crear",
+                                    "slug": "location_create"
+                                }
+                            ]
                         }
                     ]
                 },
                 {
-                    "url": "app/invoice/preview",
+                    "url": "",
                     "name": "Obras",
-                    "icon": "circle",
+                    "icon": "pen-tool",
                     "slug": "",
                     "submenu": [{
+                            "url": "art/painting/list/admin",
+                            "icon": "list",
                             "name": "Listar",
-                            "slug": "art-paint-list"
+                            "slug": "paint_index_admin"
                         },
                         {
+                            "url": "art/painting/create",
+                            "icon": "plus",
                             "name": "Crear",
-                            "slug": "art-paint-new"
+                            "slug": "paint_create"
+                        },
+                        {
+                            "url": "",
+                            "name": "Colecciones",
+                            "icon": "grid",
+                            "slug": "",
+                            "submenu": [{
+                                    "url": "art/painting/colection/list/admin",
+                                    "icon": "list",
+                                    "name": "Listar",
+                                    "slug": "paint_colection_index_admin"
+                                },
+                                {
+                                    "url": "art/painting/colection/create",
+                                    "icon": "plus",
+                                    "name": "Crear",
+                                    "slug": "paint_colection_create"
+                                }
+                            ]
                         }
                     ]
                 }
             ]
         },
         {
-            "url": "blog/list",
+            "url": "",
             "name": "Blog",
             "icon": "book-open",
             "slug": "",
@@ -96,9 +142,9 @@
                     "slug": "blog-create"
                 },
                 {
-                    "url": "blog/category/list",
+                    "url": "",
                     "name": "Categorias",
-                    "icon": "circle",
+                    "icon": "menu",
                     "slug": "",
                     "submenu": [{
                             "url": "blog/category/list",

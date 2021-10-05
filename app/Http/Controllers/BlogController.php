@@ -211,8 +211,8 @@ class BlogController extends Controller
             'title' => 'required|string|max:100',
             'category_id' => 'required|numeric',
             'text' => 'required',
-            'principal_page' => ['sometimes',new PrincipalPage('blog', 4)],
-            'image' => 'nullable|image|max:5042'
+            'principal_page' => ['sometimes',new PrincipalPage('blog', 4, $id)],
+            'image' => ['sometimes','image', 'max:5042']
         ]);
         if ($validator->fails()) {
             return redirect('blog/edit/'.$id)
@@ -308,7 +308,7 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
@@ -322,7 +322,7 @@ class BlogController extends Controller
             
             if(!$post->delete()){
                 DB::rollBack();
-                return json_encode(['message' => 'Error al eliminar el servicio']);
+                return json_encode(['message' => 'Error al eliminar el post']);
             }
             
             $locations = ['/'.$post->image->location];

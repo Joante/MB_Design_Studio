@@ -6,7 +6,6 @@ use App\Models\Project;
 use App\Models\Service;
 use App\Rules\PrincipalPage;
 use Exception;
-use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -169,7 +168,7 @@ class ProjectsController extends Controller
             'description' => 'required',
             'location' => 'nullable|string|max:100',
             'service_id' => 'required|numeric',
-            'principal_page' => ['sometimes',new PrincipalPage('projects', 6)]
+            'principal_page' => ['sometimes',new PrincipalPage('projects', 6, $id)]
         ]);
         if ($validator->fails()) {
             return redirect('projects/edit/'.$id)
@@ -212,7 +211,7 @@ class ProjectsController extends Controller
 
             if(!$project->delete()){
                 DB::rollBack();
-                return json_encode(['message' => 'Error al eliminar el servicio']);
+                return json_encode(['message' => 'Error al eliminar el proyecto']);
             }
             
             if(!Storage::delete($locations)) {

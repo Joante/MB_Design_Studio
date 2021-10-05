@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ArtExhibition;
+use App\Models\ArtPainting;
 use App\Models\Image as ModelsImage;
 use App\Models\Project;
 use App\Models\Service;
@@ -61,6 +63,12 @@ class ImagesController extends Controller
             case "projects":
                 $model = Project::find($modelId);
                 break;
+            case "exhibitions":
+                $model = ArtExhibition::find($modelId);
+                break;
+            case "paint": 
+                $model = ArtPainting::find($modelId);
+                break;
         }
         $imagePath = 'img/'.$modelType.'/'.$imageName;
         $newImage = [
@@ -106,21 +114,27 @@ class ImagesController extends Controller
     public function edit($modelType, $modelId)
     {
         switch($modelType) {
-            case 'services':
+            case "services": 
                 $model = Service::find($modelId);
                 break;
             case "projects":
                 $model = Project::find($modelId);
                 break;
+            case "exhibitions":
+                $model = ArtExhibition::find($modelId);
+                break;
+            case "paint": 
+                $model = ArtPainting::find($modelId);
+                break;
         }
-
+        $result = [];
         foreach($model->images as $image) {
             $file['name'] = $image->title; //get the filename in array
             $file['size'] = filesize($image->location); //get the flesize in array
             $file['location'] = $image->location;
             $file['extension'] = pathinfo($image->title, PATHINFO_EXTENSION);
             $file['id'] = $image->id;
-            $result[] = $file; // copy it to another array
+            $result = $file; // copy it to another array
         }
         return view('Admin/images/images_edit', ['images' => $result, 'modelType' => $modelType, 'modelId' => $modelId]);
     }

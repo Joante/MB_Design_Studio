@@ -26,5 +26,7 @@ class Image extends Model
         'title',
         'description',
         'location',
+        'model_type',
+        'model_id'
      ];
 }

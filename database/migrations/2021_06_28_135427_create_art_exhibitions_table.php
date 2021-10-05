@@ -13,9 +13,19 @@ class CreateArtExhibitionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('art_exhibitions', function (Blueprint $table) {
+        Schema::create('exhibitions', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->json('text');
+            $table->text('description');
+            $table->boolean('principal_page');
+            $table->unsignedBigInteger('location_id');
+            $table->dateTime('date_start');
+            $table->dateTime('date_finish');
+            $table->time('hour_start');
+            $table->time('hour_finish');
             $table->timestamps();
+            $table->foreign('location_id')->references('id')->on('locations');
         });
     }
 
@@ -26,6 +36,6 @@ class CreateArtExhibitionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('art_exhibitions');
+        Schema::dropIfExists('exhibitions');
     }
 }

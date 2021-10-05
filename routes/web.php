@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ArtColectionsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArtController;
 use App\Http\Controllers\BlogCategoriesController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ExhibitionController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PaintCollectionController;
 use App\Http\Controllers\PaintController;
 use App\Http\Controllers\ProjectsController;
@@ -75,7 +77,7 @@ Route::prefix('art')->group(function () {
     Route::prefix('paint')->group(function () {
         Route::get('/', [PaintController::class, 'index'])->name('paint_index');
         Route::get('/{id}', [PaintController::class, 'show'])->name('paint_show');
-        Route::get('/{idCategory}/list', [PaintCollectionController::class, 'index'])->name('paint_collection_index');
+        Route::get('/{idCategory}/list', [PaintController::class, 'show_colection'])->name('paint_collection_index');
     });
     
     //Exhibition routes
@@ -135,34 +137,45 @@ Route::prefix('blog')->middleware('auth')->group(function () {
 
 //Art routes
 Route::prefix('art')->middleware('auth')->group(function () {
-    Route::get('/admin', [ArtController::class, 'index_admin'])->name('art_index_admin');
-
     //Paint routes
-    Route::prefix('paint')->group(function () {
+    Route::prefix('painting')->group(function () {
+        Route::get('/list/admin', [PaintController::class, 'index_admin'])->name('paint_index_admin');
         Route::get('/show/{id}/{message?}', [PaintController::class, 'show_admin'])->name('paint_show_admin');
         Route::get('/edit/{id}', [PaintController::class, 'edit'])->name('paint_edit');
         Route::get('/create', [PaintController::class, 'create'])->name('paint_create');
         Route::post('/store', [PaintController::class, 'store'])->name('paint_store');
         Route::post('/update/{id}', [PaintController::class, 'update'])->name('paint_update');
         Route::post('/destroy', [PaintController::class, 'destroy'])->name('paint_destroy');
-        Route::get('/{idCategory}/list/admin', [PaintCollectionController::class, 'index_admin'])->name('paint_collection_index_admin');
-        Route::prefix('collection')->group(function () {
-            Route::get('/{idCategory}/create', [PaintCollectionController::class, 'create'])->name('paint_collection_create');
-            Route::post('/{idCategory}/store', [PaintCollectionController::class, 'store'])->name('paint_collection_store');
-            Route::get('/{idCategory}/edit', [PaintCollectionController::class, 'edit'])->name('paint_collection_edit');
-            Route::post('/{idCategory}/update', [PaintCollectionController::class, 'update'])->name('paint_collection_update');
-            Route::post('/{idCategory}/destroy', [PaintCollectionController::class, 'destroy'])->name('paint_collection_destroy');
+        Route::get('/{idColection}/admin', [ArtColectionsController::class, 'show_paints_admin'])->name('paint_colection_admin');
+        Route::prefix('colection')->group(function () {
+            Route::get('/list/admin', [ArtColectionsController::class, 'index_admin'])->name('paint_colection_index_admin');
+            Route::get('show/admin/{id}/{message?}', [ArtColectionsController::class, 'show_admin'])->name('paint_colection_show_admin');
+            Route::get('/create', [ArtColectionsController::class, 'create'])->name('paint_colection_create');
+            Route::post('/store', [ArtColectionsController::class, 'store'])->name('paint_colection_store');
+            Route::get('/edit/{id}', [ArtColectionsController::class, 'edit'])->name('paint_colection_edit');
+            Route::post('/update/{id}', [ArtColectionsController::class, 'update'])->name('paint_colection_update');
+            Route::post('/destroy', [ArtColectionsController::class, 'destroy'])->name('paint_colection_destroy');
         });
     });
 
     //Exhibition routes
     Route::prefix('exhibition')->group(function () {
+        Route::get('/list/admin', [ExhibitionController::class, 'index_admin'])->name('exhibitions_index_admin');
         Route::get('/show/{id}/{message?}', [ExhibitionController::class, 'show_admin'])->name('exhibition_show_admin');
         Route::get('/edit/{id}', [ExhibitionController::class, 'edit'])->name('exhibition_edit');
-        Route::get('/create', [ExhibitionController::class, 'create'])->name('exhibition_create');
+        Route::get('/create/new', [ExhibitionController::class, 'create'])->name('exhibition_create');
         Route::post('/store', [ExhibitionController::class, 'store'])->name('exhibition_store');
         Route::post('/update/{id}', [ExhibitionController::class, 'update'])->name('exhibition_update');
         Route::post('/destroy', [ExhibitionController::class, 'destroy'])->name('exhibition_destroy');
+        Route::prefix('locations')->group(function () {
+            Route::get('/list', [LocationController::class, 'index'])->name('location_index');
+            Route::get('/show/{id}/{message?}', [LocationController::class, 'show'])->name('location_show');
+            Route::get('/edit/{id}', [LocationController::class, 'edit'])->name('location_edit');
+            Route::get('/create', [LocationController::class, 'create'])->name('location_create');
+            Route::post('/store', [LocationController::class, 'store'])->name('location_store');
+            Route::post('/update/{id}', [LocationController::class, 'update'])->name('location_update');
+            Route::post('/destroy', [LocationController::class, 'destroy'])->name('location_destroy');
+        });
     });
 });
 
