@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Mail\AdminContact;
 use App\Mail\ContactMail;
 use App\Models\Acounts;
+use App\Models\ArtColection;
+use App\Models\ArtExhibition;
 use App\Models\Contact;
 use App\Models\Image;
 use App\Models\Post;
@@ -17,15 +19,17 @@ use Illuminate\Support\Facades\Mail;
 class InfoController extends Controller
 {
     public function index() {
-        $services = Service::where('principal_page', '=', true)->limit(3)->get();
+        $services = Service::where('principal_page', '=', true)->limit(4)->get();
         $projects = Project::where('principal_page', '=', true)->limit(6)->get();
         $posts = Post::where('principal_page', '=', true)->limit(4)->get();
+        $exhibitions = ArtExhibition::where('principal_page', '=', true)->limit(2)->get();
+        $colections = ArtColection::where('principal_page', '=', true)->limit(4)->get();
 
         foreach ($posts as $post) {
             $post['created'] = $post['created'] = $post->created_at->format('d/m/Y');
         }
 
-        return view('Web/index', ['services' => $services, 'projects' => $projects, 'posts' => $posts]);
+        return view('Web/index', ['services' => $services, 'projects' => $projects, 'posts' => $posts, 'exhibitions' => $exhibitions, 'colections' => $colections]);
     }
 
     public function about() {

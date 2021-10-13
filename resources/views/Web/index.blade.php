@@ -150,14 +150,90 @@
                             </div>
                         @endif
                     @endforeach
-                        <div class="col-md-3">
-                        <div class="item">
-                            <a href="art.html"> <img src="img/icons/arte_logo.png" style="margin-left: -10px;" alt="">
-                                <h5>Arte</h5>
-                                <div class="line"></div>
-                                <p>Comercializamos y realizamos exposiciones de nuestra colección de obras arte, con una estética minimalista y contemporánea.</p>
-                                <div class="numb">04</div>
-                            </a>
+                </div>
+            </div>
+        </section>
+         <!-- Blog -->
+         <section class="section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="section-title">Nuestra <span>Arte</span></h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6 art_colections">
+                                <section class="bauen-blog2">
+                                    <div class="col-md-12">
+                                        <div class="row mb-30">
+                                            <div class="col-md-12">
+                                                <h6 class="section-title2" style="text-align: center;font-size: 25px;">Nuestras exhibiciones</h6>
+                                            </div>
+                                        </div>
+                                        <div class="owl-carousel owl-theme">
+                                            @foreach ($exhibitions as $exhibition)    
+                                                <div class="item">
+                                                    <div class="row">
+                                                        <div class="col-md-6 animate-box position-re o-hidden" data-animate-effect="fadeInLeft">
+                                                            <div class="img left">
+                                                                <a href="{{ route('exhibition_show', $exhibition->id) }}">
+                                                                    @if (count($exhibition->images) == 0)
+                                                                        <img src="{{ asset($exhibition->location->image->location) }}" alt="{{ $exhibition->location->image->title }}"> 
+                                                                    @else
+                                                                        <img src="{{ asset($exhibition->images[0]->location) }}" alt="{{ $exhibition->images[0]->title }}">   
+                                                                    @endif
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 valign animate-box" data-animate-effect="fadeInRight" style="padding-left: 0px;">
+                                                            <div class="content" style="padding: 0px;">
+                                                                <div class="date">
+                                                                    <h3>{{ $exhibition->date_start->format('d') }}</h3>
+                                                                    <h6>{{ $exhibition->date_start->translatedFormat('M Y') }}</h6>
+                                                                    <hr style="margin-bottom: 5px;"> 
+                                                                    <h3>{{ $exhibition->date_finish->format('d') }}</h3>
+                                                                    <h6>{{ $exhibition->date_finish->translatedFormat('M Y') }}</h6>
+                                                                </div>
+                                                                <div class="cont">
+                                                                    <div class="info">
+                                                                        <h6><a href="{{ $exhibition->location->url }}" target="_blank">{{ $exhibition->location->name }}</a> <span class="tags">{{ $exhibition->hour_start->format('H:i') }} a {{ $exhibition->hour_finish->format('H:i') }}</span></h6>
+                                                                    </div>
+                                                                    <h4 style="word-break: break-word; font-size:17px;">{{ $exhibition->title }}</h4> <a href="{{ route('exhibition_show', $exhibition->id) }}" class="more" data-splitting=""><span>Ver Mas</span></a> </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="col-md-6">
+                                <section class="colections">
+                                    <div class="container">
+                                        <div class="row mb-30">
+                                            <div class="col-md-12">
+                                                <h6 class="section-title2" style="text-align: center;font-size: 25px;">Nuestras colecciones</h6>
+                                            </div>
+                                        </div>
+                                        <div class="owl-carousel owl-theme">
+                                            @foreach ($colections as $colection)    
+                                                <div class="item">
+                                                    <div class="position-re o-hidden"> 
+                                                        <img class="projects-carousel" src="{{ asset($colection->image->location) }}" alt="{{ $colection->image->title }}"> 
+                                                    </div>
+                                                    <div class="con">
+                                                        <h5><a href="{{ route('paint_collection_index', $colection->id) }}">{{ $colection->name }}</a></h5>
+                                                        <div class="line"></div> <a href="{{ route('paint_collection_index', $colection->id) }}"><i class="ti-arrow-right"></i></a>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -190,4 +266,44 @@
                 </div>
             </div>
         </section>
+@endsection
+
+@section('page-script')
+<script>
+    // Exhibtions owlCarousel
+    $('.bauen-blog2 .owl-carousel').owlCarousel({
+        loop: true,
+        margin: 30,
+        mouseDrag: true,
+        autoplay: false,
+        dots: true,
+        autoplayHoverPause: true,
+        smartSpeed: 700,
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 1,
+            },
+        }
+    });
+    // Colections owlCarousel
+    $('.colections .owl-carousel').owlCarousel({
+        loop: true,
+        margin: 30,
+        mouseDrag: true,
+        autoplay: true,
+        dots: true,
+        autoplayHoverPause: true,
+        smartSpeed: 500,
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 1,
+            },
+            600: {
+                items: 2
+            },
+        }
+    });
+</script>
 @endsection

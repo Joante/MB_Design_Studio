@@ -60,7 +60,7 @@ class ServicesController extends Controller
             'text' => 'required',
             'icon' => 'required_unless:newIcon,on|numeric',
             'iconFile' => 'required_if:newIcon,on|image|max:2048',
-            'principal_page' => ['sometimes',new PrincipalPage('services', 3)]
+            'principal_page' => ['sometimes',new PrincipalPage('services', 4)]
         ]);
         if ($validator->fails()) {
             return redirect('services/create')
@@ -158,7 +158,7 @@ class ServicesController extends Controller
             'text' => 'required',
             'icon' => 'required_unless:newIcon,on|numeric',
             'iconFile' => 'required_if:newIcon,on|image|max:2048',
-            'principal_page' => ['sometimes',new PrincipalPage('services', 3, $id)]
+            'principal_page' => ['sometimes',new PrincipalPage('services', 4, $id)]
         ]);
         if ($validator->fails()) {
             return redirect('/services/edit/'.$id)
