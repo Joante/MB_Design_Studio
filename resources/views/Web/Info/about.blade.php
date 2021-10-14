@@ -39,22 +39,22 @@
                             <div class="social valign">
                                 <div class="full-width">
                                     <p>Licenciado en Diseño de Interiores</p> 
-                                    @if($perAcounts->facebook != null)
+                                    @if(isset($perAcounts->facebook) && $perAcounts->facebook != null)
                                         <a href="https://www.facebook.com/{{ $perAcounts->facebook }}" target="_blank"><i class="ti-facebook"></i></a>
                                     @endif
-                                    @if($perAcounts->whats_app != null)
+                                    @if(isset($perAcounts->facebook) && $perAcounts->whats_app != null)
                                         <a href="https://wa.me/549{{ $perAcounts->whats_app }}?text=Hola!,%20necesitaria%20asesoramiento%20especializado." target="_blank"><i class="fa fa-whatsapp"></i></a>
                                     @endif
-                                    @if ($perAcounts->instagram != null)
+                                    @if (isset($perAcounts->facebook) && $perAcounts->instagram != null)
                                         <a href="https://www.instagram.com/{{ $perAcounts->instagram }}" target="_blank"><i class="ti-instagram"></i></a>
                                     @endif
-                                    @if ($perAcounts->twitter !=null)
+                                    @if (isset($perAcounts->facebook) && $perAcounts->twitter !=null)
                                         <a href="https://www.twitter.com/{{ $perAcounts->twitter }}" target="_blank"><i class="ti-twitter"></i></a>
                                     @endif
-                                    @if ($perAcounts->linkedin !=null)
+                                    @if (isset($perAcounts->facebook) && $perAcounts->linkedin !=null)
                                         <a href="https://www.linkedin.com/{{ $perAcounts->linkedin }}" target="_blank"><i class="ti-linkedin"></i></a>
                                     @endif
-                                    @if ($perAcounts->pinterest !=null)
+                                    @if (isset($perAcounts->facebook) && $perAcounts->pinterest !=null)
                                         <a href="https://www.pinterest.com/{{ $perAcounts->pinterest }}" target="_blank"><i class="ti-pinterest"></i></a>
                                     @endif
                                 </div>
