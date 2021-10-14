@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>MB Design Studio @yield('title')</title>
     <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" />
-    <link rel="stylesheet" href="/css/plugins.css" />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="{{ asset('css/plugins.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     @yield('page-style')
     <script src="https://kit.fontawesome.com/c77e6f3bca.js" crossorigin="anonymous"></script>
 </head>
@@ -159,19 +159,19 @@
         </footer>
     </div>
     <!-- jQuery -->
-    <script src="/js/jquery-3.5.1.min.js"></script>
-    <script src="/js/jquery-migrate-3.0.0.min.js"></script>
-    <script src="/js/modernizr-2.6.2.min.js"></script>
-    <script src="/js/pace.js"></script>
-    <script src="/js/popper.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/scrollIt.min.js"></script>
-    <script src="/js/jquery.waypoints.min.js"></script>
-    <script src="/js/owl.carousel.min.js"></script>
-    <script src="/js/jquery.stellar.min.js"></script>
-    <script src="/js/jquery.magnific-popup.js"></script>
-    <script src="/js/YouTubePopUp.js"></script>
-    <script src="/js/custom.js"></script>
+    <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-migrate-3.0.0.min.js') }}"></script>
+    <script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
+    <script src="{{ asset('js/pace.js') }}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/scrollIt.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.stellar.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.magnific-popup.js') }}"></script>
+    <script src="{{ asset('js/YouTubePopUp.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
     @yield('page-script')
 </body>
 
