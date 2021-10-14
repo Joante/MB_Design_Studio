@@ -23,7 +23,7 @@
         </div>
         <div class="card-body">
           <div class="row">
-            <div class="col-xl-6 col-lg-12 d-flex justify-content-center border-container-lg">
+            <div class="col-xl-4 col-lg-12 mt-2 mt-xl-0 d-flex justify-content-center border-container-lg">
               <div class="user-info-wrapper">
                 <div class="d-flex flex-wrap">
                   <div class="user-info-title">
@@ -33,9 +33,22 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-6 col-lg-12 mt-2 mt-xl-0">
+            <div class="col-xl-4 col-lg-12 mt-2 mt-xl-0 d-flex justify-content-center border-container-lg">
               <div class="user-info-wrapper">
                 <div class="d-flex flex-wrap my-50">
+                  <div class="user-info-title">
+                      <span class="card-text user-info-title font-weight-bold mb-0">Mostrar en la pagina principal</span>
+                  </div>
+                  <div class="custom-control custom-switch custom-control-inline">
+                      <input type="checkbox" class="custom-control-input" disabled="" {{ $colection->principal_page ? "checked":"" }} id="customSwitch2">
+                      <label class="custom-control-label" for="customSwitch2"></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-12 mt-2 mt-xl-0 d-flex justify-content-center border-container-lg">
+              <div class="user-info-wrapper">
+                <div class="d-flex flex-wrap">
                     <div class="user-info-title">
                       <span class="card-text user-info-title font-weight-bold mb-0">Descripcion</span>
                     </div>
@@ -43,6 +56,7 @@
                   </div>
               </div>
             </div>
+            <div class="col-xl-6 col-lg-12 d-flex justify-content-center border-container-lg"></div>
             <div class="col-md-12 d-flex justify-content-center" style="margin-top: 30px;">
                 <h4>Imagen de Portada</h4>
             </div>

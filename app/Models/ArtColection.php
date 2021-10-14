@@ -17,6 +17,7 @@ class ArtColection extends Model
     protected $fillable = [
         'name',
         'description',
+        'principal_page'
     ];
 
     /**

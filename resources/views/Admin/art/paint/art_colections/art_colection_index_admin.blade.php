@@ -21,6 +21,7 @@
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Descripcion</th>
+                <th>Pagina Principal</th>
                 <th>Imagen de Portada</th>
                 <th>Acciones</th>
               </tr>
@@ -33,6 +34,12 @@
                       </td>
                       <td>{{$colection->name}}</td>
                       <td>{{ $colection->description }}</td>
+                      <td>
+                        <div class="custom-control custom-switch custom-control-inline">
+                            <input type="checkbox" class="custom-control-input" disabled="" {{ $colection->principal_page ? "checked":"" }} id="customSwitch2">
+                            <label class="custom-control-label" for="customSwitch2"></label>
+                        </div>
+                      </td>
                       <td><img src="{{ asset($colection->image->location) }}" alt="{{ $colection->image->title }}" height="80" width="80"></td>
                       <td>
                         <a href="{{ route('paint_colection_show_admin', $colection->id) }}">

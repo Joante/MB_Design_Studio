@@ -66,8 +66,7 @@ class PaintController extends Controller
             'tecnique' => 'required|string|max:255',
             'width' => 'required|numeric|min:0.1',
             'height' => 'required|numeric|min:0.1',
-            'description' => 'nullable|string|max:500',
-            'principal_page' => ['sometimes',new PrincipalPage('paintings', 2)]
+            'description' => 'nullable|string|max:500'
         ]);
         if ($validator->fails()) {
             return redirect('/art/painting/create')
@@ -149,7 +148,6 @@ class PaintController extends Controller
             'width' => 'required|numeric|min:0.1',
             'height' => 'required|numeric|min:0.1',
             'description' => 'nullable|string|max:500',
-            'principal_page' => ['sometimes',new PrincipalPage('paintings', 2, $id)]
         ]);
         if ($validator->fails()) {
             return redirect('/art/painting/create')
@@ -163,7 +161,6 @@ class PaintController extends Controller
         $painting->width = $request->get('width');
         $painting->height = $request->get('height');
         $painting->description = $request->get('description');
-        $painting->princpal_page = $request->get('princpal_page');
 
         $painting->save();
 

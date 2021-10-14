@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Image;
 use App\Models\Image as ModelsImage;
+use App\Rules\PrincipalPage;
 use Illuminate\Support\Facades\Storage;
 
 class ArtColectionsController extends Controller
@@ -58,15 +59,16 @@ class ArtColectionsController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:500',
-            'image' => 'required|image|max:5042'
+            'image' => 'required|image|max:5042',
+            'principal_page' => ['sometimes',new PrincipalPage('colections', 4)]
         ]);
-
         try{
             DB::beginTransaction();
 
             $newColection = [
                 'name' => $request->get('name'),
                 'description' => $request->get('description'),
+                'principal_page' => $request->get('principal_page')
             ];
             $colection = ArtColection::create($newColection);
             if(!$colection) {
@@ -184,7 +186,8 @@ class ArtColectionsController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:500',
-            'image' => 'nullable|image|max:5042'
+            'image' => 'nullable|image|max:5042',
+            'principal_page' => ['sometimes',new PrincipalPage('colections', 4, $id)]
         ]);
 
         if($request->has('image'))
@@ -247,6 +250,7 @@ class ArtColectionsController extends Controller
         }
         $colection->name = $request->get('name');
         $colection->description = $request->get('description');
+        $colection->principal_page = $request->get('principal_page');
         if(!$colection->save())
         {
             $error = ['error' => 'Error al actualizar la ubicacion'];

@@ -70,19 +70,6 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-6 col-12 d-flex align-items-center">
-                        <div class="form-group">
-                            @if (old('principal_page') == '1')
-                                <input type="checkbox" class="custom-control-input" id="principal_page" name="principal_page" checked value=1>
-                            @else
-                                <input type="checkbox" class="custom-control-input" id="principal_page" name="principal_page" value=1>
-                            @endif
-                            <label class="custom-control-label" for="principal_page" style="margin-left: 21px;">Mostrar en la pagina principal</label>
-                            @error('principal_page')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
                 </div>
                 <div class="d-flex justify-content-center" style="margin-top: 30px;">
                     <button type="submit" class="btn btn-primary btn-next waves-effect waves-float waves-light" id>

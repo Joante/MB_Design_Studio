@@ -43,15 +43,6 @@
                     </div>
                     <p class="card-text mb-0">{{ $painting->tecnique }}</p>
                 </div>
-                <div class="d-flex flex-wrap my-50">
-                    <div class="user-info-title">
-                        <span class="card-text user-info-title font-weight-bold mb-0">Mostrar en la pagina principal</span>
-                    </div>
-                    <div class="custom-control custom-switch custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" disabled="" {{ $painting->principal_page ? "checked":"" }} id="customSwitch2">
-                        <label class="custom-control-label" for="customSwitch2"></label>
-                    </div>
-                </div>
               </div>
             </div>
             <div class="col-xl-6 col-lg-12 mt-2 mt-xl-0">

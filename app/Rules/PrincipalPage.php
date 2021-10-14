@@ -2,8 +2,8 @@
 
 namespace App\Rules;
 
+use App\Models\ArtColection;
 use App\Models\ArtExhibition;
-use App\Models\ArtPainting;
 use App\Models\Post;
 use App\Models\Project;
 use App\Models\Service;
@@ -48,8 +48,8 @@ class PrincipalPage implements Rule
             case 'exhibitions':
                 $count = ArtExhibition::where('id', '<>', $this->id)->where('principal_page', '=', true)->count();
                 break;
-            case 'paintings': 
-                $count = ArtPainting::where('id', '<>', $this->id)->where('principal_page', '=', true)->count();
+            case 'colections': 
+                $count = ArtColection::where('id', '<>', $this->id)->where('principal_page', '=', true)->count();
                 break;
         }
         return $count < $this->max;
