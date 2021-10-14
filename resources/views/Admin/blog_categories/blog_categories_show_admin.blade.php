@@ -15,7 +15,7 @@
     <div class="col-xl-8 col-lg-8 col-md-8">
       <div class="card user-card">
         <div class="card-header">
-          @if (isset($message))
+          @if (session()->has('success'))
               <div class="col-md-12 d-flex justify-content-center">
                   <div class="alert alert-success">La categoria se actualizo con exito.</div>
               </div>

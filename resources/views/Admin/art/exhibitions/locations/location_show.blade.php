@@ -14,7 +14,7 @@
     <div class="col-xl-12 col-lg-12 col-md-12">
       <div class="card user-card">
         <div class="card-header">
-          @if (isset($message))
+          @if (session()->has('success'))
               <div class="col-md-12 d-flex justify-content-center">
                   <div class="alert alert-success">La ubicacion se actualizo con exito.</div>
               </div>

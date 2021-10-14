@@ -14,7 +14,7 @@
     <div class="col-xl-12 col-lg-12 col-md-12">
       <div class="card user-card">
         <div class="card-header">
-          @if (isset($message))
+          @if (session()->has('success'))
               <div class="col-md-12 d-flex justify-content-center">
                   <div class="alert alert-success">La obra se actualizo con exito.</div>
               </div>
@@ -35,7 +35,7 @@
                   <div class="user-info-title">
                     <span class="card-text user-info-title font-weight-bold mb-0">Coleccion</span>
                   </div>
-                  <p class="card-text mb-0"><a href="{{ route('location_show', $painting->colection->id) }}" target="_blank">{{ $painting->colection->name }}</a></p>
+                  <p class="card-text mb-0"><a href="{{ route('paint_colection_show_admin', $painting->colection->id) }}" target="_blank">{{ $painting->colection->name }}</a></p>
                 </div>
                 <div class="d-flex flex-wrap">
                     <div class="user-info-title">

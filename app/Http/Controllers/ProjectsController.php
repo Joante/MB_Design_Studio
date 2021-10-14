@@ -122,15 +122,13 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show_admin($id, $message = null)
+    public function show_admin($id)
     {
         $project = Project::find($id);
         if(!$project){
             return view('errors/model_not_found', ['modelName' => 'proyecto']);
         }
-        if($message!=null){
-            return view('Admin/projects/projects_show_admin', ['project' => $project, 'message' => $message]);
-        }
+        
         return view('Admin/projects/projects_show_admin', ['project' => $project]);
     }
 
@@ -183,7 +181,7 @@ class ProjectsController extends Controller
         $project->principal_page = $request->get('principal_page');
         $project->save();
 
-        return redirect()->route('projects_show_admin', [$id, 'success']);
+        return redirect()->route('projects_show_admin', [$id])->with('success','hola');
     }
 
     /**

@@ -12,7 +12,6 @@
 
 @section('content')
 <section>
-    {{ $errors }}
     <div class="col-12 justify-content-center">
       <div class="card">
         <div class="card-header d-flex justify-content-center">
@@ -68,9 +67,11 @@
                                 <span>Imagen de Portada: </span>
                                 <button class="btn add-new btn-primary" id="edit-image" style="margin-left: auto;order: 2;" type="button"><span>Editar Imagen</span></button></a>
                             </div>
-                            <div class="row" style=" margin-top: 20px;">
-                                <img src="{{ asset($post->images[0]->location) }}" style="height:400px; width:800px;">
-                            </div>
+                            @if($post->images[0] != null)
+                                <div class="row" style=" margin-top: 20px;">
+                                    <img src="{{ asset($post->images[0]->location) }}" style="height:400px; width:800px;">
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-6 col-12 d-flex align-items-center" id="new-image" style="display: none !important;">

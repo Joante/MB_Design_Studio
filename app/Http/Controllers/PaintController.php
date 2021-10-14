@@ -164,7 +164,7 @@ class PaintController extends Controller
 
         $painting->save();
 
-        return redirect()->route('paint_show_admin', [$id, 'success']);
+        return redirect()->route('paint_show_admin', [$id])->with('success','hola');
 
     }
 

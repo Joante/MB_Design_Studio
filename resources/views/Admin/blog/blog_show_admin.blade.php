@@ -20,7 +20,7 @@
       <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="card user-card">
             <div class="card-header">
-                @if (isset($message))
+                @if (session()->has('success'))
                     <div class="col-md-12 d-flex justify-content-center">
                         <div class="alert alert-success">El post se actualizo con exito.</div>
                     </div>
@@ -75,8 +75,10 @@
             </div>
             <div class="col-md-12 d-flex justify-content-center">
                 @foreach ($post->images as $image)
+                  @if($image != null)
                    <img src="{{ asset($image->location) }}" class="img-fluid rounded" alt="{{ $image->title }}" style="max-width: 40%">
-                @endforeach
+                  @endif  
+                 @endforeach
             </div>
         </div>
     </div>

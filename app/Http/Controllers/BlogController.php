@@ -166,14 +166,14 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show_admin($id, $message = null)
+    public function show_admin($id)
     {
         $post = Post::find($id);
         if(!$post) {
             return view('errors/model_not_found', ['modelName' => 'post']);
         }
 
-        return view('Admin/blog/blog_show_admin', ['post' => $post, 'message' => $message]);
+        return view('Admin/blog/blog_show_admin', ['post' => $post]);
     }
 
     /**
@@ -189,7 +189,7 @@ class BlogController extends Controller
             return view('errors/model_not_found', ['modelName' => 'post']);
         }
         $categories = BlogCategory::all();
-
+        
         return view('Admin/blog/blog_edit', ['post' => $post, 'categories' => $categories]);
     }
 
@@ -302,7 +302,7 @@ class BlogController extends Controller
             }
         }
         
-        return redirect()->route('blog_show_admin', ['id' => $id, 'message' => 'success']);
+        return redirect()->route('blog_show_admin', [$id])->with('success','hola');
     }
 
     /**

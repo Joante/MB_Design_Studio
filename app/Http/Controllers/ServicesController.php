@@ -114,15 +114,13 @@ class ServicesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show_admin($id, $message = null)
+    public function show_admin($id)
     {
         $service = Service::find($id);
         if(!$service){
             return view('errors/model_not_found', ['modelName' => 'servicio']);
         }
-        if($message!=null){
-            return view('Admin/services/services_show_admin', ['service' => $service, 'message' => $message]);
-        }
+        
         return view('Admin/services/services_show_admin', ['service' => $service]);
     }
 
@@ -190,7 +188,7 @@ class ServicesController extends Controller
             $service->icon_id = $request->get('icon');
         }
         $service->save();
-        return redirect()->route('services_show_admin', [$service->id, 'success']);
+        return redirect()->route('services_show_admin', [$id])->with('success','hola');
     }
 
     /**

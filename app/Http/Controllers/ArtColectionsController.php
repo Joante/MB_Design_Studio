@@ -138,16 +138,14 @@ class ArtColectionsController extends Controller
      * @param string $message
      * @return \Illuminate\Http\Response
      */
-    public function show_admin($id, $message = null)
+    public function show_admin($id)
     {
         $colection = ArtColection::find($id);
 
         if(!$colection) {
             return view('errors/model_not_found', ['modelName' => 'coleccion de arte']);
         }
-        if($message!=null){
-            return view('Admin/art/paint/art_colections/art_colection_show_admin', ['colection' => $colection, 'message' => $message]);
-        }
+        
         return view('Admin/art/paint/art_colections/art_colection_show_admin', ['colection' => $colection]);
     }
 
@@ -258,7 +256,7 @@ class ArtColectionsController extends Controller
                             ->withErrors($error)
                             ->withInput();
         }
-        return redirect()->route('paint_colection_show_admin', [$id, 'success']);
+        return redirect()->route('paint_colection_show_admin', [$id])->with('success','hola');
     }
 
     /**

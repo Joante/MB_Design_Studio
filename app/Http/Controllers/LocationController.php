@@ -118,16 +118,14 @@ class LocationController extends Controller
      * @param string $message
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $message = null)
+    public function show($id)
     {
         $location = Location::find($id);
 
         if(!$location) {
             return view('errors/model_not_found', ['modelName' => 'ubicacion']);
         }
-        if($message!=null){
-            return view('Admin/art/exhibitions/locations/location_show', ['location' => $location, 'message' => $message]);
-        }
+
         return view('Admin/art/exhibitions/locations/location_show', ['location' => $location]);
     }
 
@@ -239,7 +237,7 @@ class LocationController extends Controller
                             ->withErrors($error)
                             ->withInput();
         }
-        return redirect()->route('location_show', [$id, 'success']);
+        return redirect()->route('location_show', [$id])->with('success','hola');
    }
 
     /**

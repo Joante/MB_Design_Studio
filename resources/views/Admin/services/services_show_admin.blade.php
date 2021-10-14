@@ -15,7 +15,7 @@
     <div class="col-md-12 justify-content-center">
         <div class="card">
             <div class="card-header">
-                @if (isset($message))
+                @if (session()->has('success'))
                     <div class="col-md-12 d-flex justify-content-center">
                         <div class="alert alert-success">El servicio se actualizo con exito.</div>
                     </div>

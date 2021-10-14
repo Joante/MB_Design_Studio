@@ -55,15 +55,13 @@ class BlogCategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $message = null)
+    public function show($id)
     {
         $category = BlogCategory::find($id);
         if(!$category){
             return view('errors/model_not_found', ['modelName' => 'categoria']);
         }
-        if($message!=null){
-            return view('Admin/blog_categories/blog_categories_show_admin', ['category' => $category, 'message' => $message]);
-        }
+        
         return view('Admin/blog_categories/blog_categories_show_admin', ['category' => $category]);
     }
 
@@ -101,12 +99,13 @@ class BlogCategoriesController extends Controller
         $category->title = $request->get('title');
         $category->description = $request->get('description');
         if(!$category->save()) {
-            $message = 'error';
-        }else {
-            $message = 'success';
+            $error = ['error' => 'Problemas al actualizar la categoria'];
+            return redirect('blog/category/edit/'.$id)
+                ->withErrors($error)
+                ->withInput();
         }
 
-        return redirect()->route('blog_category_show', ['id' => $id, 'message' => $message]);
+        return redirect()->route('blog_category_show', [$id])->with('success','hola');
     }
 
     /**

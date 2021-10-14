@@ -104,16 +104,14 @@ class ExhibitionController extends Controller
      * @param string $message
      * @return \Illuminate\Http\Response
      */
-    public function show_admin($id, $message = null)
+    public function show_admin($id)
     {
         $exhibition = ArtExhibition::find($id);
 
         if(!$exhibition) {
             return view('errors/model_not_found', ['modelName' => 'exhibicion']);
         }
-        if($message!=null){
-            return view('Admin/art/exhibitions/exhibition_show_admin', ['exhibition' => $exhibition, 'message' => $message]);
-        }
+        
         return view('Admin/art/exhibitions/exhibition_show_admin', ['exhibition' => $exhibition]);
     }
 
@@ -170,7 +168,7 @@ class ExhibitionController extends Controller
 
         $exhibition->save();
 
-        return redirect()->route('exhibition_show_admin', [$id, 'success']);
+        return redirect()->route('exhibition_show_admin', [$id])->with('success','hola');
     }
 
     /**

@@ -33,7 +33,7 @@ use App\Http\Controllers\ServicesController;
 //Projects routes
 Route::prefix('projects')->middleware('auth')->group(function () {
     Route::get('/list', [ProjectsController::class, 'index_admin'])->name('projects_index_admin');
-    Route::get('/show/{id}/admin/{message?}', [ProjectsController::class, 'show_admin'])->name('projects_show_admin');
+    Route::get('/show/{id}/admin', [ProjectsController::class, 'show_admin'])->name('projects_show_admin');
     Route::get('/edit/{id}', [ProjectsController::class, 'edit'])->name('projects_edit');
     Route::get('/create', [ProjectsController::class, 'create'])->name('projects_create');
     Route::post('/store', [ProjectsController::class, 'store'])->name('projects_store');
@@ -103,7 +103,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 //Services routes
 Route::prefix('services')->middleware('auth')->group(function () {
     Route::get('/list', [ServicesController::class, 'index_admin'])->name('services_index_admin');
-    Route::get('/show/{id}/admin/{message?}', [ServicesController::class, 'show_admin'])->name('services_show_admin');
+    Route::get('/show/{id}/admin', [ServicesController::class, 'show_admin'])->name('services_show_admin');
     Route::get('/edit/{id}', [ServicesController::class, 'edit'])->name('services_edit');
     Route::get('/create', [ServicesController::class, 'create'])->name('services_create');
     Route::post('/store', [ServicesController::class, 'store'])->name('services_store');
@@ -116,7 +116,7 @@ Route::prefix('services')->middleware('auth')->group(function () {
 //Blog routes
 Route::prefix('blog')->middleware('auth')->group(function () {
     Route::get('/list', [BlogController::class, 'index_admin'])->name('blog_index_admin');
-    Route::get('/show/{id}/admin/{message?}', [BlogController::class, 'show_admin'])->name('blog_show_admin');
+    Route::get('/show/{id}/admin', [BlogController::class, 'show_admin'])->name('blog_show_admin');
     Route::get('/edit/{id}', [BlogController::class, 'edit'])->name('blog_edit');
     Route::get('/create', [BlogController::class, 'create'])->name('blog_create');
     Route::post('/store', [BlogController::class, 'store'])->name('blog_store');
@@ -126,7 +126,7 @@ Route::prefix('blog')->middleware('auth')->group(function () {
     //Blog Categories routes
     Route::prefix('category')->group(function (){
         Route::get('/list', [BlogCategoriesController::class, 'index'])->name('blog_categories_index');
-        Route::get('/show/{id}/{message?}', [BlogCategoriesController::class, 'show'])->name('blog_category_show');
+        Route::get('/show/{id}', [BlogCategoriesController::class, 'show'])->name('blog_category_show');
         Route::get('/edit/{id}', [BlogCategoriesController::class, 'edit'])->name('blog_category_edit');
         Route::get('/create', [BlogCategoriesController::class, 'create'])->name('blog_category_create');
         Route::post('/store', [BlogCategoriesController::class, 'store'])->name('blog_category_store');
@@ -140,7 +140,7 @@ Route::prefix('art')->middleware('auth')->group(function () {
     //Paint routes
     Route::prefix('painting')->group(function () {
         Route::get('/list/admin', [PaintController::class, 'index_admin'])->name('paint_index_admin');
-        Route::get('/show/{id}/{message?}', [PaintController::class, 'show_admin'])->name('paint_show_admin');
+        Route::get('/show/{id}', [PaintController::class, 'show_admin'])->name('paint_show_admin');
         Route::get('/edit/{id}', [PaintController::class, 'edit'])->name('paint_edit');
         Route::get('/create', [PaintController::class, 'create'])->name('paint_create');
         Route::post('/store', [PaintController::class, 'store'])->name('paint_store');
@@ -149,7 +149,7 @@ Route::prefix('art')->middleware('auth')->group(function () {
         Route::get('/{idColection}/admin', [ArtColectionsController::class, 'show_paints_admin'])->name('paint_colection_admin');
         Route::prefix('colection')->group(function () {
             Route::get('/list/admin', [ArtColectionsController::class, 'index_admin'])->name('paint_colection_index_admin');
-            Route::get('show/admin/{id}/{message?}', [ArtColectionsController::class, 'show_admin'])->name('paint_colection_show_admin');
+            Route::get('show/admin/{id}', [ArtColectionsController::class, 'show_admin'])->name('paint_colection_show_admin');
             Route::get('/create', [ArtColectionsController::class, 'create'])->name('paint_colection_create');
             Route::post('/store', [ArtColectionsController::class, 'store'])->name('paint_colection_store');
             Route::get('/edit/{id}', [ArtColectionsController::class, 'edit'])->name('paint_colection_edit');
@@ -161,7 +161,7 @@ Route::prefix('art')->middleware('auth')->group(function () {
     //Exhibition routes
     Route::prefix('exhibition')->group(function () {
         Route::get('/list/admin', [ExhibitionController::class, 'index_admin'])->name('exhibitions_index_admin');
-        Route::get('/show/{id}/{message?}', [ExhibitionController::class, 'show_admin'])->name('exhibition_show_admin');
+        Route::get('/show/{id}', [ExhibitionController::class, 'show_admin'])->name('exhibition_show_admin');
         Route::get('/edit/{id}', [ExhibitionController::class, 'edit'])->name('exhibition_edit');
         Route::get('/create/new', [ExhibitionController::class, 'create'])->name('exhibition_create');
         Route::post('/store', [ExhibitionController::class, 'store'])->name('exhibition_store');
@@ -169,7 +169,7 @@ Route::prefix('art')->middleware('auth')->group(function () {
         Route::post('/destroy', [ExhibitionController::class, 'destroy'])->name('exhibition_destroy');
         Route::prefix('locations')->group(function () {
             Route::get('/list', [LocationController::class, 'index'])->name('location_index');
-            Route::get('/show/{id}/{message?}', [LocationController::class, 'show'])->name('location_show');
+            Route::get('/show/{id}', [LocationController::class, 'show'])->name('location_show');
             Route::get('/edit/{id}', [LocationController::class, 'edit'])->name('location_edit');
             Route::get('/create', [LocationController::class, 'create'])->name('location_create');
             Route::post('/store', [LocationController::class, 'store'])->name('location_store');
