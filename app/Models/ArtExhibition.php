@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class ArtExhibition extends Model
 {
     use HasFactory;
+    use Sortable;
 
      /**
      * The table associated with the model.
@@ -45,6 +47,13 @@ class ArtExhibition extends Model
          'hour_start' => 'datetime:H:i',
          'hour_finish' => 'datetime:H:i',
      ];
+
+     /**
+     * The attributes that are sortable
+     * 
+     * @var array
+     */
+    public $sortable = ['id', 'title', 'location_id', 'principal_page', 'date_start', 'date_finish'];
 
     /**
      * Get the location of the exhibition.

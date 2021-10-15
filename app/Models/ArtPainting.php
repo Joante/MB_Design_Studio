@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class ArtPainting extends Model
 {
     use HasFactory;
+    use Sortable;
 
     /**
      * The table associated with the model.
@@ -30,6 +32,13 @@ class ArtPainting extends Model
         'principal_page',
         'art_colection_id',
      ];
+
+     /**
+     * The attributes that are sortable
+     * 
+     * @var array
+     */
+    public $sortable = ['id', 'name', 'art_colection_id', 'tecnique'];
 
      /**
      * Get the colection of the painting.

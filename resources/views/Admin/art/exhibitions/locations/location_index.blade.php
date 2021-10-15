@@ -17,11 +17,11 @@
           <table class="table">
             <thead class="thead-dark">
               <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Pagina Web</th>
-                <th>Telefono</th>
-                <th>Direccion</th>
+                <th>@sortablelink('id', 'Id')</th>
+                <th>@sortablelink('name', 'Nombre')</th>
+                <th>@sortablelink('url', 'Pagina Web')</th>
+                <th>@sortablelink('phone', 'Telefono')</th>
+                <th>@sortablelink('adress', 'Direccion')</th>
                 <th>Acciones</th>
               </tr>
             </thead>

@@ -34,7 +34,7 @@ class ExhibitionController extends Controller
      */
     public function index_admin()
     {
-        $exhibitions = ArtExhibition::orderBy('date_start', 'desc')->paginate(15);
+        $exhibitions = ArtExhibition::sortable(['date_start' => 'desc'])->paginate(15);
 
         return view('Admin/art/exhibitions/exhibition_index_admin', ['exhibitions' => $exhibitions]);
     }

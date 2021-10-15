@@ -17,12 +17,12 @@
           <table class="table">
             <thead class="thead-dark">
               <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Ubicacion</th>
-                <th>Pagina Principal</th>
-                <th>Fecha Inicio</th>
-                <th>Fecha Fin</th>
+                <th>@sortablelink('id', 'Id')</th>
+                <th>@sortablelink('title', 'Nombre')</th>
+                <th>@sortablelink('location_id', 'Ubicacion')</th>
+                <th>@sortablelink('principal_page', 'Pagina Principal')</th>
+                <th>@sortablelink('date_start', 'Fecha Inicio')</th>
+                <th>@sortablelink('date_finish', 'Fecha Fin')</th>
                 <th>Acciones</th>
               </tr>
             </thead>

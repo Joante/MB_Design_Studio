@@ -35,7 +35,7 @@ class PaintController extends Controller
      */
     public function index_admin()
     {
-        $paintings = ArtPainting::paginate();
+        $paintings = ArtPainting::sortable()->paginate(15);
 
         return view('Admin/art/paint/paint_index_admin', ['paintings' => $paintings]);
     }

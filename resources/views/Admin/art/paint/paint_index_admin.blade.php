@@ -18,11 +18,11 @@
           <table class="table">
             <thead class="thead-dark">
               <tr>
-                <th>Id</th>
-                <th>Nombre</th>
+                <th>@sortablelink('id', 'Id')</th>
+                <th>@sortablelink('name', 'Nombre')</th>
                 <th>Medidas</th>
-                <th>Tecnica</th>
-                <th>Coleccion</th>
+                <th>@sortablelink('tecnique', 'Tecnica')</th>
+                <th>@sortablelink('colection_id', 'Coleccion')</th>
                 <th>Acciones</th>
               </tr>
             </thead>

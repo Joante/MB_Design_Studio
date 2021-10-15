@@ -2,13 +2,44 @@
 
 namespace App\Models;
 
-use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Post extends Model
 {
     use HasFactory;
+    use Sortable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'title',
+        'text',
+        'principal_page',
+        'principal_image',
+        'category_id'
+     ];
+ 
+     /**
+      * The attributes that should be cast.
+      *
+      * @var array
+      */
+     protected $casts = [
+         'principal_page' => 'boolean',
+     ];
+
+     /**
+     * The attributes that are sortable
+     * 
+     * @var array
+     */
+    public $sortable = ['id', 'title', 'category_id', 'principal_page'];
+
 
     /**
      * Get the category that owns the post.
@@ -63,29 +94,7 @@ class Post extends Model
      */
     public function getCreated_atAttribute($value)
     {
-        dd($value);
         return $value->format('d-m-Y');
     }
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'title',
-        'text',
-        'principal_page',
-        'principal_image',
-        'category_id'
-     ];
- 
-     /**
-      * The attributes that should be cast.
-      *
-      * @var array
-      */
-     protected $casts = [
-         'principal_page' => 'boolean',
-     ];
+     
 }

@@ -32,7 +32,9 @@ class ServicesController extends Controller
      */
     public function index_admin()
     {
-        return view('Admin/services/services_index_admin');
+        $services = Service::sortable()->paginate(15);
+
+        return view('Admin/services/services_index_admin', ['services' => $services]);
     }
 
     /**

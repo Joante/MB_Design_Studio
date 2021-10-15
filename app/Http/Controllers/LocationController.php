@@ -19,7 +19,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $locations = Location::paginate(15);
+        $locations = Location::sortable()->paginate(15);
 
         return view('Admin/art/exhibitions/locations/location_index', ['locations' => $locations]);
     }

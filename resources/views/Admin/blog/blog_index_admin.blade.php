@@ -17,10 +17,10 @@
           <table class="table">
             <thead class="thead-dark">
               <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Categoria</th>
-                <th>Pagina Principal</th>
+                <th>@sortablelink('id', 'Id')</th>
+                <th>@sortablelink('title', 'Titulo')</th>
+                <th>@sortablelink('category_id', 'Categoria')</th>
+                <th>@sortablelink('principal_page', 'Pagina Principal')</th>
                 <th>Acciones</th>
               </tr>
             </thead>

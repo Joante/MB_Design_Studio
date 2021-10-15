@@ -4,26 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Service extends Model
 {
     use HasFactory;
+    use Sortable;
 
     /**
-     * Obtener todas las fotos del servicio.
+     * The attributes that are sortable
+     * 
+     * @var array
      */
-    public function images()
-    {
-        return $this->morphMany(Image::class, 'model');
-    }
-
-    /**
-     * Obtener el icono que pertenece al servicio.
-     */
-    public function icon()
-    {
-        return $this->belongsTo(Icon::class);
-    }
+    public $sortable = ['id', 'title', 'description'];
 
     /**
      * The attributes that are mass assignable.
@@ -66,6 +59,22 @@ class Service extends Model
     public function setTextAttribute($value)
     {
         $this->attributes['text'] = json_encode($value);
+    }
+
+    /**
+     * Obtener todas las fotos del servicio.
+     */
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'model');
+    }
+
+    /**
+     * Obtener el icono que pertenece al servicio.
+     */
+    public function icon()
+    {
+        return $this->belongsTo(Icon::class);
     }
 
 

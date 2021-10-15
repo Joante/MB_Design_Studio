@@ -33,7 +33,7 @@ class ArtColectionsController extends Controller
      */
     public function index_admin()
     {
-        $colections = ArtColection::paginate();
+        $colections = ArtColection::sortable()->paginate(15);
 
         return view('Admin/art/paint/art_colections/art_colection_index_admin', ['colections' => $colections]);
     }

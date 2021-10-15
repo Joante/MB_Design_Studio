@@ -42,7 +42,7 @@ class ProjectsController extends Controller
      */
     public function index_admin()
     {
-        $projects = Project::paginate();
+        $projects = Project::sortable()->paginate(15);
 
         return view('Admin/projects/projects_index_admin', ['projects' => $projects]);
     }

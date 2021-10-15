@@ -16,7 +16,7 @@ class BlogCategoriesController extends Controller
      */
     public function index()
     {
-        $categories = BlogCategory::all();
+        $categories = BlogCategory::sortable()->paginate(15);
 
         return view('Admin/blog_categories/blog_categories_index_admin', ['categories' => $categories]);
     }

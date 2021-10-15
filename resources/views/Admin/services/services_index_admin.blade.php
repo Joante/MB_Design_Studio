@@ -17,9 +17,9 @@
           <table class="table">
             <thead class="thead-dark">
               <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Descripción</th>
+                <th>@sortablelink('id', 'Id')</th>
+                <th>@sortablelink('title', 'Nombre')</th>
+                <th>@sortablelink('description', 'Descripcion')</th>
                 <th>Icono</th>
                 <th style="min-width: 250px;">Acciones</th>
               </tr>

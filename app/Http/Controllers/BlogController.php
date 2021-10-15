@@ -39,7 +39,7 @@ class BlogController extends Controller
      */
     public function index_admin()
     {
-        $posts = Post::paginate();
+        $posts = Post::sortable()->paginate(15);
 
         return view('Admin/blog/blog_index_admin', ['posts' => $posts]);
     }
