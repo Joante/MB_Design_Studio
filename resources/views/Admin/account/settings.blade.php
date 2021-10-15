@@ -219,49 +219,49 @@
                   <div class="col-12 col-sm-6">
                     <div class="form-group">
                       <h6 class="font-weight-bold mb-0" style="display: inline-block;">Email:</h6>
-                      <p class="mb-0" style="margin-left: 15px;display: inline-block;">{{ $mbAcounts->email != null ? $mbAcounts->email : '' }}</p>
+                      <p class="mb-0" style="margin-left: 15px;display: inline-block;">{{ $mbAcounts->email }}</p>
                     </div>
                   </div>
                   <!-- twitter link input -->
                   <div class="col-12 col-sm-6">
                     <div class="form-group">
                       <h6 class="font-weight-bold mb-0" style="display: inline-block">Twitter:</h6>
-                      <p class="mb-0" style="margin-left: 15px;display: inline-block;">{{ $mbAcounts->twitter != null ? $mbAcounts->twitter : '' }}</p>
+                      <p class="mb-0" style="margin-left: 15px;display: inline-block;">{{ $mbAcounts->twitter }}</p>
                     </div>
                   </div>
                   <!-- facebook link input -->
                   <div class="col-12 col-sm-6">
                     <div class="form-group">
                       <h6 class="font-weight-bold mb-0" style="display: inline-block">Facebook:</h6>
-                      <p class="mb-0" style="margin-left: 15px;display: inline-block;">{{ $mbAcounts->facebook != null ? $mbAcounts->facebook : '' }}</p>
+                      <p class="mb-0" style="margin-left: 15px;display: inline-block;">{{ $mbAcounts->facebook }}</p>
                     </div>
                   </div>
                   <!-- linkedin link input -->
                   <div class="col-12 col-sm-6">
                     <div class="form-group">
                       <h6 class="font-weight-bold mb-0" style="display: inline-block">Linkedin:</h6>
-                      <p class="mb-0" style="margin-left: 15px;display: inline-block;">{{ $mbAcounts->linkedin != null ? $mbAcounts->linkedin : '' }}</p>
+                      <p class="mb-0" style="margin-left: 15px;display: inline-block;">{{ $mbAcounts->linkedin }}</p>
                     </div>
                   </div>
                   <!-- instagram link input -->
                   <div class="col-12 col-sm-6">
                     <div class="form-group">
                       <h6 class="font-weight-bold mb-0" style="display: inline-block">Instagram:</h6>
-                      <p class="mb-0" style="margin-left: 15px;display: inline-block;">{{ $mbAcounts->instagram != null ? $mbAcounts->instagram : '' }}</p>
+                      <p class="mb-0" style="margin-left: 15px;display: inline-block;">{{ $mbAcounts->instagram }}</p>
                     </div>
                   </div>
                   <!-- Whats app link input -->
                   <div class="col-12 col-sm-6">
                     <div class="form-group">
                       <h6 class="font-weight-bold mb-0" style="display: inline-block">Whats App:</h6>
-                      <p class="mb-0" style="margin-left: 15px;display: inline-block;">{{ $mbAcounts->whats_app != null ? $mbAcounts->whats_app : '' }}</p>
+                      <p class="mb-0" style="margin-left: 15px;display: inline-block;">{{ $mbAcounts->whats_app }}</p>
                     </div>
                   </div>
                   <!-- Pinterest link input -->
                   <div class="col-12 col-sm-6">
                     <div class="form-group">
                       <h6 class="font-weight-bold mb-0" style="display: inline-block">Pinterest:</h6>
-                      <p class="mb-0" style="margin-left: 15px;display: inline-block;">{{ $mbAcounts->pinterest != null ? $mbAcounts->pinterest : '' }}</p>
+                      <p class="mb-0" style="margin-left: 15px;display: inline-block;">{{ $mbAcounts->pinterest }}</p>
                     </div>
                   </div>
                 </div>

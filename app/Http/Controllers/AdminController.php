@@ -23,7 +23,8 @@ class AdminController extends Controller
 
     public function edit() {
         $perAcounts = Acounts::where('type', '=', 'personal')->first();
-        return view('Admin/account/settings', ['perAcounts' => $perAcounts]);
+        $mbAcounts = Acounts::where('type', '=', 'mb')->first();
+        return view('Admin/account/settings', ['perAcounts' => $perAcounts, 'mbAcounts' => $mbAcounts]);
     }
 
     public function update(Request $request) {

@@ -72,6 +72,7 @@ class CreateUser extends Command
 
         if($user->save()){
             Acounts::create(['type' => 'personal']);
+            Acounts::create(['type' => 'mb']);
             $this->info('Guardado exitoso');
         }else
         {
