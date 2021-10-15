@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Acounts;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
@@ -70,6 +71,7 @@ class CreateUser extends Command
         $user->description = 'Insertar descripcion';
 
         if($user->save()){
+            Acounts::create(['type' => 'personal']);
             $this->info('Guardado exitoso');
         }else
         {
