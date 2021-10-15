@@ -30,6 +30,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if($this->app->environment('production')) {
+            \URL::forceScheme('https');
+        }        
         date_default_timezone_set('America/Argentina/Buenos_Aires');
         $services = Service::all();
         View::share('services', $services);
