@@ -134,7 +134,7 @@ class ImagesController extends Controller
             $file['location'] = $image->location;
             $file['extension'] = pathinfo($image->title, PATHINFO_EXTENSION);
             $file['id'] = $image->id;
-            $result = $file; // copy it to another array
+            $result[] = $file; // copy it to another array
         }
         return view('Admin/images/images_edit', ['images' => $result, 'modelType' => $modelType, 'modelId' => $modelId]);
     }
