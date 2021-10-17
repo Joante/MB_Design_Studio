@@ -174,7 +174,7 @@ class ServicesController extends Controller
         $service->title = $request->get('title');
         $service->description = $request->get('description');
         $service->text = $request->get('text');
-        $service->principal_page = $request->get('principal_page');
+        $service->principal_page = $request->has('principal_page') ? true : false;
 
         if($request->has('newIcon'))
         {
