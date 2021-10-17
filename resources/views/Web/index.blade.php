@@ -114,7 +114,7 @@
                         <div class="owl-carousel owl-theme">
                             @foreach ($projects as $project)
                                 <div class="item">
-                                    <div class="position-re o-hidden"> <img class="projects-carousel" src="{{ asset('img/proyects/azucena/azucena_1.jpeg') }}" alt=""> </div>
+                                    <div class="position-re o-hidden"> <img class="projects-carousel" src="{{ asset($projects->images[0]->location) }}" alt="$projects->images[0]->title"> </div>
                                     <div class="con">
                                         <h5><a href="{{ route('projects_view', $project->id) }}">{{ $project->title }}</a></h5>
                                         <div class="line"></div> <a href="{{ route('projects_view', $project->id) }}"><i class="ti-arrow-right"></i></a>
@@ -153,7 +153,7 @@
                 </div>
             </div>
         </section>
-         <!-- Blog -->
+         <!-- Art -->
          <section class="section-padding">
             <div class="container">
                 <div class="row">
