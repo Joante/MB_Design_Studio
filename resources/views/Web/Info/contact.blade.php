@@ -17,11 +17,19 @@
                     <p><b>MB Design Studio</b></p>
                     <p>Esperamos su contacto ante cualquier duda o consulta para que nuestro equipo de asesores especializados pueda ayudarlo.</p>
                 </div>
-                <div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
-                    <p><b>Detalles de Contacto</b></p>
-                    <p><b>Telefono :</b> +1 203-123-0606</p>
-                    <p><b>Email :</b> maxbilotti.designstudio@gmail.com</p>
-                </div>
+                @if ($mbAcounts != null)
+                    @if ($mbAcounts->phone_formatted != null || $mbAcounts->email != null)
+                        <div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
+                            <p><b>Detalles de Contacto</b></p>
+                            @if ($mbAcounts->phone_formatted != null)
+                                <p><b>Telefono :</b> +54 9 {{ $mbAcounts->phone_formatted }}</p>
+                            @endif
+                            @if($mbAcounts->email != null)
+                                <p><b>Email :</b> {{ $mbAcounts->email }}</p>
+                            @endif
+                        </div>
+                    @endif
+                @endif
                 <div class="col-md-4 animate-box" data-animate-effect="fadeInUp">
                     @if(Session::has('success'))
                         <div>
