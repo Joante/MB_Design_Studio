@@ -31,7 +31,11 @@
                                 @foreach ($colections[$i]['paintings'] as $painting)
                                     <div class="item">
                                         <div class="position-re o-hidden"> 
-                                            <img class="projects-carousel" src="{{ asset($painting->images[0]->location) }}" alt="{{ $painting->images[0]->title }}"> 
+                                            @if (count($painting->images)> 0)
+                                                <img class="projects-carousel" src="{{ asset($painting->images[0]->location) }}" alt="{{ $painting->images[0]->title }}"> 
+                                            @else
+                                                <img class="projects-carousel" src="{{ asset('public/img/600x600.jpg') }}" alt="">     
+                                            @endif
                                         </div>
                                         <div class="con">
                                             <h5><a href="{{ route('paint_collection_index', $colections[$i]->id) }}">{{ $painting->name }}</a></h5>

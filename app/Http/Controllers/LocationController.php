@@ -45,7 +45,7 @@ class LocationController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'url' => 'required|url',
-            'phone' => 'required|numeric',
+            'phone' => 'nullable|numeric',
             'adress' => 'required|string|max:255',
             'image' => 'nullable|image|max:5042'
         ]);
@@ -163,7 +163,7 @@ class LocationController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'url' => 'required|url',
-            'phone' => 'required|numeric',
+            'phone' => 'nullable|numeric',
             'adress' => 'required|string|max:255',
             'image' => 'nullable|image|max:5042'
         ]);

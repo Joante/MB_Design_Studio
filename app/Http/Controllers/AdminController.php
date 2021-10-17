@@ -173,6 +173,35 @@ class AdminController extends Controller
             'personal_phone' => 'nullable|numeric',
         ]);
 
-        dd($request);
+        $perAcounts = Acounts::where('type', '=', 'personal')->first();
+        $mbAcounts = Acounts::where('type', '=', 'mb')->first();
+
+        $perAcounts->email = $request->get('personal_email');
+        $perAcounts->twitter = $request->get('personal_twitter');
+        $perAcounts->facebook = $request->get('personal_facebook');
+        $perAcounts->linkedin = $request->get('personal_linkedin');
+        $perAcounts->pinterest = $request->get('personal_pinterest');
+        $perAcounts->whats_app = $request->get('personal_phone');
+
+        $mbAcounts->email = $request->get('mb_email');
+        $mbAcounts->twitter = $request->get('mb_twitter');
+        $mbAcounts->facebook = $request->get('mb_facebook');
+        $mbAcounts->linkedin = $request->get('mb_linkedin');
+        $mbAcounts->pinterest = $request->get('mb_pinterest');
+        $mbAcounts->whats_app = $request->get('mb_phone');
+
+        if(!$perAcounts->save()) {
+            $error = ['personal' => $perAcounts];
+            return redirect('admin/settings')
+                        ->withErrors($error)
+                        ->withInput();
+        }
+        if(!$mbAcounts->save()) {
+            $error = ['mb' => $perAcounts];
+            return redirect('admin/settings')
+                        ->withErrors($error)
+                        ->withInput();
+        }
+        return redirect()->route('admin_edit'); 
     }
 }

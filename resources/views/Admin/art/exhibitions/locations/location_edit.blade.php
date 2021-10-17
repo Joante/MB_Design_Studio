@@ -41,8 +41,8 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <div class="form-group">
-                            <label for="phone-column">Telefono *</label>
-                            <input type="number" minlength="8" id="phone-column" class="form-control @error('phone') is-invalid @enderror" placeholder="Telefono" name="phone" required value="{{ old('phone',$location->phone) }}">
+                            <label for="phone-column">Telefono</label>
+                            <input type="number" minlength="8" id="phone-column" class="form-control @error('phone') is-invalid @enderror" placeholder="Telefono" name="phone" value="{{ old('phone',$location->phone) }}">
                             @error('phone')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
