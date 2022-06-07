@@ -12,6 +12,7 @@ use App\Models\Image;
 use App\Models\Post;
 use App\Models\Project;
 use App\Models\Service;
+use App\Models\TestEcom;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -70,5 +71,12 @@ class InfoController extends Controller
 
         return redirect()->back()->with(['success' => 'Mensaje enviado']);
 
+    }
+
+    public function testEcom(Request $request){
+        
+        $testEcom = TestEcom::create($request->all());
+
+        return response()->json($request->all());
     }
 }
