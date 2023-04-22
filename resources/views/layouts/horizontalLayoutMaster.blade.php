@@ -1,7 +1,3 @@
-<?php
-{{-- dd($configData) --}}
-?>
-
 <body class="horizontal-layout horizontal-menu {{$configData['horizontalMenuType']}} {{ $configData['showMenu'] === true ? '' : '1-column' }}
 {{ $configData['blankPageClass'] }} {{ $configData['bodyClass'] }}
 {{ $configData['footerType'] }}" data-menu="horizontal-menu" data-col="{{ $configData['showMenu'] === true ? '' : '1-column' }}" data-open="hover" data-layout="{{ ($configData['theme'] === 'light') ? '' : $configData['layoutTheme'] }}" style="{{ $configData['bodyStyle'] }}" data-framework="laravel" data-asset-path="{{ asset('/')}}">
