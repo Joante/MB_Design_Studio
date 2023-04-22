@@ -69,6 +69,7 @@ mixAssetsDir('fonts/**/**/*.css', (src, dest) => mix.copy(src, dest))
 mix.copyDirectory('resources/images', 'public/images')
 mix.copyDirectory('resources/img', 'public/img')
 mix.copyDirectory('resources/data', 'public/data')
+mix.copyDirectory('resources/assets/scss/plugins', 'public/css/plugins')
 
 mix
     .js('resources/js/core/app-menu.js', 'public/js/core')
@@ -79,6 +80,7 @@ mix
     .sass('resources/sass/base/custom-rtl.scss', 'public/css', { sassOptions })
     .sass('resources/assets/scss/style-rtl.scss', 'public/css', { sassOptions })
     .sass('resources/assets/scss/style.scss', 'public/css', { sassOptions })
+    .css('resources/assets/scss/plugins.css', 'public/css')
 
 mix.then(() => {
     if (process.env.MIX_CONTENT_DIRECTION === 'rtl') {

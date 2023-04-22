@@ -22,7 +22,7 @@ class CreateUser extends Command
      *
      * @var string
      */
-    protected $description = 'Crear usuario para utilizar en el sistema';
+    protected $description = 'Create admin user.';
 
     /**
      * Create a new command instance.
@@ -43,14 +43,14 @@ class CreateUser extends Command
     {
         $data = $this->obtainData();
 
-        $this->info('Validando datos');
+        $this->info('Validating data.');
 
         $validator = $this->validateData($data);
 
-        //Muestro los mensajes de error y vuelvo a preguntar los datos si fallo la validacion.
+        //If the validations fails show a error message and run the form again
         while($validator->fails())
         {
-            $this->info('Validacion fallida');
+            $this->info('Validation failed.');
 
             $messages = $validator->messages();
 
@@ -59,29 +59,29 @@ class CreateUser extends Command
                 $this->info($message);
             }
             $data = $this->obtainData();
-            $this->info('Validando datos');
+            $this->info('Validating data.');
             $validator = $this->validateData($data);
         }
 
-        //Creo el usuario y lo guardo.
+        //Create and store the user.
         $user = new User();
         $user->password = Hash::make($data['password']);
         $user->username = $data['username'];
         $user->name = $data['name'];
-        $user->description = 'Insertar descripcion';
+        $user->description = 'Insert description';
 
         if($user->save()){
             Acounts::create(['type' => 'personal']);
             Acounts::create(['type' => 'mb']);
-            $this->info('Guardado exitoso');
+            $this->info('Save successful');
         }else
         {
-            $this->info('Guardado fallido');
+            $this->info('Save failed.');
         }
     }
 
     /**
-     * Valido los datos ingresados.
+     * Validate the form data.
      *
      * @return Validator instance.
      */
@@ -95,27 +95,27 @@ class CreateUser extends Command
     }
 
     /**
-     * Obtengo los datos
+     * User form
      *
-     * @return array de datos.
+     * @return array of data.
      */
     public function obtainData()
     {
         $passwordComparison = false;
 
-        $name = $this->ask('Ingresar nombre');
+        $name = $this->ask('Name');
 
-        $username = $this->ask('Ingresar nombre de usuario');
+        $username = $this->ask('Username');
 
-        //Comparo las contraseñas para confirmarlas.
+        //Compare the password and password confirmation field.
         while(! $passwordComparison){
-            $password = $this->secret('Ingrese contraseña');
-            $confirmPassword = $this->secret('Confirme contraseña');
+            $password = $this->secret('Password');
+            $confirmPassword = $this->secret('Repeat password');
             if(strcmp($password, $confirmPassword)==0){
                     $passwordComparison = true;
                 }
                 else {
-                    $this->info('Las contraseñas no coinciden. Ingrese nuevamente');
+                    $this->info('The passwords does not match. Try again.');
                 }
         }
         return array(
