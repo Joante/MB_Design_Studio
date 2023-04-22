@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
         $blog_categories = BlogCategory::all();
         View::share('blog_categories', $blog_categories);
         $mbAcounts = Acounts::where('type', '=', 'mb')->first();
-        if($mbAcounts->phone != null) {
+        if($mbAcounts != null && $mbAcounts->phone != null) {
             $phone_array = str_split($mbAcounts->whats_app,2);
             $phone_formatted = $phone_array[0].'-'.$phone_array[1].$phone_array[2].'-'.$phone_array[3].$phone_array[4];
             $mbAcounts['phone_formatted'] = $phone_formatted;
