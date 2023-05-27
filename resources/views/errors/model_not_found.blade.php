@@ -13,7 +13,7 @@ $configData = Helper::applClasses();
 <!-- Error page-->
 <div class="misc-wrapper">
   <a class="brand-logo" href="javascript:void(0);">
-    <img src="{{ asset(mix('img/logo_2.png')) }}" style="max-width: 36px;"/>
+    <img src="{{ asset(mix('img/logo_2.jpg')) }}" style="max-width: 36px;"/>
     <h2 class="brand-text text-primary ml-1" style="margin-top:7px;">MB Design Studio</h2>
   </a>
   <div class="misc-inner p-2 p-sm-3">

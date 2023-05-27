@@ -87,7 +87,7 @@
                 <div class="row">
                     <div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
                         <div class="about-img">
-                            <div class="img"> <img src="/img/logo_2.png" class="img-fluid" alt=""> </div>
+                            <div class="img"> <img src="/img/logo_2.jpg" class="img-logo" alt=""> </div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-30">
