@@ -7,7 +7,7 @@
       <li class="nav-item mr-auto">
         <a class="navbar-brand" href="{{url('/admin')}}">
           <span class="brand-logo">
-            <img src="{{ asset(mix('img/logo_2.jpg')) }}" />
+            <img src="{{ asset(mix('img/logo_2.png')) }}" />
           </span>
           <h2 class="brand-text" style="font-size: 1.25rem;">MB Design Studio</h2>
         </a>

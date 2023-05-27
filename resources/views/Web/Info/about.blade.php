@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-md-6 animate-box" data-animate-effect="fadeInUp">
                     <div class="about-img">
-                        <div class="img"> <img src="img/logo_2.jpg" class="img-logo" alt=""> </div>
+                        <div class="img"> <img src="img/logo_2.png" class="img-logo" alt=""> </div>
                     </div>
                 </div>
             </div>
