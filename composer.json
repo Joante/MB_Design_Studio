@@ -16,7 +16,8 @@
     "kyslik/column-sortable": "^6.4",
     "laravel/framework": "^8.26.1",
     "laravel/tinker": "^2.5",
-    "laravel/ui": "^3.0"
+    "laravel/ui": "^3.0",
+    "spatie/laravel-sitemap": "^6.3"
   },
   "require-dev": {
     "facade/ignition": "^2.5",
