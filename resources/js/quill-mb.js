@@ -35,9 +35,9 @@ var toolbarOptions = [
     }],
 
     [{
-        'color': ['#999', '#b19777', '#fff', '#272727']
+        'color': ['#999', '#838487', '#fff', '#0e0e0e']
     }, {
-        'background': ['#999', '#b19777', '#fff', '#272727']
+        'background': ['#999', '#838487', '#fff', '#0e0e0e']
     }], // dropdown with defaults from theme
     [{
         'align': []

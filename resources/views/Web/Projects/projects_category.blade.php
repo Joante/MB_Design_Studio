@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 animate-box" data-animate-effect="fadeInUp">
-                    <h2 class="section-title">Projectos de <span>{{ $service }}</span></h2>
+                    <h2 class="section-title">Proyectos de <span>{{ $service }}</span></h2>
                     <hr>
                 </div>
             </div>
