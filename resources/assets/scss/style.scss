@@ -66,7 +66,7 @@ body {
     line-height: 1.75em;
     color: #999;
     overflow-x: hidden !important;
-    background: #272727;
+    background: #0e0e0e;
 }
 
 p {
@@ -110,7 +110,7 @@ a:hover {
 
 b {
     font-weight: 400;
-    color: #b19777;
+    color: #838487;
 }
 
 
@@ -162,7 +162,7 @@ textarea {
 input:focus,
 textarea:focus {
     border-bottom-width: 1px;
-    border-color: #b19777;
+    border-color: #838487;
 }
 
 input[type=submit],
@@ -173,7 +173,7 @@ button {
     box-shadow: none;
     line-height: 1.75em;
     transition: background-color 0.15s ease-out;
-    background: #b19777;
+    background: #838487;
     border: 1px solid transparent;
 }
 
@@ -329,7 +329,7 @@ input[type=checkbox] {
 .owl-theme .owl-dots .owl-dot.active span,
 .owl-theme .owl-dots .owl-dot:hover span {
     background: transparent;
-    border: 1px solid #b19777;
+    border: 1px solid #838487;
 }
 
 
@@ -340,11 +340,11 @@ input[type=checkbox] {
 }
 
 .section-padding2 {
-    padding: 0 0 90px 0;
+    padding: 30px 0 90px 0;
 }
 
 .section-padding h6 {
-    color: #b19777;
+    color: #838487;
     font-size: 20px;
     margin-bottom: 20px;
 }
@@ -362,13 +362,30 @@ input[type=checkbox] {
 }
 
 .section-title span {
-    color: #b19777;
+    color: #838487;
 }
+
+.section-title-about {
+    font-size: 40px;
+    font-family: "Oswald", sans-serif;
+    font-weight: 400;
+    color: #fff;
+    text-transform: uppercase;
+    position: relative;
+    letter-spacing: 10px;
+    word-spacing: 5px;
+    margin-bottom: 20px;
+}
+
+.section-title-about span {
+    color: #838487;
+}
+
 
 .section-title2 {
     font-size: 35px;
     font-weight: 300;
-    color: #b19777;
+    color: #838487;
     position: relative;
     line-height: 1.25em;
     margin-bottom: 30px;
@@ -398,7 +415,7 @@ input[type=checkbox] {
 }
 
 .navbar .icon-bar {
-    color: #b19777;
+    color: #838487;
 }
 
 .navbar .navbar-nav .nav-link {
@@ -417,15 +434,15 @@ input[type=checkbox] {
 }
 
 .navbar .navbar-nav .nav-link:hover {
-    color: #b19777;
+    color: #838487;
 }
 
 .navbar .navbar-nav .active {
-    color: #b19777 !important;
+    color: #838487 !important;
 }
 
 .nav-scroll {
-    background: #272727;
+    background: #0e0e0e;
     padding: 0 0 0 0;
     position: fixed;
     top: -100px;
@@ -437,7 +454,7 @@ input[type=checkbox] {
 }
 
 .nav-scroll .icon-bar {
-    color: #b19777;
+    color: #838487;
 }
 
 .nav-scroll .navbar-nav .nav-link {
@@ -445,7 +462,7 @@ input[type=checkbox] {
 }
 
 .nav-scroll .navbar-nav .active {
-    color: #b19777 !important;
+    color: #838487 !important;
 }
 
 .nav-scroll .navbar-nav .logo {
@@ -469,7 +486,7 @@ input[type=checkbox] {
     display: block;
     width: 100%;
     position: relative;
-    color: #b19777;
+    color: #838487;
     line-height: 1.25em;
     letter-spacing: 5px;
     display: none;
@@ -492,12 +509,12 @@ input[type=checkbox] {
 
 .nav-scroll .logo-wrapper {
     padding: 15px 70px 15px 150px;
-    background: #272727;
+    background: #0e0e0e;
 }
 
 .logo-wrapper {
     float: left;
-    background: #272727;
+    background: #0e0e0e;
     padding: 30px 50px;
 }
 
@@ -508,7 +525,7 @@ input[type=checkbox] {
     display: block;
     width: 100%;
     position: relative;
-    color: #b19777;
+    color: #838487;
     letter-spacing: 9px;
     margin-bottom: 0;
 }
@@ -584,7 +601,7 @@ input[type=checkbox] {
     padding: 15px 10px;
     border-radius: 0;
     border: 0;
-    background-color: #272727;
+    background-color: #0e0e0e;
     transition: all 0.3s;
 }
 
@@ -610,7 +627,7 @@ input[type=checkbox] {
 .sub-menu .dropdown-item:hover {
     background: transparent;
     padding-left: 20px;
-    color: #b19777;
+    color: #838487;
 }
 
 .dropdown-menu .dropdown-item a,
@@ -628,7 +645,7 @@ input[type=checkbox] {
 .dropdown-menu .dropdown-item em,
 .sub-menu .dropdown-item em {
     font-size: 8px;
-    background-color: #272727;
+    background-color: #0e0e0e;
     padding: 2px 4px;
     color: #fff;
     border-radius: 2px;
@@ -690,12 +707,12 @@ input[type=checkbox] {
     .navbar {
         padding-left: 0px;
         padding-right: 0px;
-        background: #272727;
+        background: #0e0e0e;
         padding-top: 15px;
         padding-bottom: 15px;
     }
     .nav-scroll {
-        background: #272727;
+        background: #0e0e0e;
     }
     .logo-wrapper {
         float: left;
@@ -703,7 +720,7 @@ input[type=checkbox] {
     }
     .nav-scroll .logo-wrapper {
         padding: 15px;
-        background-color: #272727;
+        background-color: #0e0e0e;
     }
 }
 
@@ -782,7 +799,7 @@ input[type=checkbox] {
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: #272727;
+    background: #0e0e0e;
     position: absolute;
     top: 10px;
     right: 0;
@@ -809,7 +826,7 @@ hr {
 }
 
 hr.dotted {
-    border-top: 2px dotted #b19777;
+    border-top: 2px dotted #838487;
 }
 
 
@@ -879,8 +896,8 @@ hr.dotted {
 .owl-theme .owl-nav [class*=owl-]:hover {
     transform: scale(0.9);
     background: transparent;
-    border: 1px solid #b19777;
-    color: #b19777;
+    border: 1px solid #838487;
+    color: #838487;
 }
 
 @media screen and (max-width: 768px) {
@@ -919,7 +936,7 @@ hr.dotted {
 }
 
 .comming h6 {
-    color: #b19777;
+    color: #838487;
     font-size: 13px;
     font-family: "Oswald", sans-serif;
     font-weight: 300;
@@ -971,7 +988,7 @@ hr.dotted {
     width: 100%;
     padding: 11px 50px 11px 11px;
     background-color: transparent;
-    border: 1px solid #b19777;
+    border: 1px solid #838487;
     border-radius: 0px;
     color: #fff;
     margin-bottom: 15px;
@@ -979,7 +996,7 @@ hr.dotted {
 }
 
 .comming form button {
-    background-color: #b19777;
+    background-color: #838487;
     padding: 8px 20px;
     border-radius: 0px;
     color: #fff;
@@ -1019,7 +1036,7 @@ hr.dotted {
 }
 
 .go-back a:hover {
-    color: #b19777;
+    color: #838487;
 }
 
 .go-back a span {
@@ -1064,7 +1081,7 @@ hr.dotted {
 }
 
 .banner-header h5 {
-    color: #b19777;
+    color: #838487;
     font-size: 17px;
     font-family: "Oswald", sans-serif;
     font-weight: 400;
@@ -1075,7 +1092,7 @@ hr.dotted {
     font-size: 40px;
     font-family: "Oswald", sans-serif;
     font-weight: 400;
-    color: #b19777;
+    color: #838487;
     position: relative;
     margin-bottom: 10px;
     line-height: 1.2em;
@@ -1091,7 +1108,7 @@ hr.dotted {
 }
 
 .banner-header p a {
-    color: #b19777;
+    color: #838487;
 }
 
 @media screen and (max-width: 767px) {
@@ -1105,7 +1122,7 @@ hr.dotted {
         margin-bottom: 10px;
     }
     .banner-header h6 a:hover {
-        color: #b19777;
+        color: #838487;
     }
     .banner-header h6 i {
         margin: 0 15px;
@@ -1117,16 +1134,16 @@ hr.dotted {
     }
 }
 
-.banner-img:after {
+/*.banner-img:after {
     position: absolute;
     height: 100%;
     right: 0;
     left: 0;
     content: "";
-    background: linear-gradient(to top, #272727 0%, rgba(39, 39, 39, 0.8) 100%, rgba(39, 39, 39, 0.5) 100%);
+    background: linear-gradient(to top, #0e0e0e 0%, rgba(39, 39, 39, 0.8) 100%, rgba(39, 39, 39, 0.5) 100%);
     -o-object-fit: cover;
     object-fit: cover;
-}
+}*/
 
 
 /* =======  Content Lines style  ======= */
@@ -1197,7 +1214,7 @@ hr.dotted {
 .about .about-img .img img {
     position: relative;
     z-index: 2;
-    background: #272727;
+    background: #0e0e0e;
 }
 
 .about-img-2 {
@@ -1282,7 +1299,7 @@ hr.dotted {
 
 .team .info .social a {
     font-size: 15px;
-    color: #b19777;
+    color: #838487;
     margin: 0 5px;
 }
 
@@ -1305,7 +1322,7 @@ hr.dotted {
 
 .services .item:hover .numb {
     color: transparent;
-    -webkit-text-stroke: 1px rgba(177, 151, 119, 0.5);
+    -webkit-text-stroke: 1px rgba(131, 132, 135, 0.5);
 }
 
 .services .item h5 {
@@ -1363,12 +1380,16 @@ hr.dotted {
 
 .services .item:hover .line:after {
     width: 100%;
-    background-color: rgba(177, 151, 119, 0.5);
+    background-color: rgba(131, 132, 135, 0.5);
     transition-property: all;
     transition-duration: 0.8s;
     transition-timing-function: ease-in-out;
 }
 
+.img-logo {
+    max-width: 56%;
+    height: auto
+}
 
 /* services sidebar */
 
@@ -1430,7 +1451,7 @@ hr.dotted {
     top: 0;
     right: -20px;
     bottom: 0;
-    background: #b19777;
+    background: #838487;
     border-radius: 0;
     opacity: 0;
     transition: all 0.3s ease;
@@ -1534,7 +1555,7 @@ hr.dotted {
 .projects .item .con h6,
 .projects .item .con h6 a {
     position: relative;
-    color: #b19777;
+    color: #838487;
     font-size: 13px;
     font-weight: 400;
     margin-top: 0px;
@@ -1566,7 +1587,7 @@ hr.dotted {
 }
 
 .projects .item .con i:hover {
-    color: #b19777;
+    color: #838487;
 }
 
 .projects .item .con .butn-light {
@@ -1577,7 +1598,7 @@ hr.dotted {
 }
 
 .projects .item .con .butn-light:hover {
-    border-color: #b19777;
+    border-color: #838487;
 }
 
 
@@ -1635,7 +1656,7 @@ hr.dotted {
 }
 
 .projects-prev-next a:hover {
-    color: #b19777;
+    color: #838487;
 }
 
 .projects-prev-next .projects-prev-next-left a i {
@@ -1735,12 +1756,12 @@ hr.dotted {
 }
 
 .gallery-box .gallery-detail i {
-    color: #272727;
+    color: #0e0e0e;
     padding: 8px;
 }
 
 .gallery-box .gallery-detail i:hover {
-    color: #272727;
+    color: #0e0e0e;
 }
 
 .gallery-box:hover .gallery-detail {
@@ -1834,11 +1855,11 @@ button.mfp-arrow {
 }
 
 .play-button.color {
-    color: #b19777;
+    color: #838487;
 }
 
 .play-button.color .circle-fill circle {
-    fill: #b19777;
+    fill: #838487;
 }
 
 
@@ -1871,7 +1892,7 @@ button.mfp-arrow {
 .video-gallery-polygon:hover {
     background: #fff;
     border: 1px solid #fff;
-    color: #b19777;
+    color: #838487;
 }
 
 
@@ -1879,7 +1900,7 @@ button.mfp-arrow {
 
 .testimonials-box {
     position: relative;
-    background: #272727;
+    background: #0e0e0e;
     padding: 60px 45px;
     margin-bottom: -90px;
 }
@@ -1955,7 +1976,7 @@ button.mfp-arrow {
     padding-top: 7px;
     font-weight: 400;
     font-family: "Didact Gothic", sans-serif;
-    color: #b19777;
+    color: #838487;
 }
 
 .testimonials .item .info span {
@@ -1970,7 +1991,7 @@ button.mfp-arrow {
 }
 
 .testimonials .item .info i {
-    color: #b19777;
+    color: #838487;
     font-size: 10px;
 }
 
@@ -2024,7 +2045,7 @@ button.mfp-arrow {
 }
 
 .bauen-blog .item .con .category a:hover {
-    color: #b19777;
+    color: #838487;
 }
 
 .bauen-blog .item .con .category a:last-child {
@@ -2037,7 +2058,7 @@ button.mfp-arrow {
 
 .bauen-blog .item .con h5,
 .bauen-blog .item .con h5 a {
-    color: #b19777;
+    color: #838487;
     font-size: 25px;
     font-family: "Oswald", sans-serif;
     font-weight: 300;
@@ -2047,7 +2068,7 @@ button.mfp-arrow {
 
 .bauen-blog .item .con h5:hover,
 .bauen-blog .item .con h5 a:hover {
-    color: #b19777;
+    color: #838487;
 }
 
 .bauen-blog .item .con p {
@@ -2097,8 +2118,8 @@ button.mfp-arrow {
     opacity: 1;
     text-decoration: none;
     background: transparent;
-    border: 1px solid #b19777;
-    color: #b19777;
+    border: 1px solid #838487;
+    color: #838487;
 }
 
 .bauen-pagination-wrap li span.active {
@@ -2115,8 +2136,8 @@ button.mfp-arrow {
     font-size: 13px;
     border-radius: 100%;
     background-color: transparent;
-    border: 1px solid #b19777;
-    color: #b19777;
+    border: 1px solid #838487;
+    color: #838487;
 }
 
 .bauen-pagination-wrap li span {
@@ -2156,7 +2177,7 @@ button.mfp-arrow {
 
 .bauen-comment-section h3 {
     font-size: 16px;
-    color: #b19777;
+    color: #838487;
     font-family: "Didact Gothic", sans-serif;
     font-weight: 400;
 }
@@ -2195,7 +2216,7 @@ button.mfp-arrow {
 
 .bauen-repay {
     font-size: 14px;
-    color: #b19777;
+    color: #838487;
     margin: 0;
     font-weight: 400;
 }
@@ -2223,7 +2244,7 @@ button.mfp-arrow {
     font-weight: 300;
     font-family: "Oswald", sans-serif;
     text-transform: uppercase;
-    background: #b19777;
+    background: #838487;
     color: #fff;
     padding: 13px 30px;
     margin: 0;
@@ -2269,7 +2290,7 @@ button.mfp-arrow {
     font-weight: 300;
     font-family: "Oswald", sans-serif;
     text-transform: uppercase;
-    background: #b19777;
+    background: #838487;
     color: #fff;
     padding: 13px 30px;
     margin: 0;
@@ -2359,7 +2380,7 @@ button.mfp-arrow {
 }
 
 .butn-light a:hover span {
-    color: #272727;
+    color: #0e0e0e;
 }
 
 
@@ -2371,7 +2392,7 @@ button.mfp-arrow {
 }
 
 .main-footer.dark {
-    background: #272727;
+    background: #0e0e0e;
     color: #fff;
 }
 
@@ -2397,15 +2418,15 @@ button.mfp-arrow {
 }
 
 .main-footer .abot .social-icon a:hover {
-    border: 1px solid #b19777;
+    border: 1px solid #838487;
     background: transparent;
-    color: #b19777;
+    color: #838487;
 }
 
 .main-footer .fothead h4 {
     margin-bottom: 0px;
     font-family: "Oswald", sans-serif;
-    color: #b19777;
+    color: #838487;
     font-size: 31px;
 }
 
@@ -2429,7 +2450,7 @@ button.mfp-arrow {
 .main-footer .fotbody h6 {
     margin-bottom: 0px;
     font-family: "Oswald", sans-serif;
-    color: #b19777;
+    color: #838487;
     font-size: 17px;
 }
 
@@ -2469,7 +2490,7 @@ button.mfp-arrow {
 }
 
 .main-footer .sub-footer p a:hover {
-    color: #b19777;
+    color: #838487;
 }
 
 .main-footer .sub-footer p.right {
@@ -2554,7 +2575,7 @@ button.mfp-arrow {
         right: 100%;
         height: 100%;
         width: 100%;
-        background: #b19777;
+        background: #838487;
     }
     .pace.pace-inactive {
         width: 100vw;
@@ -2577,7 +2598,7 @@ button.mfp-arrow {
         left: 0;
         height: 50%;
         width: 100%;
-        background: #272727;
+        background: #0e0e0e;
         transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
     }
     #preloader:before {
@@ -2604,7 +2625,7 @@ button.mfp-arrow {
         top: calc(50% - 30px);
         left: 50%;
         transform: translate(-50%, -50%);
-        color: #b19777;
+        color: #838487;
         font-family: "Oswald", sans-serif;
         z-index: 9999;
     }
@@ -2677,11 +2698,11 @@ button.mfp-arrow {
 }
 
 .progress-wrap::after {
-    color: #b19777;
+    color: #838487;
 }
 
 .progress-wrap svg.progress-circle path {
-    stroke: #b19777;
+    stroke: #838487;
 }
 
 
@@ -2722,7 +2743,7 @@ button.mfp-arrow {
 }
 
 .accordion-box .block .acc-btn .count {
-    color: #b19777;
+    color: #838487;
     padding-right: 3px;
 }
 
@@ -2733,7 +2754,7 @@ button.mfp-arrow {
     height: 30px;
     font-size: 14px;
     font-weight: normal;
-    color: #b19777;
+    color: #838487;
     line-height: 30px;
     content: "";
     font-family: "Themify";
@@ -2742,7 +2763,7 @@ button.mfp-arrow {
 
 .accordion-box .block .acc-btn.active {
     background-color: #323232;
-    color: #b19777;
+    color: #838487;
 }
 
 .accordion-box .block .acc-btn.active:before {
@@ -2811,7 +2832,7 @@ button.mfp-arrow {
     left: 0;
     transform: translateY(-50%);
     font-size: 15px;
-    color: #b19777;
+    color: #838487;
 }
 
 .pricing-card-list li i.unavailable {
@@ -2823,7 +2844,7 @@ button.mfp-arrow {
 }
 
 .pricing-card:hover i {
-    color: #b19777;
+    color: #838487;
 }
 
 .pricing-card-name {
@@ -2832,7 +2853,7 @@ button.mfp-arrow {
     font-size: 16px;
     text-transform: uppercase;
     font-family: "Oswald", sans-serif;
-    color: #b19777;
+    color: #838487;
     margin-bottom: 20px;
     letter-spacing: 5px;
     font-weight: 300;
@@ -2858,7 +2879,7 @@ button.mfp-arrow {
     font-weight: 300;
     font-family: "Oswald", sans-serif;
     text-transform: uppercase;
-    background: #b19777;
+    background: #838487;
     color: #fff;
     padding: 13px 30px;
     margin: 0;
@@ -2875,7 +2896,7 @@ button.mfp-arrow {
     bottom: 0;
     left: 100%;
     z-index: 1;
-    background: #272727;
+    background: #0e0e0e;
     color: #fff;
     transition: all 0.3s ease;
 }
@@ -2978,10 +2999,10 @@ button.mfp-arrow {
     .navbar button {
         margin-right: 15px;
         outline: none !important;
-        background: #272727;
+        background: #0e0e0e;
     }
     .navbar button:hover {
-        background: #272727;
+        background: #0e0e0e;
     }
     .navbar .container {
         max-width: 100%;
@@ -2989,7 +3010,7 @@ button.mfp-arrow {
     .navbar .navbar-collapse {
         max-height: 360px;
         overflow: auto;
-        background: #272727;
+        background: #0e0e0e;
         text-align: left;
         padding: 15px 30px 30px 15px;
     }
@@ -3003,7 +3024,7 @@ button.mfp-arrow {
         color: #999 !important;
     }
     .nav-scroll .navbar-collapse .active {
-        color: #b19777 !important;
+        color: #838487 !important;
     }
     .dropdown-menu {
         opacity: 1;
@@ -3173,7 +3194,7 @@ button.mfp-arrow {
 .bauen-blog2 .content .date h3 {
     font-size: 65px;
     font-weight: 500;
-    color: #b19777;
+    color: #838487;
     margin-bottom: 0px;
 }
 
@@ -3207,7 +3228,7 @@ button.mfp-arrow {
     font-weight: 300;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #b19777;
+    color: #838487;
     padding-left: 40px;
     position: relative;
 }
@@ -3216,7 +3237,7 @@ button.mfp-arrow {
     content: "";
     width: 30px;
     height: 1px;
-    background: #b19777;
+    background: #838487;
     position: absolute;
     top: 50%;
     left: 0px;
@@ -3235,7 +3256,7 @@ button.mfp-arrow {
 }
 
 .bauen-blog2 .content .info .tags {
-    color: #b19777;
+    color: #838487;
 }
 
 @media screen and (max-width: 991px) {
@@ -3310,7 +3331,7 @@ button.mfp-arrow {
 .colections .item .con h6,
 .colections .item .con h6 a {
     position: relative;
-    color: #b19777;
+    color: #838487;
     font-size: 13px;
     font-weight: 400;
     margin-top: 0px;
@@ -3342,7 +3363,7 @@ button.mfp-arrow {
 }
 
 .colections .item .con i:hover {
-    color: #b19777;
+    color: #838487;
 }
 
 .colections .item .con .butn-light {
@@ -3353,7 +3374,7 @@ button.mfp-arrow {
 }
 
 .colections .item .con .butn-light:hover {
-    border-color: #b19777;
+    border-color: #838487;
 }
 
 
@@ -3402,7 +3423,7 @@ button.mfp-arrow {
 @media (min-width: 670px) {
     .art_colections {
         border-right: dotted;
-        border-right-color: #b19777;
+        border-right-color: #838487;
     }
 }
 
@@ -3418,7 +3439,7 @@ button.mfp-arrow {
 }
 
 .colections-prev-next a:hover {
-    color: #b19777;
+    color: #838487;
 }
 
 .colections-prev-next .colections-prev-next-left a i {
@@ -3474,7 +3495,7 @@ button.mfp-arrow {
     font-weight: 400;
     font-size: 12px;
     letter-spacing: 2px;
-    color: #b19777;
+    color: #838487;
     font-family: 'Didact Gothic', sans-serif;
     text-transform: uppercase;
     margin-bottom: 5px;
@@ -3494,7 +3515,7 @@ button.mfp-arrow {
 }
 
 .bauen-blog3 .post-cont h5 a:hover {
-    color: #b19777;
+    color: #838487;
 }
 
 .bauen-blog3 .post-cont .date {
@@ -3507,7 +3528,7 @@ button.mfp-arrow {
 }
 
 .bauen-blog3 .post-cont .date a {
-    color: #b19777;
+    color: #838487;
 }
 
 .bauen-blog3 .post-cont i {
@@ -3543,11 +3564,11 @@ button.mfp-arrow {
 }
 
 .blog-sidebar .widget ul li a.active {
-    color: #b19777;
+    color: #838487;
 }
 
 .blog-sidebar .widget ul li a:hover {
-    color: #b19777;
+    color: #838487;
 }
 
 .blog-sidebar .widget ul li:last-child {
@@ -3599,7 +3620,7 @@ button.mfp-arrow {
     width: 100%;
     padding: 10px;
     border: 0;
-    background: #272727;
+    background: #0e0e0e;
     margin-bottom: 0;
 }
 
@@ -3618,7 +3639,7 @@ button.mfp-arrow {
 .blog-sidebar .tags li {
     margin: 3px !important;
     padding: 6px 16px;
-    background-color: #b19777;
+    background-color: #838487;
     color: #fff !important;
     float: left;
 }
@@ -3630,7 +3651,7 @@ button.mfp-arrow {
 
 .blog-sidebar ul.tags li:hover,
 .blog-sidebar ul.tags li a:hover {
-    background-color: #272727;
+    background-color: #0e0e0e;
     color: #fff;
 }
 

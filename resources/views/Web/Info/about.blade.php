@@ -8,14 +8,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 mb-30 animate-box" data-animate-effect="fadeInUp">
-                    <h2 class="section-title">About <span>MB</span></h2>
+                    <h2 class="section-title-about">About <span>MB</span></h2>
                     <p>Somos un estudio especializado en la realización y ejecución de proyectos de arquitectura interior, exterior, residencial y comercial.</p>
                     <p>Con base en Buenos Aires. Reconocido por nuestro estilo único, elegante y contemporáneo.</p>
                     <p>Ademas ofrecemos una exclusiva colección de obras de arte para elevar el estilo de multiples y diversos ambientes. </p>
                 </div>
                 <div class="col-md-6 animate-box" data-animate-effect="fadeInUp">
                     <div class="about-img">
-                        <div class="img"> <img src="img/logo_2.png" class="img-fluid" alt=""> </div>
+                        <div class="img"> <img src="img/logo_2.jpg" class="img-logo" alt=""> </div>
                     </div>
                 </div>
             </div>
