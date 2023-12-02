@@ -81,6 +81,10 @@ class ImagesController extends Controller
                 'message' => 'Problemas al guardar la imagen'
             ], 422);
         }
+
+        if (!is_dir(public_path('/').'img/'.$modelType.'/')){
+            mkdir(public_path('/').'img/'.$modelType.'/', 0770, true);
+        }  
         Image::make($request->file('images'))->save(public_path('/').$imagePath);
         
         if (file_exists(public_path('/').$imagePath)) {
