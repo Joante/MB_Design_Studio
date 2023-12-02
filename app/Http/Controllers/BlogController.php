@@ -113,6 +113,9 @@ class BlogController extends Controller
                     ->withErrors($error)
                     ->withInput();
             }
+            if (!is_dir(public_path('/').'img/posts/')){
+                mkdir(public_path('/').'img/posts/', 0770, true);
+            }   
             Image::make($request->file('image'))->save(public_path('/').$imagePath);
             
             if (!file_exists(public_path('/').$imagePath)) {
@@ -263,6 +266,9 @@ class BlogController extends Controller
                         ->withErrors($error)
                         ->withInput();
                 }
+                if (!is_dir(public_path('/').'img/posts/')){
+                    mkdir(public_path('/').'img/posts/', 0770, true);
+                }   
                 Image::make($request->file('image'))->save(public_path('/').$imagePath);
                 
                 if (!file_exists(public_path('/').$imagePath)) {
