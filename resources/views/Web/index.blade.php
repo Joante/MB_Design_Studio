@@ -180,7 +180,9 @@
                                                             <div class="img left">
                                                                 <a href="{{ route('exhibition_show', $exhibition->id) }}">
                                                                     @if (count($exhibition->images) == 0)
-                                                                        <img src="{{ asset($exhibition->location->image->location) }}" alt="{{ $exhibition->location->image->title }}"> 
+                                                                        @if ($exhibition->location->image != null)
+                                                                            <img src="{{ asset($exhibition->location->image->location) }}" alt="{{ $exhibition->location->image->title }}"> 
+                                                                        @endif
                                                                     @else
                                                                         <img src="{{ asset($exhibition->images[0]->location) }}" alt="{{ $exhibition->images[0]->title }}">   
                                                                     @endif

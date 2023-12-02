@@ -389,7 +389,7 @@ h1, h2, h3, h4, h5, h6 {
   background: #000;
 }
 [data-overlay-darkgray]:before {
-  background: #272727;
+  background: #0e0e0e;
 }
 [data-overlay-light]:before {
   background: #fff;

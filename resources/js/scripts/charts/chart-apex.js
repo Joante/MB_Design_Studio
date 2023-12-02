@@ -600,7 +600,7 @@ $(function() {
                                 from: 51,
                                 to: 60,
                                 name: '50-60',
-                                color: '#b19777'
+                                color: '#838487'
                             }
                         ]
                     }
