@@ -18,8 +18,15 @@
         </div>
         <section class="colections">
             <div class="container">
+                @php
+                    $cantColections = count($colections);
+                    $maxRows = 4;
+                    if($cantColections < $maxRows){
+                        $maxRows = $cantColections;
+                    }
+                @endphp
                 @if (count($colections) > 0)
-                    @for ($i = 0; $i < 4; $i++)
+                    @for ($i = 0; $i < $maxRows; $i++)
                         @if ($i == 0 || $i == 2)
                             <div class="col-md-12 animate-box" data-animate-effect="fadeInUp" style="margin-bottom: 30px;">
                                 <div class="row">
@@ -72,15 +79,24 @@
                         <h6 class="section-title2" style="text-align: center;font-size: 25px;">Nuestras exhibiciones</h6>
                     </div>
                 </div>
-                @if (count($exhibitions) > 0)
-                    @for ($i=0;$i<4;$i++)
+                @php
+                    $cantExhibitions = count($exhibitions);
+                    $maxRows = 4;
+                    if($cantExhibitions < $maxRows){
+                        $maxRows = $cantExhibitions;
+                    }
+                @endphp
+                @if ($cantExhibitions > 0)
+                    @for ($i=0;$i<$maxRows;$i++)
                         <div class="row mb-60">
                             @if ($i == 0 || $i == 2)
                                 <div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
                                     <div class="img left">
                                         <a href="{{ route('exhibition_show', $exhibitions[$i]->id) }}">
                                             @if (count($exhibitions[$i]->images) == 0)
-                                                <img src="{{ asset($exhibitions[$i]->location->image->location) }}" alt="{{ $exhibitions[$i]->location->image->title }}"> 
+                                                @if ($exhibitions[$i]->location->image != null)
+                                                    <img src="{{ asset($exhibitions[$i]->location->image->location) }}" alt="{{ $exhibitions[$i]->location->image->title }}"> 
+                                                @endif
                                             @else
                                                 <img src="{{ asset($exhibitions[$i]->images[0]->location) }}" alt="{{ $exhibitions[$i]->images[0]->title }}">   
                                             @endif
