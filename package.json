@@ -27,7 +27,7 @@
         "popper.js": "^1.12",
         "postcss": "^8.2.1",
         "postcss-import": "^15.1.0",
-        "resolve-url-loader": "^3.1.2",
+        "resolve-url-loader": "^5.0.0",
         "rtlcss": "^4.1.0",
         "sass": "^1.22.12",
         "sass-loader": "^13.3.2",

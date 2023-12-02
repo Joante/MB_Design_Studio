@@ -97,6 +97,10 @@ class ArtColectionsController extends Controller
                     ->withErrors($error)
                     ->withInput();
             }
+
+            if (!is_dir(public_path('/').'img/art_colections/')){
+                mkdir(public_path('/').'img/art_colections/', 0770, true);
+            }   
             Image::make($request->file('image'))->save(public_path('/').$imagePath);
             
             if (!file_exists(public_path('/').$imagePath)) {
@@ -219,6 +223,9 @@ class ArtColectionsController extends Controller
                         ->withErrors($error)
                         ->withInput();
                 }
+                if (!is_dir(public_path('/').'img/art_colections/')){
+                    mkdir(public_path('/').'img/art_colections/', 0770, true);
+                }   
                 Image::make($request->file('image'))->save(public_path('/').$imagePath);
                 
                 if (!file_exists(public_path('/').$imagePath)) {

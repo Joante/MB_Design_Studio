@@ -7,7 +7,6 @@
 /public/js
 /public/css
 /public/vendors
-/public/img
 /storage/*.key
 /vendor
 .env
@@ -20,3 +19,4 @@ yarn-error.log
 /vuexy-shell-scripts
 supervisord.log
 supervisord.pid
+public/img
