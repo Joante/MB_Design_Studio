@@ -33,7 +33,7 @@
                     </form>
                     <div class="row" style="margin-top: 30px;">
                         <div class="col-md-12 d-flex justify-content-center">
-                            <a href="{{ route('services_show_admin', $modelId) }}" style="margin-right: 20px;"> 
+                            <a href="{{ route(strtolower($modelType).'_show_admin', $modelId) }}" style="margin-right: 20px;"> 
                                 <button id="return" type="button" class="btn btn-primary btn-next waves-effect waves-float waves-light">
                                     <span class="align-middle d-sm-inline-block d-none">Volver</span>
                                 </button>
@@ -105,11 +105,7 @@
             });
             this.on("removedfile", function(file) {
                 deletedFiles.push(file.id);
-                if(myDropzone.files.length == 0) {
-                    btnSubmit.setAttribute('style', 'display:none;');
-                } else {
-                    btnSubmit.setAttribute('style', 'display:block;');
-                }
+                btnSubmit.setAttribute('style', 'display:block;');
             });
             var form = document.getElementById('dpz-single-file');
             btnSubmit.addEventListener('click', function(){

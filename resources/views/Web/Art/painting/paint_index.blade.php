@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 d-flex justify-content-center">
-                <h2 class="section-title">Nuestras <span>Colecciónes</span> de <span>Ar</span>te</h2>
+                <h2 class="section-title">Nuestras Colecciónes <span>de Arte</span></h2>
             </div>
         </div>
         <div class="row mb-30">

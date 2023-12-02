@@ -26,7 +26,7 @@
 
 /* CHECKED STYLES */
 [type=radio]:checked + img {
-  outline: 2px solid #b19777;
+  outline: 2px solid #838487;
 }
 </style> 
 @endsection 
