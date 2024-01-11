@@ -21,6 +21,7 @@
                 <th>@sortablelink('title', 'Nombre')</th>
                 <th>@sortablelink('service_id', 'Categoria')</th>
                 <th>@sortablelink('client', 'Cliente')</th>
+                <th>@sortablelink('area', 'Superficie')</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -32,7 +33,8 @@
                       </td>
                       <td>{{$project->title}}</td>
                       <td>{{$project->service->title}}</td>
-                      <td>{{$project->client}}
+                      <td>{{$project->client}}</td>
+                      <td>{{$project->area}} m2</td>
                       <td>
                         <a href="{{ route('projects_show_admin', $project->id) }}">
                           <button class="btn btn-icon btn-outline-info">
