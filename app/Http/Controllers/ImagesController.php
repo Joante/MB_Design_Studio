@@ -47,7 +47,7 @@ class ImagesController extends Controller
      */
     public function store(Request $request, $modelType, $modelId)
     {
-        $request->validate(['images' => 'required|image|max:5042']);
+        $request->validate(['images' => 'required|image|max:10240']);
         
         $extension = pathinfo($request->file('images')->getClientOriginalName(), PATHINFO_EXTENSION);
         $imageTitle = $request->file('images')->getClientOriginalName();

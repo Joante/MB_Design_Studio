@@ -47,7 +47,7 @@ class LocationController extends Controller
             'url' => 'required|url',
             'phone' => 'nullable|numeric',
             'adress' => 'required|string|max:255',
-            'image' => 'nullable|image|max:5042'
+            'image' => 'nullable|image|max:10240'
         ]);
         
         try{
@@ -168,7 +168,7 @@ class LocationController extends Controller
             'url' => 'required|url',
             'phone' => 'nullable|numeric',
             'adress' => 'required|string|max:255',
-            'image' => 'nullable|image|max:5042'
+            'image' => 'nullable|image|max:10240'
         ]);
 
         if($request->has('image'))

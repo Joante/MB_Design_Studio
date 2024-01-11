@@ -49,7 +49,7 @@ class AdminController extends Controller
     }
 
     public function avatar_update(Request $request) {
-        $request->validate(['image' => 'required|image|max:5042']);
+        $request->validate(['image' => 'required|image|max:10240']);
     
         if(count(Auth::user()->images) == 0) {
             DB::beginTransaction();
