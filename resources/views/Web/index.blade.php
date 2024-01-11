@@ -114,7 +114,13 @@
                         <div class="owl-carousel owl-theme">
                             @foreach ($projects as $project)
                                 <div class="item">
-                                    <div class="position-re o-hidden"> <img class="projects-carousel" src="{{ asset($project->images[0]->location) }}" alt="$projects->images[0]->title"> </div>
+                                    <div class="position-re o-hidden"> 
+                                        @if ($project->images != null && count($project->images) > 0 && file_exists(public_path($project->images[0]->location)))
+                                            <img class="projects-carousel" src="{{ asset($project->images[0]->location) }}" alt="{{ $project->images[0]->title }}">
+                                        @else
+                                            <img class="projects-carousel" src="{{ asset('img/600x600.jpg') }}" alt="Image not found"> 
+                                        @endif
+                                    </div>
                                     <div class="con">
                                         <h5><a href="{{ route('projects_view', $project->id) }}">{{ $project->title }}</a></h5>
                                         <div class="line"></div> <a href="{{ route('projects_view', $project->id) }}"><i class="ti-arrow-right"></i></a>
@@ -139,7 +145,10 @@
                         @if ($service->principal_page)
                             <div class="col-md-3">
                                 <div class="item">
-                                    <a href="{{ route('services_view', $service->id) }}"> <img src="{{ asset('img/icons/'.$service->icon->location) }}" alt="$service->icon->title">
+                                    <a href="{{ route('services_view', $service->id) }}"> 
+                                        @if (file_exists(public_path('img/icons/'.$service->icon->location)))
+                                            <img src="{{ asset('img/icons/'.$service->icon->location) }}" alt="$service->icon->title">
+                                        @endif
                                         <h5>{{ $service->title }}</h5>
                                         <div class="line"></div>
                                         <p>{{ $service->description }}</p>
@@ -180,11 +189,15 @@
                                                             <div class="img left">
                                                                 <a href="{{ route('exhibition_show', $exhibition->id) }}">
                                                                     @if (count($exhibition->images) == 0)
-                                                                        @if ($exhibition->location->image != null)
+                                                                        @if ($exhibition->location->image != null && file_exists(public_path($exhibition->location->image->location)))
                                                                             <img src="{{ asset($exhibition->location->image->location) }}" alt="{{ $exhibition->location->image->title }}"> 
+                                                                        @else
+                                                                            <img src="{{ asset('img/600x600.jpg') }}" alt="Image not found"> 
                                                                         @endif
-                                                                    @else
+                                                                    @elseif ($exhibition->images != null && count($exhibition->images) > 0 && file_exists(public_path($exhibition->images[0]->location)))
                                                                         <img src="{{ asset($exhibition->images[0]->location) }}" alt="{{ $exhibition->images[0]->title }}">   
+                                                                    @else
+                                                                        <img src="{{ asset('img/600x600.jpg') }}" alt="Image not found">         
                                                                     @endif
                                                                 </a>
                                                             </div>
@@ -224,7 +237,12 @@
                                             @foreach ($colections as $colection)    
                                                 <div class="item">
                                                     <div class="position-re o-hidden"> 
-                                                        <img class="projects-carousel" src="{{ asset($colection->image->location) }}" alt="{{ $colection->image->title }}"> 
+                                                        @if ($colection->image != null && file_exists(public_path($colection->image->location)))
+                                                            <img class="projects-carousel" src="{{ asset($colection->image->location) }}" alt="{{ $colection->image->title }}"> 
+                                                        @else
+                                                            <img class="projects-carousel" src="{{ asset('img/600x600.jpg') }}" alt="Image not found"> 
+                                                        @endif
+
                                                     </div>
                                                     <div class="con">
                                                         <h5><a href="{{ route('paint_collection_index', $colection->id) }}">{{ $colection->name }}</a></h5>
