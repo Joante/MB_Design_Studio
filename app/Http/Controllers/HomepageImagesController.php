@@ -55,7 +55,7 @@ class HomepageImagesController extends Controller
 
             $hierarchy = $request->get('hierarchy');
             if($hierarchy == null){
-                $hierarchy = HomepageImage::count();
+                $hierarchy = HomepageImage::count() + 1;
                 if($hierarchy == 0){
                     $hierarchy = 1;
                 }
