@@ -180,7 +180,7 @@ class LocationController extends Controller
                 
                 if(!ModelsImage::destroy($location->image->id)) {
                     DB::rollBack();
-                    return json_encode('Error al eliminar la imagene de la base de datos.');
+                    return json_encode('Error al eliminar la imagen de la base de datos.');
                 }
 
                 $extension = pathinfo($request->file('image')->getClientOriginalName(), PATHINFO_EXTENSION);
