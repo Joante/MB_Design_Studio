@@ -1623,9 +1623,18 @@ hr.dotted {
 }
 
 .projects-carousel {
-    height: 200px;
+    height: 450px;
+    width: 100%;
+    object-fit: cover;
 }
 
+@media (max-width: 1000px) {
+    .projects-carousel {
+        height: 300px;
+        width: 100%;
+        object-fit: cover;
+    }   
+}
 
 /* prev/next project */
 

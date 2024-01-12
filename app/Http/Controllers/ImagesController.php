@@ -18,7 +18,7 @@ class ImagesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * 
      */
     public function index()
     {
@@ -30,7 +30,7 @@ class ImagesController extends Controller
      *
      * @param string $modelType
      * @param  int  $modelId
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create($modelType, $modelId)
     {
@@ -101,7 +101,7 @@ class ImagesController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 
      */
     public function show($id)
     {
@@ -113,7 +113,7 @@ class ImagesController extends Controller
      *
      * @param string $modelType
      * @param  int  $modelId
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit($modelType, $modelId)
     {
@@ -133,12 +133,16 @@ class ImagesController extends Controller
         }
         $result = [];
         foreach($model->images as $image) {
-            $file['name'] = $image->title; //get the filename in array
-            $file['size'] = filesize($image->location); //get the flesize in array
-            $file['location'] = $image->location;
-            $file['extension'] = pathinfo($image->title, PATHINFO_EXTENSION);
-            $file['id'] = $image->id;
-            $result[] = $file; // copy it to another array
+            if(file_exists(public_path($image->location))){
+                $file['name'] = $image->title; //get the filename in array
+                $file['size'] = filesize($image->location); //get the flesize in array
+                $file['location'] = $image->location;
+                $file['extension'] = pathinfo($image->title, PATHINFO_EXTENSION);
+                $file['id'] = $image->id;
+                $result[] = $file; // copy it to another array
+            }else{
+                ModelsImage::destroy($image->id);
+            }
         }
         return view('Admin/images/images_edit', ['images' => $result, 'modelType' => $modelType, 'modelId' => $modelId]);
     }
@@ -160,7 +164,7 @@ class ImagesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return bool|string
      */
     public function delete(Request $request)
     {
