@@ -4,74 +4,24 @@
     <!-- Slider -->
     <header class="header slider-fade">
         <div class="owl-carousel owl-theme">
-            <!-- The opacity on the image is made with "data-overlay-dark="number". You can change it using the numbers 0-9. -->
-            <div class="text-left item bg-img" data-overlay-dark="3" data-background="img/slider.jpeg">
-                <div class="v-bottom caption">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <div class="o-hidden">
-                                    <h1>Interiorismo</h1>
-                                    <hr>
-                                    <p>Buscamos transmitir diferentes sensaciones y mejorar la calidad de vida
-                                        <br>a traves de diseños esteticos y funcionales que crean experiencias unicas.
-                                    </p>
+            <!-- The opacity on the image is made with "data-overlay-dark="number". You can change it using the numbers 0-9.  -->
+            @foreach ($homepageImages as $homepageImage)
+                <div class="text-left item bg-img" data-overlay-dark="3" data-background="{{ $homepageImage != null ? asset($homepageImage->image->location) : asset('img/1920x1128.jpg') }}">
+                    <div class="v-bottom caption">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="o-hidden">
+                                        <h1>{{ $homepageImage->title }}</h1>
+                                        <hr>
+                                        <p>{{ $homepageImage->description }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="text-left item bg-img" data-overlay-dark="4" data-background="img/slider_1.jpeg">
-                <div class="v-bottom caption">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <div class="o-hidden">
-                                    <h1>Modelado</h1>
-                                    <hr>
-                                    <p>Creamos e idealizamos visualizaciones realistas de los propotipos
-                                        <br>con personalización, expresión y atención al detalle.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-left item bg-img" data-overlay-dark="4" data-background="img/slider_paisajismo.jpg">
-                <div class="v-bottom caption">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <div class="o-hidden">
-                                    <h1>Paisajismo</h1>
-                                    <hr>
-                                    <p>Diseñamos, materializamos y conservamos distintos tipos
-                                        <br>de espacios exteriores y espacios verdes.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-left item bg-img" data-overlay-dark="3" data-background="img/slider_arte2.jpg">
-                <div class="v-bottom caption">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <div class="o-hidden">
-                                    <h1>Arte</h1>
-                                    <hr>
-                                    <p>Composiciónes geométricas, elegantes y monocromáticas
-                                        <br>que aportan calma, elegancia y contemporaneidad.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </header>
     <!-- Content -->

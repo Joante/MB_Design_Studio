@@ -8,6 +8,7 @@ use App\Models\Acounts;
 use App\Models\ArtColection;
 use App\Models\ArtExhibition;
 use App\Models\Contact;
+use App\Models\HomepageImage;
 use App\Models\Image;
 use App\Models\Post;
 use App\Models\Project;
@@ -24,12 +25,13 @@ class InfoController extends Controller
         $posts = Post::where('principal_page', '=', true)->limit(4)->get();
         $exhibitions = ArtExhibition::where('principal_page', '=', true)->limit(2)->get();
         $colections = ArtColection::where('principal_page', '=', true)->limit(4)->get();
+        $homepageImages = HomepageImage::orderBy('hierarchy')->get();
 
         foreach ($posts as $post) {
             $post['created'] = $post['created'] = $post->created_at->format('d/m/Y');
         }
 
-        return view('Web/index', ['services' => $services, 'projects' => $projects, 'posts' => $posts, 'exhibitions' => $exhibitions, 'colections' => $colections]);
+        return view('Web/index', ['homepageImages' => $homepageImages, 'services' => $services, 'projects' => $projects, 'posts' => $posts, 'exhibitions' => $exhibitions, 'colections' => $colections]);
     }
 
     public function about() {

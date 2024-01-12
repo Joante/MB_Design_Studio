@@ -2,6 +2,7 @@
 
 return [
   "Servicios" => "Servicios",
+  "Imagenes de Homepage" => "Imagenes de Homepage",
   "Categorias" => "Categorias",
   "Categoria" => "Categoria",
   "Arte" => "Arte",

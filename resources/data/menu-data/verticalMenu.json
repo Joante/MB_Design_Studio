@@ -4,6 +4,25 @@
             "slug": ""
         },
         {
+            "url": "homepage_images/list",
+            "name": "Imagenes de Homepage",
+            "icon": "image",
+            "slug": "homepage_images",
+            "submenu": [{
+                    "url": "homepage_images/list",
+                    "name": "Listar",
+                    "icon": "list",
+                    "slug": "homepage_images_index_admin"
+                },
+                {
+                    "url": "homepage_images/create",
+                    "name": "Crear",
+                    "icon": "plus",
+                    "slug": "homepage_images_create"
+                }
+            ]
+        },
+        {
             "url": "services/list",
             "name": "Servicios",
             "icon": "tool",
