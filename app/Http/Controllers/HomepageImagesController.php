@@ -84,7 +84,7 @@ class HomepageImagesController extends Controller
             $imageNameSave = str_replace(' ', '_', pathinfo($request->file('image')->getClientOriginalName(),PATHINFO_FILENAME));
             $imageName = $homepageImage->id.'_'.$imageNameSave.'_'.time().'.'.$extension;
             
-            $imagePath = 'img/locations/'.$imageName;
+            $imagePath = 'img/homepage_images/'.$imageName;
             $newImage = [
                 'title' => $imageTitle,
                 'location' => $imagePath
@@ -97,8 +97,8 @@ class HomepageImagesController extends Controller
                     ->withErrors($error)
                     ->withInput();
             }
-            if (!is_dir(public_path('/').'img/locations/')){
-                mkdir(public_path('/').'img/locations/', 0770, true);
+            if (!is_dir(public_path('/').'img/homepage_images/')){
+                mkdir(public_path('/').'img/homepage_images/', 0770, true);
             } 
             Image::make($request->file('image'))->save(public_path('/').$imagePath);
             
