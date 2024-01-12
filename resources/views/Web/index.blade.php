@@ -56,7 +56,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="section-title">Nuestros <span>Proyectos</span></h2>
+                        <h2 class="section-title">Proyectos</h2>
                     </div>
                 </div>
                 <div class="row">
@@ -87,7 +87,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="section-title">Nuestros <span>Servicios</span></h2>
+                        <h2 class="section-title">Servicios</h2>
                     </div>
                 </div>
                 <div class="row">
@@ -117,7 +117,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="section-title">Nuestra <span>Arte</span></h2>
+                        <h2 class="section-title">Arte</h2>
                     </div>
                 </div>
                 <div class="row">
@@ -214,7 +214,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="section-title">Nuestros <span>Escritos</span></h2>
+                        <h2 class="section-title">Blog</h2>
                     </div>
                 </div>
                 <div class="row">
