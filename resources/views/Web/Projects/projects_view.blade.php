@@ -28,6 +28,7 @@
                     @if ($project->location != null)
                         <p><b>Locación : </b> {{ $project->location }}</p>
                     @endif
+                    <p><b>Superficie : </b> {{ $project->area }} m2</p>
                 </div>
             </div>
             <div class="row mt-30">

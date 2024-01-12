@@ -39,7 +39,8 @@ $color-box-size: 2.714rem;
 .app-user-view {
   .user-info-wrapper {
     .user-info-title {
-      width: 11.785rem;
+      width: auto;
+      padding-right: 5px;
     }
   }
   .user-total-numbers {

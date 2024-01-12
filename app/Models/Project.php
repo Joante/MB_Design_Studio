@@ -17,7 +17,7 @@ class Project extends Model
      * 
      * @var array
      */
-    public $sortable = ['id', 'title', 'service_id', 'client'];
+    public $sortable = ['id', 'title', 'service_id', 'client', 'area'];
    
     /**
      * The attributes that should be cast.
@@ -33,7 +33,7 @@ class Project extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'description', 'client', 'location', 'service_id', 'principal_page'];
+    protected $fillable = ['title', 'description', 'client', 'location', 'service_id', 'principal_page', 'area'];
 
     /**
      * Get the full decode description.

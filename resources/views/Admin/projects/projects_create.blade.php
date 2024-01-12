@@ -68,6 +68,15 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="area-column">Superficie *</label>
+                            <input type="number" id="area-column" required class="form-control @error('area') is-invalid @enderror" min="1" name="area" placeholder="Superficie" value="{{ old('area') }}">
+                            @error('area')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="col-md-12">
                         <div id="snow-wrapper">
                             <div id="snow-container">
