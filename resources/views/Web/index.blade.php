@@ -10,7 +10,7 @@
                     <div class="v-bottom caption">
                         <div class="container">
                             <div class="row">
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <div class="o-hidden">
                                         <h1>{{ $homepageImage->title }}</h1>
                                         <hr>
