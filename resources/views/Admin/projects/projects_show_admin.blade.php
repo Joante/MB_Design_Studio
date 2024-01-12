@@ -67,6 +67,12 @@
                   </div>
                   <p class="card-text mb-0">{{ $project->location }}</p>
                 </div>
+                <div class="d-flex flex-wrap my-50">
+                  <div class="user-info-title">
+                    <span class="card-text user-info-title font-weight-bold mb-0">Superficie</span>
+                  </div>
+                  <p class="card-text mb-0">{{ $project->area }} m2</p>
+                </div>
               </div>
             </div>
             <div class="col-md-12 d-flex justify-content-center">

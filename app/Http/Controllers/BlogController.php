@@ -68,7 +68,7 @@ class BlogController extends Controller
             'category_id' => 'required|numeric',
             'text' => 'required',
             'principal_page' => ['sometimes',new PrincipalPage('blog', 4)],
-            'image' => 'required|image|max:5042'
+            'image' => 'required|image|max:10240'
         ]);
         if ($validator->fails()) {
             return redirect('blog/create')
@@ -215,7 +215,7 @@ class BlogController extends Controller
             'category_id' => 'required|numeric',
             'text' => 'required',
             'principal_page' => ['sometimes',new PrincipalPage('blog', 4, $id)],
-            'image' => ['sometimes','image', 'max:5042']
+            'image' => ['sometimes','image', 'max:10240']
         ]);
         if ($validator->fails()) {
             return redirect('blog/edit/'.$id)

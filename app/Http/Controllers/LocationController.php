@@ -47,7 +47,7 @@ class LocationController extends Controller
             'url' => 'required|url',
             'phone' => 'nullable|numeric',
             'adress' => 'required|string|max:255',
-            'image' => 'nullable|image|max:5042'
+            'image' => 'nullable|image|max:10240'
         ]);
         
         try{
@@ -168,7 +168,7 @@ class LocationController extends Controller
             'url' => 'required|url',
             'phone' => 'nullable|numeric',
             'adress' => 'required|string|max:255',
-            'image' => 'nullable|image|max:5042'
+            'image' => 'nullable|image|max:10240'
         ]);
 
         if($request->has('image'))
@@ -180,7 +180,7 @@ class LocationController extends Controller
                 
                 if(!ModelsImage::destroy($location->image->id)) {
                     DB::rollBack();
-                    return json_encode('Error al eliminar la imagene de la base de datos.');
+                    return json_encode('Error al eliminar la imagen de la base de datos.');
                 }
 
                 $extension = pathinfo($request->file('image')->getClientOriginalName(), PATHINFO_EXTENSION);

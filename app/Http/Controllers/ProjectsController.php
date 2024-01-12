@@ -16,7 +16,7 @@ class ProjectsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory| \Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -38,7 +38,7 @@ class ProjectsController extends Controller
     /**
      * Display a listing of the resource for admin use.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory| \Illuminate\Contracts\View\View
      */
     public function index_admin()
     {
@@ -51,7 +51,7 @@ class ProjectsController extends Controller
      * Display a listing of all the entrys for the specific category
      * 
      * @param int $category_id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory| \Illuminate\Contracts\View\View
      */
     public function show_category($category_id) {
         $projects = Project::where('service_id', '=', $category_id)->paginate(6);
@@ -67,7 +67,7 @@ class ProjectsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory| \Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -78,7 +78,7 @@ class ProjectsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response| \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -88,7 +88,8 @@ class ProjectsController extends Controller
             'description' => 'required',
             'location' => 'nullable|string|max:100',
             'service_id' => 'required|numeric',
-            'principal_page' => ['sometimes',new PrincipalPage('projects', 6)]
+            'principal_page' => ['sometimes',new PrincipalPage('projects', 6)],
+            'area' => 'required|numeric|min:1'
         ]);
         if ($validator->fails()) {
             return redirect('projects/create')
@@ -103,7 +104,7 @@ class ProjectsController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory| \Illuminate\Contracts\View\View
      */
     public function show($id)
     {
@@ -120,7 +121,7 @@ class ProjectsController extends Controller
      * Display the specified resource for admin use.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory| \Illuminate\Contracts\View\View
      */
     public function show_admin($id)
     {
@@ -136,7 +137,7 @@ class ProjectsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory| \Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
@@ -152,7 +153,7 @@ class ProjectsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory| \Illuminate\Contracts\View\View | \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -166,7 +167,8 @@ class ProjectsController extends Controller
             'description' => 'required',
             'location' => 'nullable|string|max:100',
             'service_id' => 'required|numeric',
-            'principal_page' => ['sometimes',new PrincipalPage('projects', 6, $id)]
+            'principal_page' => ['sometimes',new PrincipalPage('projects', 6, $id)],
+            'area' => 'required|numeric|min:1'
         ]);
         if ($validator->fails()) {
             return redirect('projects/edit/'.$id)
@@ -179,6 +181,7 @@ class ProjectsController extends Controller
         $project->location = $request->get('location');
         $project->service_id = $request->get('service_id');
         $project->principal_page = $request->get('principal_page');
+        $project->area = $request->get('area');
         $project->save();
 
         return redirect()->route('projects_show_admin', [$id])->with('success','hola');
@@ -188,7 +191,7 @@ class ProjectsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  Request  $request
-     * @return \Illuminate\Http\Response
+     * @return bool|string
      */
     public function destroy(Request $request)
     {
