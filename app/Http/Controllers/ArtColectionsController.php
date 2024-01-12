@@ -59,7 +59,7 @@ class ArtColectionsController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:500',
-            'image' => 'required|image|max:5042',
+            'image' => 'required|image|max:10240',
             'principal_page' => ['sometimes',new PrincipalPage('colections', 4)]
         ]);
         try{
@@ -188,7 +188,7 @@ class ArtColectionsController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:500',
-            'image' => 'nullable|image|max:5042',
+            'image' => 'nullable|image|max:10240',
             'principal_page' => ['sometimes',new PrincipalPage('colections', 4, $id)]
         ]);
 
