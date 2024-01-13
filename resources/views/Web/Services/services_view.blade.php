@@ -62,7 +62,7 @@
                             <div class="sidebar-widget services">
                                 <div class="widget-inner">
                                     <div class="sidebar-title">
-                                        <h4>Proyectos de {{ $service->title }}</h4>
+                                        <h4>Proyectos</h4>
                                     </div>
                                     <ul>
                                         @foreach ($projects as $project)

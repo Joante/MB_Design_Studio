@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 animate-box" data-animate-effect="fadeInUp">
-                    <h2 class="section-title">Nuestros <span>Servicios</span></h2>
+                    <h2 class="section-title">Servicios</h2>
                 </div>
             </div>
             <div class="row">
