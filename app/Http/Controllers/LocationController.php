@@ -176,7 +176,7 @@ class LocationController extends Controller
             try{
                 DB::beginTransaction();
 
-                $location = $location->image->location;
+                $imageLocation = $location->image->location;
                 
                 if(!ModelsImage::destroy($location->image->id)) {
                     DB::rollBack();
@@ -215,7 +215,7 @@ class LocationController extends Controller
                             ->withInput();
                 }
 
-                if(!Storage::delete($location)) {
+                if(!Storage::delete($imageLocation)) {
                     DB::rollBack();
                     $error = ['error' => 'Error al eliminar la imagen'];
                     return redirect('art/exhibition/locations/edit/'.$id)
@@ -227,7 +227,7 @@ class LocationController extends Controller
             } catch(Exception $e) {
                 DB::rollBack();
                 $error = ['error' => $e->getMessage()];
-                return redirect('art/exhibition/locations/edit'.$id)
+                return redirect('art/exhibition/locations/edit/'.$id)
                             ->withErrors($error)
                             ->withInput();
             }
@@ -239,7 +239,7 @@ class LocationController extends Controller
         if(!$location->save())
         {
             $error = ['error' => 'Error al actualizar la ubicacion'];
-                return redirect('art/exhibition/locations/edit'.$id)
+                return redirect('art/exhibition/locations/edit/'.$id)
                             ->withErrors($error)
                             ->withInput();
         }

@@ -180,7 +180,7 @@ class HomepageImagesController extends Controller
             try{
                 DB::beginTransaction();
 
-                $homepageImage = $homepageImage->image->location;
+                $imageLocation = $homepageImage->image->location;
                 
                 if(!ModelsImage::destroy($homepageImage->image->id)) {
                     DB::rollBack();
@@ -219,7 +219,7 @@ class HomepageImagesController extends Controller
                             ->withInput();
                 }
 
-                if(!Storage::delete($homepageImage)) {
+                if(!Storage::delete($imageLocation)) {
                     DB::rollBack();
                     $error = ['error' => 'Error al eliminar la imagen'];
                     return redirect('homepage_images/edit/'.$id)
