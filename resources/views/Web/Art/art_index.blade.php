@@ -13,7 +13,7 @@
         </div>
         <div class="row mb-30">
             <div class="col-md-12 animate-box" data-animate-effect="fadeInUp">
-                <h6 class="section-title2" style="text-align: center;font-size: 25px;">Nuestras colecciónes de arte</h6>
+                <h6 class="section-title2" style="text-align: center;font-size: 25px;">Colecciónes de arte</h6>
             </div>
         </div>
         <section class="colections">
@@ -76,7 +76,7 @@
             <div class="container">
                 <div class="row mb-30">
                     <div class="col-md-12 animate-box " data-animate-effect="fadeInUp ">
-                        <h6 class="section-title2" style="text-align: center;font-size: 25px;">Nuestras exhibiciones</h6>
+                        <h6 class="section-title2" style="text-align: center;font-size: 25px;">Exhibiciones</h6>
                     </div>
                 </div>
                 @php
