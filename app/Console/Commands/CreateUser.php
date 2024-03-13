@@ -68,7 +68,6 @@ class CreateUser extends Command
         $user->password = Hash::make($data['password']);
         $user->username = $data['username'];
         $user->name = $data['name'];
-        $user->description = 'Insert description';
 
         if($user->save()){
             Acounts::create(['type' => 'personal']);

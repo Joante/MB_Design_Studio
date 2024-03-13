@@ -4,6 +4,7 @@
 
 @section('vendor-style')
   <!-- vendor css files -->
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/sweetalert2.min.css')) }}">
 @endsection
 @section('page-style')
   <!-- Page css files -->
@@ -22,6 +23,12 @@
           <a class="nav-link @if(!$errors->any() || $errors->has('image') || $errors->has('username') || $errors->has('name')) active @endif" id="account-pill-general" data-toggle="pill" href="#account-vertical-general" aria-expanded="true">
             <i data-feather="user" class="font-medium-3 mr-1"></i>
             <span class="font-weight-bold">General</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link @if($errors->any() || $errors->has('description') || $errors->has('type')) active @endif" id="account-pill-information" data-toggle="pill" href="#account-vertical-information" aria-expanded="false">
+            <i data-feather="info" class="font-medium-3 mr-1"></i>
+            <span class="font-weight-bold">Informacion</span>
           </a>
         </li>
         <!-- change password -->
@@ -136,6 +143,157 @@
             
             <!--/ general tab -->
 
+            <div class="tab-pane @if($errors->has('about') || $errors->has('description') || $errors->has('type')) active @else fade @endif" id="account-vertical-information" role="tabpanel" aria-labelledby="account-pill-information" aria-expanded="false">
+              <!-- form -->
+              <form action="{{ route('update_about') }}" method="POST">
+                @csrf 
+                <div class="row justify-content-center">
+                  <div class="col-12 justify-content-center" style="display: flex;">
+                    <h2>About</h2>
+                  </div>
+                  <div class="col-12 col-sm-8">
+                    <div class="form-group">
+                        <label for="about">About</label>
+                        <textarea class="form-control @error('about') is-invalid @enderror" id="account-about" name="about" placeholder="About">{{ old('about', $about) }}</textarea>
+                        @error('about')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 justify-content-center" style="display: flex;">
+                  <button type="submit" class="btn btn-primary mr-1 mt-1">Guardar</button>
+                  <button type="reset" class="btn btn-outline-secondary mt-1">Cancelar</button>
+                </div>
+              </form>
+                <br>
+                <hr>
+                <br>
+                <div class="row justify-content-center">
+                  <div class="col-12 justify-content-center" style="display: flex;">
+                    <h2>Titulos</h2>
+                  </div>
+                  <div class="col-12 col-sm-8">
+                    <button class="btn add-new btn-primary mt-50" style="float:right;margin-bottom:15px;" type="button" id="createDegreeBtn"><span>Agregar Titulo</span></button>
+                    <table class="table">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th>Id</th>
+                          <th>Descripcion</th>
+                          <th>Tipo</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          @foreach ($degrees as $degree)
+                            <tr>
+                                <td>
+                                    <span class="font-weight-bold">{{$degree->id}}</span>
+                                </td>
+                                <td>{{$degree->description}}</td>
+                                <td>{{$degree->type == 'course' ? 'Curso' : 'Carrera'}}</td>
+                                <td>
+                                  <button class="btn btn-icon btn-outline-warning editDegreeBtn" data-id="{{ $degree->id }}" data-old-description="{{ old('description', $degree['description']) }}" data-old-type="{{ old('type', $degree['type']) }}"><i data-feather='edit-3'></i></button>
+                                  <meta name="csrf-token" content="{{ csrf_token() }}">
+                                  <button class="btn btn-icon btn-outline-danger" id="{{ $degree->id }}">
+                                    <i data-feather='delete'></i>
+                                  </button>
+                              </td>
+                            </tr>      
+                          @endforeach    
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+
+                <!-- edit degree modal -->
+                <div class="modal fade" id="editDegreeModal" tabindex="-1" style="display: none;" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel1">Editar Titulo</h5>
+                        <button type="button" class="btn editClose" aria-label="Close"><i data-feather='x'></i></button>
+                      </div>
+                      <div class="modal-body">
+                        <form method="POST" id="editDegreeForm">
+                          @csrf
+                          <div class="row">
+                            <div class="col mb-3">
+                              <div class="form-group">
+                                <label for="editDescription" class="form-label">Descripcion</label>
+                                <textarea id="editDescription" class="form-control @error('description') is-invalid @enderror" name="description" placeholder="Descripcion" required></textarea>
+                                  @error('description')
+                                      <div class="alert alert-danger">{{ $message }}</div>
+                                  @enderror
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col mb-0">
+                              <div class="form-group">
+                                <label for="editType">Tipo</label>
+                                <select class="custom-select" id="editType" name="type" required>
+                                    <option value="course">Curso</option>
+                                    <option value="bachelor">Carrera</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-label-secondary waves-effect editClose" data-bs-dismiss="modal" fdprocessedid="gnd0jv">Cerrar</button>
+                        <button type="submit" class="btn btn-primary waves-effect waves-light" fdprocessedid="jhss92">Guardar</button>
+                      </div>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- create degree modal -->
+                <div class="modal fade" id="createDegreeModal" tabindex="-1" style="display: none;" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel1">Crear Titulo</h5>
+                        <button type="button" class="btn createClose" aria-label="Close"><i data-feather='x'></i></button>
+                      </div>
+                      <div class="modal-body">
+                        <form action="{{ route('store_degree') }}" method="POST">
+                          @csrf
+                          <div class="row">
+                            <div class="col mb-3">
+                              <div class="form-group">
+                                <label for="description" class="form-label">Descripcion</label>
+                                <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" placeholder="Descripcion" required></textarea>
+                                  @error('description')
+                                      <div class="alert alert-danger">{{ $message }}</div>
+                                  @enderror
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col mb-0">
+                              <div class="form-group">
+                                <label for="type">Tipo</label>
+                                <select class="custom-select" id="type" name="type" required>
+                                    <option value="course" selected>Curso</option>
+                                    <option value="bachelor">Carrera</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-label-secondary waves-effect createClose" data-bs-dismiss="modal" fdprocessedid="gnd0jv">Cerrar</button>
+                        <button type="submit" class="btn btn-primary waves-effect waves-light" fdprocessedid="jhss92">Guardar</button>
+                      </div>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+              <!--/ form -->
+            </div>
             <!-- change password -->
             <div class="tab-pane @if($errors->has('actual_password') || $errors->has('password')) active @else fade @endif" id="account-vertical-password" role="tabpanel" aria-labelledby="account-pill-password" aria-expanded="false">
               <!-- form -->
@@ -201,7 +359,7 @@
             <!--/ change password -->
 
             <!-- social -->
-            <div class="tab-pane @if ($errors->any()) @if(!$errors->has('actual_password') || !$errors->has('password') || !$errors->has('image') || !$errors->has('username') || !$errors->has('name')) active @else fade @endif @else fade @endif" id="account-vertical-social" role="tabpanel" aria-labelledby="account-pill-social" aria-expanded="false">
+            <div class="tab-pane @if ($errors->any()) @if(!$errors->has('actual_password') || !$errors->has('password') || !$errors->has('image') || !$errors->has('username') || !$errors->has('name') || !$errors->has('description') || !$errors->has('type')) active @else fade @endif @else fade @endif" id="account-vertical-social" role="tabpanel" aria-labelledby="account-pill-social" aria-expanded="false">
                 <div class="row">
                   <!-- social header -->
                   <div class="col-12">
@@ -520,6 +678,7 @@
   <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/extensions/dropzone.min.js')) }}"></script>
   <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
+  <script src="{{ asset(mix('vendors/js/extensions/sweetalert2.all.min.js')) }}"></script>
 @endsection
 @section('page-script')
   <!-- Page js files -->
@@ -593,4 +752,65 @@
         divSocial.setAttribute('style', 'display:block;');
       });
   </script>
+
+<script src="{{ asset(mix('js/sweerAlertDeleteConfirmation.js')) }}"></script>
+<script>
+  var btn = document.getElementsByClassName('btn-outline-danger');
+  for (let i = 0; i < btn.length; i++) {
+    btn[i].addEventListener('click', deleteConfirmation.bind(null,btn[i].id, 'admin/settings'));
+  }
+</script>
+
+<script>
+  const openEditModalBtns = document.querySelectorAll('.editDegreeBtn');
+  const editModal = document.getElementById('editDegreeModal');
+  const editCloseModalBtns = document.querySelectorAll('.editClose');
+  const editForm = document.getElementById('editDegreeForm');
+  const degreeDescriptionEditInput = document.getElementById('editDescription');
+  const degreeTypeEditInput = document.getElementById('editType');
+  const openCreateModalBtn = document.getElementById('createDegreeBtn');
+  const createModal = document.getElementById('createDegreeModal');
+  const createCloseModalBtns = document.querySelectorAll('.createClose');
+  const CreateForm = document.getElementById('createDegreeForm');
+  const degreeDescriptionCreateInput = document.getElementById('descriptionCreate');
+  const degreeTypeCreateInput = document.getElementById('typeCreate');
+
+  let degreeId;
+
+  openEditModalBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      degreeId = parseInt(this.getAttribute('data-id'));
+      editModal.style.display = 'block';
+      editModal.classList.add('show');
+      loadDegreeValues(degreeId, this.getAttribute('data-old-description'), this.getAttribute('data-old-type'));
+    });
+  });
+
+  openCreateModalBtn.addEventListener('click', function() {
+    createModal.style.display = 'block';
+    createModal.classList.add('show');
+  });
+
+  createCloseModalBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      createModal.style.display = 'none';
+      createModal.classList.remove('show');
+    });
+  });
+
+  editCloseModalBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      editModal.style.display = 'none';
+      editModal.classList.remove('show');
+    });
+  });
+  
+  function loadDegreeValues(degreeId, description, type) {
+    degreeDescriptionEditInput.value = description;
+    degreeTypeEditInput.value = type;
+    let actionUrl = "{{ route('update_degree', ['degreeId']) }}";
+    actionUrl = actionUrl.replace('degreeId', degreeId);
+    editForm.setAttribute('action', actionUrl);
+  }
+</script>
 @endsection
