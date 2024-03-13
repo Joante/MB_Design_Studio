@@ -8,8 +8,10 @@ use App\Models\Acounts;
 use App\Models\ArtColection;
 use App\Models\ArtExhibition;
 use App\Models\Contact;
+use App\Models\Degrees;
 use App\Models\HomepageImage;
 use App\Models\Image;
+use App\Models\Information;
 use App\Models\Post;
 use App\Models\Project;
 use App\Models\Service;
@@ -41,7 +43,27 @@ class InfoController extends Controller
         }
         $description = User::where('id', '=', 1)->value('description');
         $perAcounts = Acounts::where('type', '=', 'personal')->first();
-        return view('Web/Info/about', ['location' => $location, 'perAcounts' => $perAcounts, 'description' => $description]);
+        $about = Information::first();
+        $degrees = Degrees::all();
+        return view('Web/Info/about', ['location' => $location, 'perAcounts' => $perAcounts, 'description' => $description, 'about' => $about->about, 'degrees' => $degrees]);
+    }
+
+    public function update_about(Request $request){
+        $request->validate([
+            'about' => 'required|string',
+        ]);
+        $about = Information::first();
+
+        $about->about = $request->get('about');
+
+        if(!$about->save()){
+            $error = ['error' => 'Problemas al actualizar el texto'];
+            return redirect('admin/settings')
+                ->withErrors($error)
+                ->withInput();
+        }
+
+        return redirect()->route('admin_edit'); 
     }
 
     public function contact() {

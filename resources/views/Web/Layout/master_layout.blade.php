@@ -54,7 +54,7 @@
                             @endforeach
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link {{ (request()->is('contact')) ? 'active' : '' }}" href="{{ route('contact') }}">Contacto</a></li>
+                    {{-- <li class="nav-item"><a class="nav-link {{ (request()->is('contact')) ? 'active' : '' }}" href="{{ route('contact') }}">Contacto</a></li> --}}
                 </ul>
             </div>
         </div>
