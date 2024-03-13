@@ -98,6 +98,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::post('/avatar/update', [AdminController::class, 'avatar_update'])->name('avatar_update');
     Route::post('/change_password', [AdminController::class, 'change_password'])->name('change_password');
     Route::post('/update_socials', [AdminController::class, 'update_socials'])->name('update_socials');
+    Route::post('/update_about', [InfoController::class, 'update_about'])->name('update_about');
+    Route::post('/update_degree/{id}', [AdminController::class, 'update_degree'])->name('update_degree');
+    Route::post('/store_degree', [AdminController::class, 'store_degree'])->name('store_degree');
+    Route::post('/degrees/destroy', [AdminController::class, 'destroy_degree'])->name('destroy_degree');
+
 });
 
 //Homepage Images routes
