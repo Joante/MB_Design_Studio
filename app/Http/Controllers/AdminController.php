@@ -28,7 +28,8 @@ class AdminController extends Controller
         $mbAcounts = Acounts::where('type', '=', 'mb')->first();
         $about = Information::first();;
         $degrees = Degrees::all();
-        return view('Admin/account/settings', ['perAcounts' => $perAcounts, 'mbAcounts' => $mbAcounts, 'about' => $about->about, 'degrees' => $degrees]);
+        $aboutText = $about->about != null ? $about->about : '';
+        return view('Admin/account/settings', ['perAcounts' => $perAcounts, 'mbAcounts' => $mbAcounts, 'about' => $aboutText, 'degrees' => $degrees]);
     }
 
     public function update(Request $request) {
