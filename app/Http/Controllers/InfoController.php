@@ -55,13 +55,16 @@ class InfoController extends Controller
         ]);
         $about = Information::first();
 
-        $about->about = $request->get('about');
-
-        if(!$about->save()){
-            $error = ['error' => 'Problemas al actualizar el texto'];
-            return redirect('admin/settings')
-                ->withErrors($error)
-                ->withInput();
+        if(!$about){
+            $about = Information::create($request->get('about'));
+        }else {
+            $about->about = $request->get('about');
+            if(!$about->save()){
+                $error = ['error' => 'Problemas al actualizar el texto'];
+                return redirect('admin/settings')
+                    ->withErrors($error)
+                    ->withInput();
+            }
         }
 
         return redirect()->route('admin_edit'); 
