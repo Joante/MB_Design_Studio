@@ -56,7 +56,7 @@ class InfoController extends Controller
         $about = Information::first();
 
         if(!$about){
-            $about = Information::create($request->get('about'));
+            $about = Information::create([$request->get('about')]);
         }else {
             $about->about = $request->get('about');
             if(!$about->save()){
