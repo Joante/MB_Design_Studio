@@ -45,7 +45,8 @@ class InfoController extends Controller
         $perAcounts = Acounts::where('type', '=', 'personal')->first();
         $about = Information::first();
         $degrees = Degrees::all();
-        return view('Web/Info/about', ['location' => $location, 'perAcounts' => $perAcounts, 'description' => $description, 'about' => $about->about, 'degrees' => $degrees]);
+        $aboutText = $about->about != null ? $about->about : '';
+        return view('Web/Info/about', ['location' => $location, 'perAcounts' => $perAcounts, 'description' => $description, 'about' => $aboutText, 'degrees' => $degrees]);
     }
 
     public function update_about(Request $request){
