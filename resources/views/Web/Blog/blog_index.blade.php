@@ -19,7 +19,13 @@
                 @foreach ($posts as $post)
                     <div class="col-md-6">
                         <div class="item">
-                            <div class="position-re o-hidden"> <img src="{{ asset($post->images[0]->location) }}" alt="$post->images[0]->title"> </div>
+                            <div class="position-re o-hidden"> 
+                                @if (count($post->images) > 0)
+                                    <img src="{{ asset($post->images[0]->location) }}" alt="$post->images[0]->title">
+                                @else
+                                    <img src="{{ asset('img/600x600.jpg') }}" alt="No Image">
+                                @endif 
+                            </div>
                             <div class="con">
                                 <span class="category">
                                     <a href="{{ route('blog_view_category', $post->category->id) }}">{{ $post->category->title }}</a> - {{ $post->created }}

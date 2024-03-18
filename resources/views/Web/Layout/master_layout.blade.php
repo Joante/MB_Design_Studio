@@ -119,7 +119,7 @@
                                                 <a href="https://www.facebook.com/{{ $mbAcounts->facebook }}" target="_blank"><i class="ti-facebook"></i></a>
                                             @endif
                                             @if($mbAcounts->whats_app != null)
-                                                <a href="https://wa.me/549{{ $mbAcounts->whats_app }}?text=Hola!,%20necesitaria%20asesoramiento%20especializado." target="_blank"><i class="fa fa-whatsapp"></i></a>
+                                                <a href="https://wa.me/{{ $mbAcounts->whats_app }}?text=Hola!,%20necesitaria%20asesoramiento%20especializado." target="_blank"><i class="fa fa-whatsapp"></i></a>
                                             @endif
                                             @if ($mbAcounts->instagram != null)
                                                 <a href="https://www.instagram.com/{{ $mbAcounts->instagram }}" target="_blank"><i class="ti-instagram"></i></a>
@@ -128,7 +128,7 @@
                                                 <a href="https://www.twitter.com/{{ $mbAcounts->twitter }}" target="_blank"><i class="ti-twitter"></i></a>
                                             @endif
                                             @if ($mbAcounts->linkedin !=null)
-                                                <a href="https://www.linkedin.com/{{ $mbAcounts->linkedin }}" target="_blank"><i class="ti-linkedin"></i></a>
+                                                <a href="https://www.linkedin.com/company/{{ $mbAcounts->linkedin }}" target="_blank"><i class="ti-linkedin"></i></a>
                                             @endif
                                             @if ($mbAcounts->pinterest !=null)
                                                 <a href="https://www.pinterest.com/{{ $mbAcounts->pinterest }}" target="_blank"><i class="ti-pinterest"></i></a>

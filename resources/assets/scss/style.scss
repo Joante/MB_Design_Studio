@@ -2414,17 +2414,19 @@ button.mfp-arrow {
 }
 
 .main-footer .abot .social-icon a {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     line-height: 40px;
     text-align: center;
-    font-size: 12px;
+    font-size: 25px;
     border: 1px solid #373737;
     color: #999;
     border-radius: 100%;
     margin-right: 3px;
     transition: all 0.4s;
-}
+    align-items: center;
+    display: inline-grid;
+  }
 
 .main-footer .abot .social-icon a:hover {
     border: 1px solid #838487;

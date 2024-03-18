@@ -28,12 +28,13 @@ class InfoController extends Controller
         $exhibitions = ArtExhibition::where('principal_page', '=', true)->limit(2)->get();
         $colections = ArtColection::where('principal_page', '=', true)->limit(4)->get();
         $homepageImages = HomepageImage::orderBy('hierarchy')->get();
+        $about = Information::first();
 
         foreach ($posts as $post) {
             $post['created'] = $post['created'] = $post->created_at->format('d/m/Y');
         }
 
-        return view('Web/index', ['homepageImages' => $homepageImages, 'services' => $services, 'projects' => $projects, 'posts' => $posts, 'exhibitions' => $exhibitions, 'colections' => $colections]);
+        return view('Web/index', ['homepageImages' => $homepageImages, 'services' => $services, 'projects' => $projects, 'posts' => $posts, 'exhibitions' => $exhibitions, 'colections' => $colections, 'about' => $about]);
     }
 
     public function about() {
