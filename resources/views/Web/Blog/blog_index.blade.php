@@ -20,10 +20,10 @@
                     <div class="col-md-6">
                         <div class="item">
                             <div class="position-re o-hidden"> 
-                                @if (count($post->images) > 0)
+                                @if (is_array($post->images))
                                     <img src="{{ asset($post->images[0]->location) }}" alt="$post->images[0]->title">
                                 @else
-                                    <img src="{{ asset('img/600x600.jpg') }}" alt="No Image">
+                                    <img src="{{ asset($post->images->location) }}" alt="$post->images->title">
                                 @endif 
                             </div>
                             <div class="con">
