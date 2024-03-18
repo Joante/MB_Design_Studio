@@ -198,6 +198,7 @@ class AdminController extends Controller
         $mbAcounts->linkedin = $request->get('mb_linkedin');
         $mbAcounts->pinterest = $request->get('mb_pinterest');
         $mbAcounts->whats_app = $request->get('mb_phone');
+        $mbAcounts->instagram = $request->get('mb_instagram');
 
         if(!$perAcounts->save()) {
             $error = ['personal' => $perAcounts];
