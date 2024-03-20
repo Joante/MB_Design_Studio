@@ -18,6 +18,10 @@
                         <img src="{{ asset($post->images->location) }}" class="mb-30 mt-30" alt="$post->images->title">
                     @endif 
                     <h2 class="section-title2">{{ $post->title }}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
                     <div class="ql-editor" style="padding: 0px; height:auto;">{!! $post->text !!}</div>
                 </div>
             </div>
