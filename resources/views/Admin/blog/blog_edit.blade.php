@@ -67,9 +67,9 @@
                                 <span>Imagen de Portada: </span>
                                 <button class="btn add-new btn-primary" id="edit-image" style="margin-left: auto;order: 2;" type="button"><span>Editar Imagen</span></button></a>
                             </div>
-                            @if($post->images[0] != null)
+                            @if($post->images != null)
                                 <div class="row" style=" margin-top: 20px;">
-                                    <img src="{{ asset($post->images[0]->location) }}" style="height:400px; width:800px;">
+                                    <img src="{{ asset($post->images->location) }}" style="height:400px; width:800px;">
                                 </div>
                             @endif
                         </div>
