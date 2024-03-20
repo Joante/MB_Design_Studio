@@ -40,13 +40,7 @@
                             <li class="dropdown-item {{ (request()->is('art/exhibitions')) ? 'active' : '' }}"><a href="{{ route('exhibition_index') }}">Exhibiciones</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown"><a class="nav-link {{ (request()->is('projects')) ? 'active' : '' }}" href="{{ route('projects_index') }}">Proyectos <i class="ti-angle-down"></i></a>
-                        <ul class="dropdown-menu last">
-                            @foreach ($services as $service)
-                                <li class="dropdown-item {{ (request()->is('projects/'.$service->id)) ? 'active' : '' }}"><a href="{{ route('project_view_category', $service->id) }}">{{ $service->title }}</a></li>
-                            @endforeach
-                        </ul>
-                    </li>
+                    <li class="nav-item dropdown"><a class="nav-link {{ (request()->is('projects')) ? 'active' : '' }}" href="{{ route('project_view_category',1) }}">Proyectos</a></li>
                     <li class="nav-item dropdown"><a class="nav-link {{ (request()->is('blog')) ? 'active' : '' }}" href="{{ route('blog_index') }}">Blog <i class="ti-angle-down"></i></a>
                         <ul class="dropdown-menu last">
                             @foreach ($blog_categories as $blog_category)
@@ -147,7 +141,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="text-left">
-                                <p>© 2021 MB Design Studio. All right reserved.</p>
+                                <p>© 2024 MB Design Studio. All right reserved.</p>
                             </div>
                         </div>
                         <div class="col-md-8 float-right">

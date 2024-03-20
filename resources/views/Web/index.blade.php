@@ -42,8 +42,8 @@
                     </div>
                     <div class="col-md-6 animate-box" data-animate-effect="fadeInUp">
                         <div class="about-img">
-                            <div class="img"> <img src="img/1100x750.jpg" class="img-fluid" alt=""> </div>
-                            <div class="about-img-2 about-buro">Video Promocional</div>
+                            <div class="img"> <img src="/img/logo_2.png" class="img-fluid" alt=""> </div>
+                            <div class="about-img-2 about-buro">MB Design Studio</div>
                         </div>
                     </div>
                 </div>
@@ -220,7 +220,13 @@
                         <div class="owl-carousel owl-theme">
                             @foreach ($posts as $post)    
                                 <div class="item">
-                                    <div class="position-re o-hidden"> <img src="img/1100x750.jpg" alt=""> </div>
+                                    <div class="position-re o-hidden"> 
+                                        @if (is_array($post->images))
+                                            <img src="{{ asset($post->images[0]->location) }}" alt="$post->images[0]->title">
+                                        @else
+                                            <img src="{{ asset($post->images->location) }}" alt="$post->images->title">
+                                        @endif 
+                                    </div>
                                     <div class="con">
                                         <span class="category">
                                             <a href="{{ route('blog_view_category', $post->category->id) }}">{{ $post->category->title }} </a> -  {{ $post->created }}

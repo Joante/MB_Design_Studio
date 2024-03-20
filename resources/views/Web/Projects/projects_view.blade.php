@@ -21,7 +21,7 @@
                     <div id="editor" class="ql-editor" style="padding: 0px; height:auto;">{!! $project->description !!}</div>
                 </div>
                 <div class="col-md-4">
-                    <p><b>Nombre de Projecto : </b> {{ $project->title }}</p>
+                    <p><b>Nombre de Proyecto : </b> {{ $project->title }}</p>
                     @if ($project->client != null)
                         <p><b>Cliente : </b> {{ $project->client }}</p>    
                     @endif
@@ -53,7 +53,7 @@
                         <div class="col-md-4 d-flex justify-content-start">
                             @if ($previous != null)
                                 <div class="projects-prev-next-left">
-                                    <a href="{{ route('projects_view', $previous) }}"> <i class="ti-arrow-left"></i>Anterior Projecto</a>
+                                    <a href="{{ route('projects_view', $previous) }}"> <i class="ti-arrow-left"></i>Anterior Proyecto</a>
                                 </div>    
                             @endif
                         </div>
@@ -63,7 +63,7 @@
                         <div class="col-md-4 d-flex justify-content-end">
                             @if ($next != null)
                                 <div class="projects-prev-next-right"> 
-                                    <a href="{{ route('projects_view', $next) }}">Siguiente Projecto <i class="ti-arrow-right"></i></a> 
+                                    <a href="{{ route('projects_view', $next) }}">Siguiente Proyecto <i class="ti-arrow-right"></i></a> 
                                 </div>
                             @endif
                         </div>
