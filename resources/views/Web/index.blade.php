@@ -40,7 +40,7 @@
                         <h2 class="section-title">About <span>MB</span></h2>
                         <p>{{ $about->about }}</p>
                     </div>
-                    <div class="col-md-6 animate-box" data-animate-effect="fadeInUp">
+                    <div class="col-md-5 animate-box" data-animate-effect="fadeInUp">
                         <div class="about-img">
                             <div class="img"> <img src="/img/logo_2.png" class="img-fluid" alt=""> </div>
                             <div class="about-img-2 about-buro">MB Design Studio</div>
