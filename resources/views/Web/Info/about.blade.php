@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4" style="margin-left: 6%;">
                     <div class="item">
                         <div class="img"> <img src="{{ asset($location) }}" alt=""> </div>
                         <div class="info">
@@ -59,14 +59,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 ml-auto mr-3">
-                    <h6 class="section-title2"><span>Estudios</span></h6>
-                    <ul class="list-unstyled pricing-card-list">
-                        @foreach ($degrees as $degree)
-                            <li class="mt-10"><i class="@if($degree->type == 'course') ti-medall @else fas fa-university @endif"></i>{{ $degree->description }}</li>
-                        @endforeach
-                    </ul>
                 </div>
             </div>
         </div>
