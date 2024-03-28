@@ -58,9 +58,17 @@ class AppServiceProvider extends ServiceProvider
             }
             if(Schema::hasTable('acounts')){
                 $mbAcounts = Acounts::where('type', '=', 'mb')->first();
-                if($mbAcounts != null && $mbAcounts->phone != null) {
-                    $phone_array = str_split($mbAcounts->whats_app,2);
-                    $phone_formatted = $phone_array[0].'-'.$phone_array[1].$phone_array[2].'-'.$phone_array[3].$phone_array[4];
+                if($mbAcounts != null && $mbAcounts->whats_app != null) {
+                    $countryCode = substr($mbAcounts->whats_app, 0,2);
+                    $phone = substr_replace($mbAcounts->whats_app,'',0,2);
+                    if($countryCode == 54 ){
+                        $phone_array = str_split($phone,2);
+                        $phone_formatted = '+'. $countryCode.' '.$phone_array[0].'-'.$phone_array[1].$phone_array[2].'-'.$phone_array[3].$phone_array[4];
+                    }else if($countryCode == 34){
+                        $phone_array = str_split($phone,3);
+                        $phone_formatted = '+'. $countryCode.' '.$phone_array[0].' '.$phone_array[1].' '.$phone_array[2];
+                        
+                    }
                     $mbAcounts['phone_formatted'] = $phone_formatted;
                 }
             }
