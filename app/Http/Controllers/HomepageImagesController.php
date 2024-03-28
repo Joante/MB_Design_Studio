@@ -55,7 +55,7 @@ class HomepageImagesController extends Controller
 
             $hierarchy = $request->get('hierarchy');
             if($hierarchy == null){
-                $hierarchy = HomepageImage::count();
+                $hierarchy = HomepageImage::count() + 1;
                 if($hierarchy == 0){
                     $hierarchy = 1;
                 }
@@ -84,7 +84,7 @@ class HomepageImagesController extends Controller
             $imageNameSave = str_replace(' ', '_', pathinfo($request->file('image')->getClientOriginalName(),PATHINFO_FILENAME));
             $imageName = $homepageImage->id.'_'.$imageNameSave.'_'.time().'.'.$extension;
             
-            $imagePath = 'img/locations/'.$imageName;
+            $imagePath = 'img/homepage_images/'.$imageName;
             $newImage = [
                 'title' => $imageTitle,
                 'location' => $imagePath
@@ -97,8 +97,8 @@ class HomepageImagesController extends Controller
                     ->withErrors($error)
                     ->withInput();
             }
-            if (!is_dir(public_path('/').'img/locations/')){
-                mkdir(public_path('/').'img/locations/', 0770, true);
+            if (!is_dir(public_path('/').'img/homepage_images/')){
+                mkdir(public_path('/').'img/homepage_images/', 0770, true);
             } 
             Image::make($request->file('image'))->save(public_path('/').$imagePath);
             
@@ -180,7 +180,7 @@ class HomepageImagesController extends Controller
             try{
                 DB::beginTransaction();
 
-                $homepageImage = $homepageImage->image->location;
+                $imageLocation = $homepageImage->image->location;
                 
                 if(!ModelsImage::destroy($homepageImage->image->id)) {
                     DB::rollBack();
@@ -193,7 +193,7 @@ class HomepageImagesController extends Controller
                 $imageNameSave = str_replace(' ', '_', pathinfo($request->file('image')->getClientOriginalName(),PATHINFO_FILENAME));
                 $imageName = $homepageImage->id.'_'.$imageNameSave.'_'.time().'.'.$extension;
                 
-                $imagePath = 'img/locations/'.$imageName;
+                $imagePath = 'img/homepage_images/'.$imageName;
                 $newImage = [
                     'title' => $imageTitle,
                     'location' => $imagePath
@@ -206,8 +206,8 @@ class HomepageImagesController extends Controller
                         ->withErrors($error)
                         ->withInput();
                 }
-                if (!is_dir(public_path('/').'img/locations/')){
-                    mkdir(public_path('/').'img/locations/', 0770, true);
+                if (!is_dir(public_path('/').'img/homepage_images/')){
+                    mkdir(public_path('/').'img/homepage_images/', 0770, true);
                 } 
                 Image::make($request->file('image'))->save(public_path('/').$imagePath);
                 
@@ -219,7 +219,7 @@ class HomepageImagesController extends Controller
                             ->withInput();
                 }
 
-                if(!Storage::delete($homepageImage)) {
+                if(!Storage::delete($imageLocation)) {
                     DB::rollBack();
                     $error = ['error' => 'Error al eliminar la imagen'];
                     return redirect('homepage_images/edit/'.$id)
@@ -231,7 +231,7 @@ class HomepageImagesController extends Controller
             } catch(Exception $e) {
                 DB::rollBack();
                 $error = ['error' => $e->getMessage()];
-                return redirect('homepage_images/edit'.$id)
+                return redirect('homepage_images/edit/'.$id)
                             ->withErrors($error)
                             ->withInput();
             }
@@ -242,7 +242,7 @@ class HomepageImagesController extends Controller
             if(!$homepageImage->save())
             {
                 $error = ['error' => 'Error al actualizar la imagen de la homepage'];
-                    return redirect('homepage_images/edit'.$id)
+                    return redirect('homepage_images/edit/'.$id)
                                 ->withErrors($error)
                                 ->withInput();
             }
@@ -254,7 +254,7 @@ class HomepageImagesController extends Controller
         if(!$homepageImage->save())
         {
             $error = ['error' => 'Error al actualizar la imagen de la homepage'];
-                return redirect('homepage_images/edit'.$id)
+                return redirect('homepage_images/edit/'.$id)
                             ->withErrors($error)
                             ->withInput();
         }

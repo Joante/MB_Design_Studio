@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h2 class="section-title">Nuestro <span>Blog</span></h2>
+                    <h2 class="section-title">Blog</h2>
                 </div>
                 <div class="col-md-3 ml-auto mr-0 animate-box" data-animate-effect="fadeInUp">
                     <h6 class="section-title2"><span style="font-size: 25px;">Ultimos Posteos</span></h6>
@@ -19,7 +19,13 @@
                 @foreach ($posts as $post)
                     <div class="col-md-6">
                         <div class="item">
-                            <div class="position-re o-hidden"> <img src="{{ asset($post->images[0]->location) }}" alt="$post->images[0]->title"> </div>
+                            <div class="position-re o-hidden"> 
+                                @if (is_array($post->images))
+                                    <img src="{{ asset($post->images[0]->location) }}" alt="$post->images[0]->title">
+                                @else
+                                    <img src="{{ asset($post->images->location) }}" alt="$post->images->title">
+                                @endif 
+                            </div>
                             <div class="con">
                                 <span class="category">
                                     <a href="{{ route('blog_view_category', $post->category->id) }}">{{ $post->category->title }}</a> - {{ $post->created }}

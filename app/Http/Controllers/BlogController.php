@@ -227,9 +227,9 @@ class BlogController extends Controller
             try {
                 DB::beginTransaction();
 
-                $location = $post->images[0]->location;
+                $location = $post->images->location;
                 
-                if(!ModelsImage::destroy($post->images[0]->id)) {
+                if(!ModelsImage::destroy($post->images->id)) {
                     DB::rollBack();
                     return json_encode('Error al eliminar las imagenes de la base de datos.');
                 }
@@ -330,21 +330,18 @@ class BlogController extends Controller
                 DB::rollBack();
                 return json_encode(['message' => 'Error al eliminar el post']);
             }
-            
-            $locations = ['/'.$post->image->location];
-            $eliminada = $post->image->delete();
-            foreach ($post->images as $image) {
-                $locations[] = '/'.$image->location;
-                if(!$image->delete() || !$eliminada){
-                    DB::rollBack();
-                    return json_encode(['message' => 'Error al eliminar las imagenes']);
-                }
+
+            if(!ModelsImage::destroy($post->images->id)) {
+                DB::rollBack();
+                return json_encode('Error al eliminar las imagenes de la base de datos.');
             }
 
-            if(!Storage::delete($locations)) {
+
+            if(!Storage::delete($location)) {
                 DB::rollBack();
-                return json_encode(['message' => 'Error al eliminar los archivos']);
+                return json_encode(['message' => 'Error al eliminar la imagen']);
             }
+
             DB::commit();
         } catch(Exception $e){
             DB::rollback();

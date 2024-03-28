@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Information extends Model
+class Degrees extends Model
 {
     use HasFactory;
 
@@ -15,6 +15,7 @@ class Information extends Model
      * @var array
      */
     protected $fillable = [
-        'about',
+        'description',
+        'type',
      ];
 }

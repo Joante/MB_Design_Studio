@@ -74,11 +74,9 @@
                 <h4>Imagen de Portada</h4>
             </div>
             <div class="col-md-12 d-flex justify-content-center">
-                @foreach ($post->images as $image)
-                  @if($image != null)
-                   <img src="{{ asset($image->location) }}" class="img-fluid rounded" alt="{{ $image->title }}" style="max-width: 40%">
-                  @endif  
-                 @endforeach
+                @if($post->images != null)
+                   <img src="{{ asset($post->images->location) }}" class="img-fluid rounded" alt="{{ $post->images->title }}" style="max-width: 40%">
+                @endif  
             </div>
         </div>
     </div>

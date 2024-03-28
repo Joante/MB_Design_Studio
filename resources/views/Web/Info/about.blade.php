@@ -9,9 +9,7 @@
             <div class="row">
                 <div class="col-md-6 mb-30 animate-box" data-animate-effect="fadeInUp">
                     <h2 class="section-title-about">About <span>MB</span></h2>
-                    <p>Somos un estudio especializado en la realización y ejecución de proyectos de arquitectura interior, exterior, residencial y comercial.</p>
-                    <p>Con base en Buenos Aires. Reconocido por nuestro estilo único, elegante y contemporáneo.</p>
-                    <p>Ademas ofrecemos una exclusiva colección de obras de arte para elevar el estilo de multiples y diversos ambientes. </p>
+                    <p>{{ $about }}</p>
                 </div>
                 <div class="col-md-6 animate-box" data-animate-effect="fadeInUp">
                     <div class="about-img">
@@ -63,12 +61,11 @@
                     </div>
                 </div>
                 <div class="col-md-6 ml-auto mr-3">
-                    <p class="float-md-right">{{ $description }}</p>
                     <h6 class="section-title2"><span>Estudios</span></h6>
-                    <ul class="list-unstyled pricing-card-list float-md-right">
-                        <li class="mt-10"><i class="fas fa-university"></i></i>Licenciatura en Diseño de Interiores - Universidad del Museo Social Argentino</li>
-                        <li class="mt-10"><i class="fas fa-university"></i></i>Tecnicatura Superior en Diseño de Interiores y Espacios Verdes - Escuela Argentina del Diseño</li>
-                        <li class="mt-10"><i class="ti-medall"></i>Curso de Diseño de Espacios Interiores - Instituto Nacional de Servicios y Empresas / Universidad Tecnologica Nacional</li>
+                    <ul class="list-unstyled pricing-card-list">
+                        @foreach ($degrees as $degree)
+                            <li class="mt-10"><i class="@if($degree->type == 'course') ti-medall @else fas fa-university @endif"></i>{{ $degree->description }}</li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
