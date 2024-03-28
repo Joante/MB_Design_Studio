@@ -19,4 +19,4 @@ yarn-error.log
 /vuexy-shell-scripts
 supervisord.log
 supervisord.pid
-public/img
+/public/img

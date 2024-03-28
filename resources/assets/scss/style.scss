@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Oswald:wght@200;300;400;500;600;700&display=swap);
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @charset "UTF-8";
 
 /* -----------------------------------------------------------------------------------
@@ -37,7 +37,7 @@
 ----------------------------------------------------------------------------------- */
 
 
-/* ======= Google fonts (Oswald & Didact Gothic) ======= */
+/* ======= Google fonts (Montserrat & Didact Gothic) ======= */
 
 
 /* ======= Basic style ======= */
@@ -60,7 +60,7 @@ body {
 }
 
 body {
-    font-family: "Didact Gothic", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 1.75em;
@@ -70,8 +70,8 @@ body {
 }
 
 p {
-    font-family: "Didact Gothic", sans-serif;
-    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
     font-weight: 400;
     line-height: 1.75em;
     color: #999;
@@ -84,7 +84,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 400;
     line-height: 1.25em;
     margin: 0 0 20px 0;
@@ -121,7 +121,7 @@ input,
 optgroup,
 select,
 textarea {
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 input[type=password]:focus,
@@ -262,7 +262,7 @@ input[type=checkbox] {
 }
 
 .count {
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 .valign {
@@ -351,7 +351,7 @@ input[type=checkbox] {
 
 .section-title {
     font-size: 40px;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 400;
     color: #fff;
     text-transform: uppercase;
@@ -367,7 +367,7 @@ input[type=checkbox] {
 
 .section-title-about {
     font-size: 40px;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 400;
     color: #fff;
     text-transform: uppercase;
@@ -419,7 +419,7 @@ input[type=checkbox] {
 }
 
 .navbar .navbar-nav .nav-link {
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 15px;
     font-weight: 300;
     color: #fff;
@@ -479,7 +479,7 @@ input[type=checkbox] {
 }
 
 .nav-scroll .logo-wrapper .logo h2 {
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 40px;
     font-weight: 400;
     margin-bottom: 0px;
@@ -494,7 +494,7 @@ input[type=checkbox] {
 
 .nav-scroll .logo-wrapper .logo span {
     display: block;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 13px;
     color: #575757;
     font-weight: 400;
@@ -519,7 +519,7 @@ input[type=checkbox] {
 }
 
 .logo-wrapper .logo h2 {
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 45px;
     font-weight: 400;
     display: block;
@@ -538,7 +538,7 @@ input[type=checkbox] {
 
 .logo-wrapper .logo span {
     display: block;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 12px;
     color: #999;
     font-weight: 400;
@@ -742,7 +742,7 @@ input[type=checkbox] {
 }
 
 .header .caption h4 {
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 20px;
     font-weight: 400;
     text-transform: uppercase;
@@ -757,7 +757,7 @@ input[type=checkbox] {
 .header .caption h1 {
     position: relative;
     margin-bottom: 20px;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 48px;
     text-transform: uppercase;
     line-height: 1.35em;
@@ -769,7 +769,7 @@ input[type=checkbox] {
 }
 
 .header .caption p {
-    font-size: 18px;
+    font-size: 14px;
     line-height: 1.75em;
     margin-bottom: 0;
     color: #fff;
@@ -938,7 +938,7 @@ hr.dotted {
 .comming h6 {
     color: #838487;
     font-size: 13px;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 300;
     text-transform: uppercase;
     margin-bottom: 5px;
@@ -949,7 +949,7 @@ hr.dotted {
 .comming h3 {
     font-size: 48px;
     line-height: 1.25em;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 400;
     color: #fff;
     position: relative;
@@ -961,7 +961,7 @@ hr.dotted {
 .comming h2 {
     font-size: 48px;
     line-height: 1.25em;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 400;
     color: #fff;
     position: relative;
@@ -1029,7 +1029,7 @@ hr.dotted {
     color: #fff;
     display: inline-block;
     font-size: 13px;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 5px;
@@ -1083,14 +1083,14 @@ hr.dotted {
 .banner-header h5 {
     color: #838487;
     font-size: 17px;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 400;
     margin-bottom: 5px;
 }
 
 .banner-header h1 {
     font-size: 40px;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 400;
     color: #838487;
     position: relative;
@@ -1230,7 +1230,7 @@ hr.dotted {
     padding: 20px 15px;
     color: #fff;
     text-transform: uppercase;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 300;
     letter-spacing: 5px;
     font-size: 13px;
@@ -1346,7 +1346,7 @@ hr.dotted {
 .services .item .numb {
     font-size: 40px;
     font-weight: 600;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     position: absolute;
     bottom: 30px;
     right: 30px;
@@ -1387,7 +1387,7 @@ hr.dotted {
 }
 
 .img-logo {
-    max-width: 56%;
+    max-width: 70%;
     height: auto
 }
 
@@ -1421,7 +1421,7 @@ hr.dotted {
 .sidebar-title h4 {
     position: relative;
     display: inline-block;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 20px;
     line-height: 1.1em;
     color: #fff;
@@ -2069,7 +2069,7 @@ button.mfp-arrow {
 .bauen-blog .item .con h5 a {
     color: #838487;
     font-size: 25px;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 300;
     margin-bottom: 0px;
     letter-spacing: 1px;
@@ -2114,7 +2114,7 @@ button.mfp-arrow {
     color: #999;
     font-weight: 300;
     border: 1px solid #323232;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 13px;
     border-radius: 100%;
 }
@@ -2141,7 +2141,7 @@ button.mfp-arrow {
     color: #999;
     font-weight: 300;
     border: 1px solid #323232;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 13px;
     border-radius: 100%;
     background-color: transparent;
@@ -2159,7 +2159,7 @@ button.mfp-arrow {
     color: #999;
     font-weight: 300;
     border: 1px solid #323232;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 13px;
     border-radius: 100%;
 }
@@ -2251,7 +2251,7 @@ button.mfp-arrow {
 
 .butn-dark a {
     font-weight: 300;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     text-transform: uppercase;
     background: #838487;
     color: #fff;
@@ -2297,7 +2297,7 @@ button.mfp-arrow {
 
 .buttn-dark {
     font-weight: 300;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     text-transform: uppercase;
     background: #838487;
     color: #fff;
@@ -2353,7 +2353,7 @@ button.mfp-arrow {
 
 .butn-light a {
     font-weight: 300;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     text-transform: uppercase;
     background: transparent;
     color: #fff;
@@ -2436,13 +2436,13 @@ button.mfp-arrow {
 
 .main-footer .fothead h4 {
     margin-bottom: 0px;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     color: #838487;
     font-size: 31px;
 }
 
 .main-footer .fotcont .fothead h4 {
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 200;
     position: relative;
     padding-bottom: 30px;
@@ -2460,14 +2460,14 @@ button.mfp-arrow {
 
 .main-footer .fotbody h6 {
     margin-bottom: 0px;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     color: #838487;
     font-size: 17px;
 }
 
 .main-footer .fotbody h6 {
-    font-family: "Oswald", sans-serif;
-    font-weight: 300;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
     position: relative;
     font-size: 16px;
 }
@@ -2637,7 +2637,7 @@ button.mfp-arrow {
         left: 50%;
         transform: translate(-50%, -50%);
         color: #838487;
-        font-family: "Oswald", sans-serif;
+        font-family: "Montserrat", sans-serif;
         z-index: 9999;
     }
     .loading-text.isdone {
@@ -2750,7 +2750,7 @@ button.mfp-arrow {
     padding-right: 60px;
     color: #999;
     transition: all 500ms ease;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 .accordion-box .block .acc-btn .count {
@@ -2863,7 +2863,7 @@ button.mfp-arrow {
     margin: 0;
     font-size: 16px;
     text-transform: uppercase;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     color: #838487;
     margin-bottom: 20px;
     letter-spacing: 5px;
@@ -2888,7 +2888,7 @@ button.mfp-arrow {
 
 .butn-pricing a {
     font-weight: 300;
-    font-family: "Oswald", sans-serif;
+    font-family: "Montserrat", sans-serif;
     text-transform: uppercase;
     background: #838487;
     color: #fff;
