@@ -84,7 +84,7 @@
                             <div class="img"> <img src="/img/logo_2.png" class="img-logo" alt=""> </div>
                         </div>
                     </div>
-                    <div class="col-md-4 mb-30">
+                    <div class="col-md-4 mb-30 justify-content-center" style="display: flex;">
                         <div class="item fotcont">
                             <div class="fothead">
                                 <h4>CONTACTO</h4>
@@ -93,11 +93,11 @@
                                 @if ($mbAcounts != null)
                                     @if ($mbAcounts->phone_formatted != null)
                                         <h6>Telefono: </h6>
-                                        <p style="font-size: 14px;">+54 9 {{ $mbAcounts->phone_formatted }}</p>
+                                        <p style="font-size: 18px;">{{ $mbAcounts->phone_formatted }}</p>
                                     @endif
                                     @if($mbAcounts->email != null)
                                         <h6>Email: </h6>
-                                        <p style="font-size: 14px;">{{ $mbAcounts->email }}</p>
+                                        <p style="font-size: 18px;">{{ $mbAcounts->email }}</p>
                                     @endif
                                 @endif
                             </div>
