@@ -10,7 +10,7 @@
                     <div class="v-bottom caption">
                         <div class="container">
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-10">
                                     <div class="o-hidden">
                                         <h1>{{ $homepageImage->title }}</h1>
                                         <hr>
@@ -163,7 +163,7 @@
                                                                     <div class="info">
                                                                         <h6><a href="{{ $exhibition->location->url }}" target="_blank">{{ $exhibition->location->name }}</a> <span class="tags">{{ $exhibition->hour_start->format('H:i') }} a {{ $exhibition->hour_finish->format('H:i') }}</span></h6>
                                                                     </div>
-                                                                    <h4 style="word-break: break-word; font-size:17px;">{{ $exhibition->title }}</h4> <a href="{{ route('exhibition_show', $exhibition->id) }}" class="more" data-splitting=""><span>Ver Mas</span></a> </div>
+                                                                    <h4 style="word-break: break-word; font-size:15px;">{{ $exhibition->title }}</h4> <a href="{{ route('exhibition_show', $exhibition->id) }}" class="more" data-splitting=""><span>Ver Mas</span></a> </div>
                                                             </div>
                                                         </div>
                                                     </div>
