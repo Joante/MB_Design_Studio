@@ -4,74 +4,24 @@
     <!-- Slider -->
     <header class="header slider-fade">
         <div class="owl-carousel owl-theme">
-            <!-- The opacity on the image is made with "data-overlay-dark="number". You can change it using the numbers 0-9. -->
-            <div class="text-left item bg-img" data-overlay-dark="3" data-background="img/slider.jpeg">
-                <div class="v-bottom caption">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <div class="o-hidden">
-                                    <h1>Interiorismo</h1>
-                                    <hr>
-                                    <p>Buscamos transmitir diferentes sensaciones y mejorar la calidad de vida
-                                        <br>a traves de diseños esteticos y funcionales que crean experiencias unicas.
-                                    </p>
+            <!-- The opacity on the image is made with "data-overlay-dark="number". You can change it using the numbers 0-9.  -->
+            @foreach ($homepageImages as $homepageImage)
+                <div class="text-left item bg-img" data-overlay-dark="3" data-background="{{ $homepageImage != null ? asset($homepageImage->image->location) : asset('img/1920x1128.jpg') }}">
+                    <div class="v-bottom caption">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="o-hidden">
+                                        <h1>{{ $homepageImage->title }}</h1>
+                                        <hr>
+                                        <p>{{ $homepageImage->description }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="text-left item bg-img" data-overlay-dark="4" data-background="img/slider_1.jpeg">
-                <div class="v-bottom caption">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <div class="o-hidden">
-                                    <h1>Modelado</h1>
-                                    <hr>
-                                    <p>Creamos e idealizamos visualizaciones realistas de los propotipos
-                                        <br>con personalización, expresión y atención al detalle.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-left item bg-img" data-overlay-dark="4" data-background="img/slider_paisajismo.jpg">
-                <div class="v-bottom caption">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <div class="o-hidden">
-                                    <h1>Paisajismo</h1>
-                                    <hr>
-                                    <p>Diseñamos, materializamos y conservamos distintos tipos
-                                        <br>de espacios exteriores y espacios verdes.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-left item bg-img" data-overlay-dark="3" data-background="img/slider_arte2.jpg">
-                <div class="v-bottom caption">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <div class="o-hidden">
-                                    <h1>Arte</h1>
-                                    <hr>
-                                    <p>Composiciónes geométricas, elegantes y monocromáticas
-                                        <br>que aportan calma, elegancia y contemporaneidad.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </header>
     <!-- Content -->
@@ -88,14 +38,12 @@
                 <div class="row">
                     <div class="col-md-6 mb-30 animate-box" data-animate-effect="fadeInUp">
                         <h2 class="section-title">About <span>MB</span></h2>
-                        <p>Somos un estudio especializado en la realización y ejecución de proyectos de arquitectura interior, exterior, residencial y comercial.</p>
-                        <p>Con base en Buenos Aires. Reconocido por nuestro estilo único, elegante y contemporáneo.</p>
-                        <p>Ademas ofrecemos una exclusiva colección de obras de arte para elevar el estilo de multiples y diversos ambientes. </p>
+                        <p>{{ $about->about }}</p>
                     </div>
-                    <div class="col-md-6 animate-box" data-animate-effect="fadeInUp">
+                    <div class="col-md-5 animate-box" data-animate-effect="fadeInUp">
                         <div class="about-img">
-                            <div class="img"> <img src="img/1100x750.jpg" class="img-fluid" alt=""> </div>
-                            <div class="about-img-2 about-buro">Video Promocional</div>
+                            <div class="img"> <img src="/img/logo_2.png" class="img-fluid" alt=""> </div>
+                            <div class="about-img-2 about-buro">MB Design Studio</div>
                         </div>
                     </div>
                 </div>
@@ -106,7 +54,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="section-title">Nuestros <span>Proyectos</span></h2>
+                        <h2 class="section-title">Proyectos</h2>
                     </div>
                 </div>
                 <div class="row">
@@ -114,7 +62,13 @@
                         <div class="owl-carousel owl-theme">
                             @foreach ($projects as $project)
                                 <div class="item">
-                                    <div class="position-re o-hidden"> <img class="projects-carousel" src="{{ asset($project->images[0]->location) }}" alt="$projects->images[0]->title"> </div>
+                                    <div class="position-re o-hidden"> 
+                                        @if ($project->images != null && count($project->images) > 0 && file_exists(public_path($project->images[0]->location)))
+                                            <img class="projects-carousel" src="{{ asset($project->images[0]->location) }}" alt="{{ $project->images[0]->title }}">
+                                        @else
+                                            <img class="projects-carousel" src="{{ asset('img/600x600.jpg') }}" alt="Image not found"> 
+                                        @endif
+                                    </div>
                                     <div class="con">
                                         <h5><a href="{{ route('projects_view', $project->id) }}">{{ $project->title }}</a></h5>
                                         <div class="line"></div> <a href="{{ route('projects_view', $project->id) }}"><i class="ti-arrow-right"></i></a>
@@ -131,7 +85,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="section-title">Nuestros <span>Servicios</span></h2>
+                        <h2 class="section-title">Servicios</h2>
                     </div>
                 </div>
                 <div class="row">
@@ -139,7 +93,10 @@
                         @if ($service->principal_page)
                             <div class="col-md-3">
                                 <div class="item">
-                                    <a href="{{ route('services_view', $service->id) }}"> <img src="{{ asset('img/icons/'.$service->icon->location) }}" alt="$service->icon->title">
+                                    <a href="{{ route('services_view', $service->id) }}"> 
+                                        @if (file_exists(public_path('img/icons/'.$service->icon->location)))
+                                            <img src="{{ asset('img/icons/'.$service->icon->location) }}" alt="$service->icon->title">
+                                        @endif
                                         <h5>{{ $service->title }}</h5>
                                         <div class="line"></div>
                                         <p>{{ $service->description }}</p>
@@ -158,7 +115,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="section-title">Nuestra <span>Arte</span></h2>
+                        <h2 class="section-title">Arte</h2>
                     </div>
                 </div>
                 <div class="row">
@@ -180,11 +137,15 @@
                                                             <div class="img left">
                                                                 <a href="{{ route('exhibition_show', $exhibition->id) }}">
                                                                     @if (count($exhibition->images) == 0)
-                                                                        @if ($exhibition->location->image != null)
+                                                                        @if ($exhibition->location->image != null && file_exists(public_path($exhibition->location->image->location)))
                                                                             <img src="{{ asset($exhibition->location->image->location) }}" alt="{{ $exhibition->location->image->title }}"> 
+                                                                        @else
+                                                                            <img src="{{ asset('img/600x600.jpg') }}" alt="Image not found"> 
                                                                         @endif
-                                                                    @else
+                                                                    @elseif ($exhibition->images != null && count($exhibition->images) > 0 && file_exists(public_path($exhibition->images[0]->location)))
                                                                         <img src="{{ asset($exhibition->images[0]->location) }}" alt="{{ $exhibition->images[0]->title }}">   
+                                                                    @else
+                                                                        <img src="{{ asset('img/600x600.jpg') }}" alt="Image not found">         
                                                                     @endif
                                                                 </a>
                                                             </div>
@@ -224,7 +185,12 @@
                                             @foreach ($colections as $colection)    
                                                 <div class="item">
                                                     <div class="position-re o-hidden"> 
-                                                        <img class="projects-carousel" src="{{ asset($colection->image->location) }}" alt="{{ $colection->image->title }}"> 
+                                                        @if ($colection->image != null && file_exists(public_path($colection->image->location)))
+                                                            <img class="projects-carousel" src="{{ asset($colection->image->location) }}" alt="{{ $colection->image->title }}"> 
+                                                        @else
+                                                            <img class="projects-carousel" src="{{ asset('img/600x600.jpg') }}" alt="Image not found"> 
+                                                        @endif
+
                                                     </div>
                                                     <div class="con">
                                                         <h5><a href="{{ route('paint_collection_index', $colection->id) }}">{{ $colection->name }}</a></h5>
@@ -246,7 +212,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="section-title">Nuestros <span>Escritos</span></h2>
+                        <h2 class="section-title">Blog</h2>
                     </div>
                 </div>
                 <div class="row">
@@ -254,7 +220,13 @@
                         <div class="owl-carousel owl-theme">
                             @foreach ($posts as $post)    
                                 <div class="item">
-                                    <div class="position-re o-hidden"> <img src="img/1100x750.jpg" alt=""> </div>
+                                    <div class="position-re o-hidden"> 
+                                        @if (is_array($post->images))
+                                            <img src="{{ asset($post->images[0]->location) }}" alt="$post->images[0]->title">
+                                        @else
+                                            <img src="{{ asset($post->images->location) }}" alt="$post->images->title">
+                                        @endif 
+                                    </div>
                                     <div class="con">
                                         <span class="category">
                                             <a href="{{ route('blog_view_category', $post->category->id) }}">{{ $post->category->title }} </a> -  {{ $post->created }}

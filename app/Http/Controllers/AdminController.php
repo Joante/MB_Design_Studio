@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Acounts;
+use App\Models\Degrees;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Image;
 use App\Models\Image as ModelsImage;
+use App\Models\Information;
 use Exception;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
@@ -24,14 +26,16 @@ class AdminController extends Controller
     public function edit() {
         $perAcounts = Acounts::where('type', '=', 'personal')->first();
         $mbAcounts = Acounts::where('type', '=', 'mb')->first();
-        return view('Admin/account/settings', ['perAcounts' => $perAcounts, 'mbAcounts' => $mbAcounts]);
+        $about = Information::first();;
+        $degrees = Degrees::all();
+        $aboutText = $about != null ? $about->about : '';
+        return view('Admin/account/settings', ['perAcounts' => $perAcounts, 'mbAcounts' => $mbAcounts, 'about' => $aboutText, 'degrees' => $degrees]);
     }
 
     public function update(Request $request) {
         $validator = Validator::make($request->all(), [
             'username' => ['required', 'alpha_dash', 'max:255', Rule::unique('users')->ignore(Auth::user()->id)],
             'name' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:255']
         ]);
 
         if ($validator->fails()) {
@@ -42,14 +46,13 @@ class AdminController extends Controller
 
         Auth::user()->username = $request->get('username');
         Auth::user()->name = $request->get('name');
-        Auth::user()->description = $request->get('description');
         Auth::user()->save();
 
         return redirect()->route('admin_edit');
     }
 
     public function avatar_update(Request $request) {
-        $request->validate(['image' => 'required|image|max:5042']);
+        $request->validate(['image' => 'required|image|max:10240']);
     
         if(count(Auth::user()->images) == 0) {
             DB::beginTransaction();
@@ -131,7 +134,7 @@ class AdminController extends Controller
                 if(!Storage::delete($location)) {
                     DB::rollBack();
                     $error = ['image' => 'Error al eliminar la imagen'];
-                    return rredirect('admin/settings')
+                    return redirect('admin/settings')
                             ->withErrors($error)
                             ->withInput();
                 }
@@ -195,6 +198,7 @@ class AdminController extends Controller
         $mbAcounts->linkedin = $request->get('mb_linkedin');
         $mbAcounts->pinterest = $request->get('mb_pinterest');
         $mbAcounts->whats_app = $request->get('mb_phone');
+        $mbAcounts->instagram = $request->get('mb_instagram');
 
         if(!$perAcounts->save()) {
             $error = ['personal' => $perAcounts];
@@ -209,5 +213,80 @@ class AdminController extends Controller
                         ->withInput();
         }
         return redirect()->route('admin_edit'); 
+    }
+
+    public function store_degree(Request $request){
+        $validator = Validator::make($request->all(), [
+            'description' => ['string', 'required', 'max:255'],
+            'type' => ['required', 'string', Rule::in(['course', 'bachelor'])],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('admin/settings')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        if(!Degrees::create($request->all())){
+            $error = ['error' => 'Problemas al crear el titulo'];
+                    return redirect('admin/settings')
+                        ->withErrors($error)
+                        ->withInput();
+        }
+
+        return redirect()->route('admin_edit'); 
+    }
+    public function update_degree(Request $request, $id){
+        $validator = Validator::make($request->all(), [
+            'description' => ['string', 'required', 'max:255'],
+            'type' => ['required', 'string', Rule::in(['course', 'bachelor'])],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('admin/settings')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        $degree = Degrees::find($id);
+
+        if(!$degree) {
+            return view('errors/model_not_found', ['modelName' => 'degree']);
+        }
+
+        $degree->description = $request->get('description');
+        $degree->type = $request->get('type');
+
+        if(!$degree->save()){
+            $error = ['error' => 'Problemas al actualizar el titulo'];
+                    return redirect('admin/settings')
+                        ->withErrors($error)
+                        ->withInput();
+        }
+
+        return redirect()->route('admin_edit'); 
+    }
+
+    public function destroy_degree(Request $request)
+    {
+        $request->validate(['id' => 'required|numeric']);
+        
+        try {
+            $degree = Degrees::find($request->get('id'));
+
+            if(!$degree->delete()){
+                DB::rollBack();
+                return json_encode(['message' => 'Error al eliminar el titulo']);
+            }
+        } catch(Exception $e){
+            $error = ([
+                'message' => $e->getMessage()
+            ]);
+            json_encode($error);
+            return ($error);
+        }
+        $success = (['message' => 'success']);
+
+        return json_encode($success);
     }
 }

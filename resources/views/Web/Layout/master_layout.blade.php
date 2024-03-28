@@ -40,13 +40,7 @@
                             <li class="dropdown-item {{ (request()->is('art/exhibitions')) ? 'active' : '' }}"><a href="{{ route('exhibition_index') }}">Exhibiciones</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown"><a class="nav-link {{ (request()->is('projects')) ? 'active' : '' }}" href="{{ route('projects_index') }}">Proyectos <i class="ti-angle-down"></i></a>
-                        <ul class="dropdown-menu last">
-                            @foreach ($services as $service)
-                                <li class="dropdown-item {{ (request()->is('projects/'.$service->id)) ? 'active' : '' }}"><a href="{{ route('project_view_category', $service->id) }}">{{ $service->title }}</a></li>
-                            @endforeach
-                        </ul>
-                    </li>
+                    <li class="nav-item dropdown"><a class="nav-link {{ (request()->is('projects')) ? 'active' : '' }}" href="{{ route('project_view_category',1) }}">Proyectos</a></li>
                     <li class="nav-item dropdown"><a class="nav-link {{ (request()->is('blog')) ? 'active' : '' }}" href="{{ route('blog_index') }}">Blog <i class="ti-angle-down"></i></a>
                         <ul class="dropdown-menu last">
                             @foreach ($blog_categories as $blog_category)
@@ -54,7 +48,7 @@
                             @endforeach
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link {{ (request()->is('contact')) ? 'active' : '' }}" href="{{ route('contact') }}">Contacto</a></li>
+                    {{-- <li class="nav-item"><a class="nav-link {{ (request()->is('contact')) ? 'active' : '' }}" href="{{ route('contact') }}">Contacto</a></li> --}}
                 </ul>
             </div>
         </div>
@@ -119,7 +113,7 @@
                                                 <a href="https://www.facebook.com/{{ $mbAcounts->facebook }}" target="_blank"><i class="ti-facebook"></i></a>
                                             @endif
                                             @if($mbAcounts->whats_app != null)
-                                                <a href="https://wa.me/549{{ $mbAcounts->whats_app }}?text=Hola!,%20necesitaria%20asesoramiento%20especializado." target="_blank"><i class="fa fa-whatsapp"></i></a>
+                                                <a href="https://wa.me/{{ $mbAcounts->whats_app }}?text=Hola!,%20necesitaria%20asesoramiento%20especializado." target="_blank"><i class="fa fa-whatsapp"></i></a>
                                             @endif
                                             @if ($mbAcounts->instagram != null)
                                                 <a href="https://www.instagram.com/{{ $mbAcounts->instagram }}" target="_blank"><i class="ti-instagram"></i></a>
@@ -128,7 +122,7 @@
                                                 <a href="https://www.twitter.com/{{ $mbAcounts->twitter }}" target="_blank"><i class="ti-twitter"></i></a>
                                             @endif
                                             @if ($mbAcounts->linkedin !=null)
-                                                <a href="https://www.linkedin.com/{{ $mbAcounts->linkedin }}" target="_blank"><i class="ti-linkedin"></i></a>
+                                                <a href="https://www.linkedin.com/company/{{ $mbAcounts->linkedin }}" target="_blank"><i class="ti-linkedin"></i></a>
                                             @endif
                                             @if ($mbAcounts->pinterest !=null)
                                                 <a href="https://www.pinterest.com/{{ $mbAcounts->pinterest }}" target="_blank"><i class="ti-pinterest"></i></a>
@@ -147,7 +141,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="text-left">
-                                <p>© 2021 MB Design Studio. All right reserved.</p>
+                                <p>© 2024 MB Design Studio. All right reserved.</p>
                             </div>
                         </div>
                         <div class="col-md-8 float-right">

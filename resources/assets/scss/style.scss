@@ -1222,7 +1222,7 @@ hr.dotted {
 }
 
 .about-img .about-img-2 {
-    width: 40% !important;
+    width: 76% !important;
     position: absolute;
     bottom: 0px;
     right: 45px;
@@ -1623,9 +1623,18 @@ hr.dotted {
 }
 
 .projects-carousel {
-    height: 200px;
+    height: 450px;
+    width: 100%;
+    object-fit: cover;
 }
 
+@media (max-width: 1000px) {
+    .projects-carousel {
+        height: 300px;
+        width: 100%;
+        object-fit: cover;
+    }   
+}
 
 /* prev/next project */
 
@@ -2405,17 +2414,19 @@ button.mfp-arrow {
 }
 
 .main-footer .abot .social-icon a {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     line-height: 40px;
     text-align: center;
-    font-size: 12px;
+    font-size: 25px;
     border: 1px solid #373737;
     color: #999;
     border-radius: 100%;
     margin-right: 3px;
     transition: all 0.4s;
-}
+    align-items: center;
+    display: inline-grid;
+  }
 
 .main-footer .abot .social-icon a:hover {
     border: 1px solid #838487;

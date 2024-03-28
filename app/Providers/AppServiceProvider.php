@@ -8,6 +8,8 @@ use App\Models\Service;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 use function Psy\debug;
 
@@ -34,17 +36,40 @@ class AppServiceProvider extends ServiceProvider
             \URL::forceScheme('https');
         }        
         date_default_timezone_set('America/Argentina/Buenos_Aires');
-        $services = Service::all();
-        View::share('services', $services);
-        $blog_categories = BlogCategory::all();
-        View::share('blog_categories', $blog_categories);
-        $mbAcounts = Acounts::where('type', '=', 'mb')->first();
-        if($mbAcounts != null && $mbAcounts->phone != null) {
-            $phone_array = str_split($mbAcounts->whats_app,2);
-            $phone_formatted = $phone_array[0].'-'.$phone_array[1].$phone_array[2].'-'.$phone_array[3].$phone_array[4];
-            $mbAcounts['phone_formatted'] = $phone_formatted;
+        
+        $services = [];
+        $blog_categories = [];
+        $mbAcounts = [];
+        $db = false;
+        
+        try {
+            $dbconnect = DB::connection()->getPDO();
+            $db = true;
+        } catch(\Exception $e) {
+            echo $e->getMessage();
         }
+        
+        if($db){
+            if (Schema::hasTable('services')) {
+                $services = Service::all();
+            }
+            if (Schema::hasTable('blog_categories')) {
+                $blog_categories = BlogCategory::all();
+            }
+            if(Schema::hasTable('acounts')){
+                $mbAcounts = Acounts::where('type', '=', 'mb')->first();
+                if($mbAcounts != null && $mbAcounts->phone != null) {
+                    $phone_array = str_split($mbAcounts->whats_app,2);
+                    $phone_formatted = $phone_array[0].'-'.$phone_array[1].$phone_array[2].'-'.$phone_array[3].$phone_array[4];
+                    $mbAcounts['phone_formatted'] = $phone_formatted;
+                }
+            }
+        }
+        
+        View::share('services', $services);
+        View::share('blog_categories', $blog_categories);
         View::share('mbAcounts', $mbAcounts);
+        
         Paginator::defaultView('vendor/pagination/bauen');
         \Carbon\Carbon::setLocale(config('app.locale'));
 

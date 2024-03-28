@@ -1,14 +1,22 @@
 function deleteConfirmation(id, pathname) {
     var path;
     if (location.pathname == '/' + pathname) {
-        if (pathname == 'art/exhibition/list/admin') {
-            path = '/art/exhibition/destroy'
-        } else if (pathname == 'art/painting/colection/list/admin') {
-            path = '/art/painting/colection/destroy'
-        } else if (pathname == 'art/painting/list/admin') {
-            path = '/art/painting/destroy'
-        } else {
-            path = "/" + pathname + "/destroy";
+        switch(pathname){
+            case 'art/exhibition/list/admin':
+                path = '/art/exhibition/destroy';
+                break;
+            case 'art/painting/colection/list/admin':
+                path = '/art/painting/colection/destroy';
+                break;
+            case 'art/painting/list/admin':
+                path = '/art/painting/destroy';
+                break;
+            case 'admin/settings':
+                path = '/admin/degrees/destroy';
+                break;
+            default:
+                path = "/" + pathname + "/destroy";
+                break;
         }
     } else {
         path = "destroy";
@@ -54,7 +62,7 @@ function deleteConfirmation(id, pathname) {
                                     confirmButtonText: 'Ok'
                                 }).then((result) => {
                                     if (result.value) {
-                                        if (pathname == 'art/exhibition/list/admin' || pathname == 'art/painting/colection/list/admin' || pathname == "art/painting/list/admin") {
+                                        if (pathname == 'art/exhibition/list/admin' || pathname == 'art/painting/colection/list/admin' || pathname == "art/painting/list/admin" || pathname == 'admin/settings') {
                                             window.location.replace("/" + pathname);
                                         } else {
                                             window.location.replace("/" + pathname + "/list");

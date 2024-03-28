@@ -7,6 +7,7 @@ use App\Http\Controllers\ArtController;
 use App\Http\Controllers\BlogCategoriesController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ExhibitionController;
+use App\Http\Controllers\HomepageImagesController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\LocationController;
@@ -97,8 +98,23 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::post('/avatar/update', [AdminController::class, 'avatar_update'])->name('avatar_update');
     Route::post('/change_password', [AdminController::class, 'change_password'])->name('change_password');
     Route::post('/update_socials', [AdminController::class, 'update_socials'])->name('update_socials');
+    Route::post('/update_about', [InfoController::class, 'update_about'])->name('update_about');
+    Route::post('/update_degree/{id}', [AdminController::class, 'update_degree'])->name('update_degree');
+    Route::post('/store_degree', [AdminController::class, 'store_degree'])->name('store_degree');
+    Route::post('/degrees/destroy', [AdminController::class, 'destroy_degree'])->name('destroy_degree');
+
 });
 
+//Homepage Images routes
+Route::prefix('homepage_images')->middleware('auth')->group(function (){
+    Route::get('/list', [HomepageImagesController::class, 'index'])->name('homepage_images_index');
+    Route::get('/show/{id}', [HomepageImagesController::class, 'show'])->name('homepage_images_show');
+    Route::get('/edit/{id}', [HomepageImagesController::class, 'edit'])->name('homepage_images_edit');
+    Route::get('/create', [HomepageImagesController::class, 'create'])->name('homepage_images_create');
+    Route::post('/store', [HomepageImagesController::class, 'store'])->name('homepage_images_store');
+    Route::post('/update/{id}', [HomepageImagesController::class, 'update'])->name('homepage_images_update');
+    Route::post('/destroy', [HomepageImagesController::class, 'destroy'])->name('homepage_images_destroy');
+});
 
 //Services routes
 Route::prefix('services')->middleware('auth')->group(function () {

@@ -19,11 +19,11 @@
                     @switch($modelType)
                         @case("services")
                         @case("paint")
-                            <p class="card-text">Maximo 5 imagenes. Maximo 5 MB por imagen.</p>
+                            <p class="card-text">Maximo 5 imagenes. Maximo 10 MB por imagen.</p>
                             @break
                         @case("projects")
                         @case("exhibitions")
-                            <p class="card-text">Maximo 10 imagenes. Maximo 5 MB por imagen.</p>
+                            <p class="card-text">Maximo 10 imagenes. Maximo 10 MB por imagen.</p>
                             @break
                         @default                            
                     @endswitch
@@ -70,7 +70,7 @@
 
     fileUploader.dropzone({
         paramName: 'images', // The name that will be used to transfer the file
-        maxFilesize: 5, // MB
+        maxFilesize: 10, // MB
         addRemoveLinks: true,
         thumbnailHeight: null,
         thumbnailWidth: null,

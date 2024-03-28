@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Information extends Model
+class HomepageImage extends Model
 {
     use HasFactory;
 
@@ -15,6 +15,17 @@ class Information extends Model
      * @var array
      */
     protected $fillable = [
-        'about',
+        'title',
+        'description',
+        'hierarchy',
      ];
+ 
+
+    /**
+     * Obtener todas las fotos de.
+     */
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'model');
+    }
 }
