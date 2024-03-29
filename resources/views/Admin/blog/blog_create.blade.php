@@ -2,13 +2,9 @@
 
 @section('title', 'Agregar Post')
 
-@section('vendor-style')
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/editors/quill/quill.snow.css')) }}" /> 
-@endsection 
-
 @section('page-style')
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
-    <link href='https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Oswald:wght@200;300;400;500;600;700&display=swap' rel="stylesheet">
+    <x-head.tinymce-config/>
 @endsection
 
 @section('content')
@@ -74,9 +70,8 @@
                     <div class="col-md-12">
                         <div id="snow-wrapper">
                             <div id="snow-container">
-                                <label for="editor">Texto *</label>
-                                <div id="editor" class="editor ql-container ql-snow">{!! old('text') !!}</div>
-                                <textarea hidden id="text" name="text"></textarea>
+                                <label for="texteditor">Texto *</label>
+                                <textarea id="texteditor" name="text">{!! old('text') !!} </textarea>
                                 @error('text')
                                   <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -97,18 +92,5 @@
 @endsection
 
 @section('vendor-script')
-    <script src="{{ asset(mix('vendors/js/editors/quill/quill.min.js')) }}"></script>
     <script src="{{ asset(mix('js/image-resize.min.js')) }}"></script>
 @endsection 
-
-@section('page-script')
-    <script src="{{ asset(mix('js/quill-image.js')) }}"></script>
-    <script>
-        var form = document.getElementById('form');
-        form.addEventListener('submit', function(e){
-            if(quill.root.innerHTML != '<p><br></p>') {
-                document.getElementById('text').innerText = quill.root.innerHTML;
-            }
-        });
-    </script>
-@endsection

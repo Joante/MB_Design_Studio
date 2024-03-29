@@ -5,14 +5,13 @@
 @section('vendor-style')
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/pickadate/pickadate.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/editors/quill/quill.snow.css')) }}" /> 
 @endsection 
 
 @section('page-style')
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
+    <x-head.tinymce-config/>
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-pickadate.css')) }}">
-    <link href='https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Oswald:wght@200;300;400;500;600;700&display=swap' rel="stylesheet">
 @endsection
 
 @section('content')
@@ -98,9 +97,8 @@
                     <div class="col-md-12">
                         <div id="snow-wrapper">
                             <div id="snow-container">
-                                <label for="editor">Texto *</label>
-                                <div id="editor" class="editor ql-container ql-snow">{!! old('text', $exhibition->text) !!}</div>
-                                <textarea hidden id="text" name="text"></textarea>
+                                <label for="texteditor">Texto *</label>
+                                <textarea id="texteditor" name="text">{!! old('text',$exhibition->text) !!}</textarea>
                                 @error('text')
                                   <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -121,7 +119,6 @@
 @endsection
 
 @section('vendor-script')
-    <script src="{{ asset(mix('vendors/js/editors/quill/quill.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.date.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.time.js')) }}"></script>
@@ -130,7 +127,6 @@
 @endsection 
 
 @section('page-script')
-    <script src="{{ asset(mix('js/quill-mb.js')) }}"></script>
     <script>
         var dateTimePicker = $('.flatpickr-date-time');
         var timePicker = $('.flatpickr-time');
@@ -192,12 +188,6 @@
             noCalendar: true,
             locale: {
                 time_24hr: true,
-            }
-        });
-        var form = document.getElementById('form');
-        form.addEventListener('submit', function(e){
-            if(quill.root.innerHTML != '<p><br></p>') {
-                document.getElementById('text').innerText = quill.root.innerHTML;
             }
         });
     </script>

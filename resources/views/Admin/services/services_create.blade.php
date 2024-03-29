@@ -3,13 +3,12 @@
 @section('title', 'Agregar Servicio') 
 
 @section('vendor-style')
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/editors/quill/quill.snow.css')) }}" /> 
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/wizard/bs-stepper.min.css')) }}"/>
 @endsection 
 
 @section('page-style')
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
-    <link href='https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Oswald:wght@200;300;400;500;600;700&display=swap' rel="stylesheet">
+    <x-head.tinymce-config/>
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-wizard.css')) }}">
     <style>
     [type=radio] { 
@@ -97,9 +96,8 @@
                 <div class="col-md-12">
                     <div id="snow-wrapper">
                         <div id="snow-container">
-                            <label for="editor">Texto *</label>
-                            <div id="editor" class="editor ql-container ql-snow">{!! old('text') !!}</div>
-                            <textarea hidden id="text" name="text"></textarea>
+                            <label for="texteditor">Texto *</label>
+                            <textarea id="texteditor" name="text">{!! old('text') !!} </textarea>
                             @error('text')
                               <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -175,14 +173,13 @@
 
 @section('vendor-script')
     <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
-    <script src="{{ asset(mix('vendors/js/editors/quill/quill.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/forms/wizard/bs-stepper.min.js')) }}"></script>
 @endsection 
 
 @section('page-script')
     
     {{-- Page js files --}}
-    <script src="{{ asset(mix('js/quill-mb.js')) }}"></script>
+    
 <script>
     var newIcon = document.getElementById('newIcon');
     newIcon.addEventListener('click', function(e){
@@ -195,14 +192,6 @@
         document.getElementById('inputIcon').value = '';
       }
     });
-    
-    var firstStep = document.getElementById('firstStep');
-    firstStep.addEventListener('click', function(e){
-      if(quill.root.innerHTML != '<p><br></p>') {
-        document.getElementById('text').innerText = quill.root.innerHTML;
-      }
-    });
-      
 
     var bsStepper = document.querySelectorAll('.bs-stepper'),
     horizontalWizard = document.querySelector('.horizontal-wizard-example')
