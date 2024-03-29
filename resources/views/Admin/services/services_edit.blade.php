@@ -3,13 +3,12 @@
 @section('title', 'Editar Servicio') 
 
 @section('vendor-style')
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/editors/quill/quill.snow.css')) }}" /> 
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/wizard/bs-stepper.min.css')) }}"/>
 @endsection 
 
 @section('page-style')
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
-    <link href='https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Oswald:wght@200;300;400;500;600;700&display=swap' rel="stylesheet">
+    <x-head.tinymce-config/>
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-wizard.css')) }}">
     <style>
     [type=radio] { 
@@ -97,9 +96,8 @@
                 <div class="col-md-12">
                     <div id="snow-wrapper">
                         <div id="snow-container">
-                            <label for="editor">Texto *</label>
-                            <div id="editor" class="editor ql-container ql-snow">{!! old('text', $service->text) !!}</div>
-                            <textarea hidden id="text" name="text"></textarea>
+                            <label for="texteditor">Texto *</label>
+                            <textarea id="texteditor" name="text">{!! old('text',$service->text) !!}</textarea>
                             @error('text')
                               <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -180,7 +178,6 @@
 
 @section('vendor-script')
     <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
-    <script src="{{ asset(mix('vendors/js/editors/quill/quill.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/forms/wizard/bs-stepper.min.js')) }}"></script>
 @endsection 
 
@@ -199,67 +196,6 @@
         document.getElementById('inputIcon').value = '';
       }
     });
-    let Font = Quill.import('formats/font');
-    Font.whitelist = ['didact-gothic', 'oswald'];
-    Quill.register(Font, true);
-
-    var toolbarOptions = [
-        [{
-            'font': ['didact-gothic', 'oswald']
-        }],
-        ['bold', 'italic', 'underline'], // toggled buttons
-
-        [{
-            'header': 1
-        }, {
-            'header': 2
-        }], // custom button values
-        [{
-            'list': 'ordered'
-        }, {
-            'list': 'bullet'
-        }],
-        [{
-            'indent': '-1'
-        }, {
-            'indent': '+1'
-        }], // outdent/indent
-        [{
-            'direction': 'rtl'
-        }], // text direction
-
-        [{
-            'size': ['small', false, 'large', 'huge']
-        }], // custom dropdown
-        [{
-            'header': [1, 2, 3, 4, 5, 6, false]
-        }],
-
-        [{
-            'color': ['#999', '#838487', '#fff', '#0e0e0e']
-        }, {
-            'background': ['#999', '#838487', '#fff', '#0e0e0e']
-        }], // dropdown with defaults from theme
-        [{
-            'align': []
-        }]
-    ];
-    var quill = new Quill('#editor', {
-        modules: {
-            // Equivalent to { toolbar: { container: '#toolbar' }}
-            toolbar: toolbarOptions
-        },
-        placeholder: 'Inserte el texto que describa el servicio.',
-        theme: 'snow'
-    });
-    
-    var firstStep = document.getElementById('firstStep');
-    firstStep.addEventListener('click', function(e){
-      if(quill.root.innerHTML != '<p><br></p>') {
-        document.getElementById('text').innerText = quill.root.innerHTML;
-      }
-    });
-      
 
     var bsStepper = document.querySelectorAll('.bs-stepper'),
     horizontalWizard = document.querySelector('.horizontal-wizard-example')

@@ -2,12 +2,9 @@
 
 @section('title', 'Editar Post')
 
-@section('vendor-style')
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/editors/quill/quill.snow.css')) }}" /> 
-@endsection 
-
-@section('page-style')
-    <link href='https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Oswald:wght@200;300;400;500;600;700&display=swap' rel="stylesheet">
+@section('page-style')    
+    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
+    <x-head.tinymce-config/>
 @endsection
 
 @section('content')
@@ -87,9 +84,8 @@
                     <div class="col-md-12">
                         <div id="snow-wrapper">
                             <div id="snow-container">
-                                <label for="editor">Texto *</label>
-                                <div id="editor" class="editor ql-container ql-snow">{!! old('text',$post->text) !!}</div>
-                                <textarea hidden id="text" name="text"></textarea>
+                                <label for="texteditor">Texto *</label>
+                                <textarea id="texteditor" name="text">{!! old('text',$post->text) !!}</textarea>
                                 @error('text')
                                   <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -110,20 +106,11 @@
 @endsection
 
 @section('vendor-script')
-    <script src="{{ asset(mix('vendors/js/editors/quill/quill.min.js')) }}"></script>
     <script src="{{ asset(mix('js/image-resize.min.js')) }}"></script>
 @endsection 
 
 @section('page-script')
-    <script src="{{ asset(mix('js/quill-image.js')) }}"></script>
     <script>
-        var form = document.getElementById('form');
-        form.addEventListener('submit', function(e){
-            if(quill.root.innerHTML != '<p><br></p>') {
-                document.getElementById('text').innerHTML = quill.root.innerHTML;
-            }
-        });
-
         var editImage = document.getElementById('edit-image');
         editImage.addEventListener('click', function(){
             document.getElementById('old-image').setAttribute('style', 'display:none !important;');

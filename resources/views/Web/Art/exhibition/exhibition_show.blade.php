@@ -1,9 +1,5 @@
 @extends('Web.Layout.master_layout')
 
-@section('page-style')
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/editors/quill/quill.snow.css')) }}" />
-@endsection 
-
 @section('content')
     <!-- Header Banner -->
     <section class="banner-header banner-img valign bg-img bg-fixed" data-overlay-darkgray="5" data-background="{{ asset('img/1920x1128.jpg') }}"></section>

@@ -30,4 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    //TynyMEC API Key
+    'tinymec' => [
+        'key' => env('TINYMCE_API_KEY', null),
+    ],
+
 ];
