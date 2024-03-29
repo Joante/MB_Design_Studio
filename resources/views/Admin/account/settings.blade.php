@@ -9,6 +9,8 @@
 @section('page-style')
   <!-- Page css files -->
   <link rel="stylesheet" href="{{ asset(mix('css/base/pages/app-user.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
+  <x-head.tinymce-config/>
 @endsection
 
 @section('content')
@@ -153,10 +155,10 @@
                   </div>
                   <div class="col-12 col-sm-8">
                     <div class="form-group">
-                        <label for="about">About</label>
-                        <textarea class="form-control @error('about') is-invalid @enderror" id="account-about" name="about" placeholder="About">{{ old('about', $about) }}</textarea>
+                        <label for="texteditor">About</label>
+                        <textarea id="texteditor" name="about" class="form-control @error('about') is-invalid @enderror">{!! old('about', $about) !!} </textarea>
                         @error('about')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                          <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                   </div>
@@ -166,46 +168,6 @@
                   <button type="reset" class="btn btn-outline-secondary mt-1">Cancelar</button>
                 </div>
               </form>
-                <br>
-                <hr>
-                <br>
-                <div class="row justify-content-center">
-                  <div class="col-12 justify-content-center" style="display: flex;">
-                    <h2>Titulos</h2>
-                  </div>
-                  <div class="col-12 col-sm-8">
-                    <button class="btn add-new btn-primary mt-50" style="float:right;margin-bottom:15px;" type="button" id="createDegreeBtn"><span>Agregar Titulo</span></button>
-                    <table class="table">
-                      <thead class="thead-dark">
-                        <tr>
-                          <th>Id</th>
-                          <th>Descripcion</th>
-                          <th>Tipo</th>
-                          <th>Acciones</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                          @foreach ($degrees as $degree)
-                            <tr>
-                                <td>
-                                    <span class="font-weight-bold">{{$degree->id}}</span>
-                                </td>
-                                <td>{{$degree->description}}</td>
-                                <td>{{$degree->type == 'course' ? 'Curso' : 'Carrera'}}</td>
-                                <td>
-                                  <button class="btn btn-icon btn-outline-warning editDegreeBtn" data-id="{{ $degree->id }}" data-old-description="{{ old('description', $degree['description']) }}" data-old-type="{{ old('type', $degree['type']) }}"><i data-feather='edit-3'></i></button>
-                                  <meta name="csrf-token" content="{{ csrf_token() }}">
-                                  <button class="btn btn-icon btn-outline-danger" id="{{ $degree->id }}">
-                                    <i data-feather='delete'></i>
-                                  </button>
-                              </td>
-                            </tr>      
-                          @endforeach    
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-
 
                 <!-- edit degree modal -->
                 <div class="modal fade" id="editDegreeModal" tabindex="-1" style="display: none;" aria-hidden="true">
