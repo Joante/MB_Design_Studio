@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-md-6 mb-30 animate-box" data-animate-effect="fadeInUp">
                         <h2 class="section-title">About <span>MB</span></h2>
-                        <p>{{ $about->about }}</p>
+                        <div>{!! $about->about !!}</div>
                     </div>
                     <div class="col-md-5 animate-box" data-animate-effect="fadeInUp">
                         <div class="about-img">

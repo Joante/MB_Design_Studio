@@ -17,4 +17,26 @@ class Information extends Model
     protected $fillable = [
         'about',
      ];
+
+
+     /**
+     * Get the full decode about.
+     *
+     * @return string
+     */
+    public function getAboutAttribute($value)
+    {
+        return json_decode($value);
+    }
+
+    /**
+     * Set the about to json.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setAboutAttribute($value)
+    {
+        $this->attributes['about'] = json_encode($value);
+    }
 }

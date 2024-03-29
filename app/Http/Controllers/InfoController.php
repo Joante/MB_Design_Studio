@@ -45,14 +45,13 @@ class InfoController extends Controller
         $description = User::where('id', '=', 1)->value('description');
         $perAcounts = Acounts::where('type', '=', 'personal')->first();
         $about = Information::first();
-        $degrees = Degrees::all();
         $aboutText = $about != null ? $about->about : '';
-        return view('Web/Info/about', ['location' => $location, 'perAcounts' => $perAcounts, 'description' => $description, 'about' => $aboutText, 'degrees' => $degrees]);
+        return view('Web/Info/about', ['location' => $location, 'perAcounts' => $perAcounts, 'description' => $description, 'about' => $aboutText]);
     }
 
     public function update_about(Request $request){
         $request->validate([
-            'about' => 'required|string',
+            'about' => 'required',
         ]);
         $about = Information::first();
 
