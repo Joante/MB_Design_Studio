@@ -46,7 +46,7 @@ class HomepageImagesController extends Controller
         $request->validate([
             'title' => 'required|string|max:100',
             'description' => 'required|string|max:1000',
-            'image' => 'required|image|max:10240',
+            'images' => 'required|image|max:10240',
             'hierarchy' => 'nullable|numeric|min:1'
         ]);
 
@@ -62,7 +62,7 @@ class HomepageImagesController extends Controller
             }else {
                 event(new HierarchyChange($hierarchy, 'homepage_images'));
             }
-
+            
             $newHomepageImage = [
                 'title' => $request->get('title'),
                 'description' => $request->get('description'),
@@ -78,31 +78,9 @@ class HomepageImagesController extends Controller
                     ->withInput();
             }
             
-            $extension = pathinfo($request->file('image')->getClientOriginalName(), PATHINFO_EXTENSION);
-            $imageTitle = $request->file('image')->getClientOriginalName();
-
-            $imageNameSave = str_replace(' ', '_', pathinfo($request->file('image')->getClientOriginalName(),PATHINFO_FILENAME));
-            $imageName = $homepageImage->id.'_'.$imageNameSave.'_'.time().'.'.$extension;
-            
-            $imagePath = 'img/homepage_images/'.$imageName;
-            $newImage = [
-                'title' => $imageTitle,
-                'location' => $imagePath
-            ];
-            
-            if(!$homepageImage->image()->create($newImage)) {
-                DB::rollBack();
-                $error = ['error' => 'Problemas al guardar la imagen'];
-                return redirect('homepage_images/create')
-                    ->withErrors($error)
-                    ->withInput();
-            }
-            if (!is_dir(public_path('/').'img/homepage_images/')){
-                mkdir(public_path('/').'img/homepage_images/', 0770, true);
-            } 
-            Image::make($request->file('image'))->save(public_path('/').$imagePath);
-            
-            if (!file_exists(public_path('/').$imagePath)) {
+            $request->except(['title', 'description', 'hierarchy']);
+            $imagesController = new ImagesController();
+            if ($imagesController->store($request, 'homepage_images', $homepageImage->id)) {
                 DB::rollBack();
                 $error = ['error' => 'Problemas al guardar la imagen'];
                 return redirect('homepage_images/create')
@@ -171,74 +149,27 @@ class HomepageImagesController extends Controller
         $request->validate([
             'title' => 'required|string|max:100',
             'description' => 'required|string|max:1000',
-            'image' => 'nullable|image|max:10240',
+            'images' => 'nullable|image|max:10240',
             'hierarchy' => 'required|numeric|min:1'
         ]);
 
-        if($request->has('image'))
-        {
-            try{
-                DB::beginTransaction();
+        try{
+            DB::beginTransaction();
 
-                $imageLocation = $homepageImage->image->location;
-                
-                if(!ModelsImage::destroy($homepageImage->image->id)) {
-                    DB::rollBack();
-                    return json_encode('Error al eliminar la imagen de la base de datos.');
+            if($request->get('hierarchy') != $homepageImage->hierarchy){
+                $homepageImage->hierarchy = -1;
+                if(!$homepageImage->save())
+                {
+                    $error = ['error' => 'Error al actualizar la imagen de la homepage'];
+                        return redirect('homepage_images/edit/'.$id)
+                                    ->withErrors($error)
+                                    ->withInput();
                 }
-
-                $extension = pathinfo($request->file('image')->getClientOriginalName(), PATHINFO_EXTENSION);
-                $imageTitle = $request->file('image')->getClientOriginalName();
-    
-                $imageNameSave = str_replace(' ', '_', pathinfo($request->file('image')->getClientOriginalName(),PATHINFO_FILENAME));
-                $imageName = $homepageImage->id.'_'.$imageNameSave.'_'.time().'.'.$extension;
-                
-                $imagePath = 'img/homepage_images/'.$imageName;
-                $newImage = [
-                    'title' => $imageTitle,
-                    'location' => $imagePath
-                ];
-                
-                if(!$homepageImage->image()->create($newImage)) {
-                    DB::rollBack();
-                    $error = ['error' => 'Problemas al guardar la imagen en la base de datos'];
-                    return redirect('homepage_images/edit/'.$id)
-                        ->withErrors($error)
-                        ->withInput();
-                }
-                if (!is_dir(public_path('/').'img/homepage_images/')){
-                    mkdir(public_path('/').'img/homepage_images/', 0770, true);
-                } 
-                Image::make($request->file('image'))->save(public_path('/').$imagePath);
-                
-                if (!file_exists(public_path('/').$imagePath)) {
-                    DB::rollBack();
-                    $error = ['error' => 'Problemas al guardar la imagen'];
-                    return redirect('homepage_images/edit/'.$id)
-                            ->withErrors($error)
-                            ->withInput();
-                }
-
-                if(!Storage::delete($imageLocation)) {
-                    DB::rollBack();
-                    $error = ['error' => 'Error al eliminar la imagen'];
-                    return redirect('homepage_images/edit/'.$id)
-                            ->withErrors($error)
-                            ->withInput();
-                }
-
-                DB::commit();
-            } catch(Exception $e) {
-                DB::rollBack();
-                $error = ['error' => $e->getMessage()];
-                return redirect('homepage_images/edit/'.$id)
-                            ->withErrors($error)
-                            ->withInput();
+                event(new HierarchyChange($request->get('hierarchy'), 'homepage_images'));
             }
-        }
-
-        if($request->get('hierarchy') != $homepageImage->hierarchy){
-            $homepageImage->hierarchy = -1;
+            $homepageImage->title = $request->get('title');
+            $homepageImage->description = $request->get('description');
+            $homepageImage->hierarchy = $request->get('hierarchy');
             if(!$homepageImage->save())
             {
                 $error = ['error' => 'Error al actualizar la imagen de la homepage'];
@@ -246,18 +177,29 @@ class HomepageImagesController extends Controller
                                 ->withErrors($error)
                                 ->withInput();
             }
-            event(new HierarchyChange($request->get('hierarchy'), 'homepage_images'));
-        }
-        $homepageImage->title = $request->get('title');
-        $homepageImage->description = $request->get('description');
-        $homepageImage->hierarchy = $request->get('hierarchy');
-        if(!$homepageImage->save())
-        {
-            $error = ['error' => 'Error al actualizar la imagen de la homepage'];
-                return redirect('homepage_images/edit/'.$id)
+
+            if($request->has('images'))
+            {
+                $request->except(['title', 'description','hierarchy']);
+                $imagesController = new ImagesController();
+
+                if (!$imagesController->update($request, 'homepage_images', $homepageImage->id, $homepageImage->images->id)) {
+                    DB::rollBack();
+                    $error = ['error' => 'Problemas al actualizar la imagen'];
+                    return redirect('homepage_images/edit/'.$id)
                             ->withErrors($error)
                             ->withInput();
+                }
+            } 
+            DB::commit();
+        }catch(Exception $e) {
+            DB::rollBack();
+            $error = ['error' => $e->getMessage()];
+            return redirect('homepage_images/edit/'.$id)
+                        ->withErrors($error)
+                        ->withInput();
         }
+
         return redirect()->route('homepage_images_show', [$id])->with('success','hola');
     }
 
@@ -275,20 +217,17 @@ class HomepageImagesController extends Controller
             DB::beginTransaction();
 
             $homepageImage = HomepageImage::find($request->get('id'));
-            $location = $homepageImage->image->location;
-            if(!$homepageImage->image->delete()){
+            $imageId = $homepageImage->images->id;
+            if(!$homepageImage->delete()){
                     DB::rollBack();
                     return json_encode(['message' => 'Error al eliminar la imagen']);
             }
 
-            if(!$homepageImage->delete()){
-                DB::rollBack();
-                return json_encode(['message' => 'Error al eliminar la imagen de la homepage']);
-            }
+            $imagesController = new ImagesController();
             
-            if(!Storage::delete($location)) {
+            if(!$imagesController->destroySingleImage($imageId)) {
                 DB::rollBack();
-                return json_encode(['message' => 'Error al eliminar los archivos']);
+                return json_encode(['message' => 'Error al eliminar la imagen']);
             }
             DB::commit();
         } catch(Exception $e){

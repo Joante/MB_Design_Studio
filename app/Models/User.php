@@ -11,11 +11,11 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
-     * Obtener todas las fotos del usuario.
+     * Obtain the image of the user.
      */
     public function images()
     {
-        return $this->morphMany(Image::class, 'model');
+        return $this->morphOne(Image::class, 'model');
     }
 
     /**

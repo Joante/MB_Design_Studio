@@ -12,9 +12,15 @@
       <div class="card">
         <div class="card-header d-flex justify-content-center">
             <div class="col-md-6 d-flex justify-content-center">
-                @error('error')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </div>
         </div>
         <div class="card-body">
@@ -42,8 +48,8 @@
                     <div class="col-md-6 col-12">
                         <div class="form-group">
                             <label for="image-column">Imagen de Portada *</label>
-                            <input type="file" id="image-column" class="form-control @error('image') is-invalid @enderror" name="image" placeholder="Seleccionar Imagen">
-                            @error('image')
+                            <input type="file" id="image-column" class="form-control @error('images') is-invalid @enderror" name="images" placeholder="Seleccionar Imagen">
+                            @error('images')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>

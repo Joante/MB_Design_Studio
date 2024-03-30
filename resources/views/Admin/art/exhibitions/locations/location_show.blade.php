@@ -55,12 +55,12 @@
                 </div>
               </div>
             </div>
-            @if ($location->image)
+            @if ($location->images)
               <div class="col-md-12 d-flex justify-content-center" style="margin-top: 30px;">
                   <h4>Imagen de Portada</h4>
               </div>
               <div class="col-md-12 d-flex justify-content-center">
-                  <img src="{{ asset($location->image->location) }}" class="img-fluid rounded" alt="{{ $location->image->title }}" style="max-width: 40%">
+                  <img src="{{ asset($location->images->location) }}" class="img-fluid rounded" alt="{{ $location->images->title }}" style="max-width: 40%">
               </div>
             @endif
           </div>

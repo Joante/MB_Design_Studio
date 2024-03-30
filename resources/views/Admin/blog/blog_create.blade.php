@@ -61,8 +61,8 @@
                     <div class="col-md-6 col-12">
                         <div class="form-group">
                             <label for="image-column">Imagen de Portada *</label>
-                            <input type="file" id="image-column" class="form-control @error('image') is-invalid @enderror" name="image" placeholder="Seleccionar Imagen" required>
-                            @error('image')
+                            <input type="file" id="image-column" class="form-control @error('images') is-invalid @enderror" name="images" placeholder="Seleccionar Imagen" required>
+                            @error('images')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -92,5 +92,5 @@
 @endsection
 
 @section('vendor-script')
-    <script src="{{ asset(mix('js/image-resize.min.js')) }}"></script>
+    <script src="{{ asset('js/image-resize.min.js') }}"></script>
 @endsection 

@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ArtColection;
 use App\Models\ArtExhibition;
 use App\Models\ArtPainting;
+use App\Models\HomepageImage;
 use App\Models\Image as ModelsImage;
+use App\Models\Location;
+use App\Models\Post;
 use App\Models\Project;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Image;
-use File;
 use Illuminate\Support\Facades\DB;
 
 class ImagesController extends Controller
@@ -55,21 +59,8 @@ class ImagesController extends Controller
         $imageNameSave = str_replace(' ', '_', pathinfo($request->file('images')->getClientOriginalName(),PATHINFO_FILENAME));
         $imageName = $modelType.'_'.$modelId.'_'.$imageNameSave.'.'.$extension;
         
-        switch($modelType)
-        {
-            case "services": 
-                $model = Service::find($modelId);
-                break;
-            case "projects":
-                $model = Project::find($modelId);
-                break;
-            case "exhibitions":
-                $model = ArtExhibition::find($modelId);
-                break;
-            case "paint": 
-                $model = ArtPainting::find($modelId);
-                break;
-        }
+        $model = $this->getModel($modelType, $modelId);
+
         $imagePath = 'img/'.$modelType.'/'.$imageName;
         $newImage = [
             'title' => $imageTitle,
@@ -117,20 +108,7 @@ class ImagesController extends Controller
      */
     public function edit($modelType, $modelId)
     {
-        switch($modelType) {
-            case "services": 
-                $model = Service::find($modelId);
-                break;
-            case "projects":
-                $model = Project::find($modelId);
-                break;
-            case "exhibitions":
-                $model = ArtExhibition::find($modelId);
-                break;
-            case "paint": 
-                $model = ArtPainting::find($modelId);
-                break;
-        }
+        $model = $this->getModel($modelType, $modelId);
         $result = [];
         foreach($model->images as $image) {
             if(file_exists(public_path($image->location))){
@@ -155,9 +133,17 @@ class ImagesController extends Controller
      * @param  int  $modelId
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $modelType, $modelId)
+    public function update(Request $request, $modelType, $modelId, $imageId)
     {
-        dd($request);
+        if($this->store($request, $modelType, $modelId) != null ){
+            return false;
+        }
+        
+        if(!$this->destroySingleImage($imageId)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -188,5 +174,53 @@ class ImagesController extends Controller
         }
         DB::commit();
         return json_encode('success');
+    }
+
+
+    public function destroySingleImage($id){
+        $image = ModelsImage::find($id);
+        $location = $image->location;
+        if(ModelsImage::destroy($image->id) != 1) {
+            return false;
+        }
+
+        if(!Storage::delete('/'.$location)) {
+            return false;
+        }
+        return true;
+    }
+
+    private function getModel($modelType, $modelId){
+        $model = false;
+        switch($modelType) {
+            case "services": 
+                $model = Service::find($modelId);
+                break;
+            case "projects":
+                $model = Project::find($modelId);
+                break;
+            case "exhibitions":
+                $model = ArtExhibition::find($modelId);
+                break;
+            case "paint": 
+                $model = ArtPainting::find($modelId);
+                break;
+            case "team":
+                $model = User::find($modelId);
+                break;
+            case "posts":
+                $model = Post::find($modelId);
+                break;
+            case "locations":
+                $model = Location::find($modelId);
+                break;
+            case "art_colections":
+                $model = ArtColection::find($modelId);
+                break;
+            case "homepage_images":
+                $model = HomepageImage::find($modelId);
+                break;
+        }
+        return $model;
     }
 }

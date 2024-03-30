@@ -50,7 +50,7 @@ class Post extends Model
     }
 
     /**
-     * Obtener todas las fotos del servicio.
+     * Obtain the image of the post.
      */
     public function images()
     {

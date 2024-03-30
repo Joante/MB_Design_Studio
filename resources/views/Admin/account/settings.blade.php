@@ -61,10 +61,10 @@
               <!-- header media -->
               <div class="media">
                 <a href="javascript:void(0);" class="mr-25">
-                  @if (count(Auth::user()->images) == 0)
+                  @if (Auth::user()->images == null)
                     <img src="{{asset('img/600x600.jpg')}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80"/>    
                   @else 
-                    <img src="{{asset(Auth::user()->images[0]->location)}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80"/>  
+                    <img src="{{asset(Auth::user()->images->location)}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80"/>  
                   @endif
                 </a>
                 <!-- upload and reset button -->
@@ -75,7 +75,7 @@
                   <form action="{{ route('avatar_update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <label for="account-upload" class="btn btn-sm btn-primary mb-75 mr-75" id="btn_edit_image">Cambiar Imagen</label>
-                    <input type="file" id="account-upload" hidden accept="image/*" name="image"/>
+                    <input type="file" id="account-upload" hidden accept="image/*" name="images"/>
                     <button class="btn btn-sm btn-primary mb-75 mr-75" style="display:none;" type="submit" id="btn_update_image">Guardar</button>
                     <button class="btn btn-sm btn-outline-secondary mb-75 mr-75" style="display:none;" type="button" id="btn_cancel_image"><span>Cancelar</span></button>     
                   </form>

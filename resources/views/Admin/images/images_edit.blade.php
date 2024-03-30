@@ -122,7 +122,6 @@
                                 _token: _token
                             },
                             success:function(response){
-                                console.log(response);
                                 if(response != '"success"') {
                                     alert(response);
                                 }else {

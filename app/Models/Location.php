@@ -34,7 +34,7 @@ class Location extends Model
     /**
      * Get the image of the location.
      */
-    public function image()
+    public function images()
     {
         return $this->morphOne(Image::class, 'model');
     }
