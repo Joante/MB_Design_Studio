@@ -69,7 +69,9 @@ class LocationController extends Controller
             }
             if($request->has('images'))
             {
+                $imageTitle = $request->file('images')->getClientOriginalName();
                 $request->except(['name', 'url', 'phone', 'adress']);
+                $request->merge(['hierarchy' => 2, 'name' => $imageTitle]);
                 $imagesController = new ImagesController();
 
                 $response = $imagesController->store($request, 'locations', $location->id);
@@ -168,10 +170,12 @@ class LocationController extends Controller
 
             if($request->has('images'))
             {
-                $request->except(['name', 'url', 'phone','adress']);
+                $imageTitle = $request->file('images')->getClientOriginalName();
+                $request->except(['name', 'url', 'phone', 'adress']);
+                $request->merge(['hierarchy' => 2, 'name' => $imageTitle]);
                 $imagesController = new ImagesController();
 
-                if(!$imagesController->update($request, 'locations', $location->id, $location->images->id)) {
+                if($imagesController->update($request, 'locations', $location->id, $location->images->id) == 'hola') {
                     DB::rollBack();
                     $error = ['error' => 'Error al actualizar la imagen'];
                     return redirect('art/exhibition/locations/edit/'.$id)

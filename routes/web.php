@@ -201,6 +201,7 @@ Route::prefix('images')->middleware('auth')->group(function () {
     Route::post('/store/{modelType}/{modelId}', [ImagesController::class, 'store'])->name('images_store');
     Route::get('/edit/{modelType}/{modelId}', [ImagesController::class, 'edit'])->name('images_edit');
     Route::post('/delete/{modelType}/{modelId}', [ImagesController::class, 'delete'])->name('images_delete');
+    Route::post('/update/{modelType}/{modelId}', [ImagesController::class,'updateImageWithHierarchy'])->name('images_update');
 });
 
 

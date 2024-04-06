@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\HierarchyChange;
-use App\Models\HomepageImage;
 use App\Models\Image as ModelsImage;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use Image;
 
 class HomepageImagesController extends Controller
 {
+    private $model_type = 'homepage_images';
+    private $model_type_db = 'App\\Models\\HomepageImage';
+    private $model_id = 1;
+
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +20,7 @@ class HomepageImagesController extends Controller
      */
     public function index()
     {
-        $homepageImages = HomepageImage::orderBy('hierarchy')->paginate(15);
+        $homepageImages = ModelsImage::where('model_type', $this->model_type_db)->orderBy('hierarchy')->paginate(15);
         return view('Admin.homepage_images.homepage_images_index', ['homepageImages' => $homepageImages]);
     }
 
@@ -31,7 +31,7 @@ class HomepageImagesController extends Controller
      */
     public function create()
     {
-        $hierarchy = HomepageImage::count();
+        $hierarchy = ModelsImage::where('model_type', $this->model_type_db)->count();
         return view('Admin.homepage_images.homepage_images_create', ['hierarchy' => $hierarchy]);
     }
 
@@ -44,56 +44,22 @@ class HomepageImagesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:100',
+            'name' => 'required|string|max:100',
             'description' => 'required|string|max:1000',
             'images' => 'required|image|max:10240',
             'hierarchy' => 'nullable|numeric|min:1'
         ]);
+        $image = new ImagesController();
+        
+        if($request->get('hierarchy') == null){
+            $request->merge(['hierarchy' => ModelsImage::where('model_type', $this->model_type_db)->count()+1]);
+        }
 
-        try{
-            DB::beginTransaction();
-
-            $hierarchy = $request->get('hierarchy');
-            if($hierarchy == null){
-                $hierarchy = HomepageImage::count() + 1;
-                if($hierarchy == 0){
-                    $hierarchy = 1;
-                }
-            }else {
-                event(new HierarchyChange($hierarchy, 'homepage_images'));
-            }
-            
-            $newHomepageImage = [
-                'title' => $request->get('title'),
-                'description' => $request->get('description'),
-                'hierarchy' => $hierarchy,
-            ];
-
-            $homepageImage = HomepageImage::create($newHomepageImage);
-            if(!$homepageImage) {
-                DB::rollBack();
-                $error = ['error' => 'Problemas al guardar la imagen de la homepage'];
-                return redirect('homepage_images/create')
+        if($image->store($request, $this->model_type, $this->model_id) != null ){
+            $error = ['error' => 'Error al crear la imagen de la homepage'];
+            return redirect('homepage_images/create/')
                     ->withErrors($error)
                     ->withInput();
-            }
-            
-            $request->except(['title', 'description', 'hierarchy']);
-            $imagesController = new ImagesController();
-            if ($imagesController->store($request, 'homepage_images', $homepageImage->id)) {
-                DB::rollBack();
-                $error = ['error' => 'Problemas al guardar la imagen'];
-                return redirect('homepage_images/create')
-                        ->withErrors($error)
-                        ->withInput();
-            }
-            DB::commit();
-        } catch(Exception $e) {
-            DB::rollBack();
-            $error = ['error' => $e->getMessage()];
-            return redirect('homepage_images/create')
-                        ->withErrors($error)
-                        ->withInput();
         }
         
         
@@ -108,7 +74,7 @@ class HomepageImagesController extends Controller
      */
     public function show($id)
     {
-        $homepageImage = HomepageImage::find($id);
+        $homepageImage = ModelsImage::where('model_type', $this->model_type_db)->find($id);
         if(!$homepageImage) {
             abort('404');
         }
@@ -123,11 +89,11 @@ class HomepageImagesController extends Controller
      */
     public function edit($id)
     {
-        $homepageImage = HomepageImage::find($id);
+        $homepageImage = ModelsImage::where('model_type', $this->model_type_db)->find($id);
         if(!$homepageImage) {
             abort('404');
         }
-        $hierarchy = HomepageImage::count();
+        $hierarchy = ModelsImage::where('model_type', $this->model_type_db)->count();
         return view('Admin.homepage_images.homepage_images_edit', ['homepageImage' => $homepageImage, 'hierarchy' => $hierarchy]);
     }
 
@@ -140,14 +106,14 @@ class HomepageImagesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $homepageImage = HomepageImage::find($id);
+        $homepageImage = ModelsImage::where('model_type', $this->model_type_db)->find($id);
 
         if(!$homepageImage) {
             return view('errors/model_not_found', ['modelName' => 'ubicacion']);
         }
 
         $request->validate([
-            'title' => 'required|string|max:100',
+            'name' => 'required|string|max:100',
             'description' => 'required|string|max:1000',
             'images' => 'nullable|image|max:10240',
             'hierarchy' => 'required|numeric|min:1'
@@ -155,35 +121,23 @@ class HomepageImagesController extends Controller
 
         try{
             DB::beginTransaction();
-
-            if($request->get('hierarchy') != $homepageImage->hierarchy){
-                $homepageImage->hierarchy = -1;
-                if(!$homepageImage->save())
-                {
-                    $error = ['error' => 'Error al actualizar la imagen de la homepage'];
-                        return redirect('homepage_images/edit/'.$id)
-                                    ->withErrors($error)
-                                    ->withInput();
-                }
-                event(new HierarchyChange($request->get('hierarchy'), 'homepage_images'));
-            }
-            $homepageImage->title = $request->get('title');
+            ModelsImage::setIsUpdate(true);
+            ModelsImage::setNewModel(false);
+            $homepageImage->title = $request->get('name');
             $homepageImage->description = $request->get('description');
             $homepageImage->hierarchy = $request->get('hierarchy');
             if(!$homepageImage->save())
             {
                 $error = ['error' => 'Error al actualizar la imagen de la homepage'];
                     return redirect('homepage_images/edit/'.$id)
-                                ->withErrors($error)
-                                ->withInput();
+                            ->withErrors($error)
+                            ->withInput();
             }
 
             if($request->has('images'))
             {
-                $request->except(['title', 'description','hierarchy']);
                 $imagesController = new ImagesController();
-
-                if (!$imagesController->update($request, 'homepage_images', $homepageImage->id, $homepageImage->images->id)) {
+                if (!$imagesController->update($request, $this->model_type, $this->model_id, $homepageImage->id)) {
                     DB::rollBack();
                     $error = ['error' => 'Problemas al actualizar la imagen'];
                     return redirect('homepage_images/edit/'.$id)
@@ -200,7 +154,7 @@ class HomepageImagesController extends Controller
                         ->withInput();
         }
 
-        return redirect()->route('homepage_images_show', [$id])->with('success','hola');
+        return redirect()->route('homepage_images_index');
     }
 
     /**
@@ -212,34 +166,13 @@ class HomepageImagesController extends Controller
     public function destroy(Request $request)
     {
         $request->validate(['id' => 'required|numeric']);
-        
-        try {
-            DB::beginTransaction();
+        $idArray = ['deletedFiles' => [$request->get('id')]];
+        $request->except(['id']);
+        $request->merge($idArray);
+        $imagesController = new ImagesController();
 
-            $homepageImage = HomepageImage::find($request->get('id'));
-            $imageId = $homepageImage->images->id;
-            if(!$homepageImage->delete()){
-                    DB::rollBack();
-                    return json_encode(['message' => 'Error al eliminar la imagen']);
-            }
+        $response = $imagesController->delete($request);
 
-            $imagesController = new ImagesController();
-            
-            if(!$imagesController->destroySingleImage($imageId)) {
-                DB::rollBack();
-                return json_encode(['message' => 'Error al eliminar la imagen']);
-            }
-            DB::commit();
-        } catch(Exception $e){
-            DB::rollback();
-            $error = ([
-                'message' => $e->getMessage()
-            ]);
-            json_encode($error);
-            return ($error);
-        }
-        $success = (['message' => 'success']);
-
-        return json_encode($success);
+        return json_encode(['message' => json_decode($response)]);
     }
 }

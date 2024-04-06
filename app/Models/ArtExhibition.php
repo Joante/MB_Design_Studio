@@ -68,7 +68,7 @@ class ArtExhibition extends Model
      */
     public function images()
     {
-        return $this->morphMany(Image::class, 'model');
+        return $this->morphMany(Image::class, 'model')->orderBy('hierarchy');
     }
 
     /**

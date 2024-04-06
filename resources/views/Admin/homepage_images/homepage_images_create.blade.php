@@ -30,8 +30,8 @@
                     <div class="col-md-6 col-12">
                         <div class="form-group">
                             <label for="title-column">Nombre *</label>
-                            <input type="text" id="title-column" class="form-control @error('title') is-invalid @enderror" placeholder="Nombre" name="title" required value="{{ old('title') }}">
-                            @error('title')
+                            <input type="text" id="title-column" class="form-control @error('name') is-invalid @enderror" placeholder="Nombre" name="name" required value="{{ old('name') }}">
+                            @error('name')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
