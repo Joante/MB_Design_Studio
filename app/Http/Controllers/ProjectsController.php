@@ -20,19 +20,9 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $services_id = Service::pluck('id');
-        $categories = Project::groupBy('service_id')->pluck('service_id')->toArray();
-        $projects = [];
-        foreach($services_id as $id) {
-            $results = Project::where('service_id', '=', $id)->limit(2)->latest()->get();
-            if(!empty($results->all())) {
-                foreach ($results as $result) {
-                    $projects[] = $result;
-                }
-            }
-        }
+        $projects = Project::paginate(10);
         
-        return view('Web/Projects/projects_index', ['projects' => $projects, 'categories' => $categories]);
+        return view('Web/Projects/projects_index', ['projects' => $projects]);
     }
 
     /**
@@ -45,23 +35,6 @@ class ProjectsController extends Controller
         $projects = Project::sortable()->paginate(15);
 
         return view('Admin/projects/projects_index_admin', ['projects' => $projects]);
-    }
-
-    /**
-     * Display a listing of all the entrys for the specific category
-     * 
-     * @param int $category_id
-     * @return \Illuminate\Contracts\View\Factory| \Illuminate\Contracts\View\View
-     */
-    public function show_category($category_id) {
-        $projects = Project::where('service_id', '=', $category_id)->paginate(6);
-        $service = Service::find($category_id);
-        if(!$service) {
-            abort('404');
-        }
-        $service_title = $service->title;
-
-        return view('Web/Projects/projects_category', ['projects' => $projects, 'service' => $service_title]);
     }
 
     /**
@@ -87,7 +60,6 @@ class ProjectsController extends Controller
             'client' => 'nullable|string|max:100',
             'description' => 'required',
             'location' => 'nullable|string|max:100',
-            'service_id' => 'required|numeric',
             'principal_page' => ['sometimes',new PrincipalPage('projects', 6)],
             'area' => 'required|numeric|min:1'
         ]);
@@ -166,7 +138,6 @@ class ProjectsController extends Controller
             'client' => 'nullable|string|max:100',
             'description' => 'required',
             'location' => 'nullable|string|max:100',
-            'service_id' => 'required|numeric',
             'principal_page' => ['sometimes',new PrincipalPage('projects', 6, $id)],
             'area' => 'required|numeric|min:1'
         ]);
@@ -179,7 +150,6 @@ class ProjectsController extends Controller
         $project->client = $request->get('client');
         $project->description = $request->get('description');
         $project->location = $request->get('location');
-        $project->service_id = $request->get('service_id');
         $project->principal_page = $request->get('principal_page');
         $project->area = $request->get('area');
         $project->save();

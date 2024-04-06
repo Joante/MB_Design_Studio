@@ -2,13 +2,9 @@
 
 @section('title', 'Agregar Post')
 
-@section('vendor-style')
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/editors/quill/quill.snow.css')) }}" /> 
-@endsection 
-
 @section('page-style')
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
-    <link href='https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Oswald:wght@200;300;400;500;600;700&display=swap' rel="stylesheet">
+    <x-head.tinymce-config/>
 @endsection
 
 @section('content')
@@ -35,20 +31,6 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-6 col-12">
-                        <div class="form-group">
-                            <label for="category">Categoria *</label>
-                            <select class="custom-select @error('category_id') is-invalid @enderror" id="category" name="category_id" required>
-                                <option {{ old('category_id') == '' ? "selected": "" }} value="">Seleccionar Categoria</option>
-                                @foreach ($categories as $category)
-                                    <option {{ old('category_id') == $category->id ? "selected": "" }} value="{{ $category->id }}">{{ $category->title }}</option>
-                                @endforeach
-                            </select>
-                            @error('category_id')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
                     <div class="col-md-6 col-12 d-flex align-items-center">
                         <div class="form-group">
                             @if (old('principal_page') == '1')
@@ -65,8 +47,8 @@
                     <div class="col-md-6 col-12">
                         <div class="form-group">
                             <label for="image-column">Imagen de Portada *</label>
-                            <input type="file" id="image-column" class="form-control @error('image') is-invalid @enderror" name="image" placeholder="Seleccionar Imagen" required>
-                            @error('image')
+                            <input type="file" id="image-column" class="form-control @error('images') is-invalid @enderror" name="images" placeholder="Seleccionar Imagen" required>
+                            @error('images')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -74,9 +56,8 @@
                     <div class="col-md-12">
                         <div id="snow-wrapper">
                             <div id="snow-container">
-                                <label for="editor">Texto *</label>
-                                <div id="editor" class="editor ql-container ql-snow">{!! old('text') !!}</div>
-                                <textarea hidden id="text" name="text"></textarea>
+                                <label for="texteditor">Texto *</label>
+                                <textarea id="texteditor" name="text">{!! old('text') !!} </textarea>
                                 @error('text')
                                   <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -97,18 +78,5 @@
 @endsection
 
 @section('vendor-script')
-    <script src="{{ asset(mix('vendors/js/editors/quill/quill.min.js')) }}"></script>
-    <script src="{{ asset(mix('js/image-resize.min.js')) }}"></script>
+    <script src="{{ asset('js/image-resize.min.js') }}"></script>
 @endsection 
-
-@section('page-script')
-    <script src="{{ asset(mix('js/quill-image.js')) }}"></script>
-    <script>
-        var form = document.getElementById('form');
-        form.addEventListener('submit', function(e){
-            if(quill.root.innerHTML != '<p><br></p>') {
-                document.getElementById('text').innerText = quill.root.innerHTML;
-            }
-        });
-    </script>
-@endsection

@@ -1,7 +1,6 @@
 @extends('Web.Layout.master_layout')
 
 @section('page-style')
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/editors/quill/quill.snow.css')) }}" /> 
 @endsection 
 
 @section('content')
@@ -68,7 +67,7 @@
                                         @foreach ($projects as $project)
                                             <li><a href="{{ route('projects_view', $project->id) }}">{{ $project->title }}</a></li>    
                                         @endforeach
-                                        <li><a href="{{ route('project_view_category', $service->id) }}">Ver Todos</a></li>
+                                        <li><a href="{{ route('projects_index',) }}">Ver Todos</a></li>
                                     </ul>
                                 </div>
                             </div>

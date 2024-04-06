@@ -61,7 +61,7 @@
                 <h4>Imagen de Portada</h4>
             </div>
             <div class="col-md-12 d-flex justify-content-center">
-                <img src="{{ asset($colection->image->location) }}" class="img-fluid rounded" alt="{{ $colection->image->title }}" style="max-width: 25%">
+                <img src="{{ asset($colection->images->location) }}" class="img-fluid rounded" alt="{{ $colection->images->title }}" style="max-width: 25%">
             </div>
           </div>
         </div>

@@ -63,7 +63,6 @@ mixAssetsDir('js/**/*.js', (src, dest) => mix.scripts(src, dest))
 mixAssetsDir('vendors/js/**/*.js', (src, dest) => mix.scripts(src, dest))
 mixAssetsDir('vendors/css/**/*.css', (src, dest) => mix.copy(src, dest))
 mixAssetsDir('vendors/**/**/images', (src, dest) => mix.copy(src, dest))
-mixAssetsDir('vendors/css/editors/quill/fonts/', (src, dest) => mix.copy(src, dest))
 mixAssetsDir('fonts', (src, dest) => mix.copy(src, dest))
 mixAssetsDir('fonts/**/**/*.css', (src, dest) => mix.copy(src, dest))
 mix.copyDirectory('resources/images', 'public/images')
@@ -73,7 +72,6 @@ mix.copyDirectory('resources/assets/scss/plugins', 'public/css/plugins')
 
 mix
     .js('resources/js/core/app-menu.js', 'public/js/core')
-    .js('node_modules/quill-image-resize/image-resize.min.js', 'public/js')
     .js('resources/js/core/app.js', 'public/js/core')
     .sass('resources/sass/core.scss', 'public/css', { sassOptions })
     .sass('resources/sass/overrides.scss', 'public/css', { sassOptions })
@@ -81,6 +79,7 @@ mix
     .sass('resources/assets/scss/style-rtl.scss', 'public/css', { sassOptions })
     .sass('resources/assets/scss/style.scss', 'public/css', { sassOptions })
     .css('resources/assets/scss/plugins.css', 'public/css')
+    .copyDirectory('resources/vendors/css/jquery.ui.plupload/img', 'public/vendors/css/jquery.ui.plupload/img')
 
 mix.then(() => {
     if (process.env.MIX_CONTENT_DIRECTION === 'rtl') {

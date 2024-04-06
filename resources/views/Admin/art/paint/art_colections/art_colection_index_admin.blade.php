@@ -40,7 +40,7 @@
                             <label class="custom-control-label" for="customSwitch2"></label>
                         </div>
                       </td>
-                      <td><img src="{{ asset($colection->image->location) }}" alt="{{ $colection->image->title }}" height="80" width="80"></td>
+                      <td><img src="{{ asset($colection->images->location) }}" alt="{{ $colection->images->title }}" height="80" width="80"></td>
                       <td>
                         <a href="{{ route('paint_colection_show_admin', $colection->id) }}">
                           <button class="btn btn-icon btn-outline-info">

@@ -6,7 +6,7 @@
         <div class="owl-carousel owl-theme">
             <!-- The opacity on the image is made with "data-overlay-dark="number". You can change it using the numbers 0-9.  -->
             @foreach ($homepageImages as $homepageImage)
-                <div class="text-left item bg-img" data-overlay-dark="3" data-background="{{ $homepageImage != null ? asset($homepageImage->image->location) : asset('img/1920x1128.jpg') }}">
+                <div class="text-left item bg-img" data-overlay-dark="3" data-background="{{ $homepageImage != null ? asset($homepageImage->location) : asset('img/1920x1128.jpg') }}">
                     <div class="v-bottom caption">
                         <div class="container">
                             <div class="row">
@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-md-6 mb-30 animate-box" data-animate-effect="fadeInUp">
                         <h2 class="section-title">About <span>MB</span></h2>
-                        <p>{{ $about->about }}</p>
+                        <div>{!! $about->about !!}</div>
                     </div>
                     <div class="col-md-5 animate-box" data-animate-effect="fadeInUp">
                         <div class="about-img">
@@ -137,8 +137,8 @@
                                                             <div class="img left">
                                                                 <a href="{{ route('exhibition_show', $exhibition->id) }}">
                                                                     @if (count($exhibition->images) == 0)
-                                                                        @if ($exhibition->location->image != null && file_exists(public_path($exhibition->location->image->location)))
-                                                                            <img src="{{ asset($exhibition->location->image->location) }}" alt="{{ $exhibition->location->image->title }}"> 
+                                                                        @if ($exhibition->location->images != null && file_exists(public_path($exhibition->location->images->location)))
+                                                                            <img src="{{ asset($exhibition->location->images->location) }}" alt="{{ $exhibition->location->images->title }}"> 
                                                                         @else
                                                                             <img src="{{ asset('img/600x600.jpg') }}" alt="Image not found"> 
                                                                         @endif
@@ -150,7 +150,7 @@
                                                                 </a>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6 valign animate-box" data-animate-effect="fadeInRight" style="padding-left: 0px;">
+                                                        <div class="col-md-6 valign animate-box" data-animate-effect="fadeInRight" style="padding-left: revert-layer;">
                                                             <div class="content" style="padding: 0px;">
                                                                 <div class="date">
                                                                     <h3>{{ $exhibition->date_start->format('d') }}</h3>
@@ -185,8 +185,8 @@
                                             @foreach ($colections as $colection)    
                                                 <div class="item">
                                                     <div class="position-re o-hidden"> 
-                                                        @if ($colection->image != null && file_exists(public_path($colection->image->location)))
-                                                            <img class="projects-carousel" src="{{ asset($colection->image->location) }}" alt="{{ $colection->image->title }}"> 
+                                                        @if ($colection->images != null && file_exists(public_path($colection->images->location)))
+                                                            <img class="projects-carousel" src="{{ asset($colection->images->location) }}" alt="{{ $colection->images->title }}"> 
                                                         @else
                                                             <img class="projects-carousel" src="{{ asset('img/600x600.jpg') }}" alt="Image not found"> 
                                                         @endif
@@ -229,7 +229,7 @@
                                     </div>
                                     <div class="con">
                                         <span class="category">
-                                            <a href="{{ route('blog_view_category', $post->category->id) }}">{{ $post->category->title }} </a> -  {{ $post->created }}
+                                            {{ $post->created }}
                                         </span>
                                         <h5><a href="{{ route('blog_view', $post->id) }}">{{ $post->title }}</a></h5>
                                     </div>

@@ -32,7 +32,7 @@ class ArtColection extends Model
     /**
      * Get the image of the colection.
      */
-    public function image()
+    public function images()
     {
         return $this->morphOne(Image::class, 'model');
     }

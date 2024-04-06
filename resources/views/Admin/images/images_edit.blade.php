@@ -3,10 +3,11 @@
 @section('title', 'Editar Imagenes') 
 
 @section('vendor-style')
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/file-uploaders/dropzone.min.css')) }}"/>
 @endsection 
 @section('page-style')
   <!-- Page css files -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+  <link rel="stylesheet" href="{{ asset('vendors/css/jquery.ui.plupload/jquery.ui.plupload.css')}}">
   <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-file-uploader.css')) }}">
 @endsection
 
@@ -27,22 +28,15 @@
                             @break
                         @default
                     @endswitch
-                    <form action="{{ route('images_store', [$modelType, $modelId]) }}" class="dropzone dropzone-area dz-clickable" method="POST" enctype="multipart/form-data" id="dpz-single-file">
+                    <form action="{{ route('images_store', [$modelType, $modelId]) }}" method="POST" enctype="multipart/form-data" id="form">
                         @csrf
-                        <div class="dz-message">Suelta los archivos aquí o haz clic para subirlos.</div>
-                    </form>
-                    <div class="row" style="margin-top: 30px;">
-                        <div class="col-md-12 d-flex justify-content-center">
-                            <a href="{{ route(strtolower($modelType).'_show_admin', $modelId) }}" style="margin-right: 20px;"> 
-                                <button id="return" type="button" class="btn btn-primary btn-next waves-effect waves-float waves-light">
-                                    <span class="align-middle d-sm-inline-block d-none">Volver</span>
-                                </button>
-                            </a>
-                            <button id="submitForm" type="button" class="btn btn-primary btn-next waves-effect waves-float waves-light" style="display:none;">
-                                <span class="align-middle d-sm-inline-block d-none">Guardar</span>
-                            </button>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="uploader">
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -52,114 +46,19 @@
 @endsection
 
 @section('vendor-script')
-    <script src="{{ asset(mix('vendors/js/extensions/dropzone.min.js')) }}"></script>
 @endsection 
 
 @section('page-script')
-<script>
-    Dropzone.autoDiscover = false;
-
-    var fileUploader = $('#dpz-single-file');
-
-    var images = @json($images);
-
-    var modelType = "{{ $modelType }}";
-    switch(modelType) {
-        case "services":
-        case "paint": 
-            maxFiles = 5;
-            break;
-        case "projects":
-        case "exhibitions":
-            maxFiles = 10;
-            break;
-    }
-
-    fileUploader.dropzone({
-        paramName: 'images', // The name that will be used to transfer the file
-        maxFilesize: 10, // MB
-        addRemoveLinks: true,
-        thumbnailWidth: null,
-        thumbnailHeight: null,
-        dictRemoveFile: 'Borrar',
-        acceptedFiles: 'image/*',
-        maxFiles: maxFiles,
-        autoProcessQueue: false,
-        parallelUploads: maxFiles,
-        init : function() {
-
-            myDropzone = this;
-
-            var deletedFiles = [];
-            var modificadoAgregado = false;
-            var btnSubmit = document.getElementById('submitForm');
-            this.on("thumbnail", function(file, dataUrl) {
-                file.previewElement.children[0].children[0].setAttribute('style', 'width:100%;height:100%;');
-            }),
-            this.on("addedfiles", function(file) {
-                if(images.length != myDropzone.files.length)
-                {
-                    modificadoAgregado = true;
-                }
-                btnSubmit.setAttribute('style', 'display:block;');            
-            });
-            this.on("removedfile", function(file) {
-                deletedFiles.push(file.id);
-                btnSubmit.setAttribute('style', 'display:block;');
-            });
-            var form = document.getElementById('dpz-single-file');
-            btnSubmit.addEventListener('click', function(){
-                if(myDropzone.getRejectedFiles().length > 0) {
-                    alert('Alguno de los archivos es de un tipo no permitido.');
-                }else {
-                    if(deletedFiles.length > 0) {
-                        let _token   = $('meta[name="csrf-token"]').attr('content');
-                        $.ajax({
-                            url: "{{ route('images_delete', [$modelType, $modelId]) }}",
-                            type:"POST",
-                            data:{
-                                deletedFiles:deletedFiles,
-                                _token: _token
-                            },
-                            success:function(response){
-                                console.log(response);
-                                if(response != '"success"') {
-                                    alert(response);
-                                }else {
-                                    myDropzone.processQueue();
-                                    if (myDropzone.getUploadingFiles().length === 0 && myDropzone.getQueuedFiles().length === 0) {
-                                        window.location.href = "{{ route($modelType.'_show_admin', $modelId)}}";
-                                    }
-                                }
-                            },
-                        });
-                    }else if(modificadoAgregado) {
-                        myDropzone.processQueue();
-                        if (myDropzone.getUploadingFiles().length === 0 && myDropzone.getQueuedFiles().length === 0) {
-                            window.location.href = "{{ route($modelType.'_show_admin', $modelId)}}";
-                        }
-                    }
-                }
-            });
-
-            this.on('error', function(file, response) {
-                $(file.previewElement).find('.dz-error-message').text(response.errors.images[0]);
-            });
-          
-            images.forEach(element => {
-                // Create the mock file:
-                var mockFile = { name: element.name, id:element.id, size: element.size, type: 'image/'+element.extension, accepted: true};
-
-                let location = "{{ asset('') }}"+element.location;
-                this.files.push(mockFile);    // add to files array
-                this.emit("addedfile", mockFile);
-                this.createThumbnailFromUrl(mockFile,location);
-                this.emit("thumbnail", mockFile, location);
-                this.emit("complete", mockFile); 
-            });            
-        }
-    });
-
-    
-</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="{{ asset('vendors/js/plupload/plupload.full.min.js') }}"></script>
+    <script src="{{ asset('vendors/js/plupload/jquery.ui.plupload/jquery.ui.plupload.min.js') }}"></script>
+    <script>
+        var modelType = "{{ $modelType }}";
+        var urlStore = "{{ route('images_update', [$modelType, $modelId]) }}";
+        var urlDelete = "{{ route('images_delete', [$modelType, $modelId]) }}";
+        var urlRedirect = "{{ route($modelType.'_show_admin', $modelId)}}";
+        var images = @json($images);
+        var filesRemovedId = [];
+    </script>
+    <script src="{{ asset('js/plupload-edit.js')}}"></script>
 @endsection

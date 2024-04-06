@@ -8,8 +8,6 @@ use App\Models\Acounts;
 use App\Models\ArtColection;
 use App\Models\ArtExhibition;
 use App\Models\Contact;
-use App\Models\Degrees;
-use App\Models\HomepageImage;
 use App\Models\Image;
 use App\Models\Information;
 use App\Models\Post;
@@ -27,7 +25,7 @@ class InfoController extends Controller
         $posts = Post::where('principal_page', '=', true)->limit(4)->get();
         $exhibitions = ArtExhibition::where('principal_page', '=', true)->limit(2)->get();
         $colections = ArtColection::where('principal_page', '=', true)->limit(4)->get();
-        $homepageImages = HomepageImage::orderBy('hierarchy')->get();
+        $homepageImages = Image::where('model_type', 'App\\Models\\HomepageImage')->orderBy('hierarchy')->get();
         $about = Information::first();
 
         foreach ($posts as $post) {
@@ -45,14 +43,13 @@ class InfoController extends Controller
         $description = User::where('id', '=', 1)->value('description');
         $perAcounts = Acounts::where('type', '=', 'personal')->first();
         $about = Information::first();
-        $degrees = Degrees::all();
         $aboutText = $about != null ? $about->about : '';
-        return view('Web/Info/about', ['location' => $location, 'perAcounts' => $perAcounts, 'description' => $description, 'about' => $aboutText, 'degrees' => $degrees]);
+        return view('Web/Info/about', ['location' => $location, 'perAcounts' => $perAcounts, 'description' => $description, 'about' => $aboutText]);
     }
 
     public function update_about(Request $request){
         $request->validate([
-            'about' => 'required|string',
+            'about' => 'required',
         ]);
         $about = Information::first();
 
@@ -73,10 +70,6 @@ class InfoController extends Controller
 
     public function contact() {
         return view('Web/Info/contact');
-    }
-
-    public function prueba() {
-        return view('Web/Emails/contactMailAdmin', ['name' => 'Joan Teich', 'email' => 'joanteich@gmail.com', 'messages' => 'Hola como estas. todo bien?']);
     }
 
     public function storeContact(Request $request) {

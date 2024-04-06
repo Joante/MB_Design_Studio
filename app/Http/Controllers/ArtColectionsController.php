@@ -59,7 +59,7 @@ class ArtColectionsController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:500',
-            'image' => 'required|image|max:10240',
+            'images' => 'required|image|max:10240',
             'principal_page' => ['sometimes',new PrincipalPage('colections', 4)]
         ]);
         try{
@@ -78,32 +78,13 @@ class ArtColectionsController extends Controller
                     ->withErrors($error)
                     ->withInput();
             }
-            $extension = pathinfo($request->file('image')->getClientOriginalName(), PATHINFO_EXTENSION);
-            $imageTitle = $request->file('image')->getClientOriginalName();
-
-            $imageNameSave = str_replace(' ', '_', pathinfo($request->file('image')->getClientOriginalName(),PATHINFO_FILENAME));
-            $imageName = $colection->id.'_'.$imageNameSave.'_'.time().'.'.$extension;
             
-            $imagePath = 'img/art_colections/'.$imageName;
-            $newImage = [
-                'title' => $imageTitle,
-                'location' => $imagePath
-            ];
+            $imagesController = new ImagesController();
+            $imageTitle = $request->file('images')->getClientOriginalName();
+            $request->merge(['hierarchy' => 2, 'name' => $imageTitle]);
+            $request->except(['name','description','principal_page']);
             
-            if(!$colection->image()->create($newImage)) {
-                DB::rollBack();
-                $error = ['error' => 'Problemas al guardar la imagen'];
-                return redirect('art/painting/colection/create')
-                    ->withErrors($error)
-                    ->withInput();
-            }
-
-            if (!is_dir(public_path('/').'img/art_colections/')){
-                mkdir(public_path('/').'img/art_colections/', 0770, true);
-            }   
-            Image::make($request->file('image'))->save(public_path('/').$imagePath);
-            
-            if (!file_exists(public_path('/').$imagePath)) {
+            if ($imagesController->store($request, 'art_colections', $colection->id) != null) {
                 DB::rollBack();
                 $error = ['error' => 'Problemas al guardar la imagen'];
                 return redirect('art/painting/colection/create')
@@ -188,81 +169,48 @@ class ArtColectionsController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:500',
-            'image' => 'nullable|image|max:10240',
+            'images' => 'nullable|image|max:10240',
             'principal_page' => ['sometimes',new PrincipalPage('colections', 4, $id)]
         ]);
 
-        if($request->has('image'))
-        {
-            try{
-                DB::beginTransaction();
+        try{
+            DB::beginTransaction();
 
-                $location = $colection->image->location;
-                
-                if(!ModelsImage::destroy($colection->image->id)) {
+            $colection->name = $request->get('name');
+            $colection->description = $request->get('description');
+            $colection->principal_page = $request->get('principal_page');
+            if(!$colection->save())
+            {
+                $error = ['error' => 'Error al actualizar la colección'];
+                    return redirect('art/painting/colections/edit'.$id)
+                                ->withErrors($error)
+                                ->withInput();
+            }
+
+            if($request->has('images'))
+            {
+                $request->except(['name', 'description','principal_page']);
+                $imageTitle = $request->file('images')->getClientOriginalName();
+                $request->merge(['hierarchy' => 2, 'name' => $imageTitle]);
+                $imagesController = new ImagesController();
+
+                if(!$imagesController->update($request, 'art_colections', $colection->id, $colection->images->id)) {
                     DB::rollBack();
-                    return json_encode('Error al eliminar la imagene de la base de datos.');
-                }
-    
-                $extension = pathinfo($request->file('image')->getClientOriginalName(), PATHINFO_EXTENSION);
-                $imageTitle = $request->file('image')->getClientOriginalName();
-    
-                $imageNameSave = str_replace(' ', '_', pathinfo($request->file('image')->getClientOriginalName(),PATHINFO_FILENAME));
-                $imageName = $colection->id.'_'.$imageNameSave.'_'.time().'.'.$extension;
-                
-                $imagePath = 'img/art_colections/'.$imageName;
-                $newImage = [
-                    'title' => $imageTitle,
-                    'location' => $imagePath
-                ];
-                
-                if(!$colection->image()->create($newImage)) {
-                    DB::rollBack();
-                    $error = ['error' => 'Problemas al guardar la imagen'];
+                    $error = ['error' => 'Error al actualizar la imagen'];
                     return redirect('art/painting/colections/edit/'.$id)
+                            ->withErrors($error)
+                            ->withInput();
+                }
+            }
+            DB::commit();
+        }catch(Exception $e) {
+            DB::rollBack();
+            $error = ['error' => $e->getMessage()];
+            return redirect('art/painting/colections/edit'.$id)
                         ->withErrors($error)
                         ->withInput();
-                }
-                if (!is_dir(public_path('/').'img/art_colections/')){
-                    mkdir(public_path('/').'img/art_colections/', 0770, true);
-                }   
-                Image::make($request->file('image'))->save(public_path('/').$imagePath);
-                
-                if (!file_exists(public_path('/').$imagePath)) {
-                    DB::rollBack();
-                    $error = ['error' => 'Problemas al guardar la imagen'];
-                    return redirect('art/painting/colections/edit/'.$id)
-                            ->withErrors($error)
-                            ->withInput();
-                }
-
-                if(!Storage::delete($location)) {
-                    DB::rollBack();
-                    $error = ['error' => 'Error al eliminar la imagen'];
-                    return redirect('art/painting/colections/edit/'.$id)
-                            ->withErrors($error)
-                            ->withInput();
-                }
-
-                DB::commit();
-            } catch(Exception $e) {
-                DB::rollBack();
-                $error = ['error' => $e->getMessage()];
-                return redirect('art/painting/colections/edit'.$id)
-                            ->withErrors($error)
-                            ->withInput();
-            }
         }
-        $colection->name = $request->get('name');
-        $colection->description = $request->get('description');
-        $colection->principal_page = $request->get('principal_page');
-        if(!$colection->save())
-        {
-            $error = ['error' => 'Error al actualizar la ubicacion'];
-                return redirect('art/painting/colections/edit'.$id)
-                            ->withErrors($error)
-                            ->withInput();
-        }
+        
         return redirect()->route('paint_colection_show_admin', [$id])->with('success','hola');
     }
 
@@ -281,22 +229,18 @@ class ArtColectionsController extends Controller
 
             $colection = ArtColection::find($request->get('id'));
             
-            $imageLocation = $colection->image->location;
-            $imageId = $colection->image->id;
+            $imageId = $colection->images->id;
 
             if(!$colection->delete()){
                 DB::rollBack();
                 return json_encode(['message' => 'Error al eliminar la coleccion']);
             }
 
-            if(!ModelsImage::destroy($imageId)){
-                DB::rollBack();
-                return json_encode(['message' => 'Error al eliminar la imagen de la base de datos']);
-            }
+            $imagesController = new ImagesController();
 
-            if(!Storage::delete('/'.$imageLocation)) {
+            if(!$imagesController->destroySingleImage($imageId)) {
                 DB::rollBack();
-                return json_encode(['message' => 'Error al eliminar los archivos']);
+                return json_encode(['message' => 'Error al eliminar la imagen']);
             }
             DB::commit();
         } catch(Exception $e){

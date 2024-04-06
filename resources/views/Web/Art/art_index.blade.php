@@ -94,8 +94,8 @@
                                     <div class="img left">
                                         <a href="{{ route('exhibition_show', $exhibitions[$i]->id) }}">
                                             @if (count($exhibitions[$i]->images) == 0)
-                                                @if ($exhibitions[$i]->location->image != null)
-                                                    <img src="{{ asset($exhibitions[$i]->location->image->location) }}" alt="{{ $exhibitions[$i]->location->image->title }}"> 
+                                                @if ($exhibitions[$i]->location->images != null)
+                                                    <img src="{{ asset($exhibitions[$i]->location->images->location) }}" alt="{{ $exhibitions[$i]->location->images->title }}"> 
                                                 @endif
                                             @else
                                                 <img src="{{ asset($exhibitions[$i]->images[0]->location) }}" alt="{{ $exhibitions[$i]->images[0]->title }}">   
@@ -142,7 +142,7 @@
                                     <div class="img">
                                         <a href="{{ route('exhibition_show', $exhibitions[$i]->id) }}">
                                             @if (count($exhibitions[$i]->images) == 0)
-                                                <img src="{{ asset($exhibitions[$i]->location->image->location) }}" alt="{{ $exhibitions[$i]->location->image->title }}"> 
+                                                <img src="{{ asset($exhibitions[$i]->location->images->location) }}" alt="{{ $exhibitions[$i]->location->images->title }}"> 
                                             @else
                                                 <img src="{{ asset($exhibitions[$i]->images[0]->location) }}" alt="{{ $exhibitions[$i]->images[0]->title }}">   
                                             @endif

@@ -3,7 +3,6 @@
 @section('title', $project->title)
 
 @section('vendor-style')
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/editors/quill/quill.snow.css')) }}" /> 
 @endsection
 
 @section('page-style')
@@ -41,12 +40,6 @@
                     <span class="card-text user-info-title font-weight-bold mb-0">Cliente</span>
                   </div>
                   <p class="card-text mb-0">{{ $project->client }}</p>
-                </div>
-                <div class="d-flex flex-wrap my-50">
-                  <div class="user-info-title">
-                    <span class="card-text user-info-title font-weight-bold mb-0">Categoria</span>
-                  </div>
-                  <p class="card-text mb-0">{{ $project->service->title }}</p>
                 </div>
               </div>
             </div>

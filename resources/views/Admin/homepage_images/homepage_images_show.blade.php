@@ -54,7 +54,7 @@
                   <h4>Imagen</h4>
               </div>
               <div class="col-md-12 d-flex justify-content-center">
-                  <img src="{{ asset($homepageImage->image->location) }}" class="img-fluid rounded" alt="{{ $homepageImage->image->title }}" style="max-width: 80%">
+                  <img src="{{ asset($homepageImage->images->location) }}" class="img-fluid rounded" alt="{{ $homepageImage->images->title }}" style="max-width: 80%">
               </div>
             @endif
         </div>

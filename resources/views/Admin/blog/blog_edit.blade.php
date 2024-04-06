@@ -2,12 +2,9 @@
 
 @section('title', 'Editar Post')
 
-@section('vendor-style')
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/editors/quill/quill.snow.css')) }}" /> 
-@endsection 
-
-@section('page-style')
-    <link href='https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Oswald:wght@200;300;400;500;600;700&display=swap' rel="stylesheet">
+@section('page-style')    
+    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
+    <x-head.tinymce-config/>
 @endsection
 
 @section('content')
@@ -24,43 +21,35 @@
         <div class="card-body">
             <form class="form" method="POST" action="{{ route('blog_update', $post->id) }}" id="form" enctype="multipart/form-data">
                 @csrf
-                <div class="row">
-                    <div class="col-md-6 col-12">
-                        <div class="form-group">
-                            <label for="name-column">Nombre *</label>
-                            <input type="text" id="name-column" class="form-control @error('title') is-invalid @enderror" placeholder="Nombre" name="title" required value="{{ old('title', $post->title) }}">
-                            @error('title')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
+                <div class="row justify-content-center">
+                    <div class="col-md-8 ">
+                        <div class="col-md-10 col-12">
+                            <div class="form-group">
+                                <label for="name-column">Nombre *</label>
+                                <input type="text" id="name-column" class="form-control @error('title') is-invalid @enderror" placeholder="Nombre" name="title" required value="{{ old('title', $post->title) }}">
+                                @error('title')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-10 col-12 d-flex align-items-center">
+                            <div class="form-group">
+                                @if (old('principal_page', $post->principal_page) == '1')
+                                    <input type="checkbox" class="custom-control-input" id="principal_page" name="principal_page" checked value=1>
+                                @else
+                                    <input type="checkbox" class="custom-control-input" id="principal_page" name="principal_page" value=1>
+                                @endif
+                                <label class="custom-control-label" for="principal_page" style="margin-left: 21px;">Mostrar en la pagina principal</label>
+                                @error('principal_page')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-12">
-                        <div class="form-group">
-                            <label for="category">Categoria *</label>
-                            <select class="custom-select @error('category_id') is-invalid @enderror" id="category" name="category_id" required>
-                                <option {{ old('category_id', $post->category->id) == '' ? "selected": "" }} value="">Seleccionar Categoria</option>
-                                @foreach ($categories as $category)
-                                    <option {{ old('category_id',$post->category->id) == $category->id ? "selected": "" }} value="{{ $category->id }}">{{ $category->title }}</option>
-                                @endforeach
-                            </select>
-                            @error('category_id')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12 d-flex align-items-center">
-                        <div class="form-group">
-                            @if (old('principal_page', $post->principal_page) == '1')
-                                <input type="checkbox" class="custom-control-input" id="principal_page" name="principal_page" checked value=1>
-                            @else
-                                <input type="checkbox" class="custom-control-input" id="principal_page" name="principal_page" value=1>
-                            @endif
-                            <label class="custom-control-label" for="principal_page" style="margin-left: 21px;">Mostrar en la pagina principal</label>
-                            @error('principal_page')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
+                </div>
+                <br>
+                <hr>
+                <div class="row col-md-12">
                     <div class="col-md-12 col-12 d-flex justify-content-center" id="old-image">
                         <div class="form-group">
                             <div class="row">
@@ -77,19 +66,22 @@
                     <div class="col-md-6 col-12 d-flex align-items-center" id="new-image" style="display: none !important;">
                         <div class="form-group">
                             <label for="image-column">Imagen de Portada *</label>
-                            <input type="file" id="image-column" class="form-control @error('image') is-invalid @enderror" name="image" placeholder="Seleccionar Imagen">
-                            @error('image')
+                            <input type="file" id="image-column" class="form-control @error('images') is-invalid @enderror" name="images" placeholder="Seleccionar Imagen">
+                            @error('images')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <button class="btn add-new btn-primary" style="margin-left: auto;order: 2; height:60%;" id="btn-cancel" type="button"><span>Cancelar</span></button></a>
                     </div>
+                </div>
+                <br>
+                <hr>
+                <div class="row">
                     <div class="col-md-12">
                         <div id="snow-wrapper">
                             <div id="snow-container">
-                                <label for="editor">Texto *</label>
-                                <div id="editor" class="editor ql-container ql-snow">{!! old('text',$post->text) !!}</div>
-                                <textarea hidden id="text" name="text"></textarea>
+                                <label for="texteditor">Texto *</label>
+                                <textarea id="texteditor" name="text">{!! old('text',$post->text) !!}</textarea>
                                 @error('text')
                                   <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -110,20 +102,11 @@
 @endsection
 
 @section('vendor-script')
-    <script src="{{ asset(mix('vendors/js/editors/quill/quill.min.js')) }}"></script>
-    <script src="{{ asset(mix('js/image-resize.min.js')) }}"></script>
+    <script src="{{ asset('js/image-resize.min.js') }}"></script>
 @endsection 
 
 @section('page-script')
-    <script src="{{ asset(mix('js/quill-image.js')) }}"></script>
     <script>
-        var form = document.getElementById('form');
-        form.addEventListener('submit', function(e){
-            if(quill.root.innerHTML != '<p><br></p>') {
-                document.getElementById('text').innerHTML = quill.root.innerHTML;
-            }
-        });
-
         var editImage = document.getElementById('edit-image');
         editImage.addEventListener('click', function(){
             document.getElementById('old-image').setAttribute('style', 'display:none !important;');

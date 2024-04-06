@@ -3,7 +3,6 @@
 @section('title', $exhibition->title)
 
 @section('vendor-style')
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/editors/quill/quill.snow.css')) }}" /> 
 @endsection
 
 @section('page-style')

@@ -9,6 +9,8 @@
 @section('page-style')
   <!-- Page css files -->
   <link rel="stylesheet" href="{{ asset(mix('css/base/pages/app-user.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
+  <x-head.tinymce-config/>
 @endsection
 
 @section('content')
@@ -20,13 +22,13 @@
       <ul class="nav nav-pills flex-column nav-left">
         <!-- general -->
         <li class="nav-item">
-          <a class="nav-link @if(!$errors->any() || $errors->has('image') || $errors->has('username') || $errors->has('name')) active @endif" id="account-pill-general" data-toggle="pill" href="#account-vertical-general" aria-expanded="true">
+          <a class="nav-link @if(!$errors->hasAny() || $errors->has('images') || $errors->has('username') || $errors->has('name')) active @endif" id="account-pill-general" data-toggle="pill" href="#account-vertical-general" aria-expanded="true">
             <i data-feather="user" class="font-medium-3 mr-1"></i>
             <span class="font-weight-bold">General</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link @if($errors->any() || $errors->has('description') || $errors->has('type')) active @endif" id="account-pill-information" data-toggle="pill" href="#account-vertical-information" aria-expanded="false">
+          <a class="nav-link @if($errors->has('description') || $errors->has('type')) active @endif" id="account-pill-information" data-toggle="pill" href="#account-vertical-information" aria-expanded="false">
             <i data-feather="info" class="font-medium-3 mr-1"></i>
             <span class="font-weight-bold">Informacion</span>
           </a>
@@ -40,7 +42,7 @@
         </li>
         <!-- social -->
         <li class="nav-item">
-          <a class="nav-link @if ($errors->any()) @if(!$errors->has('actual_password') || !$errors->has('password') || !$errors->has('image') || !$errors->has('username') || !$errors->has('name')) active @endif @endif" id="account-pill-social" data-toggle="pill" href="#account-vertical-social" aria-expanded="false">
+          <a class="nav-link @if($errors->has('mb_instagram') || $errors->has('mb_linkedin') || $errors->has('mb_facebook') || $errors->has('mb_twitter') || $errors->has('mb_email')) active @endif" id="account-pill-social" data-toggle="pill" href="#account-vertical-social" aria-expanded="false">
             <i data-feather="link" class="font-medium-3 mr-1"></i>
             <span class="font-weight-bold">Redes Sociales</span>
           </a>
@@ -59,10 +61,10 @@
               <!-- header media -->
               <div class="media">
                 <a href="javascript:void(0);" class="mr-25">
-                  @if (count(Auth::user()->images) == 0)
+                  @if (Auth::user()->images == null)
                     <img src="{{asset('img/600x600.jpg')}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80"/>    
                   @else 
-                    <img src="{{asset(Auth::user()->images[0]->location)}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80"/>  
+                    <img src="{{asset(Auth::user()->images->location)}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80"/>  
                   @endif
                 </a>
                 <!-- upload and reset button -->
@@ -73,7 +75,7 @@
                   <form action="{{ route('avatar_update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <label for="account-upload" class="btn btn-sm btn-primary mb-75 mr-75" id="btn_edit_image">Cambiar Imagen</label>
-                    <input type="file" id="account-upload" hidden accept="image/*" name="image"/>
+                    <input type="file" id="account-upload" hidden accept="image/*" name="images"/>
                     <button class="btn btn-sm btn-primary mb-75 mr-75" style="display:none;" type="submit" id="btn_update_image">Guardar</button>
                     <button class="btn btn-sm btn-outline-secondary mb-75 mr-75" style="display:none;" type="button" id="btn_cancel_image"><span>Cancelar</span></button>     
                   </form>
@@ -153,10 +155,10 @@
                   </div>
                   <div class="col-12 col-sm-8">
                     <div class="form-group">
-                        <label for="about">About</label>
-                        <textarea class="form-control @error('about') is-invalid @enderror" id="account-about" name="about" placeholder="About">{{ old('about', $about) }}</textarea>
+                        <label for="texteditor">About</label>
+                        <textarea id="texteditor" name="about" class="form-control @error('about') is-invalid @enderror">{!! old('about', $about) !!} </textarea>
                         @error('about')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                          <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                   </div>
@@ -166,46 +168,6 @@
                   <button type="reset" class="btn btn-outline-secondary mt-1">Cancelar</button>
                 </div>
               </form>
-                <br>
-                <hr>
-                <br>
-                <div class="row justify-content-center">
-                  <div class="col-12 justify-content-center" style="display: flex;">
-                    <h2>Titulos</h2>
-                  </div>
-                  <div class="col-12 col-sm-8">
-                    <button class="btn add-new btn-primary mt-50" style="float:right;margin-bottom:15px;" type="button" id="createDegreeBtn"><span>Agregar Titulo</span></button>
-                    <table class="table">
-                      <thead class="thead-dark">
-                        <tr>
-                          <th>Id</th>
-                          <th>Descripcion</th>
-                          <th>Tipo</th>
-                          <th>Acciones</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                          @foreach ($degrees as $degree)
-                            <tr>
-                                <td>
-                                    <span class="font-weight-bold">{{$degree->id}}</span>
-                                </td>
-                                <td>{{$degree->description}}</td>
-                                <td>{{$degree->type == 'course' ? 'Curso' : 'Carrera'}}</td>
-                                <td>
-                                  <button class="btn btn-icon btn-outline-warning editDegreeBtn" data-id="{{ $degree->id }}" data-old-description="{{ old('description', $degree['description']) }}" data-old-type="{{ old('type', $degree['type']) }}"><i data-feather='edit-3'></i></button>
-                                  <meta name="csrf-token" content="{{ csrf_token() }}">
-                                  <button class="btn btn-icon btn-outline-danger" id="{{ $degree->id }}">
-                                    <i data-feather='delete'></i>
-                                  </button>
-                              </td>
-                            </tr>      
-                          @endforeach    
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-
 
                 <!-- edit degree modal -->
                 <div class="modal fade" id="editDegreeModal" tabindex="-1" style="display: none;" aria-hidden="true">

@@ -19,7 +19,6 @@
               <tr>
                 <th>@sortablelink('id', 'Id')</th>
                 <th>@sortablelink('title', 'Nombre')</th>
-                <th>@sortablelink('service_id', 'Categoria')</th>
                 <th>@sortablelink('client', 'Cliente')</th>
                 <th>@sortablelink('area', 'Superficie')</th>
                 <th>Acciones</th>
@@ -32,7 +31,6 @@
                           <span class="font-weight-bold">{{$project->id}}</span>
                       </td>
                       <td>{{$project->title}}</td>
-                      <td>{{$project->service->title}}</td>
                       <td>{{$project->client}}</td>
                       <td>{{$project->area}} m2</td>
                       <td>

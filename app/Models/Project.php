@@ -17,7 +17,7 @@ class Project extends Model
      * 
      * @var array
      */
-    public $sortable = ['id', 'title', 'service_id', 'client', 'area'];
+    public $sortable = ['id', 'title', 'client', 'area'];
    
     /**
      * The attributes that should be cast.
@@ -33,7 +33,7 @@ class Project extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'description', 'client', 'location', 'service_id', 'principal_page', 'area'];
+    protected $fillable = ['title', 'description', 'client', 'location', 'principal_page', 'area'];
 
     /**
      * Get the full decode description.
@@ -57,18 +57,10 @@ class Project extends Model
     }
 
     /**
-     * Get the service that owns the project.
-     */
-    public function service()
-    {
-        return $this->belongsTo(Service::class);
-    }
-
-    /**
      * Obtener todas las fotos del servicio.
      */
     public function images()
     {
-        return $this->morphMany(Image::class, 'model');
+        return $this->morphMany(Image::class, 'model')->orderBy('hierarchy');
     }
 }

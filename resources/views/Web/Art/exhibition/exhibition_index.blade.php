@@ -25,7 +25,7 @@
                                     <div class="post-img">
                                         <a href="{{ route('exhibition_show', $actualExhibition->id) }}"> 
                                             @if (count($actualExhibition->images) == 0)
-                                                <img src="{{ asset($actualExhibition->location->image->location) }}" alt="{{ $actualExhibition->location->image->title }}"> 
+                                                <img src="{{ asset($actualExhibition->location->images->location) }}" alt="{{ $actualExhibition->location->images->title }}"> 
                                             @else
                                                 <img src="{{ asset($actualExhibition->images[0]->location) }}" alt="{{ $actualExhibition->images[0]->title }}">   
                                             @endif
@@ -67,7 +67,7 @@
                                     <div class="post-img">
                                         <a href="{{ route('exhibition_show', $futureExhibition->id) }}"> 
                                             @if (count($futureExhibition->images) == 0)
-                                                <img src="{{ asset($futureExhibition->location->image->location) }}" alt="{{ $futureExhibition->location->image->title }}"> 
+                                                <img src="{{ asset($futureExhibition->location->images->location) }}" alt="{{ $futureExhibition->location->images->title }}"> 
                                             @else
                                                 <img src="{{ asset($futureExhibition->images[0]->location) }}" alt="{{ $futureExhibition->images[0]->title }}">   
                                             @endif
@@ -109,7 +109,7 @@
                                     <div class="post-img">
                                         <a href="{{ route('exhibition_show', $pastExhibition->id) }}"> 
                                             @if (count($pastExhibition->images) == 0)
-                                                <img src="{{ asset($pastExhibition->location->image->location) }}" alt="{{ $pastExhibition->location->image->title }}"> 
+                                                <img src="{{ asset($pastExhibition->location->images->location) }}" alt="{{ $pastExhibition->location->images->title }}"> 
                                             @else
                                                 <img src="{{ asset($pastExhibition->images[0]->location) }}" alt="{{ $pastExhibition->images[0]->title }}">   
                                             @endif

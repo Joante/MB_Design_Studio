@@ -2,13 +2,9 @@
 
 @section('title', 'Editar Proyecto')
 
-@section('vendor-style')
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/editors/quill/quill.snow.css')) }}" /> 
-@endsection 
-
 @section('page-style')
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
-    <link href='https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Oswald:wght@200;300;400;500;600;700&display=swap' rel="stylesheet">
+    <x-head.tinymce-config/>
 @endsection
 
 @section('content')
@@ -30,20 +26,18 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <div class="form-group">
-                            <label for="service">Categoria *</label>
-                            <select class="custom-select" id="service" name="service_id" required>
-                                <option {{ old('service', $project->service->id) == '' ? "selected": "" }} value="">Seleccionar Categoria</option>
-                                @foreach ($services as $service)
-                                    <option {{ old('service', $project->service->id) == $service->id ? "selected": "" }} value="{{ $service->id }}">{{ $service->title }}</option>
-                                @endforeach
-                            </select>
+                            <label for="client-column">Cliente</label>
+                            <input type="text" id="client-column" class="form-control @error('client') is-invalid @enderror" name="client" placeholder="Cliente" value="{{ old('client', $project->client) }}">
+                            @error('client')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6 col-12">
                         <div class="form-group">
-                            <label for="client-column">Cliente</label>
-                            <input type="text" id="client-column" class="form-control @error('client') is-invalid @enderror" name="client" placeholder="Cliente" value="{{ old('client', $project->client) }}">
-                            @error('client')
+                            <label for="location-column">Ubicacion</label>
+                            <input type="text" id="location-column" class="form-control @error('location') is-invalid @enderror" name="location" placeholder="Ubicacion" value="{{ old('location', $project->location) }}">
+                            @error('location')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -61,15 +55,6 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <div class="form-group">
-                            <label for="location-column">Ubicacion</label>
-                            <input type="text" id="location-column" class="form-control @error('location') is-invalid @enderror" name="location" placeholder="Ubicacion" value="{{ old('location', $project->location) }}">
-                            @error('location')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="form-group">
                             <label for="area-column">Superficie *</label>
                             <input type="number" id="area-column" required class="form-control @error('area') is-invalid @enderror" min="1" name="area" placeholder="Superficie" value="{{ old('area', $project->area) }}">
                             @error('area')
@@ -77,13 +62,14 @@
                             @enderror
                         </div>
                     </div>
+                    <br>
+                    <hr>
                     <div class="col-md-12">
                         <div id="snow-wrapper">
                             <div id="snow-container">
-                                <label for="editor">Descripcion *</label>
-                                <div id="editor" class="editor ql-container ql-snow">{!! old('description', $project->description) !!}</div>
-                                <textarea hidden id="text" name="description"></textarea>
-                                @error('text')
+                                <label for="texteditor">Descripcion *</label>
+                                <textarea id="texteditor" name="description">{!! old('description', $project->description) !!}</textarea>
+                                @error('description')
                                   <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -100,20 +86,4 @@
       </div>
     </div>
 </section>
-@endsection
-
-@section('vendor-script')
-    <script src="{{ asset(mix('vendors/js/editors/quill/quill.min.js')) }}"></script>
-@endsection 
-
-@section('page-script')
-    <script src="{{ asset(mix('js/quill-mb.js')) }}"></script>
-    <script>
-        var form = document.getElementById('form');
-        form.addEventListener('submit', function(e){
-            if(quill.root.innerHTML != '<p><br></p>') {
-                document.getElementById('text').innerText = quill.root.innerHTML;
-            }
-        });
-    </script>
 @endsection

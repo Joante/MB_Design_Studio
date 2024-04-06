@@ -24,7 +24,7 @@ class HomepageImage extends Model
     /**
      * Obtener todas las fotos de.
      */
-    public function image()
+    public function images()
     {
         return $this->morphOne(Image::class, 'model');
     }

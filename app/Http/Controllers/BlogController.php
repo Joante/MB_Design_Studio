@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Image;
+use App\Http\Controllers\ImagesController;
 
 class BlogController extends Controller
 {
+    private $modelType = 'posts';
     /**
      * Display a listing of the resource.
      *
@@ -65,10 +67,9 @@ class BlogController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:100',
-            'category_id' => 'required|numeric',
             'text' => 'required',
             'principal_page' => ['sometimes',new PrincipalPage('blog', 4)],
-            'image' => 'required|image|max:10240'
+            'images' => 'required|image|max:10240'
         ]);
         if ($validator->fails()) {
             return redirect('blog/create')
@@ -81,7 +82,6 @@ class BlogController extends Controller
 
             $newPost = [
                 'title' => $request->get('title'),
-                'category_id' => $request->get('category_id'),
                 'text' => $request->get('text'),
                 'principal_page' => $request->get('principal_page')
             ];
@@ -94,36 +94,19 @@ class BlogController extends Controller
                     ->withInput();
             }
 
-            $extension = pathinfo($request->file('image')->getClientOriginalName(), PATHINFO_EXTENSION);
-            $imageTitle = $request->file('image')->getClientOriginalName();
+            $imageController = new ImagesController();
 
-            $imageNameSave = str_replace(' ', '_', pathinfo($request->file('image')->getClientOriginalName(),PATHINFO_FILENAME));
-            $imageName = $post->id.'_'.$imageNameSave.'_'.time().'.'.$extension;
-            
-            $imagePath = 'img/posts/'.$imageName;
-            $newImage = [
-                'title' => $imageTitle,
-                'location' => $imagePath
-            ];
-            
-            if(!$post->images()->create($newImage)) {
+            $request->except(['title', 'text', 'principal_page']);
+            $imageTitle = $request->file('images')->getClientOriginalName();
+            $request->merge(['hierarchy' => 2, 'name' => $imageTitle]);
+            $response = $imageController->store($request, $this->modelType, $post->id);
+           
+            if($response != null) {
                 DB::rollBack();
                 $error = ['error' => 'Problemas al guardar la imagen'];
                 return redirect('blog/create')
                     ->withErrors($error)
                     ->withInput();
-            }
-            if (!is_dir(public_path('/').'img/posts/')){
-                mkdir(public_path('/').'img/posts/', 0770, true);
-            }   
-            Image::make($request->file('image'))->save(public_path('/').$imagePath);
-            
-            if (!file_exists(public_path('/').$imagePath)) {
-                DB::rollBack();
-                $error = ['error' => 'Problemas al guardar la imagen'];
-                return redirect('blog/create')
-                        ->withErrors($error)
-                        ->withInput();
             }
 
             DB::commit();
@@ -212,42 +195,23 @@ class BlogController extends Controller
 
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:100',
-            'category_id' => 'required|numeric',
             'text' => 'required',
             'principal_page' => ['sometimes',new PrincipalPage('blog', 4, $id)],
-            'image' => ['sometimes','image', 'max:10240']
+            'images' => ['sometimes','image', 'max:10240']
         ]);
         if ($validator->fails()) {
             return redirect('blog/edit/'.$id)
                         ->withErrors($validator)
                         ->withInput();
         }
-        if($request->has('image'))
+        if($request->has('images'))
         {
             try {
                 DB::beginTransaction();
 
-                $location = $post->images->location;
-                
-                if(!ModelsImage::destroy($post->images->id)) {
-                    DB::rollBack();
-                    return json_encode('Error al eliminar las imagenes de la base de datos.');
-                }
-                
-                $extension = pathinfo($request->file('image')->getClientOriginalName(), PATHINFO_EXTENSION);
-                $imageTitle = $request->file('image')->getClientOriginalName();
-    
-                $imageNameSave = str_replace(' ', '_', pathinfo($request->file('image')->getClientOriginalName(),PATHINFO_FILENAME));
-                $imageName = $request->get('title').'_'.$imageNameSave.'_'.time().'.'.$extension;
-                
-                $imagePath = 'img/posts/'.$imageName;
-                $newImage = [
-                    'title' => $imageTitle,
-                    'location' => $imagePath
-                ];
+                $imagesController = new ImagesController();
 
                 $post->title = $request->get('title');
-                $post->category_id = $request->get('category_id');
                 $post->text = $request->get('text');
                 $post->principal_page = $request->get('principal_page');
                 
@@ -259,33 +223,17 @@ class BlogController extends Controller
                         ->withInput();
                 }
                 
-                if(!$post->images()->create($newImage)) {
+                $request->except(['title', 'text', 'principal_page']);
+                $imageTitle = $request->file('images')->getClientOriginalName();
+                $request->merge(['hierarchy' => 2, 'name' => $imageTitle]);
+                if(!$imagesController->update($request, $this->modelType, $post->id, $post->images->id)) {
                     DB::rollBack();
                     $error = ['error' => 'Problemas al guardar la imagen nueva'];
                     return redirect('blog/edit/'.$id)
                         ->withErrors($error)
                         ->withInput();
                 }
-                if (!is_dir(public_path('/').'img/posts/')){
-                    mkdir(public_path('/').'img/posts/', 0770, true);
-                }   
-                Image::make($request->file('image'))->save(public_path('/').$imagePath);
-                
-                if (!file_exists(public_path('/').$imagePath)) {
-                    DB::rollBack();
-                    $error = ['error' => 'Problemas al guardar la imagen'];
-                    return redirect('blog/edit/'.$id)
-                            ->withErrors($error)
-                            ->withInput();
-                }
 
-                if(!Storage::delete($location)) {
-                    DB::rollBack();
-                    $error = ['error' => 'Error al eliminar la imagen'];
-                    return redirect('blog/edit/'.$id)
-                            ->withErrors($error)
-                            ->withInput();
-                }
                 DB::commit();
             } catch(Exception $e) {
                 DB::rollBack();
@@ -296,7 +244,6 @@ class BlogController extends Controller
             }    
         }else {
             $post->title = $request->get('title');
-            $post->category_id = $request->get('category_id');
             $post->text = $request->get('text');
             $post->principal_page = $request->get('principal_page');
             
@@ -325,21 +272,17 @@ class BlogController extends Controller
             DB::beginTransaction();
 
             $post = Post::find($request->get('id'));
+            $imageId = $post->images->id;
+            $imagesController = new ImagesController();
             
             if(!$post->delete()){
                 DB::rollBack();
                 return json_encode(['message' => 'Error al eliminar el post']);
             }
 
-            if(!ModelsImage::destroy($post->images->id)) {
+            if(!$imagesController->destroySingleImage($imageId)) {
                 DB::rollBack();
                 return json_encode('Error al eliminar las imagenes de la base de datos.');
-            }
-
-
-            if(!Storage::delete($location)) {
-                DB::rollBack();
-                return json_encode(['message' => 'Error al eliminar la imagen']);
             }
 
             DB::commit();
@@ -354,23 +297,5 @@ class BlogController extends Controller
         $success = (['message' => 'success']);
 
         return json_encode($success);
-    }
-
-    /**
-     * Show a list of a determinate Blog Category
-     * 
-     * @param int $blog_category_id
-     * @return \Illuminate\Http\Response
-     */
-    public function show_category($blog_category_id) {
-        $posts = Post::where('category_id', '=', $blog_category_id)->paginate(8);
-
-        foreach ($posts as $post) {
-            $post['created'] = $post->created_at->format('d/m/Y');
-        }
-
-        $blog_category_title = BlogCategory::find($blog_category_id)->title;
-
-        return view('Web/Blog/blog_category', ['posts' => $posts, 'category_title' => $blog_category_title]);
     }
 }
