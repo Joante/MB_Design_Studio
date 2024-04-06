@@ -99,6 +99,8 @@ class BlogController extends Controller
             $imageController = new ImagesController();
 
             $request->except(['title', 'category_id','text', 'principal_page']);
+            $imageTitle = $request->file('images')->getClientOriginalName();
+            $request->merge(['hierarchy' => 2, 'name' => $imageTitle]);
             $response = $imageController->store($request, $this->modelType, $post->id);
            
             if($response != null) {
@@ -226,6 +228,8 @@ class BlogController extends Controller
                 }
                 
                 $request->except(['title', 'category_id','text', 'principal_page']);
+                $imageTitle = $request->file('images')->getClientOriginalName();
+                $request->merge(['hierarchy' => 2, 'name' => $imageTitle]);
                 if(!$imagesController->update($request, $this->modelType, $post->id, $post->images->id)) {
                     DB::rollBack();
                     $error = ['error' => 'Problemas al guardar la imagen nueva'];

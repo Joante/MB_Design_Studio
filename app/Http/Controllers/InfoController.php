@@ -8,8 +8,6 @@ use App\Models\Acounts;
 use App\Models\ArtColection;
 use App\Models\ArtExhibition;
 use App\Models\Contact;
-use App\Models\Degrees;
-use App\Models\HomepageImage;
 use App\Models\Image;
 use App\Models\Information;
 use App\Models\Post;
@@ -27,7 +25,7 @@ class InfoController extends Controller
         $posts = Post::where('principal_page', '=', true)->limit(4)->get();
         $exhibitions = ArtExhibition::where('principal_page', '=', true)->limit(2)->get();
         $colections = ArtColection::where('principal_page', '=', true)->limit(4)->get();
-        $homepageImages = HomepageImage::orderBy('hierarchy')->get();
+        $homepageImages = Image::where('model_type', 'App\\Models\\HomepageImage')->orderBy('hierarchy')->get();
         $about = Information::first();
 
         foreach ($posts as $post) {
@@ -72,10 +70,6 @@ class InfoController extends Controller
 
     public function contact() {
         return view('Web/Info/contact');
-    }
-
-    public function prueba() {
-        return view('Web/Emails/contactMailAdmin', ['name' => 'Joan Teich', 'email' => 'joanteich@gmail.com', 'messages' => 'Hola como estas. todo bien?']);
     }
 
     public function storeContact(Request $request) {

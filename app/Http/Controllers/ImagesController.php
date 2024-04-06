@@ -44,29 +44,54 @@ class ImagesController extends Controller
     /**
      * Store a newly created resource in storage.
      * 
+     * @param  \Illuminate\Http\Request  $request
      * @param string $modelType
      * @param  int  $modelId
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $modelType, $modelId)
     {
-        $request->validate(['images' => 'required|image|max:10240']);
-        
-        $extension = pathinfo($request->file('images')->getClientOriginalName(), PATHINFO_EXTENSION);
-        $imageTitle = $request->file('images')->getClientOriginalName();
+        $request->validate([
+            'images' => 'required|image|max:10240',
+            'name' => 'required|string|max:100',
+            'hierarchy' => 'required|numeric|min:1|max:10',
+            'action' => 'sometimes|string|in:create',
+            'description' => 'sometimes|string|max:1000',
+        ]);
 
-        $imageNameSave = str_replace(' ', '_', pathinfo($request->file('images')->getClientOriginalName(),PATHINFO_FILENAME));
-        $imageName = $modelType.'_'.$modelId.'_'.$imageNameSave.'.'.$extension;
+        if($request->has('action')){
+            ModelsImage::setNewModel(true);
+            ModelsImage::setIsUpdate(false);
+        }
+
+        if($modelType != 'homepage_images'){
+            $name = $request->get('name');
+            $name = explode('.', $name);
+        }else{
+            $request->validate(['images' => 'required|image|max:10240']);
         
+            $name[1] = pathinfo($request->file('images')->getClientOriginalName(), PATHINFO_EXTENSION);
+            $name[0] = $request->file('images')->getClientOriginalName();    
+        }
+
+        $imageNameSave = str_replace(' ', '_', $name[0]);
+        $imageName = $modelType.'_'.$modelId.'_'.$imageNameSave.'.'.$name[1];
+
         $model = $this->getModel($modelType, $modelId);
 
         $imagePath = 'img/'.$modelType.'/'.$imageName;
         $newImage = [
-            'title' => $imageTitle,
-            'location' => $imagePath
+            'title' => $modelType != 'homepage_images' ? $name[0] : $request->get('name'),
+            'location' => $imagePath,
+            'hierarchy' => $request->get('hierarchy'),
         ];
+
+        if($request->has('description')){
+            $newImage['description'] = $request->get('description');
+        }
+
         DB::beginTransaction();
+        
         if(!$model->images()->create($newImage)) {
             return response()->json([
                 'message' => 'Problemas al guardar la imagen'
@@ -113,10 +138,10 @@ class ImagesController extends Controller
         foreach($model->images as $image) {
             if(file_exists(public_path($image->location))){
                 $file['name'] = $image->title; //get the filename in array
-                $file['size'] = filesize($image->location); //get the flesize in array
                 $file['location'] = $image->location;
-                $file['extension'] = pathinfo($image->title, PATHINFO_EXTENSION);
+                $file['extension'] = pathinfo($image->location, PATHINFO_EXTENSION);
                 $file['id'] = $image->id;
+                $file['hierarchy'] = $image->hierarchy;
                 $result[] = $file; // copy it to another array
             }else{
                 ModelsImage::destroy($image->id);
@@ -135,6 +160,7 @@ class ImagesController extends Controller
      */
     public function update(Request $request, $modelType, $modelId, $imageId)
     {
+        ModelsImage::setIsUpdate(true);
         if($this->store($request, $modelType, $modelId) != null ){
             return false;
         }
@@ -144,6 +170,35 @@ class ImagesController extends Controller
         }
 
         return true;
+    }
+
+    public function updateImageWithHierarchy(Request $request, $modelType, $modelId){
+        $request->validate([
+            'images' => 'required|image|max:10240',
+            'name' => 'required|string|max:100',
+            'hierarchy' => 'required|numeric|min:1|max:10',
+            'id' => 'sometimes|numeric|min:1'
+        ]);
+
+        ModelsImage::setIsUpdate(true);
+        ModelsImage::setNewModel(false);
+        if($request->has('id')){
+            $image = ModelsImage::find($request->get('id'));
+            if($image != null && $image->hierarchy != $request->get('hierarchy')){
+                $image->hierarchy = $request->get('hierarchy');
+                if(!$image->save()){
+                    return response()->json([
+                        'message' => 'Problemas al actualizar la imagen'
+                    ], 422);
+                }
+            }
+        }else {
+            if($this->store($request, $modelType, $modelId) != null ){
+                return response()->json([
+                    'message' => 'Problemas al guardar la imagen nueva'
+                ], 422);
+            }
+        }
     }
 
     /**
@@ -156,6 +211,7 @@ class ImagesController extends Controller
     {
         $request->validate(['deletedFiles.*' => 'required|numeric']);
 
+        ModelsImage::setIsUpdate(false);
         $locations = ModelsImage::whereIn('id', $request->get('deletedFiles'))->pluck('location')->toArray();
 
         for ($i=0; $i < count($locations); $i++) { 
@@ -183,9 +239,11 @@ class ImagesController extends Controller
         if(ModelsImage::destroy($image->id) != 1) {
             return false;
         }
-
+        
         if(!Storage::delete('/'.$location)) {
-            return false;
+            if (file_exists(public_path('/').$location)) {
+                return false;
+            }
         }
         return true;
     }

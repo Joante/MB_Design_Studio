@@ -50,10 +50,11 @@ class AdminController extends Controller
         $request->validate(['images' => 'required|image|max:10240']);
 
         $imagesController = new ImagesController();
-    
+        $imageTitle = $request->file('images')->getClientOriginalName();
         if(Auth::user()->images == null) {
             DB::beginTransaction();
 
+            $request->merge(['hierarchy' => 1, 'name' => $imageTitle]);
             $response = $imagesController->store($request, 'team', Auth::user()->id);
             
             if ($response != null) {
@@ -67,6 +68,7 @@ class AdminController extends Controller
         } else {
             try {
                 DB::beginTransaction();
+                $request->merge(['hierarchy' => 2, 'name' => $imageTitle]);
 
                 if(!$imagesController->update($request,'team', Auth::user()->id, Auth::user()->images->id)) {
                     DB::rollBack();

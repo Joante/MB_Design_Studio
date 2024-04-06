@@ -80,6 +80,8 @@ class ArtColectionsController extends Controller
             }
             
             $imagesController = new ImagesController();
+            $imageTitle = $request->file('images')->getClientOriginalName();
+            $request->merge(['hierarchy' => 2, 'name' => $imageTitle]);
             $request->except(['name','description','principal_page']);
             
             if ($imagesController->store($request, 'art_colections', $colection->id) != null) {
@@ -188,6 +190,8 @@ class ArtColectionsController extends Controller
             if($request->has('images'))
             {
                 $request->except(['name', 'description','principal_page']);
+                $imageTitle = $request->file('images')->getClientOriginalName();
+                $request->merge(['hierarchy' => 2, 'name' => $imageTitle]);
                 $imagesController = new ImagesController();
 
                 if(!$imagesController->update($request, 'art_colections', $colection->id, $colection->images->id)) {

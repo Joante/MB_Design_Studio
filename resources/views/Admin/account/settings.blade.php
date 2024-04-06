@@ -22,13 +22,13 @@
       <ul class="nav nav-pills flex-column nav-left">
         <!-- general -->
         <li class="nav-item">
-          <a class="nav-link @if(!$errors->any() || $errors->has('image') || $errors->has('username') || $errors->has('name')) active @endif" id="account-pill-general" data-toggle="pill" href="#account-vertical-general" aria-expanded="true">
+          <a class="nav-link @if(!$errors->hasAny() || $errors->has('images') || $errors->has('username') || $errors->has('name')) active @endif" id="account-pill-general" data-toggle="pill" href="#account-vertical-general" aria-expanded="true">
             <i data-feather="user" class="font-medium-3 mr-1"></i>
             <span class="font-weight-bold">General</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link @if($errors->any() || $errors->has('description') || $errors->has('type')) active @endif" id="account-pill-information" data-toggle="pill" href="#account-vertical-information" aria-expanded="false">
+          <a class="nav-link @if($errors->has('description') || $errors->has('type')) active @endif" id="account-pill-information" data-toggle="pill" href="#account-vertical-information" aria-expanded="false">
             <i data-feather="info" class="font-medium-3 mr-1"></i>
             <span class="font-weight-bold">Informacion</span>
           </a>
@@ -42,7 +42,7 @@
         </li>
         <!-- social -->
         <li class="nav-item">
-          <a class="nav-link @if ($errors->any()) @if(!$errors->has('actual_password') || !$errors->has('password') || !$errors->has('image') || !$errors->has('username') || !$errors->has('name')) active @endif @endif" id="account-pill-social" data-toggle="pill" href="#account-vertical-social" aria-expanded="false">
+          <a class="nav-link @if($errors->has('mb_instagram') || $errors->has('mb_linkedin') || $errors->has('mb_facebook') || $errors->has('mb_twitter') || $errors->has('mb_email')) active @endif" id="account-pill-social" data-toggle="pill" href="#account-vertical-social" aria-expanded="false">
             <i data-feather="link" class="font-medium-3 mr-1"></i>
             <span class="font-weight-bold">Redes Sociales</span>
           </a>

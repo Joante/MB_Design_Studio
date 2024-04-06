@@ -79,6 +79,7 @@ mix
     .sass('resources/assets/scss/style-rtl.scss', 'public/css', { sassOptions })
     .sass('resources/assets/scss/style.scss', 'public/css', { sassOptions })
     .css('resources/assets/scss/plugins.css', 'public/css')
+    .copyDirectory('resources/vendors/css/jquery.ui.plupload/img', 'public/vendors/css/jquery.ui.plupload/img')
 
 mix.then(() => {
     if (process.env.MIX_CONTENT_DIRECTION === 'rtl') {
