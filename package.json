@@ -25,7 +25,7 @@
         "lodash": "^4.17.19",
         "popper.js": "^1.12",
         "postcss": "^8.4.38",
-        "postcss-import": "^15.1.0",
+        "postcss-import": "^16.1.0",
         "resolve-url-loader": "^5.0.0",
         "rtlcss": "^4.1.0",
         "sass": "^1.22.12",
