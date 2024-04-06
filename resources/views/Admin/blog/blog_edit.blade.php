@@ -21,43 +21,35 @@
         <div class="card-body">
             <form class="form" method="POST" action="{{ route('blog_update', $post->id) }}" id="form" enctype="multipart/form-data">
                 @csrf
-                <div class="row">
-                    <div class="col-md-6 col-12">
-                        <div class="form-group">
-                            <label for="name-column">Nombre *</label>
-                            <input type="text" id="name-column" class="form-control @error('title') is-invalid @enderror" placeholder="Nombre" name="title" required value="{{ old('title', $post->title) }}">
-                            @error('title')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
+                <div class="row justify-content-center">
+                    <div class="col-md-8 ">
+                        <div class="col-md-10 col-12">
+                            <div class="form-group">
+                                <label for="name-column">Nombre *</label>
+                                <input type="text" id="name-column" class="form-control @error('title') is-invalid @enderror" placeholder="Nombre" name="title" required value="{{ old('title', $post->title) }}">
+                                @error('title')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-10 col-12 d-flex align-items-center">
+                            <div class="form-group">
+                                @if (old('principal_page', $post->principal_page) == '1')
+                                    <input type="checkbox" class="custom-control-input" id="principal_page" name="principal_page" checked value=1>
+                                @else
+                                    <input type="checkbox" class="custom-control-input" id="principal_page" name="principal_page" value=1>
+                                @endif
+                                <label class="custom-control-label" for="principal_page" style="margin-left: 21px;">Mostrar en la pagina principal</label>
+                                @error('principal_page')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-12">
-                        <div class="form-group">
-                            <label for="category">Categoria *</label>
-                            <select class="custom-select @error('category_id') is-invalid @enderror" id="category" name="category_id" required>
-                                <option {{ old('category_id', $post->category->id) == '' ? "selected": "" }} value="">Seleccionar Categoria</option>
-                                @foreach ($categories as $category)
-                                    <option {{ old('category_id',$post->category->id) == $category->id ? "selected": "" }} value="{{ $category->id }}">{{ $category->title }}</option>
-                                @endforeach
-                            </select>
-                            @error('category_id')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12 d-flex align-items-center">
-                        <div class="form-group">
-                            @if (old('principal_page', $post->principal_page) == '1')
-                                <input type="checkbox" class="custom-control-input" id="principal_page" name="principal_page" checked value=1>
-                            @else
-                                <input type="checkbox" class="custom-control-input" id="principal_page" name="principal_page" value=1>
-                            @endif
-                            <label class="custom-control-label" for="principal_page" style="margin-left: 21px;">Mostrar en la pagina principal</label>
-                            @error('principal_page')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
+                </div>
+                <br>
+                <hr>
+                <div class="row col-md-12">
                     <div class="col-md-12 col-12 d-flex justify-content-center" id="old-image">
                         <div class="form-group">
                             <div class="row">
@@ -81,6 +73,10 @@
                         </div>
                         <button class="btn add-new btn-primary" style="margin-left: auto;order: 2; height:60%;" id="btn-cancel" type="button"><span>Cancelar</span></button></a>
                     </div>
+                </div>
+                <br>
+                <hr>
+                <div class="row">
                     <div class="col-md-12">
                         <div id="snow-wrapper">
                             <div id="snow-container">

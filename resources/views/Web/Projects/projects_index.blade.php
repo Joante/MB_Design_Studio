@@ -12,35 +12,34 @@
                     <hr>
                 </div>
             </div>
-            @foreach ($services as $service)
-                @if (in_array($service->id, $categories))
-                    <div class="row justify-content-center">
-                        <h6 class="section-title2"><span style="font-size: 25px;"><a href="{{ route('project_view_category', $service->id) }}">{{ $service->title }}</a></span></h6>
+            <div class="row">
+                @foreach ($projects as $project)
+                    <div class="col-md-6 animate-box" data-animate-effect="fadeInUp">
+                        <div class="item">
+                            <div class="position-re o-hidden">
+                                @if (!empty($project->images->all()))
+                                
+                                    <img src="{{ asset($project->images->first()->location) }}" alt="{{ $project->images->first()->title }}"> 
+                                @else
+                                    <img src="{{ asset('img/1920x1128-1.jpg') }}" alt=""> 
+                                @endif
+                            </div>
+                            <div class="con">
+                                <h5><a href="{{ route('projects_view', $project->id) }}">{{ $project->title }}</a></h5>
+                                <div class="line"></div> <a href="{{ route('projects_view', $project->id) }}"><i class="ti-arrow-right"></i></a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row">
-                        @foreach ($projects as $project)
-                            @if ($project->service_id == $service->id)
-                                <div class="col-md-6 animate-box" data-animate-effect="fadeInUp">
-                                    <div class="item">
-                                        <div class="position-re o-hidden">
-                                            @if (!empty($project->images->all()))
-                                            
-                                                <img src="{{ asset($project->images->first()->location) }}" alt="{{ $project->images->first()->title }}"> 
-                                            @else
-                                                <img src="{{ asset('img/1920x1128-1.jpg') }}" alt=""> 
-                                            @endif
-                                        </div>
-                                        <div class="con">
-                                            <h5><a href="{{ route('projects_view', $project->id) }}">{{ $project->title }}</a></h5>
-                                            <div class="line"></div> <a href="{{ route('projects_view', $project->id) }}"><i class="ti-arrow-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-                        @endforeach
+                @endforeach
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <!-- Pagination -->
+                    <div class="bauen-pagination-wrap align-center mb-30 mt-30">
+                        {{ $projects->links() }}
                     </div>
-                @endif
-            @endforeach
+                </div>
+            </div>
         </div>
     </section>
 @endsection

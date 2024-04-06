@@ -54,7 +54,7 @@
                             @endif
                         </div>
                         <div class="col-md-4 d-flex justify-content-center">
-                            <a href="{{ route('project_view_category', $project->service_id) }}"><i class="ti-layout-grid3-alt"></i></a>
+                            <a href="{{ route('projects_index') }}"><i class="ti-layout-grid3-alt"></i></a>
                         </div>
                         <div class="col-md-4 d-flex justify-content-end">
                             @if ($next != null)

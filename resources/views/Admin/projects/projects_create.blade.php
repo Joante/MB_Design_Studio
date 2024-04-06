@@ -26,17 +26,6 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <div class="form-group">
-                            <label for="service">Categoria *</label>
-                            <select class="custom-select" id="service" name="service_id" required>
-                                <option {{ old('service_id') == '' ? "selected": "" }} value="">Seleccionar Categoria</option>
-                                @foreach ($services as $service)
-                                    <option {{ old('service_id') == $service->id ? "selected": "" }} value="{{ $service->id }}">{{ $service->title }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="form-group">
                             <label for="client-column">Cliente</label>
                             <input type="text" id="client-column" class="form-control @error('client') is-invalid @enderror" name="client" placeholder="Cliente" value="{{ old('client') }}">
                             @error('client')

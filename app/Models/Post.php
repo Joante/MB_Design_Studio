@@ -21,7 +21,6 @@ class Post extends Model
         'text',
         'principal_page',
         'principal_image',
-        'category_id'
      ];
  
      /**
@@ -38,16 +37,8 @@ class Post extends Model
      * 
      * @var array
      */
-    public $sortable = ['id', 'title', 'category_id', 'principal_page'];
+    public $sortable = ['id', 'title', 'principal_page'];
 
-
-    /**
-     * Get the category that owns the post.
-     */
-    public function category()
-    {
-        return $this->belongsTo(BlogCategory::class, 'category_id');
-    }
 
     /**
      * Obtain the image of the post.

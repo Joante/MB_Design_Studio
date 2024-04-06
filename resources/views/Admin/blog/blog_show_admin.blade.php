@@ -8,7 +8,6 @@
 @section('page-style')
   {{-- Page Css files --}}
   <link rel="stylesheet" href="{{ asset(mix('css/base/pages/app-user.css')) }}">
-  <link href='https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Oswald:wght@200;300;400;500;600;700&display=swap' rel="stylesheet">
 @endsection
 
 @section('content')
@@ -36,12 +35,6 @@
                           </div>
                           <p class="card-text mb-0">{{ $post->title }}</p>
                         </div>
-                        <div class="d-flex flex-wrap my-50">
-                          <div class="user-info-title">
-                            <span class="card-text user-info-title font-weight-bold mb-0">Categoria</span>
-                          </div>
-                          <p class="card-text mb-0">{{ $post->category->title }}</p>
-                        </div>
                       </div>
                     </div>
                     <div class="col-xl-6 col-lg-12 mt-2 mt-xl-0">
@@ -61,6 +54,8 @@
                       </div>
                     </div>
                   </div>
+            <br>
+            <hr>
             <div class="col-md-12 d-flex justify-content-center">
                 <h4>Texto:</h4>
             </div>
@@ -69,6 +64,8 @@
                     <div id="editor" class="ql-editor">{!! $post->text !!}</div>
                 </div>
             </div>
+            <br>
+            <hr>
             <div class="col-md-12 d-flex justify-content-center" style="margin-top: 30px;">
                 <h4>Imagen de Portada</h4>
             </div>

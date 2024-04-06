@@ -41,12 +41,6 @@
                   </div>
                   <p class="card-text mb-0">{{ $project->client }}</p>
                 </div>
-                <div class="d-flex flex-wrap my-50">
-                  <div class="user-info-title">
-                    <span class="card-text user-info-title font-weight-bold mb-0">Categoria</span>
-                  </div>
-                  <p class="card-text mb-0">{{ $project->service->title }}</p>
-                </div>
               </div>
             </div>
             <div class="col-xl-6 col-lg-12 mt-2 mt-xl-0">

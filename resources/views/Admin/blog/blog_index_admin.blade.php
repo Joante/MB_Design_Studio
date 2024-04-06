@@ -19,7 +19,6 @@
               <tr>
                 <th>@sortablelink('id', 'Id')</th>
                 <th>@sortablelink('title', 'Titulo')</th>
-                <th>@sortablelink('category_id', 'Categoria')</th>
                 <th>@sortablelink('principal_page', 'Pagina Principal')</th>
                 <th>Acciones</th>
               </tr>
@@ -31,7 +30,6 @@
                           <span class="font-weight-bold">{{$post->id}}</span>
                       </td>
                       <td>{{$post->title}}</td>
-                      <td>{{$post->category->title}}</td>
                       <td>
                         <div class="custom-control custom-switch custom-control-inline">
                             <input type="checkbox" class="custom-control-input" disabled="" {{ $post->principal_page ? "checked":"" }} id="customSwitch2">

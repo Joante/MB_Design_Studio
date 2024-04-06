@@ -67,7 +67,6 @@ class BlogController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:100',
-            'category_id' => 'required|numeric',
             'text' => 'required',
             'principal_page' => ['sometimes',new PrincipalPage('blog', 4)],
             'images' => 'required|image|max:10240'
@@ -83,7 +82,6 @@ class BlogController extends Controller
 
             $newPost = [
                 'title' => $request->get('title'),
-                'category_id' => $request->get('category_id'),
                 'text' => $request->get('text'),
                 'principal_page' => $request->get('principal_page')
             ];
@@ -98,7 +96,7 @@ class BlogController extends Controller
 
             $imageController = new ImagesController();
 
-            $request->except(['title', 'category_id','text', 'principal_page']);
+            $request->except(['title', 'text', 'principal_page']);
             $imageTitle = $request->file('images')->getClientOriginalName();
             $request->merge(['hierarchy' => 2, 'name' => $imageTitle]);
             $response = $imageController->store($request, $this->modelType, $post->id);
@@ -197,7 +195,6 @@ class BlogController extends Controller
 
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:100',
-            'category_id' => 'required|numeric',
             'text' => 'required',
             'principal_page' => ['sometimes',new PrincipalPage('blog', 4, $id)],
             'images' => ['sometimes','image', 'max:10240']
@@ -215,7 +212,6 @@ class BlogController extends Controller
                 $imagesController = new ImagesController();
 
                 $post->title = $request->get('title');
-                $post->category_id = $request->get('category_id');
                 $post->text = $request->get('text');
                 $post->principal_page = $request->get('principal_page');
                 
@@ -227,7 +223,7 @@ class BlogController extends Controller
                         ->withInput();
                 }
                 
-                $request->except(['title', 'category_id','text', 'principal_page']);
+                $request->except(['title', 'text', 'principal_page']);
                 $imageTitle = $request->file('images')->getClientOriginalName();
                 $request->merge(['hierarchy' => 2, 'name' => $imageTitle]);
                 if(!$imagesController->update($request, $this->modelType, $post->id, $post->images->id)) {
@@ -248,7 +244,6 @@ class BlogController extends Controller
             }    
         }else {
             $post->title = $request->get('title');
-            $post->category_id = $request->get('category_id');
             $post->text = $request->get('text');
             $post->principal_page = $request->get('principal_page');
             
@@ -302,23 +297,5 @@ class BlogController extends Controller
         $success = (['message' => 'success']);
 
         return json_encode($success);
-    }
-
-    /**
-     * Show a list of a determinate Blog Category
-     * 
-     * @param int $blog_category_id
-     * @return \Illuminate\Http\Response
-     */
-    public function show_category($blog_category_id) {
-        $posts = Post::where('category_id', '=', $blog_category_id)->paginate(8);
-
-        foreach ($posts as $post) {
-            $post['created'] = $post->created_at->format('d/m/Y');
-        }
-
-        $blog_category_title = BlogCategory::find($blog_category_id)->title;
-
-        return view('Web/Blog/blog_category', ['posts' => $posts, 'category_title' => $blog_category_title]);
     }
 }

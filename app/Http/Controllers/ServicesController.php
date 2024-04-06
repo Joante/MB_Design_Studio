@@ -106,7 +106,7 @@ class ServicesController extends Controller
             abort(404);
         }
 
-        $projects = Project::where('service_id', '=', $id)->limit(5)->get();
+        $projects = Project::limit(5)->get();
         return view('Web/Services/services_view', ['service' => $service, 'projects' => $projects]);
     }
 
@@ -202,12 +202,7 @@ class ServicesController extends Controller
     public function destroy(Request $request)
     {
         $request->validate(['id' => 'required|numeric']);
-        
-        $count = DB::table('projects')->where('service_id', '=', $request->get('id'))->count();
-        if($count > 0)
-        {
-            return json_encode(['message' => 'No se puede eliminar el servicio por que tiene proyectos asociados.']);
-        }
+
         try {
             DB::beginTransaction();
 
