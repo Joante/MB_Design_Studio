@@ -42,7 +42,7 @@ class AppServiceProvider extends ServiceProvider
         $mbAcounts = [];
         $db = false;
         
-        try {
+       /*  try {
             $dbconnect = DB::connection()->getPDO();
             $db = true;
         } catch(\Exception $e) {
@@ -72,7 +72,7 @@ class AppServiceProvider extends ServiceProvider
                     $mbAcounts['phone_formatted'] = $phone_formatted;
                 }
             }
-        }
+        } */
         
         View::share('services', $services);
         View::share('blog_categories', $blog_categories);
