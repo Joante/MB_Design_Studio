@@ -40,14 +40,8 @@
                             <li class="dropdown-item {{ (request()->is('art/exhibitions')) ? 'active' : '' }}"><a href="{{ route('exhibition_index') }}">Exhibiciones</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown"><a class="nav-link {{ (request()->is('projects')) ? 'active' : '' }}" href="{{ route('project_view_category',1) }}">Proyectos</a></li>
-                    <li class="nav-item dropdown"><a class="nav-link {{ (request()->is('blog')) ? 'active' : '' }}" href="{{ route('blog_index') }}">Blog <i class="ti-angle-down"></i></a>
-                        <ul class="dropdown-menu last">
-                            @foreach ($blog_categories as $blog_category)
-                            <li class="dropdown-item {{ (request()->is('blog/list/'.$blog_category->id)) ? 'active' : '' }}"><a href="{{ route('blog_view_category', $blog_category->id) }}">{{ $blog_category->title }}</a></li>                                
-                            @endforeach
-                        </ul>
-                    </li>
+                    <li class="nav-item dropdown"><a class="nav-link {{ (request()->is('projects')) ? 'active' : '' }}" href="{{ route('projects_index') }}">Proyectos</a></li>
+                    <li class="nav-item dropdown"><a class="nav-link {{ (request()->is('blog')) ? 'active' : '' }}" href="{{ route('blog_index') }}">Blog</a></li>
                     {{-- <li class="nav-item"><a class="nav-link {{ (request()->is('contact')) ? 'active' : '' }}" href="{{ route('contact') }}">Contacto</a></li> --}}
                 </ul>
             </div>

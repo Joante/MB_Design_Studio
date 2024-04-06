@@ -159,25 +159,6 @@
                     "name": "Crear",
                     "icon": "plus",
                     "slug": "blog-create"
-                },
-                {
-                    "url": "",
-                    "name": "Categorias",
-                    "icon": "menu",
-                    "slug": "",
-                    "submenu": [{
-                            "url": "blog/category/list",
-                            "name": "Listar",
-                            "icon": "list",
-                            "slug": "blog_categories_index"
-                        },
-                        {
-                            "url": "blog/category/create",
-                            "name": "Crear",
-                            "icon": "plus",
-                            "slug": "blog_category_create"
-                        }
-                    ]
                 }
             ]
         }

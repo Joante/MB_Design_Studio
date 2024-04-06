@@ -31,20 +31,6 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-6 col-12">
-                        <div class="form-group">
-                            <label for="category">Categoria *</label>
-                            <select class="custom-select @error('category_id') is-invalid @enderror" id="category" name="category_id" required>
-                                <option {{ old('category_id') == '' ? "selected": "" }} value="">Seleccionar Categoria</option>
-                                @foreach ($categories as $category)
-                                    <option {{ old('category_id') == $category->id ? "selected": "" }} value="{{ $category->id }}">{{ $category->title }}</option>
-                                @endforeach
-                            </select>
-                            @error('category_id')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
                     <div class="col-md-6 col-12 d-flex align-items-center">
                         <div class="form-group">
                             @if (old('principal_page') == '1')

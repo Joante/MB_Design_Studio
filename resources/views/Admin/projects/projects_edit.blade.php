@@ -26,20 +26,18 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <div class="form-group">
-                            <label for="service">Categoria *</label>
-                            <select class="custom-select" id="service" name="service_id" required>
-                                <option {{ old('service', $project->service->id) == '' ? "selected": "" }} value="">Seleccionar Categoria</option>
-                                @foreach ($services as $service)
-                                    <option {{ old('service', $project->service->id) == $service->id ? "selected": "" }} value="{{ $service->id }}">{{ $service->title }}</option>
-                                @endforeach
-                            </select>
+                            <label for="client-column">Cliente</label>
+                            <input type="text" id="client-column" class="form-control @error('client') is-invalid @enderror" name="client" placeholder="Cliente" value="{{ old('client', $project->client) }}">
+                            @error('client')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6 col-12">
                         <div class="form-group">
-                            <label for="client-column">Cliente</label>
-                            <input type="text" id="client-column" class="form-control @error('client') is-invalid @enderror" name="client" placeholder="Cliente" value="{{ old('client', $project->client) }}">
-                            @error('client')
+                            <label for="location-column">Ubicacion</label>
+                            <input type="text" id="location-column" class="form-control @error('location') is-invalid @enderror" name="location" placeholder="Ubicacion" value="{{ old('location', $project->location) }}">
+                            @error('location')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -57,15 +55,6 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <div class="form-group">
-                            <label for="location-column">Ubicacion</label>
-                            <input type="text" id="location-column" class="form-control @error('location') is-invalid @enderror" name="location" placeholder="Ubicacion" value="{{ old('location', $project->location) }}">
-                            @error('location')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="form-group">
                             <label for="area-column">Superficie *</label>
                             <input type="number" id="area-column" required class="form-control @error('area') is-invalid @enderror" min="1" name="area" placeholder="Superficie" value="{{ old('area', $project->area) }}">
                             @error('area')
@@ -73,6 +62,8 @@
                             @enderror
                         </div>
                     </div>
+                    <br>
+                    <hr>
                     <div class="col-md-12">
                         <div id="snow-wrapper">
                             <div id="snow-container">

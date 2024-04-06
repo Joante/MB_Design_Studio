@@ -67,7 +67,7 @@
                                         @foreach ($projects as $project)
                                             <li><a href="{{ route('projects_view', $project->id) }}">{{ $project->title }}</a></li>    
                                         @endforeach
-                                        <li><a href="{{ route('project_view_category', $service->id) }}">Ver Todos</a></li>
+                                        <li><a href="{{ route('projects_index',) }}">Ver Todos</a></li>
                                     </ul>
                                 </div>
                             </div>

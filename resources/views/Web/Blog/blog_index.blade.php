@@ -28,7 +28,7 @@
                             </div>
                             <div class="con">
                                 <span class="category">
-                                    <a href="{{ route('blog_view_category', $post->category->id) }}">{{ $post->category->title }}</a> - {{ $post->created }}
+                                    {{ $post->created }}
                                 </span>
                                 <h5><a href="{{ route('blog_view', $post->id) }}">{{ $post->title }}</a></h5>
                             </div>

@@ -4,14 +4,12 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArtColectionsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArtController;
-use App\Http\Controllers\BlogCategoriesController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ExhibitionController;
 use App\Http\Controllers\HomepageImagesController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\LocationController;
-use App\Http\Controllers\PaintCollectionController;
 use App\Http\Controllers\PaintController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\ServicesController;
@@ -44,8 +42,8 @@ Route::prefix('projects')->middleware('auth')->group(function () {
 
 Route::get('/', [InfoController::class, 'index'])->name('home');
 Route::get('/about', [InfoController::class, 'about'])->name('about');
-Route::get('/contact', [InfoController::class, 'contact'])->name('contact');
-Route::post('/contact', [InfoController::class, 'storeContact'])->name('contact-send');
+/* Route::get('/contact', [InfoController::class, 'contact'])->name('contact');
+Route::post('/contact', [InfoController::class, 'storeContact'])->name('contact-send'); */
 
 //Services routes
 Route::prefix('services')->group(function () {
@@ -58,7 +56,6 @@ Route::prefix('services')->group(function () {
 Route::prefix('projects')->group(function () {
     Route::get('/', [ProjectsController::class, 'index'])->name('projects_index');
     Route::get('/{id}', [ProjectsController::class, 'show'])->name('projects_view');
-    Route::get('/category/{category_id}', [ProjectsController::class, 'show_category'])->name('project_view_category');
 });
 
 
@@ -66,7 +63,6 @@ Route::prefix('projects')->group(function () {
 Route::prefix('blog')->group(function () {
     Route::get('/blog', [BlogController::class, 'index'])->name('blog_index');
     Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog_view');
-    Route::get('/blog/list/{category_id}', [BlogController::class, 'show_category'])->name('blog_view_category');
 });
 
 
@@ -138,17 +134,6 @@ Route::prefix('blog')->middleware('auth')->group(function () {
     Route::post('/store', [BlogController::class, 'store'])->name('blog_store');
     Route::post('/update/{id}', [BlogController::class, 'update'])->name('blog_update');
     Route::post('/destroy', [BlogController::class, 'destroy'])->name('blog_destroy');
-    
-    //Blog Categories routes
-    Route::prefix('category')->group(function (){
-        Route::get('/list', [BlogCategoriesController::class, 'index'])->name('blog_categories_index');
-        Route::get('/show/{id}', [BlogCategoriesController::class, 'show'])->name('blog_category_show');
-        Route::get('/edit/{id}', [BlogCategoriesController::class, 'edit'])->name('blog_category_edit');
-        Route::get('/create', [BlogCategoriesController::class, 'create'])->name('blog_category_create');
-        Route::post('/store', [BlogCategoriesController::class, 'store'])->name('blog_category_store');
-        Route::post('/update/{id}', [BlogCategoriesController::class, 'update'])->name('blog_category_update');
-        Route::post('/destroy', [BlogCategoriesController::class, 'destroy'])->name('blog_category_destroy');
-    });
 });
 
 //Art routes
