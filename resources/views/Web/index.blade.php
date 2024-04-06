@@ -150,7 +150,7 @@
                                                                 </a>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6 valign animate-box" data-animate-effect="fadeInRight" style="padding-left: 0px;">
+                                                        <div class="col-md-6 valign animate-box" data-animate-effect="fadeInRight" style="padding-left: revert-layer;">
                                                             <div class="content" style="padding: 0px;">
                                                                 <div class="date">
                                                                     <h3>{{ $exhibition->date_start->format('d') }}</h3>
