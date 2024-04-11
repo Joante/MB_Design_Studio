@@ -61,7 +61,7 @@ Route::prefix('projects')->group(function () {
 
 //Blog routes
 Route::prefix('blog')->group(function () {
-    Route::get('/blog', [BlogController::class, 'index'])->name('blog_index');
+    Route::get('/', [BlogController::class, 'index'])->name('blog_index');
     Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog_view');
 });
 
