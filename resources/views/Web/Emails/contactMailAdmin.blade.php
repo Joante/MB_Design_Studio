@@ -12,7 +12,7 @@
     <title></title>
     <!--[if !mso]><!-->
     <!--<![endif]-->
-    <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Oswald:wght@200;300;400;500;600;700&display=swap" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" type="text/css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" type="text/css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
@@ -121,7 +121,7 @@
         }
         
         .section-title2 {
-            font-family: 'Didact Gothic', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 30px;
             font-weight: 300;
             color: #838487;
@@ -139,7 +139,7 @@
         
         .buttn-dark {
             font-weight: 300;
-            font-family: 'Oswald', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             text-transform: uppercase;
             background: #838487;
             color: #fff;
@@ -189,7 +189,7 @@
         
         .butn-dark a {
             font-weight: 300;
-            font-family: 'Oswald', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             text-transform: uppercase;
             background: #838487;
             color: #fff;
@@ -267,11 +267,6 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <div align="center" class="img-container center fixedwidth" style="padding-right: 40px;padding-left: 40px;">
-                                                <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 40px;padding-left: 40px;" align="center"><![endif]--><img align="center" alt="I'm an image" border="0" class="center fixedwidth" src="https://mbdesignstudio.000webhostapp.com/img/logo_2.png" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 352px; display: block;"
-                                                    title="I'm an image" width="352" />
-                                                <!--[if mso]></td></tr></table><![endif]-->
-                                            </div>
                                             <table border="0" cellpadding="0" cellspacing="0" class="divider" role="presentation" style="table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; min-width: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;"
                                                 valign="top" width="100%">
                                                 <tbody>
@@ -399,7 +394,7 @@
                                         <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:0px; padding-bottom:0px; padding-right: 0px; padding-left: 0px;">
                                             <!--<![endif]-->
                                             <div align="center" class="button-container" style="padding-top:40px;padding-right:10px;padding-bottom:0px;padding-left:10px;">
-                                                <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-top: 40px; padding-right: 10px; padding-bottom: 0px; padding-left: 10px" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="mailto:{{$contact->email}}?subject=Respuesta%20de%20su%20consulta" style="height:31.5pt;width:192.75pt;v-text-anchor:middle;" arcsize="0%" stroke="false" fillcolor="#838487"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#fff; font-family:Tahoma, sans-serif; font-size:16px"><![endif]--><a href="mailto:{{$contact->email}}?subject=Respuesta%20de%20su%20consulta" style="font-weight: 300; font-family: 'Oswald', sans-serif; text-transform: uppercase; background: #838487; color: #fff; padding: 13px 30px; margin: 0; position: relative; font-size: 16px; letter-spacing: 3px; line-height: 1.2em;"
+                                                <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-top: 40px; padding-right: 10px; padding-bottom: 0px; padding-left: 10px" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="mailto:{{$contact->email}}?subject=Respuesta%20de%20su%20consulta" style="height:31.5pt;width:192.75pt;v-text-anchor:middle;" arcsize="0%" stroke="false" fillcolor="#838487"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#fff; font-family:Tahoma, sans-serif; font-size:16px"><![endif]--><a href="mailto:{{$contact->email}}?subject=Respuesta%20de%20su%20consulta" style="font-weight: 300; font-family: 'Montserrat', sans-serif; text-transform: uppercase; background: #838487; color: #fff; padding: 13px 30px; margin: 0; position: relative; font-size: 16px; letter-spacing: 3px; line-height: 1.2em;"
                                                     target="_blank"><span style="padding-left:20px;padding-right:20px;font-size:16px;display:inline-block;letter-spacing:undefined;"><span style="font-size: 16px; margin: 0; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;"><strong>Responder Mensaje</strong></span></span></a>
                                                 <!--[if (!mso)&(!IE)]><!-->
                                             </div>
@@ -423,7 +418,7 @@
                                                 <!--<![endif]-->
                                                 <div align="center" class="img-container center fixedwidth" style="padding-right: 0px;padding-left: 0px;">
                                                     <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]-->
-                                                    <div style="font-size:1px;line-height:40px"> </div><img align="center" alt="Logo White" border="0" class="center fixedwidth" src="https://mbdesignstudio.000webhostapp.com/img/logo_white.png" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 352px; display: block;"
+                                                    <div style="font-size:1px;line-height:40px"> </div><img align="center" alt="Logo White" border="0" class="center fixedwidth" src="https://mbdesignstudio.com.ar/img/logo_white.png" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 352px; display: block;"
                                                         title="Logo White" width="352" />
                                                     <!--[if mso]></td></tr></table><![endif]-->
                                                 </div>
@@ -447,7 +442,7 @@
                                                 <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 40px; padding-left: 40px; padding-top: 20px; padding-bottom: 30px; font-family: Tahoma, sans-serif"><![endif]-->
                                                 <div style="color:#555555;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;line-height:1.2;padding-top:20px;padding-right:40px;padding-bottom:30px;padding-left:40px;">
                                                     <div class="txtTinyMce-wrapper" style="line-height: 1.2; font-size: 12px; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; color: #555555; mso-line-height-alt: 14px;">
-                                                        <p style="margin: 0; font-size: 12px; line-height: 1.2; word-break: break-word; text-align: left; mso-line-height-alt: 14px; margin-top: 0; margin-bottom: 0;"><span style="color: #95979c; font-size: 12px;">MB Design Studio Copyright © 2021</span></p>
+                                                        <p style="margin: 0; font-size: 12px; line-height: 1.2; word-break: break-word; text-align: left; mso-line-height-alt: 14px; margin-top: 0; margin-bottom: 0;"><span style="color: #95979c; font-size: 12px;">MB Design Studio Copyright © 2024</span></p>
                                                     </div>
                                                 </div>
                                                 <!--[if mso]></td></tr></table><![endif]-->

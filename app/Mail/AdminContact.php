@@ -36,7 +36,8 @@ class AdminContact extends Mailable
      */
     public function build()
     {
-        return $this->from('joanteich@gmail.com')
+        return $this->from(config('mail.from.address'), config('mail.from.name'))
+        ->subject('Nueva consulta de '.$this->contact->name)
         ->view('Web.Emails.contactMailAdmin')->with([
             'contact' => $this->contact,
         ]);;
