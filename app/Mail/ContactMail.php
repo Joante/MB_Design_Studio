@@ -35,9 +35,10 @@ class ContactMail extends Mailable
      */
     public function build()
     {
-        return $this->from('joanteich@gmail.com')
-        ->view('Web.Emails.contactMail')->with([
-            'contactName' => $this->contactName,
-        ]);;
+        return $this->from(config('mail.from.address'), config('mail.from.name'))
+            ->subject('Gracias por su consulta!')
+            ->view('Web.Emails.contactMail')->with([
+                'contactName' => $this->contactName,
+            ]);
     }
 }
