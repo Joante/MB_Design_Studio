@@ -18,8 +18,9 @@
             </div>
             <div class="row mb-90">
                 <div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
-                    <p><b>MB Design Studio</b></p>
                     <p>Esperamos su contacto ante cualquier duda o consulta para que nuestro equipo de asesores especializados pueda ayudarlo.</p>
+                    <br>
+                    <p style="color:#fff;">¿Empezamos un proyecto juntos?</p>
                 </div>
                 @if ($mbAcounts != null)
                     @if ($mbAcounts->phone_formatted != null || $mbAcounts->email != null)
