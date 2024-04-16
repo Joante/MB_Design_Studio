@@ -76,7 +76,8 @@ class InfoController extends Controller
         $request->validate([
             'name' => 'required|string|max:50',
             'email' => 'required|email|max:100',
-            'message' => 'required|string|max:500'
+            'message' => 'required|string|max:500',
+            'g-recaptcha-response' => 'required|captcha'
         ]);
 
         $input = $request->all();
@@ -84,10 +85,12 @@ class InfoController extends Controller
 
 
         //  Send mail to admin
-        Mail::to('joanteich@gmail.com')->queue(new AdminContact($contact));
+        Mail::to(config('mail.from.address'))
+            ->queue(new AdminContact($contact));
 
         // Send mail to client 
-        Mail::to($request->get('email'))->queue(new ContactMail($request->get('name')));
+        Mail::to($request->get('email'))
+            ->queue(new ContactMail($request->get('name')));
 
 
         return redirect()->back()->with(['success' => 'Mensaje enviado']);

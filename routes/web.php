@@ -42,8 +42,8 @@ Route::prefix('projects')->middleware('auth')->group(function () {
 
 Route::get('/', [InfoController::class, 'index'])->name('home');
 Route::get('/about', [InfoController::class, 'about'])->name('about');
-/* Route::get('/contact', [InfoController::class, 'contact'])->name('contact');
-Route::post('/contact', [InfoController::class, 'storeContact'])->name('contact-send'); */
+Route::get('/contact', [InfoController::class, 'contact'])->name('contact');
+Route::post('/contact', [InfoController::class, 'storeContact'])->name('contact-send');
 
 //Services routes
 Route::prefix('services')->group(function () {

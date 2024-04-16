@@ -1,5 +1,9 @@
 @extends('Web.Layout.master_layout')
 
+@section('page-style')
+    {!! NoCaptcha::renderJs('es') !!}
+@endsection
+
 @section('content')
     <!-- Header Banner -->
     <section class="banner-header banner-img valign bg-img bg-fixed" data-overlay-darkgray="5" data-background="{{ asset('img/1920x1128.jpg') }}"></section>
@@ -22,7 +26,7 @@
                         <div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
                             <p><b>Detalles de Contacto</b></p>
                             @if ($mbAcounts->phone_formatted != null)
-                                <p><b>Telefono :</b> +54 9 {{ $mbAcounts->phone_formatted }}</p>
+                                <p><b>Telefono :</b> {{ $mbAcounts->phone_formatted }}</p>
                             @endif
                             @if($mbAcounts->email != null)
                                 <p><b>Email :</b> {{ $mbAcounts->email }}</p>
@@ -38,34 +42,48 @@
                                 Session::forget('success');
                             @endphp
                         </div>
+                    @else
+                        <p><b>Formulario de Contacto</b></p>
+                        <form method="POST" action="{{ route('contact-send') }}" class="row" id="contact-form">
+                            @csrf
+                            @if ($errors->has('g-recaptcha-response'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                </span>
+                            @endif
+                            <div class="col-md-12">
+                                <input type="text" name="name" id="name" placeholder="Nombre Completo" value="{{ old('name')}}" required>
+                                @if ($errors->has('name'))
+                                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                                @endif
+                            </div>
+                            <div class="col-md-12">
+                                <input type="email" name="email" id="email" placeholder="Email" required value="{{ old('email')}}">
+                                @if ($errors->has('email'))
+                                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                                @endif
+                            </div>
+                            <div class="col-md-12">
+                                <textarea name="message" id="message" cols="40" rows="4" placeholder="Su Mensaje" required>{{ old('message') }}</textarea>
+                                @if ($errors->has('message'))
+                                    <span class="text-danger">{{ $errors->first('message') }}</span>
+                                @endif
+                            </div>
+                            <div class="col-md-12">
+                                {!! NoCaptcha::displaySubmit('contact-form', 'Enviar', ['data-theme' => 'dark']) !!}
+                            </div>
+                        </form>
                     @endif
-                    <p><b>Formulario de Contacto</b></p>
-                    <form method="POST" action="{{ route('contact-send') }}" class="row">
-                        @csrf
-                        <div class="col-md-12">
-                            <input type="text" name="name" id="name" placeholder="Nombre Completo" value="{{ old('name')}}" required>
-                            @if ($errors->has('name'))
-                                <span class="text-danger">{{ $errors->first('name') }}</span>
-                            @endif
-                        </div>
-                        <div class="col-md-12">
-                            <input type="email" name="email" id="email" placeholder="Email" required value="{{ old('email')}}">
-                            @if ($errors->has('email'))
-                                <span class="text-danger">{{ $errors->first('email') }}</span>
-                            @endif
-                        </div>
-                        <div class="col-md-12">
-                            <textarea name="message" id="message" cols="40" rows="4" placeholder="Su Mensaje" required>{{ old('message') }}</textarea>
-                            @if ($errors->has('message'))
-                                <span class="text-danger">{{ $errors->first('message') }}</span>
-                            @endif
-                        </div>
-                        <div class="col-md-12">
-                            <button type="submit" class="buttn-dark mt-15"><span>Enviar</span></button>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
     </section>
+@endsection
+
+@section('page-script')
+    <script>
+        var btns = document.getElementsByClassName('g-recaptcha');
+        btns[0].classList.add("buttn-dark");
+        btns[0].classList.add("mt-15");
+    </script>
 @endsection
