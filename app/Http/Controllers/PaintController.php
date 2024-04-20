@@ -222,7 +222,8 @@ class PaintController extends Controller
      */
     public function show_colection($art_colection_id) {
         $paintings = ArtPainting::where('art_colection_id', '=', $art_colection_id)->get();
-
-        return view('Web/Art/painting/paint_colection_index', ['paintings' => $paintings]);
+        $colection = ArtColection::find($art_colection_id);
+        
+        return view('Web/Art/painting/paint_colection_index', ['paintings' => $paintings, 'colection' => $colection]);
     }
 }
