@@ -7,12 +7,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 d-flex animate-box justify-content-center" data-animate-effect="fadeInUp">
-                <h2 class="section-title"><span>{{ $paintings[0]->colection->name }}</span></h2> 
+                <h2 class="section-title"><span>{{ $colection->name }}</span></h2> 
             </div>
         </div>
         <div class="row">
             <div class="col-md-10 d-flex justify-content-center">
-                <p>{{ $paintings[0]->colection->description }}</p>
+                <p>{{ $colection->description }}</p>
             </div>
         </div>
         <section class="colections">
@@ -20,17 +20,24 @@
                 <div class="col-md-12 animate-box" data-animate-effect="fadeInUp" style="margin-bottom: 30px;">
                     <div class="row">
                             <div class="owl-carousel owl-theme">
-                                @foreach ($paintings as $painting)
-                                    <div class="item">
-                                        <div class="position-re o-hidden"> 
-                                            <img class="paintings-carousel" src="{{ asset($painting->images[0]->location) }}" alt="{{ $painting->images[0]->title }}"> 
+                                @if (count($paintings) > 0)
+                                    @foreach ($paintings as $painting)
+                                        <div class="item">
+                                            <div class="position-re o-hidden"> 
+                                                @if (count($painting->images)> 0)
+                                                    <img class="paintings-carousel" src="{{ asset($painting->images[0]->location) }}" alt="{{ $painting->images[0]->title }}"> 
+                                                @else
+                                                    <img class="paintings-carousel" src="{{ asset('public/img/600x600.jpg') }}" alt="Not Found">     
+                                                @endif
+                                                 
+                                            </div>
+                                            <div class="con">
+                                                <h5><a href="{{ route('paint_show', $painting->id) }}">{{ $painting->name }}</a></h5>
+                                                <div class="line"></div> <a href="{{ route('paint_show', $painting->id) }}"><i class="ti-arrow-right"></i></a>
+                                            </div>
                                         </div>
-                                        <div class="con">
-                                            <h5><a href="{{ route('paint_show', $painting->id) }}">{{ $painting->name }}</a></h5>
-                                            <div class="line"></div> <a href="{{ route('paint_show', $painting->id) }}"><i class="ti-arrow-right"></i></a>
-                                        </div>
-                                    </div>
-                                @endforeach        
+                                    @endforeach
+                                @endif        
                             </div>
                     </div>
                 </div>
