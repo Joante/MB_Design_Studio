@@ -48,7 +48,7 @@ Route::post('/contact', [InfoController::class, 'storeContact'])->name('contact-
 //Services routes
 Route::prefix('services')->group(function () {
     Route::get('/', [ServicesController::class, 'index'])->name('services_index');
-    Route::get('/services/{id}', [ServicesController::class, 'show'])->name('services_view');
+    Route::get('/{id}', [ServicesController::class, 'show'])->name('services_view');
 });
 
 
@@ -62,7 +62,7 @@ Route::prefix('projects')->group(function () {
 //Blog routes
 Route::prefix('blog')->group(function () {
     Route::get('/', [BlogController::class, 'index'])->name('blog_index');
-    Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog_view');
+    Route::get('/{id}', [BlogController::class, 'show'])->name('blog_view');
 });
 
 
@@ -74,7 +74,7 @@ Route::prefix('art')->group(function () {
     Route::prefix('paint')->group(function () {
         Route::get('/', [PaintController::class, 'index'])->name('paint_index');
         Route::get('/{id}', [PaintController::class, 'show'])->name('paint_show');
-        Route::get('/{idCategory}/list', [PaintController::class, 'show_colection'])->name('paint_collection_index');
+        Route::get('/{idCategory}', [PaintController::class, 'show_colection'])->name('paint_collection_index');
     });
     
     //Exhibition routes

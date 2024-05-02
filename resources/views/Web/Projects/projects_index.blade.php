@@ -1,5 +1,9 @@
 @extends('Web.Layout.master_layout')
 
+@section('page-style')
+    <link rel="canonical" href="https://mbdesignstudio.com.ar/projects" />
+@endsection 
+
 @section('content')
     <!-- Header Banner -->
     <section class="banner-header banner-img bg-img bg-fixed pb-0" data-background="{{ asset('img/1920x1128.jpg') }}" data-overlay-darkgray="5"></section>

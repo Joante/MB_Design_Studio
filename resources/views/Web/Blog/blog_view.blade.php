@@ -1,6 +1,7 @@
 @extends('Web.Layout.master_layout')
 
 @section('page-style')
+    <link rel="canonical" href="https://mbdesignstudio.com.ar/blog/{{$post->id}}" />
 @endsection 
 
 @section('content')
@@ -24,20 +25,6 @@
                     <div class="ql-editor" style="padding: 0px; height:auto;">{!! $post->text !!}</div>
                 </div>
             </div>
-            {{-- <div class="bauen-comment-section">
-                <div class="row">
-                    <!-- Comment -->
-                    <div class="col-md-7">
-                        <div class="bauen-post-comment-wrap">
-                            <div class="bauen-user-comment"> <img src="{{ asset($location) }}" alt=""> </div>
-                            <div class="bauen-user-content">
-                                <h3>Maximiliano Bilotti<span> {{ $post->created }}</span></h3>
-                                <p>{{ $description }} </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
         </div>
     </section>
 @endsection
