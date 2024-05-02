@@ -2,6 +2,7 @@
 
 @section('page-style')
     {!! NoCaptcha::renderJs('es') !!}
+    <link rel="canonical" href="https://mbdesignstudio.com.ar/contact" />
 @endsection
 
 @section('content')

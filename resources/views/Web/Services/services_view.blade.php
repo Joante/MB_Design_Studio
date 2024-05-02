@@ -1,6 +1,7 @@
 @extends('Web.Layout.master_layout')
 
 @section('page-style')
+    <link rel="canonical" href="https://mbdesignstudio.com.ar/services/{{$service->id}}" />
 @endsection 
 
 @section('content')

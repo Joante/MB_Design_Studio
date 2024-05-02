@@ -1,5 +1,9 @@
 @extends('Web.Layout.master_layout')
 
+@section('page-style')
+    <link rel="canonical" href="https://mbdesignstudio.com.ar" />    
+@endsection
+
 @section('content')
     <!-- Slider -->
     <header class="header slider-fade">
