@@ -45,12 +45,6 @@ Route::get('/about', [InfoController::class, 'about'])->name('about');
 Route::get('/contact', [InfoController::class, 'contact'])->name('contact');
 Route::post('/contact', [InfoController::class, 'storeContact'])->name('contact-send');
 
-//Services routes
-Route::prefix('services')->group(function () {
-    Route::get('/', [ServicesController::class, 'index'])->name('services_index');
-    Route::get('/{id}', [ServicesController::class, 'show'])->name('services_view');
-});
-
 
 //Projects routes
 Route::prefix('projects')->group(function () {
@@ -59,11 +53,7 @@ Route::prefix('projects')->group(function () {
 });
 
 
-//Blog routes
-Route::prefix('blog')->group(function () {
-    Route::get('/', [BlogController::class, 'index'])->name('blog_index');
-    Route::get('/{id}', [BlogController::class, 'show'])->name('blog_view');
-});
+
 
 
 //Art routes
@@ -189,7 +179,16 @@ Route::prefix('images')->middleware('auth')->group(function () {
     Route::post('/update/{modelType}/{modelId}', [ImagesController::class,'updateImageWithHierarchy'])->name('images_update');
 });
 
+//Blog routes
+Route::prefix('blog')->group(function () {
+    Route::get('/', [BlogController::class, 'index'])->name('blog_index');
+    Route::get('/{id}', [BlogController::class, 'show'])->name('blog_view');
+});
 
-
+//Services routes
+Route::prefix('services')->group(function () {
+    Route::get('/', [ServicesController::class, 'index'])->name('services_index');
+    Route::get('/{id}', [ServicesController::class, 'show'])->name('services_view');
+});
 
 require __DIR__.'/auth.php';

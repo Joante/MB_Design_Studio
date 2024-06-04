@@ -38,7 +38,6 @@ class AppServiceProvider extends ServiceProvider
         date_default_timezone_set('America/Argentina/Buenos_Aires');
         
         $services = [];
-        $blog_categories = [];
         $mbAcounts = [];
         $db = false;
         
@@ -52,9 +51,6 @@ class AppServiceProvider extends ServiceProvider
         if($db){
             if (Schema::hasTable('services')) {
                 $services = Service::all();
-            }
-            if (Schema::hasTable('blog_categories')) {
-                $blog_categories = BlogCategory::all();
             }
             if(Schema::hasTable('acounts')){
                 $mbAcounts = Acounts::where('type', '=', 'mb')->first();
@@ -75,7 +71,6 @@ class AppServiceProvider extends ServiceProvider
         }
         
         View::share('services', $services);
-        View::share('blog_categories', $blog_categories);
         View::share('mbAcounts', $mbAcounts);
         
         Paginator::defaultView('vendor/pagination/bauen');
