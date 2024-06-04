@@ -53,8 +53,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $categories = BlogCategory::all();
-        return view('Admin/blog/blog_create', ['categories' => $categories]);
+        return view('Admin/blog/blog_create');
     }
 
     /**
@@ -174,9 +173,8 @@ class BlogController extends Controller
         if(!$post) {
             return view('errors/model_not_found', ['modelName' => 'post']);
         }
-        $categories = BlogCategory::all();
         
-        return view('Admin/blog/blog_edit', ['post' => $post, 'categories' => $categories]);
+        return view('Admin/blog/blog_edit', ['post' => $post]);
     }
 
     /**
