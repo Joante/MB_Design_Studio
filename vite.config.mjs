@@ -39,7 +39,7 @@ function collectBladeCssInputs() {
     const assetPattern = /Helper::viteAsset\(['"]([^'"]+)['"]\)/g;
     const inputs = new Set();
 
-    for (const view of globSync('resources/views/**/*.blade.php')) {
+    for (const view of globSync('resources/views/Web/**/*.blade.php')) {
         const contents = readFileSync(view, 'utf8');
 
         for (const match of contents.matchAll(assetPattern)) {

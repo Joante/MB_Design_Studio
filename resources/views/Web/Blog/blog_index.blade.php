@@ -15,7 +15,7 @@
                 <div class="col-md-6">
                     <h2 class="section-title">Blog</h2>
                 </div>
-                <div class="col-md-3 ml-auto mr-0 animate-box" data-animate-effect="fadeInUp">
+                <div class="col-md-3 ms-auto me-0 animate-box" data-animate-effect="fadeInUp">
                     <h6 class="section-title2"><span style="font-size: 25px;">Ultimos Posteos</span></h6>
                 </div>
             </div>

@@ -12,8 +12,9 @@
 /* == animate css == */
 @import url("plugins/animate.min.css");
 
-/* == themify icons ==*/
+/* == themify icons & font awesome pro ==*/
 @import url("plugins/themify-icons.css");
+@import url("plugins/font-awesome-pro.css");
 
 /* == helper classes == */
 @import url("plugins/helper.css");
@@ -23,3 +24,7 @@
 
 /* == YouTubePopUp == */
 @import url("plugins/YouTubePopUp.css");
+
+
+/* == Vegas Slider == */
+@import url("plugins/vegas.slider.min.css");

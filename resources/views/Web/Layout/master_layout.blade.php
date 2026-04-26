@@ -25,15 +25,15 @@
             <a class="logo" href="{{ route('home') }}">
                 <img src="{{ Helper::viteAsset('img/logo_white.png') }}" style="width: 80%;" alt="mb. design studio">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="icon-bar"><i class="ti-line-double"></i></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Home</a></li>
                     <li class="nav-item"><a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="{{ route('about') }}">About</a></li>
                     <li class="nav-item"><a class="nav-link {{ request()->is('services') ? 'active' : '' }}" href="{{ route('services_index') }}">Servicios</a></li>
-                    <li class="nav-item dropdown"><a class="nav-link {{ request()->is('art') ? 'active' : '' }}" href="{{ route('art_index') }}">Arte <i class="ti-angle-down"></i></a>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle {{ request()->is('art') ? 'active' : '' }}" href="{{ route('art_index') }}" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Arte <i class="ti-angle-down"></i></a>
                         <ul class="dropdown-menu last">
                             <li class="dropdown-item {{ request()->is('art/collections') ? 'active' : '' }}"><a href="{{ route('paint_index') }}">Colecciones</a></li>
                             <li class="dropdown-item {{ request()->is('art/exhibitions') ? 'active' : '' }}"><a href="{{ route('exhibition_index') }}">Exhibiciones</a></li>
@@ -128,11 +128,11 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="text-left">
+                            <div class="text-start">
                                 <p>&copy; 2024 mb. design studio. All rights reserved.</p>
                             </div>
                         </div>
-                        <div class="col-md-8 float-right">
+                        <div class="col-md-8 float-end">
                             <p class="right"><a href="#">Terminos &amp; Condiciones</a></p>
                         </div>
                     </div>
