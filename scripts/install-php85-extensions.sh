@@ -33,7 +33,6 @@ readonly PHP_VERSION NODE_MAJOR
 PHP_PACKAGES=(
   "php${PHP_VERSION}-cli"
   "php${PHP_VERSION}-common"
-  "php${PHP_VERSION}-opcache"
   "php${PHP_VERSION}-readline"
   "php${PHP_VERSION}-bcmath"
   "php${PHP_VERSION}-bz2"
