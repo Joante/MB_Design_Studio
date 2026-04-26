@@ -28,7 +28,7 @@
             </g>
           </g>
         </svg></span>
-        <h2 class="brand-text mb-0">MB Design Studio</h2>
+        <h2 class="brand-text mb-0">mb. design studio</h2>
         </a>
       </li>
     </ul>

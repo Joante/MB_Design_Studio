@@ -6,7 +6,7 @@
 
 @section('content')
 <!-- Header Banner -->
-<section class="banner-header banner-img valign bg-img bg-fixed" data-overlay-darkgray="5" data-background="{{ asset('img/1920x1128.jpg') }}"></section>
+<section class="banner-header banner-img valign bg-img bg-fixed" data-overlay-darkgray="5" data-background="{{ Helper::viteAsset('img/1920x1128.jpg') }}"></section>
 <!-- Pricing -->
 <section class="section-padding2">
     <div class="container">
@@ -46,7 +46,7 @@
                                                 @if (count($painting->images)> 0)
                                                     <img class="projects-carousel" src="{{ asset($painting->images[0]->location) }}" alt="{{ $painting->images[0]->title }}"> 
                                                 @else
-                                                    <img class="projects-carousel" src="{{ asset('public/img/600x600.jpg') }}" alt="">     
+                                                    <img class="projects-carousel" src="{{ Helper::viteAsset('img/600x600.jpg') }}" alt="">     
                                                 @endif
                                             </div>
                                             <div class="con">

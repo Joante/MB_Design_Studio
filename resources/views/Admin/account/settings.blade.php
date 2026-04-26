@@ -4,12 +4,12 @@
 
 @section('vendor-style')
   <!-- vendor css files -->
-  <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/sweetalert2.min.css')) }}">
+  <link rel="stylesheet" href="{{ Helper::viteAsset('vendors/css/extensions/sweetalert2.min.css') }}">
 @endsection
 @section('page-style')
   <!-- Page css files -->
-  <link rel="stylesheet" href="{{ asset(mix('css/base/pages/app-user.css')) }}">
-  <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
+  <link rel="stylesheet" href="{{ Helper::viteAsset('css/base/pages/app-user.css') }}">
+  <link rel="stylesheet" href="{{ Helper::viteAsset('css/base/plugins/forms/form-validation.css') }}">
   <x-head.tinymce-config/>
 @endsection
 
@@ -62,7 +62,7 @@
               <div class="media">
                 <a href="javascript:void(0);" class="mr-25">
                   @if (Auth::user()->images == null)
-                    <img src="{{asset('img/600x600.jpg')}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80"/>    
+                    <img src="{{Helper::viteAsset('img/600x600.jpg')}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80"/>    
                   @else 
                     <img src="{{asset(Auth::user()->images->location)}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80"/>  
                   @endif
@@ -327,7 +327,7 @@
                   <div class="col-12">
                     <div class="d-flex align-items-center mb-2">
                       <i data-feather="link" class="font-medium-3"></i>
-                      <h4 class="mb-0 ml-75">Redes Sociales de MB Design Studio</h4>
+                      <h4 class="mb-0 ml-75">Redes Sociales de mb. design studio</h4>
                       <button class="btn add-new btn-primary mt-50" style="margin-left: auto;order: 2; @if ($errors->any()) @if(!$errors->has('actual_password') || !$errors->has('password') || !$errors->has('image') || !$errors->has('username') || !$errors->has('name')) display:none; @endif @endif" type="button" id="btn_edit_social"><span>Editar</span></button>
                     </div>
                   </div>
@@ -635,16 +635,16 @@
 @section('vendor-script')
   <!-- vendor files -->
   {{-- select2 min js --}}
-  <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
+  <script src="{{ Helper::viteAsset('vendors/js/forms/select/select2.full.min.js') }}"></script>
   {{--  jQuery Validation JS --}}
-  <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/extensions/dropzone.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
-  <script src="{{ asset(mix('vendors/js/extensions/sweetalert2.all.min.js')) }}"></script>
+  <script src="{{ Helper::viteAsset('vendors/js/forms/validation/jquery.validate.min.js') }}"></script>
+  <script src="{{ Helper::viteAsset('vendors/js/extensions/dropzone.min.js') }}"></script>
+  <script src="{{ Helper::viteAsset('vendors/js/pickers/flatpickr/flatpickr.min.js') }}"></script>
+  <script src="{{ Helper::viteAsset('vendors/js/extensions/sweetalert2.all.min.js') }}"></script>
 @endsection
 @section('page-script')
   <!-- Page js files -->
-  <script src="{{ asset(mix('js/scripts/pages/page-account-settings.js')) }}"></script>
+  <script src="{{ Helper::viteAsset('js/scripts/pages/page-account-settings.js') }}"></script>
   <script>
       var oldSource;
       window.onload = function() {
@@ -675,7 +675,7 @@
         if(oldImage.length != 0) {
           accountImage.src = oldSource;
         } else {
-          accountImage.src = @json(asset('img/600x600.jpg'));
+          accountImage.src = @json(Helper::viteAsset('img/600x600.jpg'));
         }
       });
 
@@ -715,7 +715,7 @@
       });
   </script>
 
-<script src="{{ asset(mix('js/sweerAlertDeleteConfirmation.js')) }}"></script>
+<script src="{{ Helper::viteAsset('js/sweerAlertDeleteConfirmation.js') }}"></script>
 <script>
   var btn = document.getElementsByClassName('btn-outline-danger');
   for (let i = 0; i < btn.length; i++) {

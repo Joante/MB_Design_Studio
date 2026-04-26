@@ -3,15 +3,15 @@
 @section('title', 'Agregar Exhibicion')
 
 @section('vendor-style')
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/pickadate/pickadate.css')) }}">
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
+    <link rel="stylesheet" href="{{ Helper::viteAsset('vendors/css/pickers/pickadate/pickadate.css') }}">
+    <link rel="stylesheet" href="{{ Helper::viteAsset('vendors/css/pickers/flatpickr/flatpickr.min.css') }}">
 @endsection 
 
 @section('page-style')
-    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
+    <link rel="stylesheet" href="{{ Helper::viteAsset('css/base/plugins/forms/form-validation.css') }}">
     <x-head.tinymce-config/>
-    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-flat-pickr.css')) }}">
-    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/pickers/form-pickadate.css')) }}">
+    <link rel="stylesheet" href="{{ Helper::viteAsset('css/base/plugins/forms/pickers/form-flat-pickr.css') }}">
+    <link rel="stylesheet" href="{{ Helper::viteAsset('css/base/plugins/forms/pickers/form-pickadate.css') }}">
 @endsection
 
 @section('content')
@@ -119,11 +119,11 @@
 @endsection
 
 @section('vendor-script')
-    <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.js')) }}"></script>
-    <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.date.js')) }}"></script>
-    <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.time.js')) }}"></script>
-    <script src="{{ asset(mix('vendors/js/pickers/pickadate/legacy.js')) }}"></script>
-    <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
+    <script src="{{ Helper::viteAsset('vendors/js/pickers/pickadate/picker.js') }}"></script>
+    <script src="{{ Helper::viteAsset('vendors/js/pickers/pickadate/picker.date.js') }}"></script>
+    <script src="{{ Helper::viteAsset('vendors/js/pickers/pickadate/picker.time.js') }}"></script>
+    <script src="{{ Helper::viteAsset('vendors/js/pickers/pickadate/legacy.js') }}"></script>
+    <script src="{{ Helper::viteAsset('vendors/js/pickers/flatpickr/flatpickr.min.js') }}"></script>
 @endsection 
 
 @section('page-script')

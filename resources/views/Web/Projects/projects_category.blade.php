@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Header Banner -->
-    <section class="banner-header banner-img bg-img bg-fixed pb-0" data-background="{{ asset('img/1920x1128.jpg') }}" data-overlay-darkgray="5">
+    <section class="banner-header banner-img bg-img bg-fixed pb-0" data-background="{{ Helper::viteAsset('img/1920x1128.jpg') }}" data-overlay-darkgray="5">
     </section>
     <!-- Projects -->
     <section class="projects section-padding2">
@@ -21,7 +21,7 @@
                                     @if (!empty($project->images->all()))
                                         <img src="{{ asset($project->images->first()->location) }}" alt="{{ $project->images->first()->title }}"> 
                                     @else
-                                        <img src="{{ asset('img/1920x1128-1.jpg') }}" alt=""> 
+                                        <img src="{{ Helper::viteAsset('img/1920x1128-1.jpg') }}" alt=""> 
                                     @endif
                                 </div>
                                 <div class="con">

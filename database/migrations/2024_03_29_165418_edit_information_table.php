@@ -8,8 +8,6 @@ class EditInformationTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -20,13 +18,11 @@ class EditInformationTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
         Schema::table('information', function (Blueprint $table) {
-            $table->string('about')->change();
+            $table->text('about')->change();
         });
     }
 }

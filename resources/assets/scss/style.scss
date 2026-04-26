@@ -37,7 +37,7 @@
 ----------------------------------------------------------------------------------- */
 
 
-/* ======= Google fonts (Montserrat & Didact Gothic) ======= */
+/* ======= Google fonts (Montserrat) ======= */
 
 
 /* ======= Basic style ======= */
@@ -150,7 +150,7 @@ textarea {
     display: block;
     width: 100%;
     line-height: 1.5em;
-    font-family: "Didact Gothic", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 16px;
     font-weight: 400;
     color: #999;
@@ -350,19 +350,18 @@ input[type=checkbox] {
 }
 
 .section-title {
-    font-size: 38px;
+    font-size: 30px;
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
-    color: #fff;
-    text-transform: uppercase;
+    color: #999;
     position: relative;
-    letter-spacing: 10px;
     word-spacing: 5px;
     margin-bottom: 30px;
 }
 
 .section-title span {
     color: #838487;
+    font-weight: 650;
 }
 
 .section-title-about {
@@ -370,15 +369,14 @@ input[type=checkbox] {
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
     color: #fff;
-    text-transform: uppercase;
     position: relative;
-    letter-spacing: 10px;
     word-spacing: 5px;
     margin-bottom: 20px;
 }
 
 .section-title-about span {
     color: #838487;
+    font-weight: 650;
 }
 
 
@@ -389,8 +387,6 @@ input[type=checkbox] {
     position: relative;
     line-height: 1.25em;
     margin-bottom: 30px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
 }
 
 .section-title2 span {
@@ -608,7 +604,7 @@ input[type=checkbox] {
 .dropdown-menu .dropdown-item,
 .sub-menu .dropdown-item {
     padding: 5px 15px;
-    font-family: "Didact Gothic", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 15px;
     font-weight: 300;
     color: #fff;
@@ -758,14 +754,13 @@ input[type=checkbox] {
     position: relative;
     margin-bottom: 20px;
     font-family: "Montserrat", sans-serif;
-    font-size: 48px;
-    text-transform: uppercase;
+    font-size: 30px;
     line-height: 1.35em;
     -webkit-animation-delay: 0.4s;
     animation-delay: 0.4s;
     color: #fff;
-    font-weight: 400;
-    letter-spacing: 15px;
+    font-weight: 200;
+    letter-spacing: 1px;
 }
 
 .header .caption p {
@@ -1388,7 +1383,7 @@ hr.dotted {
 }
 
 .img-logo {
-    max-width: 70%;
+    max-width: 100%;
     height: auto
 }
 
@@ -1985,7 +1980,7 @@ button.mfp-arrow {
     margin-bottom: 0px;
     padding-top: 7px;
     font-weight: 400;
-    font-family: "Didact Gothic", sans-serif;
+    font-family: "Montserrat", sans-serif;
     color: #838487;
 }
 
@@ -2188,7 +2183,7 @@ button.mfp-arrow {
 .bauen-comment-section h3 {
     font-size: 16px;
     color: #838487;
-    font-family: "Didact Gothic", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 400;
 }
 
@@ -2444,10 +2439,10 @@ button.mfp-arrow {
 
 .main-footer .fotcont .fothead h4 {
     font-family: "Montserrat", sans-serif;
-    font-weight: 200;
+    font-weight: 500;
     position: relative;
     padding-bottom: 30px;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .main-footer .fotcont .fothead h4:after {
@@ -2955,7 +2950,7 @@ button.mfp-arrow {
     padding: 20px 60px 20px 30px;
     height: 70px;
     display: block;
-    font-family: "Didact Gothic", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 16px;
     background: #323232;
     color: #999;
@@ -3214,7 +3209,7 @@ button.mfp-arrow {
     color: #999;
     letter-spacing: 2px;
     font-size: 10px;
-    font-family: "Didact Gothic", sans-serif;
+    font-family: "Montserrat", sans-serif;
     text-transform: uppercase;
     font-weight: 300;
 }
@@ -3263,7 +3258,7 @@ button.mfp-arrow {
     font-size: 11px;
     letter-spacing: 2px;
     color: #999;
-    font-family: "Didact Gothic", sans-serif;
+    font-family: "Montserrat", sans-serif;
     text-transform: uppercase;
 }
 
@@ -3508,7 +3503,7 @@ button.mfp-arrow {
     font-size: 12px;
     letter-spacing: 2px;
     color: #838487;
-    font-family: 'Didact Gothic', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
     margin-bottom: 5px;
 }

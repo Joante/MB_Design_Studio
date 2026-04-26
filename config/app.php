@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'MB Design Studio'),
+    'name' => env('APP_NAME', 'mb. design studio'),
 
     /*
     |--------------------------------------------------------------------------
@@ -161,7 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
+        Intervention\Image\Laravel\ServiceProvider::class,
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
 
         /*
@@ -232,7 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         // custom theme helper
         'Helper' => App\Helpers\Helper::class,
-        'Image' => Intervention\Image\Facades\Image::class,
+        'Image' => Intervention\Image\Laravel\Facades\Image::class,
         'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
     ],
 

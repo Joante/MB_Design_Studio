@@ -3,7 +3,7 @@
 @section('title', $colection->name)
 
 @section('page-style')
-  <link rel="stylesheet" href="{{ asset(mix('css/base/pages/app-user.css')) }}">
+  <link rel="stylesheet" href="{{ Helper::viteAsset('css/base/pages/app-user.css') }}">
 @endsection
 
 @section('content')

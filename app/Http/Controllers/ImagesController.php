@@ -14,7 +14,7 @@ use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Image;
+use Intervention\Image\Laravel\Facades\Image;
 use Illuminate\Support\Facades\DB;
 
 class ImagesController extends Controller
@@ -101,7 +101,7 @@ class ImagesController extends Controller
         if (!is_dir(public_path('/').'img/'.$modelType.'/')){
             mkdir(public_path('/').'img/'.$modelType.'/', 0770, true);
         }  
-        Image::make($request->file('images'))->save(public_path('/').$imagePath);
+        Image::read($request->file('images'))->save(public_path($imagePath));
         
         if (file_exists(public_path('/').$imagePath)) {
             DB::commit();

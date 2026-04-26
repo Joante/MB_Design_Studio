@@ -18,8 +18,6 @@ class ArtExhibition extends Model
      */
     protected $table = 'exhibitions';
 
-    protected $dates = ['date_start', 'date_finish'];
-
     /**
      * The attributes that are mass assignable.
      *
@@ -44,6 +42,8 @@ class ArtExhibition extends Model
       */
      protected $casts = [
          'principal_page' => 'boolean',
+         'date_start' => 'datetime',
+         'date_finish' => 'datetime',
          'hour_start' => 'datetime:H:i',
          'hour_finish' => 'datetime:H:i',
      ];
