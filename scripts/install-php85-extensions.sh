@@ -178,6 +178,9 @@ install_node_packages() {
   log "Installing Node.js ${NODE_MAJOR}.x"
   apt-get install -y --no-install-recommends nodejs
 }
+run_with_system_node_path() {
+  PATH="/usr/bin:/usr/sbin:/bin:/sbin:${PATH}" "$@"
+}
 
 set_php_alternatives() {
   declare -A alternatives=(
@@ -204,8 +207,8 @@ print_summary() {
   php -m | sort
   echo
   echo "Installed Node.js:"
-  node -v
-  npm -v
+  run_with_system_node_path node -v
+  run_with_system_node_path npm -v
 }
 
 main() {
@@ -232,7 +235,7 @@ main() {
   set_php_alternatives
 
   if command -v corepack >/dev/null 2>&1; then
-    corepack enable
+    run_with_system_node_path corepack enable
   fi
 
   print_summary
