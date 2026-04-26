@@ -10,7 +10,7 @@
         <div class="owl-carousel owl-theme">
             <!-- The opacity on the image is made with "data-overlay-dark="number". You can change it using the numbers 0-9.  -->
             @foreach ($homepageImages as $homepageImage)
-                <div class="text-left item bg-img" data-overlay-dark="3" data-background="{{ $homepageImage != null ? asset($homepageImage->location) : Helper::viteAsset('img/1920x1128.jpg') }}">
+                <div class="text-start item bg-img" data-overlay-dark="3" data-background="{{ $homepageImage != null ? asset($homepageImage->location) : Helper::viteAsset('img/1920x1128.jpg') }}">
                     <div class="v-bottom caption">
                         <div class="container">
                             <div class="row">
