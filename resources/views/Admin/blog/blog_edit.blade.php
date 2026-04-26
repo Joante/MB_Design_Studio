@@ -3,7 +3,7 @@
 @section('title', 'Editar Post')
 
 @section('page-style')    
-    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
+    <link rel="stylesheet" href="{{ Helper::viteAsset('css/base/plugins/forms/form-validation.css') }}">
     <x-head.tinymce-config/>
 @endsection
 
@@ -102,7 +102,7 @@
 @endsection
 
 @section('vendor-script')
-    <script src="{{ asset('js/image-resize.min.js') }}"></script>
+    <script src="{{ Helper::viteAsset('js/image-resize.min.js') }}"></script>
 @endsection 
 
 @section('page-script')

@@ -6,18 +6,18 @@
 
 @section('content')
     <!-- Header Banner -->
-    <section class="banner-header banner-img valign bg-img bg-fixed" data-overlay-darkgray="5" data-background="{{ asset('img/1920x1128.jpg') }}"></section>
+    <section class="banner-header banner-img valign bg-img bg-fixed" data-overlay-darkgray="5" data-background="{{ Helper::viteAsset('img/1920x1128.jpg') }}"></section>
     <!-- About -->
     <section class="about section-padding2">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 mb-30 animate-box" data-animate-effect="fadeInUp">
-                    <h2 class="section-title-about">About <span>MB</span></h2>
+                    <h2 class="section-title-about">About <span>mb.</span></h2>
                     <div>{!! $about !!}</div>
                 </div>
                 <div class="col-md-6 animate-box" data-animate-effect="fadeInUp">
                     <div class="about-img">
-                        <div class="img"> <img src="img/logo_2.png" class="img-logo" alt=""> </div>
+                        <div class="img"> <img src="{{ Helper::viteAsset('img/logo_2.png') }}" class="img-logo" alt=""> </div>
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@
 @section('title', 'Editar Coleccion de Arte')
 
 @section('page-style')
-    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
+    <link rel="stylesheet" href="{{ Helper::viteAsset('css/base/plugins/forms/form-validation.css') }}">
 @endsection
 
 @section('content')

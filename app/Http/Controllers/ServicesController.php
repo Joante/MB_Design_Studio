@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Rules\PrincipalPage;
 use Illuminate\Support\Facades\Validator;
-use Image;
+use Intervention\Image\Laravel\Facades\Image;
 
 class ServicesController extends Controller
 {
@@ -84,7 +84,7 @@ class ServicesController extends Controller
                 'location' => $iconName
             ];
             $icon = Icon::create($newIcon);
-            Image::make($request->file('iconFile'))->resize(200, 140)->save(public_path('/img/icons/').$iconName);
+            Image::read($request->file('iconFile'))->resize(200, 140)->save(public_path('img/icons/' . $iconName));
             $newService['icon_id'] = $icon->id;
         }else {
             $newService['icon_id'] = $request->get('icon');
@@ -184,7 +184,7 @@ class ServicesController extends Controller
                 'location' => $iconName
             ];
             $icon = Icon::create($newIcon);
-            Image::make($request->file('iconFile'))->resize(200, 140)->save(public_path('/img/icons/').$iconName);
+            Image::read($request->file('iconFile'))->resize(200, 140)->save(public_path('img/icons/' . $iconName));
             $service->icon_id = $icon->id;
         }else {
             $service->icon_id = $request->get('icon');

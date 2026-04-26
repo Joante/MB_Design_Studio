@@ -1,3 +1,5 @@
-require('./bootstrap.min.js');
+import Alpine from 'alpinejs';
 
-require('alpinejs');
+window.Alpine = Alpine;
+
+Alpine.start();

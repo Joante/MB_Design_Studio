@@ -4,8 +4,8 @@
 
 @section('page-style')
 {{-- Page Css files --}}
-<link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
-<link rel="stylesheet" href="{{ asset(mix('css/base/pages/page-auth.css')) }}">
+<link rel="stylesheet" href="{{ Helper::viteAsset('css/base/plugins/forms/form-validation.css') }}">
+<link rel="stylesheet" href="{{ Helper::viteAsset('css/base/pages/page-auth.css') }}">
 @endsection
 
 @section('content')
@@ -75,5 +75,5 @@
 @endsection
 
 @section('vendor-script')
-<script src="{{asset(mix('vendors/js/forms/validation/jquery.validate.min.js'))}}"></script>
+<script src="{{Helper::viteAsset('vendors/js/forms/validation/jquery.validate.min.js')}}"></script>
 @endsection

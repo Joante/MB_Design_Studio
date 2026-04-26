@@ -3,7 +3,7 @@
 @section('title', 'Categorias de Blog')
 
 @section('vendor-style')
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/sweetalert2.min.css')) }}">
+    <link rel="stylesheet" href="{{ Helper::viteAsset('vendors/css/extensions/sweetalert2.min.css') }}">
 @endsection
 @section('content')
 <section>
@@ -59,11 +59,11 @@
 @endsection
 
 @section('vendor-script')
-    <script src="{{ asset(mix('vendors/js/extensions/sweetalert2.all.min.js')) }}"></script>
+    <script src="{{ Helper::viteAsset('vendors/js/extensions/sweetalert2.all.min.js') }}"></script>
 @endsection
 
 @section('page-script')
-    <script src="{{ asset(mix('js/sweerAlertDeleteConfirmation.js')) }}"></script>
+    <script src="{{ Helper::viteAsset('js/sweerAlertDeleteConfirmation.js') }}"></script>
     <script>
       var btn = document.getElementsByClassName('btn-outline-danger');
       for (let i = 0; i < btn.length; i++) {

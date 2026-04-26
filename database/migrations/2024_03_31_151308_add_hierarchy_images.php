@@ -8,22 +8,18 @@ class AddHierarchyImages extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
         Schema::table('images', function (Blueprint $table) {
-            $table->integer('hierarchy')->after('model_type');
-            $table->text('description')->change();
+            $table->integer('hierarchy');
+            $table->text('description')->nullable()->change();
             $table->unique(['hierarchy', 'model_type', 'model_id']);
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
@@ -31,7 +27,7 @@ class AddHierarchyImages extends Migration
             Schema::table('images', function (Blueprint $table) {
                 $table->dropUnique(['hierarchy', 'model_type', 'model_id']);
                 $table->dropColumn('hierarchy');
-                $table->string('description')->change();
+                $table->string('description')->nullable()->change();
             });
         }
     }

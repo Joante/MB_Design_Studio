@@ -31,6 +31,7 @@ $(function() {
         (loader).fadeOut('fast');
     }, 3500);
     var wind = $(window);
+    var logoWhite = document.body.dataset.logoWhite || '/img/logo_white.png';
 
     // Main footer 
     var footer = $("footer").outerHeight();
@@ -54,10 +55,10 @@ $(function() {
             logo = $(".navbar .logo> img");
         if (bodyScroll > 100) {
             navbar.addClass("nav-scroll");
-            logo.attr('src', '/img/logo_white.png');
+            logo.attr('src', logoWhite);
         } else {
             navbar.removeClass("nav-scroll");
-            logo.attr('src', '/img/logo_white.png');
+            logo.attr('src', logoWhite);
         }
     });
 

@@ -7,7 +7,7 @@
 
 @section('page-style')
   <link href='https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Oswald:wght@200;300;400;500;600;700&display=swap' rel="stylesheet">
-  <link rel="stylesheet" href="{{ asset(mix('css/base/pages/app-user.css')) }}">
+  <link rel="stylesheet" href="{{ Helper::viteAsset('css/base/pages/app-user.css') }}">
 @endsection
 
 @section('content')

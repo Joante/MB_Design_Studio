@@ -3,13 +3,13 @@
 @section('title', 'Editar Servicio') 
 
 @section('vendor-style')
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/wizard/bs-stepper.min.css')) }}"/>
+    <link rel="stylesheet" href="{{ Helper::viteAsset('vendors/css/forms/wizard/bs-stepper.min.css') }}"/>
 @endsection 
 
 @section('page-style')
-    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
+    <link rel="stylesheet" href="{{ Helper::viteAsset('css/base/plugins/forms/form-validation.css') }}">
     <x-head.tinymce-config/>
-    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-wizard.css')) }}">
+    <link rel="stylesheet" href="{{ Helper::viteAsset('css/base/plugins/forms/form-wizard.css') }}">
     <style>
     [type=radio] { 
   position: absolute;
@@ -177,8 +177,8 @@
 @endsection 
 
 @section('vendor-script')
-    <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
-    <script src="{{ asset(mix('vendors/js/forms/wizard/bs-stepper.min.js')) }}"></script>
+    <script src="{{ Helper::viteAsset('vendors/js/forms/validation/jquery.validate.min.js') }}"></script>
+    <script src="{{ Helper::viteAsset('vendors/js/forms/wizard/bs-stepper.min.js') }}"></script>
 @endsection 
 
 @section('page-script')
