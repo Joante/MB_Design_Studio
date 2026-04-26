@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+if [ -z "${BASH_VERSION:-}" ]; then
+  if command -v bash >/dev/null 2>&1; then
+    exec bash "$0" "$@"
+  fi
+
+  echo "This script requires bash. Run it with: bash $0" >&2
+  exit 1
+fi
+
+
 set -Eeuo pipefail
 
 trap 'echo "Error on line ${LINENO}: ${BASH_COMMAND}" >&2' ERR
