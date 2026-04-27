@@ -30,7 +30,7 @@ class EditPrincipalPageFields extends Migration
         });
 
         Schema::table('locations', function (Blueprint $table) {
-            $table->unsignedInteger('phone')->nullable()->change();
+            $table->integer('phone')->nullable()->change();
         });
     }
 
@@ -58,7 +58,7 @@ class EditPrincipalPageFields extends Migration
         });
 
         Schema::table('locations', function (Blueprint $table) {
-            $table->unsignedInteger('phone')->change();
+            $table->integer('phone')->change();
         });
     }
 }

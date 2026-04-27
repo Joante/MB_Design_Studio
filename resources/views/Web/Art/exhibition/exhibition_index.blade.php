@@ -19,7 +19,7 @@
                 <div class="col-md-12">
                     <div class="row mb-30 mt-30">
                         <div class="col-md-12 animate-box " data-animate-effect="fadeInUp ">
-                            <h6 class="section-title2" style="text-align: center;font-size: 25px;">Exibiciones <span>Actuales</span></h6>
+                            <h6 class="section-title2" style="text-align: center;font-size: 25px;">Exhibiciones <span>Actuales</span></h6>
                         </div>
                     </div>
                     <div class="blog-sidebar row animate-box " data-animate-effect="fadeInUp">
@@ -36,12 +36,10 @@
                                         </a>
                                     </div>
                                     <div class="post-cont widget">
-                                        <div class="row" style="margin:0;">
-                                            <span class="tag">{{ $actualExhibition->location->name }}</span> 
-                                            <i>|</i> 
-                                            <span class="date">{{ $actualExhibition->date_start->translatedFormat('d M Y') }} - {{ $actualExhibition->date_finish->translatedFormat('d M Y') }}</span>
-                                            <i>|</i> 
-                                            <span class="date">{{ $actualExhibition->hour_start->format('H:i') }} a {{ $actualExhibition->hour_finish->format('H:i') }}</span>
+                                        <div class="exhibition-meta">
+                                            <span class="meta-item meta-location">{{ $actualExhibition->location->name }}</span>
+                                            <span class="meta-item meta-date">{{ $actualExhibition->date_start->translatedFormat('d M Y') }} - {{ $actualExhibition->date_finish->translatedFormat('d M Y') }}</span>
+                                            <span class="meta-item meta-time">{{ $actualExhibition->hour_start->format('H:i') }} a {{ $actualExhibition->hour_finish->format('H:i') }}</span>
                                         </div>
                                         <div class="widget-title">
                                             <h6>
@@ -61,7 +59,7 @@
                     </div>
                     <div class="row mb-30 mt-30">
                         <div class="col-md-12 animate-box " data-animate-effect="fadeInUp ">
-                            <h6 class="section-title2" style="text-align: center;font-size: 25px;">Exibiciones <span>Futuras</span></h6>
+                            <h6 class="section-title2" style="text-align: center;font-size: 25px;">Exhibiciones <span>Futuras</span></h6>
                         </div>
                     </div>
                     <div class="blog-sidebar row animate-box " data-animate-effect="fadeInUp">
@@ -78,12 +76,10 @@
                                         </a>
                                     </div>
                                     <div class="post-cont widget">
-                                        <div class="row" style="margin:0;">
-                                            <span class="tag">{{ $futureExhibition->location->name }}</span> 
-                                            <i>|</i> 
-                                            <span class="date">{{ $futureExhibition->date_start->translatedFormat('d M Y') }} - {{ $futureExhibition->date_finish->translatedFormat('d M Y') }}</span>
-                                            <i>|</i> 
-                                            <span class="date">{{ $futureExhibition->hour_start->format('H:i') }} a {{ $futureExhibition->hour_finish->format('H:i') }}</span>
+                                        <div class="exhibition-meta">
+                                            <span class="meta-item meta-location">{{ $futureExhibition->location->name }}</span>
+                                            <span class="meta-item meta-date">{{ $futureExhibition->date_start->translatedFormat('d M Y') }} - {{ $futureExhibition->date_finish->translatedFormat('d M Y') }}</span>
+                                            <span class="meta-item meta-time">{{ $futureExhibition->hour_start->format('H:i') }} a {{ $futureExhibition->hour_finish->format('H:i') }}</span>
                                         </div>
                                         <div class="widget-title">
                                             <h6>
@@ -103,7 +99,7 @@
                     </div>
                     <div class="row mb-30 mt-30">
                         <div class="col-md-12 animate-box " data-animate-effect="fadeInUp ">
-                            <h6 class="section-title2" style="text-align: center;font-size: 25px;">Exibiciones <span>Pasadas</span></h6>
+                            <h6 class="section-title2" style="text-align: center;font-size: 25px;">Exhibiciones <span>Pasadas</span></h6>
                         </div>
                     </div>
                     <div class="blog-sidebar row animate-box " data-animate-effect="fadeInUp">
@@ -120,12 +116,10 @@
                                         </a>
                                     </div>
                                     <div class="post-cont widget">
-                                        <div class="row" style="margin:0;">
-                                            <span class="tag">{{ $pastExhibition->location->name }}</span> 
-                                            <i>|</i> 
-                                            <span class="date">{{ $pastExhibition->date_start->translatedFormat('d M Y') }} - {{ $pastExhibition->date_finish->translatedFormat('d M Y') }}</span>
-                                            <i>|</i> 
-                                            <span class="date">{{ $pastExhibition->hour_start->format('H:i') }} a {{ $pastExhibition->hour_finish->format('H:i') }}</span>
+                                        <div class="exhibition-meta">
+                                            <span class="meta-item meta-location">{{ $pastExhibition->location->name }}</span>
+                                            <span class="meta-item meta-date">{{ $pastExhibition->date_start->translatedFormat('d M Y') }} - {{ $pastExhibition->date_finish->translatedFormat('d M Y') }}</span>
+                                            <span class="meta-item meta-time">{{ $pastExhibition->hour_start->format('H:i') }} a {{ $pastExhibition->hour_finish->format('H:i') }}</span>
                                         </div>
                                         <div class="widget-title">
                                             <h6>

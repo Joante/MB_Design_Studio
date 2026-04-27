@@ -29,14 +29,7 @@
         </div>
     </header>
     <!-- Content -->
-    <div class="content-wrapper">
-        <!-- Lines -->
-        <section class="content-lines-wrapper">
-            <div class="content-lines-inner">
-                <div class="content-lines"></div>
-            </div>
-        </section>
-        <!-- About -->
+    <!-- About -->
         <section class="about section-padding">
             <div class="container">
                 <div class="row">

@@ -18,8 +18,8 @@ class CreateArtPaintingsTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('tecnique');
-            $table->unsignedFloat('width');
-            $table->unsignedFloat('height');
+            $table->float('width');
+            $table->float('height');
             $table->unsignedBigInteger('art_colection_id');
             $table->timestamps();
             $table->foreign('art_colection_id')->references('id')->on('art_colections');            
