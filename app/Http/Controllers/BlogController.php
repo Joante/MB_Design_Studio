@@ -138,7 +138,7 @@ class BlogController extends Controller
         $location = ModelsImage::where('model_type', '=', 'App\Models\User')->where('model_id', '=', 1)->value('location');
 
         if(!$location) {
-            $location = 'img/600x600.jpg';
+            $location = 'images/600x600.jpg';
         }
         
         $description = User::where('id', '=', 1)->value('description');

@@ -84,7 +84,7 @@ class ServicesController extends Controller
                 'location' => $iconName
             ];
             $icon = Icon::create($newIcon);
-            Image::read($request->file('iconFile'))->resize(200, 140)->save(public_path('img/icons/' . $iconName));
+            Image::read($request->file('iconFile'))->resize(200, 140)->save(public_path('images/icons/' . $iconName));
             $newService['icon_id'] = $icon->id;
         }else {
             $newService['icon_id'] = $request->get('icon');
@@ -184,7 +184,7 @@ class ServicesController extends Controller
                 'location' => $iconName
             ];
             $icon = Icon::create($newIcon);
-            Image::read($request->file('iconFile'))->resize(200, 140)->save(public_path('img/icons/' . $iconName));
+            Image::read($request->file('iconFile'))->resize(200, 140)->save(public_path('images/icons/' . $iconName));
             $service->icon_id = $icon->id;
         }else {
             $service->icon_id = $request->get('icon');
