@@ -12,7 +12,7 @@ $configData = Helper::applClasses();
 @section('content')
 <div class="misc-wrapper">
   <a class="brand-logo" href="javascript:void(0);">
-    <img src="{{ Helper::viteAsset('img/logo_2.png') }}" style="max-width: 36px;" alt="MB Design Studio" />
+    <img src="{{ Helper::viteAsset('images/logo_2.png') }}" style="max-width: 36px;" alt="MB Design Studio" />
     <h2 class="brand-text text-primary ml-1" style="margin-top:7px;">MB Design Studio</h2>
   </a>
   <div class="misc-inner p-2 p-sm-3">

@@ -64,7 +64,7 @@ class Helper
         }
 
         if (Str::startsWith($normalized, 'img/')) {
-            return 'resources/images/site/' . substr($normalized, 4);
+            return 'resources/images/' . substr($normalized, 4);
         }
 
         if (Str::startsWith($normalized, 'images/')) {

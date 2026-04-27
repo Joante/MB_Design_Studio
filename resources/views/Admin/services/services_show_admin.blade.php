@@ -25,7 +25,7 @@
                 <div class="row d-flex justify-content-center" style="margin-bottom: 30px;">
                 <div class="col-md-4 d-flex justify-content-center align-items-center">
                     <h4>Icono:</h4>
-                    <img src="{{ asset('img/icons/'.$service->icon->location) }}" style="margin-left: 10px;width: 80px;" alt="{{ $service->icon->title }}">
+                    <img src="{{ Helper::viteAsset('images/icons/'.$service->icon->location) }}" style="margin-left: 10px;width: 80px;" alt="{{ $service->icon->title }}">
                 </div>
                 <div class="col-md-4 d-flex justify-content-center align-items-center">
                     <div class="user-info-title">

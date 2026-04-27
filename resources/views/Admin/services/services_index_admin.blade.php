@@ -33,7 +33,7 @@
                       <td>{{$service->title}}</td>
                       <td>{{$service->description}}</td>
                       <td>
-                          <img src="{{ asset('img/icons/'.$service->icon->location) }}" alt="Icono" width="40" height="40">
+                          <img src="{{ Helper::viteAsset('images/icons/'.$service->icon->location) }}" alt="Icono" width="40" height="40">
                       </td>
                       <td>
                         <a href="{{ route('services_show_admin', $service->id) }}">

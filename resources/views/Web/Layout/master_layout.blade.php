@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>mb. design studio @yield('title')</title>
-    <link rel="shortcut icon" href="{{ Helper::viteAsset('img/favicon.ico') }}" />
+    <link rel="shortcut icon" href="{{ Helper::viteAsset('images/favicon.ico') }}" />
     <link rel="stylesheet" href="{{ Helper::viteAsset('css/plugins.css') }}" />
     <link rel="stylesheet" href="{{ Helper::viteAsset('css/style.css') }}" />
     @yield('page-style')
     <script src="https://kit.fontawesome.com/c77e6f3bca.js" crossorigin="anonymous"></script>
 </head>
 
-<body data-logo-white="{{ Helper::viteAsset('img/logo_white.png') }}">
+<body data-logo-white="{{ Helper::viteAsset('images/logo_white.png') }}">
     <div id="preloader"></div>
     <div class="progress-wrap cursor-pointer">
         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
@@ -23,7 +23,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="logo" href="{{ route('home') }}">
-                <img src="{{ Helper::viteAsset('img/logo_white.png') }}" style="width: 80%;" alt="mb. design studio">
+                <img src="{{ Helper::viteAsset('images/logo_white.png') }}" style="width: 80%;" alt="mb. design studio">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="icon-bar"><i class="ti-line-double"></i></span>
@@ -58,7 +58,7 @@
         </div>
 
         <section class="testimonials">
-            <div class="background bg-img bg-fixed section-padding pb-0" data-background="{{ Helper::viteAsset('img/1920x1128.jpg') }}" data-overlay-dark="3">
+            <div class="background bg-img bg-fixed section-padding pb-0" data-background="{{ Helper::viteAsset('images/1920x1128.jpg') }}" data-overlay-dark="3">
                 <div class="container">
                     <div class="row justify-content-center"></div>
                 </div>
@@ -69,7 +69,7 @@
                 <div class="row">
                     <div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
                         <div class="about-img">
-                            <div class="img"><img src="{{ Helper::viteAsset('img/logo_2.png') }}" class="img-logo" alt="mb. design studio"></div>
+                            <div class="img"><img src="{{ Helper::viteAsset('images/logo_2.png') }}" class="img-logo" alt="mb. design studio"></div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-30 justify-content-center" style="display: flex;">

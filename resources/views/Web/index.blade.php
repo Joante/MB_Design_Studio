@@ -10,7 +10,7 @@
         <div class="owl-carousel owl-theme">
             <!-- The opacity on the image is made with "data-overlay-dark="number". You can change it using the numbers 0-9.  -->
             @foreach ($homepageImages as $homepageImage)
-                <div class="text-start item bg-img" data-overlay-dark="3" data-background="{{ $homepageImage != null ? asset($homepageImage->location) : Helper::viteAsset('img/1920x1128.jpg') }}">
+                <div class="text-start item bg-img" data-overlay-dark="3" data-background="{{ $homepageImage != null ? asset($homepageImage->location) : Helper::viteAsset('images/1920x1128.jpg') }}">
                     <div class="v-bottom caption">
                         <div class="container">
                             <div class="row">
@@ -46,7 +46,7 @@
                     </div>
                     <div class="col-md-5 animate-box" data-animate-effect="fadeInUp">
                         <div class="about-img">
-                            <div class="img"> <img src="{{ Helper::viteAsset('img/logo_2.png') }}" class="img-fluid" alt="mb. design studio"> </div>
+                            <div class="img"> <img src="{{ Helper::viteAsset('images/logo_2.png') }}" class="img-fluid" alt="mb. design studio"> </div>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                                         @if ($project->images != null && count($project->images) > 0 && file_exists(public_path($project->images[0]->location)))
                                             <img class="projects-carousel" src="{{ asset($project->images[0]->location) }}" alt="{{ $project->images[0]->title }}">
                                         @else
-                                            <img class="projects-carousel" src="{{ Helper::viteAsset('img/600x600.jpg') }}" alt="Image not found"> 
+                                            <img class="projects-carousel" src="{{ Helper::viteAsset('images/600x600.jpg') }}" alt="Image not found"> 
                                         @endif
                                     </div>
                                     <div class="con">
@@ -97,8 +97,8 @@
                             <div class="col-md-3">
                                 <div class="item">
                                     <a href="{{ route('services_view', $service->id) }}"> 
-                                        @if (file_exists(public_path('img/icons/'.$service->icon->location)))
-                                            <img src="{{ asset('img/icons/'.$service->icon->location) }}" alt="$service->icon->title">
+                                        @if (file_exists(resource_path('images/icons/'.$service->icon->location)))
+                                            <img src="{{ Helper::viteAsset('images/icons/'.$service->icon->location) }}" alt="$service->icon->title">
                                         @endif
                                         <h5>{{ $service->title }}</h5>
                                         <div class="line"></div>
@@ -143,12 +143,12 @@
                                                                         @if ($exhibition->location->images != null && file_exists(public_path($exhibition->location->images->location)))
                                                                             <img src="{{ asset($exhibition->location->images->location) }}" alt="{{ $exhibition->location->images->title }}"> 
                                                                         @else
-                                                                            <img src="{{ Helper::viteAsset('img/600x600.jpg') }}" alt="Image not found"> 
+                                                                            <img src="{{ Helper::viteAsset('images/600x600.jpg') }}" alt="Image not found"> 
                                                                         @endif
                                                                     @elseif ($exhibition->images != null && count($exhibition->images) > 0 && file_exists(public_path($exhibition->images[0]->location)))
                                                                         <img src="{{ asset($exhibition->images[0]->location) }}" alt="{{ $exhibition->images[0]->title }}">   
                                                                     @else
-                                                                        <img src="{{ Helper::viteAsset('img/600x600.jpg') }}" alt="Image not found">         
+                                                                        <img src="{{ Helper::viteAsset('images/600x600.jpg') }}" alt="Image not found">         
                                                                     @endif
                                                                 </a>
                                                             </div>
@@ -191,7 +191,7 @@
                                                         @if ($colection->images != null && file_exists(public_path($colection->images->location)))
                                                             <img class="projects-carousel" src="{{ asset($colection->images->location) }}" alt="{{ $colection->images->title }}"> 
                                                         @else
-                                                            <img class="projects-carousel" src="{{ Helper::viteAsset('img/600x600.jpg') }}" alt="Image not found"> 
+                                                            <img class="projects-carousel" src="{{ Helper::viteAsset('images/600x600.jpg') }}" alt="Image not found"> 
                                                         @endif
 
                                                     </div>

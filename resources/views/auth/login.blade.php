@@ -12,7 +12,7 @@
     <div class="card mb-0">
       <div class="card-body">
         <a href="javascript:void(0);" class="brand-logo">
-          <img src="{{ Helper::viteAsset('img/logo_black.png') }}" style="width: 85%;" alt="MB Design Studio" />
+          <img src="{{ Helper::viteAsset('images/logo_black.png') }}" style="width: 85%;" alt="MB Design Studio" />
         </a>
 
         <p class="card-text mb-2">Por favor ingrese a su cuenta</p>
