@@ -21,7 +21,7 @@ class ImageFactory extends Factory
      */
     public function definition()
     {
-        $location = $this->faker->image('public/img/paint/');
+        $location = $this->faker->image('public/images/paint/');
         $location = explode('/', $location);
         $location = $location[1].'/'.$location[2].'/'.$location[4];
         return [

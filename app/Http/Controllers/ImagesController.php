@@ -79,7 +79,7 @@ class ImagesController extends Controller
 
         $model = $this->getModel($modelType, $modelId);
 
-        $imagePath = 'img/'.$modelType.'/'.$imageName;
+        $imagePath = 'images/'.$modelType.'/'.$imageName;
         $newImage = [
             'title' => $modelType != 'homepage_images' ? $name[0] : $request->get('name'),
             'location' => $imagePath,
@@ -98,8 +98,8 @@ class ImagesController extends Controller
             ], 422);
         }
 
-        if (!is_dir(public_path('/').'img/'.$modelType.'/')){
-            mkdir(public_path('/').'img/'.$modelType.'/', 0770, true);
+        if (!is_dir(public_path('/').'images/'.$modelType.'/')){
+            mkdir(public_path('/').'images/'.$modelType.'/', 0770, true);
         }  
         Image::read($request->file('images'))->save(public_path($imagePath));
         

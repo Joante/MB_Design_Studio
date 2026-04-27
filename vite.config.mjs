@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+﻿import { readFileSync } from 'node:fs';
 import { globSync } from 'glob';
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
@@ -76,7 +76,7 @@ export default defineConfig({
         },
     },
     build: {
-        manifest: true,
+        manifest: 'manifest.json',
         rollupOptions: {
             output: {
                 manualChunks: undefined,
@@ -84,3 +84,4 @@ export default defineConfig({
         },
     },
 });
+

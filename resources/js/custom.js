@@ -31,7 +31,7 @@ $(function() {
         (loader).fadeOut('fast');
     }, 3500);
     var wind = $(window);
-    var logoWhite = document.body.dataset.logoWhite || '/img/logo_white.png';
+    var logoWhite = document.body.dataset.logoWhite || '/images/logo_white.png';
 
     // Main footer 
     var footer = $("footer").outerHeight();
