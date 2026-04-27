@@ -7,7 +7,6 @@
 /public/js
 /public/css
 /public/vendors
-/public/build
 /storage/*.key
 /vendor
 .env
