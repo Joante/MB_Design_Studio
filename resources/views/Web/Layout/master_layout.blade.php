@@ -67,9 +67,9 @@
         <footer class="main-footer dark">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4 mb-30 animate-box" data-animate-effect="fadeInUp">
-                        <div class="about-img">
-                            <div class="img"><img src="{{ Helper::viteAsset('images/logo_2.png') }}" class="img-logo" alt="mb. design studio"></div>
+                    <div class="col-md-4 mb-30 animate-box d-flex justify-content-center" data-animate-effect="fadeInUp">
+                        <div class="about-img text-center">
+                            <div class="img"><img src="{{ Helper::viteAsset('images/logo_2.png') }}" class="img-logo mx-auto d-block" alt="mb. design studio"></div>
                         </div>
                     </div>
                     <div class="col-md-4 mb-30 justify-content-center" style="display: flex;">

@@ -16,16 +16,26 @@ class Helper
 
     public static function viteAsset(string $path): string
     {
-        $source = self::legacyAssetSource($path);
+        $normalized = ltrim($path, '/');
+
+        if (Str::startsWith($normalized, 'img/')) {
+            return asset('images/' . substr($normalized, 4));
+        }
+
+        if (Str::startsWith($normalized, 'images/')) {
+            return asset($normalized);
+        }
+
+        $source = self::legacyAssetSource($normalized);
 
         if ($source === null) {
-            return asset($path);
+            return asset($normalized);
         }
 
         try {
             return Vite::asset($source);
         } catch (Throwable $exception) {
-            return asset($path);
+            return asset($normalized);
         }
     }
 
@@ -62,13 +72,8 @@ class Helper
         if (Str::startsWith($normalized, 'vendors/js/')) {
             return 'resources/' . $normalized;
         }
-
-        if (Str::startsWith($normalized, 'img/')) {
-            return 'resources/images/' . substr($normalized, 4);
-        }
-
-        if (Str::startsWith($normalized, 'images/')) {
-            return 'resources/images/' . substr($normalized, 7);
+        if (Str::startsWith($normalized, 'img/') || Str::startsWith($normalized, 'images/')) {
+            return null;
         }
 
         if (Str::startsWith($normalized, 'fonts/')) {
