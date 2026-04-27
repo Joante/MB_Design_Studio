@@ -6,7 +6,7 @@
 
 @section('content')
     <!-- Header Banner -->
-    <section class="banner-header banner-img valign bg-img bg-fixed" data-overlay-darkgray="5" data-background="{{ Helper::viteAsset('img/1920x1128.jpg') }}"></section>
+    <section class="banner-header banner-img valign bg-img bg-fixed" data-overlay-darkgray="5" data-background="{{ Helper::viteAsset('images/1920x1128.jpg') }}"></section>
 
     <section class="pb-90 bauen-blog">
         <div class="container">

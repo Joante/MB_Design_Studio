@@ -45,7 +45,6 @@ class AppServiceProvider extends ServiceProvider
             $dbconnect = DB::connection()->getPDO();
             $db = true;
         } catch(\Exception $e) {
-            echo $e->getMessage();
         }
         
         if($db){

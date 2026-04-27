@@ -6,7 +6,7 @@
 
 @section('content')
 <!-- Header Banner -->
-<section class="banner-header banner-img valign bg-img bg-fixed" data-overlay-darkgray="5" data-background="{{ Helper::viteAsset('img/1920x1128.jpg') }}"></section>
+<section class="banner-header banner-img valign bg-img bg-fixed" data-overlay-darkgray="5" data-background="{{ Helper::viteAsset('images/1920x1128.jpg') }}"></section>
 <section class="section-padding2">
     <div class="container">
         <div class="row">
@@ -31,7 +31,7 @@
                                                 @if (count($painting->images)> 0)
                                                     <img class="paintings-carousel" src="{{ asset($painting->images[0]->location) }}" alt="{{ $painting->images[0]->title }}"> 
                                                 @else
-                                                    <img class="paintings-carousel" src="{{ Helper::viteAsset('img/600x600.jpg') }}" alt="Not Found">     
+                                                    <img class="paintings-carousel" src="{{ Helper::viteAsset('images/600x600.jpg') }}" alt="Not Found">     
                                                 @endif
                                                  
                                             </div>

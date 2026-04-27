@@ -6,7 +6,7 @@
 
 @section('content')
     <!-- Header Banner -->
-    <section class="banner-header banner-img valign bg-img bg-fixed" data-overlay-darkgray="5" data-background="{{ Helper::viteAsset('img/1920x1128.jpg') }}"></section>
+    <section class="banner-header banner-img valign bg-img bg-fixed" data-overlay-darkgray="5" data-background="{{ Helper::viteAsset('images/1920x1128.jpg') }}"></section>
     <!-- Services -->
     <section class="services section-padding2">
         <div class="container">
@@ -19,7 +19,7 @@
                 @foreach ($services as $key => $service)
                     <div class="col-md-4">
                         <div class="item">
-                            <a href="{{ route('services_view', $service->id) }}"> <img src="{{ asset('img/icons/'.$service->icon->location) }}" alt="$service->icon->title">
+                            <a href="{{ route('services_view', $service->id) }}"> <img src="{{ Helper::viteAsset('images/icons/'.$service->icon->location) }}" alt="$service->icon->title">
                                 <h5>{{ $service->title }}</h5>
                                 <div class="line"></div>
                                 <p>{{ $service->description }}</p>

@@ -62,7 +62,7 @@
               <div class="media">
                 <a href="javascript:void(0);" class="mr-25">
                   @if (Auth::user()->images == null)
-                    <img src="{{Helper::viteAsset('img/600x600.jpg')}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80"/>    
+                    <img src="{{Helper::viteAsset('images/600x600.jpg')}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80"/>    
                   @else 
                     <img src="{{asset(Auth::user()->images->location)}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80"/>  
                   @endif
@@ -675,7 +675,7 @@
         if(oldImage.length != 0) {
           accountImage.src = oldSource;
         } else {
-          accountImage.src = @json(Helper::viteAsset('img/600x600.jpg'));
+          accountImage.src = @json(Helper::viteAsset('images/600x600.jpg'));
         }
       });
 

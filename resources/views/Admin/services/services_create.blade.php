@@ -129,7 +129,7 @@
                 @else
                   <input type="radio" id="icon" name="icon" class="custom-control-input" value="{{ $icon->id }}">
                 @endif
-                <img src="{{ asset('img/icons/'.$icon->location) }}" alt="{{ $icon->title }}" style="height: 42px; width:60px;"/>
+                <img src="{{ Helper::viteAsset('images/icons/'.$icon->location) }}" alt="{{ $icon->title }}" style="height: 42px; width:60px;"/>
               </label>
             @endforeach
           </div>
