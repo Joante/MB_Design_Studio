@@ -24,8 +24,8 @@
                     <div class="blog-sidebar row">
                         <div class="widget" style="width: 100%;">
                             <ul>
-                                <li><p><b>Fecha de Inicio : </b> {{ $exhibition->date_start->format('d/m/Y H:m') }}</p></li>
-                                <li><p><b>Fecha de Cierre : </b> {{ $exhibition->date_finish->format('d/m/Y H:m') }}</p></li>
+                                <li><p><b>Fecha de Inicio : </b> {{ $exhibition->date_start->format('d/m/Y H:i') }}</p></li>
+                                <li><p><b>Fecha de Cierre : </b> {{ $exhibition->date_finish->format('d/m/Y H:i') }}</p></li>
                                 <li><p><b>Horarios : </b> {{ $exhibition->hour_start->format('H:i') }} a {{ $exhibition->hour_finish->format('H:i') }}</p></li>
                             </ul>
                         </div>

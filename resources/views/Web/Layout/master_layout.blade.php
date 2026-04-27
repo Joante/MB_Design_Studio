@@ -33,7 +33,7 @@
                     <li class="nav-item"><a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Home</a></li>
                     <li class="nav-item"><a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="{{ route('about') }}">About</a></li>
                     <li class="nav-item"><a class="nav-link {{ request()->is('services') ? 'active' : '' }}" href="{{ route('services_index') }}">Servicios</a></li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle {{ request()->is('art') ? 'active' : '' }}" href="{{ route('art_index') }}" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Arte <i class="ti-angle-down"></i></a>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle single-caret {{ request()->is('art') ? 'active' : '' }}" href="{{ route('art_index') }}" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Arte <i class="ti-angle-down"></i></a>
                         <ul class="dropdown-menu last">
                             <li class="dropdown-item {{ request()->is('art/collections') ? 'active' : '' }}"><a href="{{ route('paint_index') }}">Colecciones</a></li>
                             <li class="dropdown-item {{ request()->is('art/exhibitions') ? 'active' : '' }}"><a href="{{ route('exhibition_index') }}">Exhibiciones</a></li>
@@ -66,13 +66,13 @@
         </section>
         <footer class="main-footer dark">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-4 mb-30 animate-box d-flex justify-content-center" data-animate-effect="fadeInUp">
+                <div class="row footer-main-row">
+                    <div class="col-md-4 mb-30 animate-box footer-logo-col" data-animate-effect="fadeInUp">
                         <div class="about-img text-center">
                             <div class="img"><img src="{{ Helper::viteAsset('images/logo_2.png') }}" class="img-logo mx-auto d-block" alt="mb. design studio"></div>
                         </div>
                     </div>
-                    <div class="col-md-4 mb-30 justify-content-center" style="display: flex;">
+                    <div class="col-md-4 mb-30 footer-contact-col">
                         <div class="item fotcont">
                             <div class="fothead">
                                 <h4>CONTACTO</h4>
@@ -91,7 +91,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 mb-30">
+                    <div class="col-md-4 mb-30 footer-social-col">
                         <div class="item fotcont">
                             <div class="fothead">
                                 <div class="abot">
@@ -129,7 +129,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="text-start">
-                                <p>&copy; 2024 mb. design studio. All rights reserved.</p>
+                                <p>&copy; {{ now()->year }} mb. design studio. All rights reserved.</p>
                             </div>
                         </div>
                         <div class="col-md-8 float-end">

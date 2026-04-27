@@ -572,6 +572,12 @@ input[type=checkbox] {
     font-size: 9px;
 }
 
+
+
+.navbar .navbar-nav .nav-link.single-caret.dropdown-toggle::after {
+    display: none;
+}
+
 .dropdown-item {
     position: relative;
 }
@@ -881,7 +887,7 @@ hr.dotted {
     border-radius: 100%;
     color: rgba(255, 255, 255, 0.95);
     font-size: 11px;
-    margin-right: 3px;
+    margin-right: 0;
     cursor: pointer;
     border: 1px solid rgba(255, 255, 255, 0.3);
     transition: all 0.2s ease-in-out;
@@ -1153,6 +1159,8 @@ hr.dotted {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
 }
 
 .content-lines-inner {
@@ -1165,6 +1173,7 @@ hr.dotted {
     border-left: 1px solid #323232;
     border-right: 1px solid #323232;
     border-bottom: 1px solid #323232;
+    pointer-events: none;
 }
 
 .content-lines {
@@ -1174,8 +1183,16 @@ hr.dotted {
     height: 100%;
     border-left: 1px solid #323232;
     border-right: 1px solid #323232;
+    pointer-events: none;
 }
 
+.content-body,
+.testimonials,
+.projects-prev-next,
+.main-footer {
+    position: relative;
+    z-index: 2;
+}
 
 /* ======= About style ======= */
 
@@ -1511,6 +1528,156 @@ hr.dotted {
 }
 
 
+
+.service-sidebar-side .sidebar-widget .widget-inner {
+    padding: 30px;
+}
+
+.service-sidebar-grid {
+    row-gap: 15px;
+}
+
+.service-sidebar-grid .item {
+    background: #2a2a2a;
+    padding: 25px 20px;
+    margin-bottom: 0;
+}
+
+.service-sidebar-grid .item a {
+    display: block;
+}
+
+.service-sidebar-grid .item img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 12px;
+}
+
+.service-sidebar-grid .item h5 {
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 0;
+}
+
+.service-sidebar-grid .item .line,
+.service-sidebar-grid .item p,
+.service-sidebar-grid .item .numb {
+    display: none;
+}
+
+.service-sidebar-grid .item:hover,
+.service-sidebar-grid .item.active-service-card {
+    background: #3a3a3a;
+}
+
+.service-sidebar-grid .item.active-service-card {
+    outline: 1px solid rgba(131, 132, 135, 0.45);
+}
+
+.service-projects-carousel .item {
+    margin-bottom: 0;
+}
+
+.service-projects-carousel-image {
+    height: 230px;
+}
+
+.service-project-card-content {
+    bottom: -44px !important;
+    padding: 18px 12px !important;
+}
+
+.service-project-card-content h5,
+.service-project-card-content h5 a {
+    font-size: 14px !important;
+    letter-spacing: 2px !important;
+}
+
+.service-project-card-content .line {
+    margin-bottom: 14px !important;
+}
+
+.service-projects-actions {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.service-projects-view-all {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #838487;
+}
+
+.service-projects-view-all:hover {
+    color: #fff;
+}
+
+.exhibition-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #999;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.exhibition-meta .meta-item {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.exhibition-meta .meta-item:not(:last-child) {
+    margin-right: 14px;
+    padding-right: 14px;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.exhibition-meta .meta-location {
+    color: #838487;
+}
+
+.exhibition-meta .meta-time {
+    color: #fff;
+}
+
+@media screen and (max-width: 991px) {
+    .service-projects-carousel-image {
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .service-sidebar-side .sidebar-widget .widget-inner {
+        padding: 25px;
+    }
+
+    .service-sidebar-grid .item h5 {
+        font-size: 13px;
+        letter-spacing: 1.5px;
+    }
+
+    .service-projects-carousel-image {
+        height: 180px;
+    }
+
+    .exhibition-meta {
+        row-gap: 6px;
+        column-gap: 0;
+    }
+
+    .exhibition-meta .meta-item {
+        white-space: normal;
+    }
+
+    .exhibition-meta .meta-item:not(:last-child) {
+        margin-right: 10px;
+        padding-right: 10px;
+    }
+}
 /* ======= Projects style ======= */
 
 .projects .item {
@@ -2396,9 +2563,45 @@ button.mfp-arrow {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+
+
 .main-footer.dark {
-    background: #0e0e0e;
+    background: transparent;
     color: #fff;
+}
+
+.main-footer .footer-main-row {
+    align-items: center;
+}
+
+.main-footer .footer-logo-col,
+.main-footer .footer-contact-col,
+.main-footer .footer-social-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-footer .footer-logo-col .about-img,
+.main-footer .footer-logo-col .about-img .img,
+.main-footer .footer-social-col .item.fotcont,
+.main-footer .footer-social-col .fothead,
+.main-footer .footer-social-col .abot {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-footer .footer-logo-col .about-img,
+.main-footer .footer-social-col .item.fotcont {
+    height: 100%;
+}
+
+.main-footer .footer-logo-col .img-logo {
+    width: min(100%, clamp(14rem, 28vw, 26rem));
+    height: auto;
+    margin: 0 auto;
 }
 
 .main-footer .abot p {
@@ -2406,8 +2609,15 @@ button.mfp-arrow {
 }
 
 .main-footer .abot .social-icon {
-    margin-bottom: 20px;
+    margin-bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 6px;
 }
+
 
 .main-footer .abot .social-icon a {
     width: 60px;
@@ -2418,11 +2628,11 @@ button.mfp-arrow {
     border: 1px solid #373737;
     color: #999;
     border-radius: 100%;
-    margin-right: 3px;
+    margin-right: 0;
     transition: all 0.4s;
     align-items: center;
     display: inline-grid;
-  }
+}
 
 .main-footer .abot .social-icon a:hover {
     border: 1px solid #838487;
@@ -3131,8 +3341,9 @@ button.mfp-arrow {
         text-align: left;
     }
     .main-footer .abot .social-icon {
-        text-align: left;
-        margin-bottom: 15px;
+        text-align: center;
+        justify-content: start;
+        margin-bottom: 0;
     }
     .footer .logo {
         padding: 0;
