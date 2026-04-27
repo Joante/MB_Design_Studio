@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Image extends Model
 {
@@ -32,22 +33,42 @@ class Image extends Model
         'location',
         'model_type',
         'model_id',
-        'hierarchy'
+        'hierarchy',
      ];
 
-    
-     /**
-      * Hierarchy events
-      */
-      protected static function booted()
+    public function getLocationAttribute($value): string
+    {
+        return self::normalizeLocationPath($value);
+    }
+
+    public function setLocationAttribute($value): void
+    {
+        $this->attributes['location'] = self::normalizeLocationPath($value);
+    }
+
+    protected static function normalizeLocationPath($location): string
+    {
+        $normalized = ltrim((string) $location, '/');
+
+        if (Str::startsWith($normalized, 'img/')) {
+            return 'images/' . substr($normalized, 4);
+        }
+
+        return $normalized;
+    }
+
+    /**
+     * Hierarchy events
+     */
+    protected static function booted()
     {
         static::updating(function ($image) {
             $newHierarchy = $image->hierarchy;
             $oldHierarchy = $image->getOriginal('hierarchy');
-            if(self::$isUpdate && $oldHierarchy != $newHierarchy) {
+            if (self::$isUpdate && $oldHierarchy != $newHierarchy) {
                 Image::where('id', $image->id)
                     ->update(['hierarchy' => -1]);
-                
+
                 if ($newHierarchy > $oldHierarchy) {
                     Image::where('model_type', $image->model_type)
                         ->where('model_id', $image->model_id)
@@ -67,7 +88,7 @@ class Image extends Model
         });
 
         static::creating(function ($image) {
-            if(!self::$newModel) {
+            if (!self::$newModel) {
                 $newHierarchy = $image->hierarchy;
                 Image::where('model_type', $image->model_type)
                     ->where('model_id', $image->model_id)
@@ -88,11 +109,13 @@ class Image extends Model
         });
     }
 
-    public static function setIsUpdate($isUpdate){
+    public static function setIsUpdate($isUpdate)
+    {
         self::$isUpdate = $isUpdate;
     }
 
-    public static function setNewModel($newModel){
+    public static function setNewModel($newModel)
+    {
         self::$newModel = $newModel;
     }
 }

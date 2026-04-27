@@ -97,7 +97,7 @@
                             <div class="col-md-3">
                                 <div class="item">
                                     <a href="{{ route('services_view', $service->id) }}"> 
-                                        @if (file_exists(resource_path('images/icons/'.$service->icon->location)))
+                                        @if (file_exists(public_path('images/icons/'.$service->icon->location)))
                                             <img src="{{ Helper::viteAsset('images/icons/'.$service->icon->location) }}" alt="$service->icon->title">
                                         @endif
                                         <h5>{{ $service->title }}</h5>

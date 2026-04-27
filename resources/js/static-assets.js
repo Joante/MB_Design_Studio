@@ -11,7 +11,6 @@ const staticAssets = import.meta.glob([
     '../js/core/**/*.js',
     '../js/scripts/**/*.js',
     '../vendors/js/**/*.js',
-    '../images/**/*.{png,jpg,jpeg,svg,gif,webp,ico,avif}',
     '../fonts/**/*.{svg,ttf,eot,woff,woff2,otf,png,jpg,jpeg,gif,ico}',
     '../data/**/*.json',
 ], {

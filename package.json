@@ -2,7 +2,8 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "sync:images": "node scripts/sync-images.mjs",
+        "build": "npm run sync:images && vite build"
     },
     "devDependencies": {
         "@popperjs/core": "^2.11.8",
