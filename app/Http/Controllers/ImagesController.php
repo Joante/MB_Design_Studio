@@ -65,7 +65,7 @@ class ImagesController extends Controller
         }
 
         if($modelType != 'homepage_images'){
-            $name = $request->get('name');
+            $name = $request->input('name');
             $name = explode('.', $name);
         }else{
             $request->validate(['images' => 'required|image|max:10240']);
@@ -81,17 +81,17 @@ class ImagesController extends Controller
 
         $imagePath = 'images/'.$modelType.'/'.$imageName;
         $newImage = [
-            'title' => $modelType != 'homepage_images' ? $name[0] : $request->get('name'),
+            'title' => $modelType != 'homepage_images' ? $name[0] : $request->input('name'),
             'location' => $imagePath,
-            'hierarchy' => $request->get('hierarchy'),
+            'hierarchy' => $request->input('hierarchy'),
         ];
 
         if($request->has('description')){
-            $newImage['description'] = $request->get('description');
+            $newImage['description'] = $request->input('description');
         }
 
         DB::beginTransaction();
-        
+
         if(!$model->images()->create($newImage)) {
             return response()->json([
                 'message' => 'Problemas al guardar la imagen'
@@ -101,7 +101,7 @@ class ImagesController extends Controller
         if (!is_dir(public_path('/').'images/'.$modelType.'/')){
             mkdir(public_path('/').'images/'.$modelType.'/', 0770, true);
         }  
-        Image::read($request->file('images'))->save(public_path($imagePath));
+        Image::decode($request->file('images'))->save(public_path($imagePath));
         
         if (file_exists(public_path('/').$imagePath)) {
             DB::commit();
@@ -135,7 +135,7 @@ class ImagesController extends Controller
     {
         $model = $this->getModel($modelType, $modelId);
         $result = [];
-        foreach($model->images as $image) {
+        foreach($model->images ?? [] as $image) {
             if(file_exists(public_path($image->location))){
                 $file['name'] = $image->title; //get the filename in array
                 $file['location'] = $image->location;
@@ -156,6 +156,7 @@ class ImagesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param string $modelType
      * @param  int  $modelId
+     * @param int $imageId
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $modelType, $modelId, $imageId)
@@ -172,6 +173,13 @@ class ImagesController extends Controller
         return true;
     }
 
+    /**
+     * Update the specified resource in storage with hierarchy change.
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @param string $modelType
+     * @param int $modelId
+     */
     public function updateImageWithHierarchy(Request $request, $modelType, $modelId){
         $request->validate([
             'images' => 'required|image|max:10240',
@@ -183,9 +191,9 @@ class ImagesController extends Controller
         ModelsImage::setIsUpdate(true);
         ModelsImage::setNewModel(false);
         if($request->has('id')){
-            $image = ModelsImage::find($request->get('id'));
-            if($image != null && $image->hierarchy != $request->get('hierarchy')){
-                $image->hierarchy = $request->get('hierarchy');
+            $image = ModelsImage::find($request->input('id'));
+            if($image != null && $image->hierarchy != $request->input('hierarchy')){
+                $image->hierarchy = $request->input('hierarchy');
                 if(!$image->save()){
                     return response()->json([
                         'message' => 'Problemas al actualizar la imagen'
@@ -212,14 +220,14 @@ class ImagesController extends Controller
         $request->validate(['deletedFiles.*' => 'required|numeric']);
 
         ModelsImage::setIsUpdate(false);
-        $locations = ModelsImage::whereIn('id', $request->get('deletedFiles'))->pluck('location')->toArray();
+        $locations = ModelsImage::whereIn('id', $request->input('deletedFiles'))->pluck('location')->toArray();
 
         for ($i=0; $i < count($locations); $i++) { 
             $locations[$i] = '/'.$locations[$i];
         }
         DB::beginTransaction();
         
-        if(ModelsImage::destroy($request->get('deletedFiles')) != count($request->get('deletedFiles'))) {
+        if(ModelsImage::destroy($request->input('deletedFiles')) != count($request->input('deletedFiles'))) {
             DB::rollBack();
             return json_encode('Error al eliminar las imagenes de la base de datos.');
         }
@@ -233,6 +241,12 @@ class ImagesController extends Controller
     }
 
 
+    /**
+     * Remove a single image from storage, used for update when the image is changed.
+     * 
+     * @param int $id
+     * @return bool
+     */
     public function destroySingleImage($id){
         $image = ModelsImage::find($id);
         $location = $image->location;
@@ -248,6 +262,13 @@ class ImagesController extends Controller
         return true;
     }
 
+    /**
+     * Display the specified resource for admin use.
+     *
+     * @param int $modelId
+     * @param string $modelType
+     * @return \Illuminate\Http\Response
+     */
     private function getModel($modelType, $modelId){
         $model = false;
         switch($modelType) {

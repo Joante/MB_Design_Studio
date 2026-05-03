@@ -155,12 +155,12 @@ class PaintController extends Controller
                         ->withInput();
         }
 
-        $painting->name = $request->get('name');
-        $painting->art_colection_id = $request->get('art_colection_id');
-        $painting->tecnique = $request->get('tecnique');
-        $painting->width = $request->get('width');
-        $painting->height = $request->get('height');
-        $painting->description = $request->get('description');
+        $painting->name = $request->input('name');
+        $painting->art_colection_id = $request->input('art_colection_id');
+        $painting->tecnique = $request->input('tecnique');
+        $painting->width = $request->input('width');
+        $painting->height = $request->input('height');
+        $painting->description = $request->input('description');
 
         $painting->save();
 
@@ -181,7 +181,7 @@ class PaintController extends Controller
         try {
             DB::beginTransaction();
 
-            $painting = ArtPainting::find($request->get('id'));
+            $painting = ArtPainting::find($request->input('id'));
             $locations = [];
             foreach ($painting->images as $image) {
                 $locations[] = '/'.$image->location;

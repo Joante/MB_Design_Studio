@@ -54,10 +54,10 @@ class LocationController extends Controller
             DB::beginTransaction();
 
             $newLocation = [
-                'name' => $request->get('name'),
-                'url' => $request->get('url'),
-                'phone' => $request->get('phone'),
-                'adress' => $request->get('adress')
+                'name' => $request->input('name'),
+                'url' => $request->input('url'),
+                'phone' => $request->input('phone'),
+                'adress' => $request->input('adress')
             ];
             $location = Location::create($newLocation);
             if(!$location) {
@@ -100,7 +100,6 @@ class LocationController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @param string $message
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -156,10 +155,10 @@ class LocationController extends Controller
         try{
             DB::beginTransaction();
 
-            $location->name = $request->get('name');
-            $location->url = $request->get('url');
-            $location->phone = $request->get('phone');
-            $location->adress = $request->get('adress');
+            $location->name = $request->input('name');
+            $location->url = $request->input('url');
+            $location->phone = $request->input('phone');
+            $location->adress = $request->input('adress');
             if(!$location->save())
             {
                 $error = ['error' => 'Error al actualizar la ubicacion'];
@@ -210,7 +209,7 @@ class LocationController extends Controller
         try {
             DB::beginTransaction();
 
-            $location = Location::find($request->get('id'));
+            $location = Location::find($request->input('id'));
             $imagesController = new ImagesController();
             $imageId = $location->images->id;
 

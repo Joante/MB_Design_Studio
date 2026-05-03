@@ -71,10 +71,10 @@ class ServicesController extends Controller
         }        
         
         $newService = [
-            'title' => $request->get('title'),
-            'description' => $request->get('description'),
-            'text' => $request->get('text'),
-            'principal_page' => $request->get('principal_page')
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'text' => $request->input('text'),
+            'principal_page' => $request->input('principal_page')
         ];
         if($request->has('newIcon'))
         {
@@ -84,10 +84,10 @@ class ServicesController extends Controller
                 'location' => $iconName
             ];
             $icon = Icon::create($newIcon);
-            Image::read($request->file('iconFile'))->resize(200, 140)->save(public_path('images/icons/' . $iconName));
+            Image::decode($request->file('iconFile'))->resize(200, 140)->save(public_path('images/icons/' . $iconName));
             $newService['icon_id'] = $icon->id;
         }else {
-            $newService['icon_id'] = $request->get('icon');
+            $newService['icon_id'] = $request->input('icon');
         }
         $service = Service::create($newService);
         return redirect()->route('images_create_model', ['modelType' => 'services', 'modelId' => $service->id]);
@@ -171,9 +171,9 @@ class ServicesController extends Controller
             return view('errors/model_not_found', ['modelName' => 'servicio']);
         }
         
-        $service->title = $request->get('title');
-        $service->description = $request->get('description');
-        $service->text = $request->get('text');
+        $service->title = $request->input('title');
+        $service->description = $request->input('description');
+        $service->text = $request->input('text');
         $service->principal_page = $request->has('principal_page') ? true : false;
 
         if($request->has('newIcon'))
@@ -184,10 +184,10 @@ class ServicesController extends Controller
                 'location' => $iconName
             ];
             $icon = Icon::create($newIcon);
-            Image::read($request->file('iconFile'))->resize(200, 140)->save(public_path('images/icons/' . $iconName));
+            Image::decode($request->file('iconFile'))->resize(200, 140)->save(public_path('images/icons/' . $iconName));
             $service->icon_id = $icon->id;
         }else {
-            $service->icon_id = $request->get('icon');
+            $service->icon_id = $request->input('icon');
         }
         $service->save();
         return redirect()->route('services_show_admin', [$id])->with('success','hola');
@@ -206,7 +206,7 @@ class ServicesController extends Controller
         try {
             DB::beginTransaction();
 
-            $service = Service::find($request->get('id'));
+            $service = Service::find($request->input('id'));
             $locations = [];
             foreach ($service->images as $image) {
                 $locations[] = '/'.$image->location;
