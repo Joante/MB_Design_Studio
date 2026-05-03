@@ -80,9 +80,9 @@ class BlogController extends Controller
             DB::beginTransaction();
 
             $newPost = [
-                'title' => $request->get('title'),
-                'text' => $request->get('text'),
-                'principal_page' => $request->get('principal_page')
+                'title' => $request->input('title'),
+                'text' => $request->input('text'),
+                'principal_page' => $request->input('principal_page')
             ];
             $post = Post::create($newPost);
             if(!$post) {
@@ -209,9 +209,9 @@ class BlogController extends Controller
 
                 $imagesController = new ImagesController();
 
-                $post->title = $request->get('title');
-                $post->text = $request->get('text');
-                $post->principal_page = $request->get('principal_page');
+                $post->title = $request->input('title');
+                $post->text = $request->input('text');
+                $post->principal_page = $request->input('principal_page');
                 
                 if(!$post->save()) {
                     DB::rollBack();
@@ -241,9 +241,9 @@ class BlogController extends Controller
                             ->withInput();
             }    
         }else {
-            $post->title = $request->get('title');
-            $post->text = $request->get('text');
-            $post->principal_page = $request->get('principal_page');
+            $post->title = $request->input('title');
+            $post->text = $request->input('text');
+            $post->principal_page = $request->input('principal_page');
             
             if(!$post->save()) {
                 $error = ['error' => 'Problemas al actualizar el post'];
@@ -269,7 +269,7 @@ class BlogController extends Controller
         try {
             DB::beginTransaction();
 
-            $post = Post::find($request->get('id'));
+            $post = Post::find($request->input('id'));
             $imageId = $post->images->id;
             $imagesController = new ImagesController();
             

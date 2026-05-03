@@ -66,9 +66,9 @@ class ArtColectionsController extends Controller
             DB::beginTransaction();
 
             $newColection = [
-                'name' => $request->get('name'),
-                'description' => $request->get('description'),
-                'principal_page' => $request->get('principal_page')
+                'name' => $request->input('name'),
+                'description' => $request->input('description'),
+                'principal_page' => $request->input('principal_page')
             ];
             $colection = ArtColection::create($newColection);
             if(!$colection) {
@@ -120,7 +120,7 @@ class ArtColectionsController extends Controller
      * Display the specified resource for admin use.
      *
      * @param  int  $id
-     * @param string $message
+     * @param string $id
      * @return \Illuminate\Http\Response
      */
     public function show_admin($id)
@@ -176,9 +176,9 @@ class ArtColectionsController extends Controller
         try{
             DB::beginTransaction();
 
-            $colection->name = $request->get('name');
-            $colection->description = $request->get('description');
-            $colection->principal_page = $request->get('principal_page');
+            $colection->name = $request->input('name');
+            $colection->description = $request->input('description');
+            $colection->principal_page = $request->input('principal_page');
             if(!$colection->save())
             {
                 $error = ['error' => 'Error al actualizar la colección'];
@@ -227,7 +227,7 @@ class ArtColectionsController extends Controller
         try {
             DB::beginTransaction();
 
-            $colection = ArtColection::find($request->get('id'));
+            $colection = ArtColection::find($request->input('id'));
             
             $imageId = $colection->images->id;
 

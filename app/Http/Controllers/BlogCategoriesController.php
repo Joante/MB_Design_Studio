@@ -96,8 +96,8 @@ class BlogCategoriesController extends Controller
 
         $category = BlogCategory::find($id);
 
-        $category->title = $request->get('title');
-        $category->description = $request->get('description');
+        $category->title = $request->input('title');
+        $category->description = $request->input('description');
         if(!$category->save()) {
             $error = ['error' => 'Problemas al actualizar la categoria'];
             return redirect('blog/category/edit/'.$id)
@@ -111,19 +111,19 @@ class BlogCategoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
     {
         $request->validate(['id' => 'required|numeric']);
-        $count = DB::table('posts')->where('category_id', '=', $request->get('id'))->count();
+        $count = DB::table('posts')->where('category_id', '=', $request->input('id'))->count();
         if($count > 0)
         {
             return json_encode(['message' => 'No se puede eliminar la categoria por que tiene posts asociados.']);
         }
         
-        $category = BlogCategory::find($request->get('id'));
+        $category = BlogCategory::find($request->input('id'));
 
         if(!$category->delete()) {
             $message = ['message' => 'No se pudo eliminar la categoria de la base de datos.']; 

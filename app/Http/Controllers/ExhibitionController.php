@@ -75,7 +75,7 @@ class ExhibitionController extends Controller
                         ->withInput();
         }
         $requestData = $request->all();        
-        $requestData['principal_page'] = $request->has('principal_page') ? $request->get('principal_page') : false;
+        $requestData['principal_page'] = $request->has('principal_page') ? $request->input('principal_page') : false;
         $exhibition = ArtExhibition::create($requestData);
         return redirect()->route('images_create_model', ['modelType' => 'exhibitions', 'modelId' => $exhibition->id]);
     }
@@ -100,8 +100,7 @@ class ExhibitionController extends Controller
     /**
      * Display the specified resource for admin use.
      *
-     * @param  int  $id
-     * @param string $message
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show_admin($id)
@@ -160,11 +159,11 @@ class ExhibitionController extends Controller
                         ->withErrors($validator)
                         ->withInput();
         }        
-        $exhibition->title = $request->get('title');
-        $exhibition->location_id = $request->get('location_id');
-        $exhibition->date_start = $request->get('date_start');
-        $exhibition->date_finish = $request->get('date_finish');
-        $exhibition->principal_page = $request->has('principal_page') ? $request->get('principal_page') : false;
+        $exhibition->title = $request->input('title');
+        $exhibition->location_id = $request->input('location_id');
+        $exhibition->date_start = $request->input('date_start');
+        $exhibition->date_finish = $request->input('date_finish');
+        $exhibition->principal_page = $request->has('principal_page') ? $request->input('principal_page') : false;
 
         $exhibition->save();
 
@@ -184,7 +183,7 @@ class ExhibitionController extends Controller
         try {
             DB::beginTransaction();
 
-            $exhibition = ArtExhibition::find($request->get('id'));
+            $exhibition = ArtExhibition::find($request->input('id'));
             $locations = [];
             foreach ($exhibition->images as $image) {
                 $locations[] = '/'.$image->location;

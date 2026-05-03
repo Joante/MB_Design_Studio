@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HomepageImage;
 use App\Models\Image as ModelsImage;
 use Exception;
 use Illuminate\Http\Request;
@@ -51,11 +52,24 @@ class HomepageImagesController extends Controller
         ]);
         $image = new ImagesController();
         
-        if($request->get('hierarchy') == null){
+        if($request->input('hierarchy') == null){
             $request->merge(['hierarchy' => ModelsImage::where('model_type', $this->model_type_db)->count()+1]);
         }
 
-        if($image->store($request, $this->model_type, $this->model_id) != null ){
+        $homepageImage = HomepageImage::create([
+            'title' => $request->input('name'),
+            'description' => $request->input('description'),
+            'hierarchy' => $request->input('hierarchy'),
+        ]);
+        
+        if($homepageImage == null){
+            $error = ['error' => 'Error al crear la imagen de la homepage'];
+            return redirect('homepage_images/create/')
+                    ->withErrors($error)
+                    ->withInput();
+        }
+
+        if($image->store($request, $this->model_type, $homepageImage->id) != null ){
             $error = ['error' => 'Error al crear la imagen de la homepage'];
             return redirect('homepage_images/create/')
                     ->withErrors($error)
@@ -123,9 +137,9 @@ class HomepageImagesController extends Controller
             DB::beginTransaction();
             ModelsImage::setIsUpdate(true);
             ModelsImage::setNewModel(false);
-            $homepageImage->title = $request->get('name');
-            $homepageImage->description = $request->get('description');
-            $homepageImage->hierarchy = $request->get('hierarchy');
+            $homepageImage->title = $request->input('name');
+            $homepageImage->description = $request->input('description');
+            $homepageImage->hierarchy = $request->input('hierarchy');
             if(!$homepageImage->save())
             {
                 $error = ['error' => 'Error al actualizar la imagen de la homepage'];
@@ -166,7 +180,7 @@ class HomepageImagesController extends Controller
     public function destroy(Request $request)
     {
         $request->validate(['id' => 'required|numeric']);
-        $idArray = ['deletedFiles' => [$request->get('id')]];
+        $idArray = ['deletedFiles' => [$request->input('id')]];
         $request->except(['id']);
         $request->merge($idArray);
         $imagesController = new ImagesController();

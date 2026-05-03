@@ -39,8 +39,8 @@ class AdminController extends Controller
                         ->withInput();
         }
 
-        Auth::user()->username = $request->get('username');
-        Auth::user()->name = $request->get('name');
+        Auth::user()->username = $request->input('username');
+        Auth::user()->name = $request->input('name');
         Auth::user()->save();
 
         return redirect()->route('admin_edit');
@@ -96,7 +96,7 @@ class AdminController extends Controller
             'password' => 'required|string|min:8|confirmed'
         ]);
 
-        Auth::user()->password = Hash::make($request->get('password'));
+        Auth::user()->password = Hash::make($request->input('password'));
 
         Auth::user()->save();
 
@@ -124,20 +124,20 @@ class AdminController extends Controller
         $perAcounts = Acounts::where('type', '=', 'personal')->first();
         $mbAcounts = Acounts::where('type', '=', 'mb')->first();
 
-        $perAcounts->email = $request->get('personal_email');
-        $perAcounts->twitter = $request->get('personal_twitter');
-        $perAcounts->facebook = $request->get('personal_facebook');
-        $perAcounts->linkedin = $request->get('personal_linkedin');
-        $perAcounts->pinterest = $request->get('personal_pinterest');
-        $perAcounts->whats_app = $request->get('personal_phone');
+        $perAcounts->email = $request->input('personal_email');
+        $perAcounts->twitter = $request->input('personal_twitter');
+        $perAcounts->facebook = $request->input('personal_facebook');
+        $perAcounts->linkedin = $request->input('personal_linkedin');
+        $perAcounts->pinterest = $request->input('personal_pinterest');
+        $perAcounts->whats_app = $request->input('personal_phone');
 
-        $mbAcounts->email = $request->get('mb_email');
-        $mbAcounts->twitter = $request->get('mb_twitter');
-        $mbAcounts->facebook = $request->get('mb_facebook');
-        $mbAcounts->linkedin = $request->get('mb_linkedin');
-        $mbAcounts->pinterest = $request->get('mb_pinterest');
-        $mbAcounts->whats_app = $request->get('mb_phone');
-        $mbAcounts->instagram = $request->get('mb_instagram');
+        $mbAcounts->email = $request->input('mb_email');
+        $mbAcounts->twitter = $request->input('mb_twitter');
+        $mbAcounts->facebook = $request->input('mb_facebook');
+        $mbAcounts->linkedin = $request->input('mb_linkedin');
+        $mbAcounts->pinterest = $request->input('mb_pinterest');
+        $mbAcounts->whats_app = $request->input('mb_phone');
+        $mbAcounts->instagram = $request->input('mb_instagram');
 
         if(!$perAcounts->save()) {
             $error = ['personal' => $perAcounts];

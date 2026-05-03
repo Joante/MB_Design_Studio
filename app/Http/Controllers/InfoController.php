@@ -56,7 +56,7 @@ class InfoController extends Controller
         if(!$about){
             $about = new Information($request->all());
         }else {
-            $about->about = $request->get('about');
+            $about->about = $request->input('about');
         }
         if(!$about->save()){
             $error = ['error' => 'Problemas al actualizar el texto'];
@@ -89,8 +89,8 @@ class InfoController extends Controller
             ->queue(new AdminContact($contact));
 
         // Send mail to client 
-        Mail::to($request->get('email'))
-            ->queue(new ContactMail($request->get('name')));
+        Mail::to($request->input('email'))
+            ->queue(new ContactMail($request->input('name')));
 
 
         return redirect()->back()->with(['success' => 'Mensaje enviado']);

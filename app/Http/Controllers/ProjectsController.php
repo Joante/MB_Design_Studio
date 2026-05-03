@@ -146,12 +146,12 @@ class ProjectsController extends Controller
                         ->withErrors($validator)
                         ->withInput();
         }        
-        $project->title = $request->get('title');
-        $project->client = $request->get('client');
-        $project->description = $request->get('description');
-        $project->location = $request->get('location');
-        $project->principal_page = $request->get('principal_page');
-        $project->area = $request->get('area');
+        $project->title = $request->input('title');
+        $project->client = $request->input('client');
+        $project->description = $request->input('description');
+        $project->location = $request->input('location');
+        $project->principal_page = $request->input('principal_page');
+        $project->area = $request->input('area');
         $project->save();
 
         return redirect()->route('projects_show_admin', [$id])->with('success','hola');
@@ -170,7 +170,7 @@ class ProjectsController extends Controller
         try {
             DB::beginTransaction();
 
-            $project = Project::find($request->get('id'));
+            $project = Project::find($request->input('id'));
             $locations = [];
             foreach ($project->images as $image) {
                 $locations[] = '/'.$image->location;
