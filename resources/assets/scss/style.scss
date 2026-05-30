@@ -1444,7 +1444,7 @@ hr.dotted {
 }
 
 .home-services-list .item p {
-    max-width: 760px;
+    max-width: none;
 }
 
 .home-services-list .item .numb {
@@ -1473,25 +1473,56 @@ hr.dotted {
 
 @media screen and (max-width: 575px) {
     .home-services-list .item a {
-        grid-template-columns: 44px minmax(0, 1fr);
-        gap: 12px;
-        padding: 22px 0;
+        grid-template-columns: 94px minmax(0, 1fr);
+        gap: 18px;
+        align-items: center;
+        padding: 25px 0 30px;
     }
 
     .home-services-list .item img {
-        width: 40px;
-        height: 40px;
+        grid-column: 1;
+        grid-row: 1;
+        width: 86px;
+        height: 64px;
+    }
+
+    .home-services-list .home-service-content {
+        display: contents;
     }
 
     .home-services-list .item h5 {
-        font-size: 11px;
-        letter-spacing: 3px;
+        grid-column: 2;
+        grid-row: 1;
+        align-self: center;
+        padding-right: 46px;
+        font-size: 12px;
+        letter-spacing: 4px;
+        margin-bottom: 0;
+    }
+
+    .home-services-list .item .line {
+        grid-column: 2;
+        grid-row: 1;
+        align-self: end;
         margin-bottom: 8px;
     }
 
+    .home-services-list .item .numb {
+        display: block;
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+        align-self: start;
+        font-size: 28px;
+        margin-top: 0;
+    }
+
     .home-services-list .item p {
-        font-size: 12px;
-        line-height: 1.55em;
+        grid-column: 1 / -1;
+        grid-row: 2;
+        font-size: 14px;
+        line-height: 1.7em;
+        margin-top: 18px;
     }
 }
 
