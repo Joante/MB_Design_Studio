@@ -34,7 +34,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 mb-30 animate-box" data-animate-effect="fadeInUp">
-                        <h2 class="section-title">About <span>mb.</span></h2>
+                        <h2 class="section-title">About <span style="text-transform: lowercase;">mb.</span></h2>
                         <div>{!! $about->about !!}</div>
                     </div>
                     <div class="col-md-5 animate-box" data-animate-effect="fadeInUp">
@@ -84,22 +84,21 @@
                         <h2 class="section-title">Servicios</h2>
                     </div>
                 </div>
-                <div class="row">
+                <div class="home-services-list">
                     @foreach ($services as $key => $service)
                         @if ($service->principal_page)
-                            <div class="col-md-3">
-                                <div class="item">
-                                    <a href="{{ route('services_view', $service->id) }}"> 
-                                        @if (file_exists(public_path('images/icons/'.$service->icon->location)))
-                                            <img src="{{ Helper::viteAsset('images/icons/'.$service->icon->location) }}" alt="$service->icon->title">
-                                        @endif
+                            <div class="item">
+                                <a href="{{ route('services_view', $service->id) }}"> 
+                                    @if (file_exists(public_path('images/icons/'.$service->icon->location)))
+                                        <img src="{{ Helper::viteAsset('images/icons/'.$service->icon->location) }}" alt="$service->icon->title">
+                                    @endif
+                                    <div class="home-service-content">
                                         <h5>{{ $service->title }}</h5>
                                         <div class="line"></div>
                                         <p>{{ $service->description }}</p>
-                                        <br>
-                                        <div class="numb">0{{ $key+1 }}</div>
-                                    </a>
-                                </div>
+                                    </div>
+                                    <div class="numb">0{{ $key+1 }}</div>
+                                </a>
                             </div>
                         @endif
                     @endforeach

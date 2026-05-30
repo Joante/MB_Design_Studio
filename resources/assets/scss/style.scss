@@ -354,6 +354,7 @@ input[type=checkbox] {
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
     color: #999;
+    text-transform: uppercase;
     position: relative;
     word-spacing: 5px;
     margin-bottom: 30px;
@@ -369,6 +370,7 @@ input[type=checkbox] {
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
     color: #fff;
+    text-transform: uppercase;
     position: relative;
     word-spacing: 5px;
     margin-bottom: 20px;
@@ -387,6 +389,17 @@ input[type=checkbox] {
     position: relative;
     line-height: 1.25em;
     margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.section-title-project {
+    font-size: 25px;
+    font-weight: 300;
+    color: #838487;
+    position: relative;
+    line-height: 1.25em;
+    margin-bottom: 30px;
+    text-transform: uppercase;
 }
 
 .section-title2 span {
@@ -760,6 +773,7 @@ input[type=checkbox] {
     position: relative;
     margin-bottom: 20px;
     font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
     font-size: 30px;
     line-height: 1.35em;
     -webkit-animation-delay: 0.4s;
@@ -887,7 +901,7 @@ hr.dotted {
     border-radius: 100%;
     color: rgba(255, 255, 255, 0.95);
     font-size: 11px;
-    margin-right: 0;
+    margin-right: 0px;
     cursor: pointer;
     border: 1px solid rgba(255, 255, 255, 0.3);
     transition: all 0.2s ease-in-out;
@@ -1170,9 +1184,9 @@ hr.dotted {
     margin-left: -570px;
     top: 0;
     height: 100%;
-    border-left: 1px solid #323232;
-    border-right: 1px solid #323232;
-    border-bottom: 1px solid #323232;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    border-bottom: 1px solid transparent;
     pointer-events: none;
 }
 
@@ -1181,8 +1195,8 @@ hr.dotted {
     left: 33.666666%;
     right: 33.666666%;
     height: 100%;
-    border-left: 1px solid #323232;
-    border-right: 1px solid #323232;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
     pointer-events: none;
 }
 
@@ -1220,7 +1234,7 @@ hr.dotted {
     left: 0;
     right: 45px;
     bottom: 0;
-    border: 1px solid #323232;
+    border: 1px solid transparent;
 }
 
 .about .about-img .img img {
@@ -1397,6 +1411,88 @@ hr.dotted {
     transition-property: all;
     transition-duration: 0.8s;
     transition-timing-function: ease-in-out;
+}
+
+.home-services-list {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.home-services-list .item {
+    margin-bottom: 0;
+    padding: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.home-services-list .item a {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr) 80px;
+    gap: 28px;
+    align-items: flex-start;
+    min-height: 170px;
+    padding: 30px 28px;
+}
+
+.home-services-list .item img {
+    width: 76px;
+    height: 76px;
+    margin-bottom: 0;
+    object-fit: contain;
+}
+
+.home-services-list .item .line {
+    margin-bottom: 14px;
+}
+
+.home-services-list .item p {
+    max-width: 760px;
+}
+
+.home-services-list .item .numb {
+    position: static;
+    justify-self: end;
+    margin-top: 4px;
+}
+
+@media screen and (max-width: 991px) {
+    .home-services-list .item a {
+        grid-template-columns: 70px minmax(0, 1fr);
+        gap: 20px;
+        min-height: 0;
+        padding: 26px 18px;
+    }
+
+    .home-services-list .item img {
+        width: 58px;
+        height: 58px;
+    }
+
+    .home-services-list .item .numb {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .home-services-list .item a {
+        grid-template-columns: 44px minmax(0, 1fr);
+        gap: 12px;
+        padding: 22px 0;
+    }
+
+    .home-services-list .item img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .home-services-list .item h5 {
+        font-size: 11px;
+        letter-spacing: 3px;
+        margin-bottom: 8px;
+    }
+
+    .home-services-list .item p {
+        font-size: 12px;
+        line-height: 1.55em;
+    }
 }
 
 .img-logo {
@@ -2652,7 +2748,7 @@ button.mfp-arrow {
     font-weight: 500;
     position: relative;
     padding-bottom: 30px;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .main-footer .fotcont .fothead h4:after {
