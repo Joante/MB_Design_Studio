@@ -39,37 +39,59 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="col-md-4 sidebar-side">
-                        <aside class="sidebar blog-sidebar">
-                            <div class="sidebar-widget services">
+                    <div class="col-md-8 sidebar-side service-sidebar-side">
+                        <div class="sidebar blog-sidebar">
+                            <div class="sidebar-widget services service-sidebar-widget">
                                 <div class="widget-inner">
                                     <div class="sidebar-title">
                                         <h4>Todos los Servicios</h4>
                                     </div>
-                                    <ul>
+                                    <div class="row service-sidebar-grid">
                                         @foreach ($services as $list_service)
-                                            @if ($list_service->id == $service->id)
-                                                <li class="active"><a href="{{ route('services_view', $list_service->id) }}">{{ $list_service->title }}</a></li>    
-                                            @else
-                                                <li><a href="{{ route('services_view', $list_service->id) }}">{{ $list_service->title }}</a></li>
-                                            @endif
+                                            <div class="col-3">
+                                                <div class="item service-mini-item {{ $list_service->id == $service->id ? 'active-service-card' : '' }}">
+                                                    <a href="{{ route('services_view', $list_service->id) }}">
+                                                        @if ($list_service->icon != null && file_exists(public_path('images/icons/'.$list_service->icon->location)))
+                                                            <img src="{{ Helper::viteAsset('images/icons/'.$list_service->icon->location) }}" alt="{{ $list_service->icon->title }}">
+                                                        @else
+                                                            <img src="{{ Helper::viteAsset('images/icons/icon-1.png') }}" alt="Icono de servicio">
+                                                        @endif
+                                                        <h5>{{ $list_service->title }}</h5>
+                                                    </a>
+                                                </div>
+                                            </div>
                                         @endforeach
-                                    </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </aside>
+                        </div>
                         <aside class="sidebar blog-sidebar mt-50">
-                            <div class="sidebar-widget services">
+                            <div class="sidebar-widget services service-projects-widget">
                                 <div class="widget-inner">
                                     <div class="sidebar-title">
                                         <h4>Proyectos</h4>
                                     </div>
-                                    <ul>
+                                    <div class="owl-carousel owl-theme service-projects-carousel">
                                         @foreach ($projects as $project)
-                                            <li><a href="{{ route('projects_view', $project->id) }}">{{ $project->title }}</a></li>    
+                                            <div class="item">
+                                                <div class="position-re o-hidden">
+                                                    @if ($project->images != null && count($project->images) > 0 && file_exists(public_path($project->images[0]->location)))
+                                                        <img class="projects-carousel service-projects-carousel-image" src="{{ asset($project->images[0]->location) }}" alt="{{ $project->images[0]->title }}">
+                                                    @else
+                                                        <img class="projects-carousel service-projects-carousel-image" src="{{ Helper::viteAsset('images/600x600.jpg') }}" alt="Imagen de proyecto no encontrada">
+                                                    @endif
+                                                </div>
+                                                <div class="con service-project-card-content">
+                                                    <h5><a href="{{ route('projects_view', $project->id) }}">{{ $project->title }}</a></h5>
+                                                    <div class="line"></div>
+                                                    <a href="{{ route('projects_view', $project->id) }}"><i class="ti-arrow-right"></i></a>
+                                                </div>
+                                            </div>
                                         @endforeach
-                                        <li><a href="{{ route('projects_index',) }}">Ver Todos</a></li>
-                                    </ul>
+                                    </div>
+                                    <div class="service-projects-actions">
+                                        <a href="{{ route('projects_index') }}" class="service-projects-view-all">Ver Todos</a>
+                                    </div>
                                 </div>
                             </div>
                         </aside>
@@ -77,4 +99,25 @@
                 </div>
             </div>
         </section>    
+@endsection
+
+@section('page-script')
+<script>
+    $('.service-projects-carousel').owlCarousel({
+        loop: {{ count($projects) > 1 ? 'true' : 'false' }},
+        margin: 20,
+        mouseDrag: true,
+        autoplay: false,
+        dots: true,
+        nav: false,
+        autoplayHoverPause: true,
+        smartSpeed: 500,
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 1,
+            },
+        }
+    });
+</script>
 @endsection

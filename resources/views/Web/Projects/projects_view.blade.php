@@ -13,7 +13,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="section-title2">{{ $project->title }}</h2>
+                    <h2 class="section-title-project">{{ $project->title }}</h2>
                 </div>
             </div>
             <div class="row">
@@ -21,14 +21,14 @@
                     <div id="editor" class="ql-editor" style="padding: 0px; height:auto;">{!! $project->description !!}</div>
                 </div>
                 <div class="col-md-4">
-                    <p><b>Nombre de Proyecto : </b> {{ $project->title }}</p>
+                    <p><b style="text-transform: uppercase;">Nombre de Proyecto : </b> {{ $project->title }}</p>
                     @if ($project->client != null)
-                        <p><b>Cliente : </b> {{ $project->client }}</p>    
+                        <p><b style="text-transform: uppercase;">Cliente : </b> {{ $project->client }}</p>    
                     @endif
                     @if ($project->location != null)
-                        <p><b>Locación : </b> {{ $project->location }}</p>
+                        <p><b style="text-transform: uppercase;">Locación : </b> {{ $project->location }}</p>
                     @endif
-                    <p><b>Superficie : </b> {{ $project->area }} m2</p>
+                    <p><b style="text-transform: uppercase;">Superficie : </b> {{ $project->area }} m2</p>
                 </div>
             </div>
             <div class="row mt-30">

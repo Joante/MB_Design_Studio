@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 mb-30 animate-box" data-animate-effect="fadeInUp">
-                    <h2 class="section-title-about">About <span>mb.</span></h2>
+                    <h2 class="section-title-about">About <span style="text-transform: lowercase;">mb.</span></h2>
                     <div>{!! $about !!}</div>
                 </div>
                 <div class="col-md-6 animate-box" data-animate-effect="fadeInUp">
